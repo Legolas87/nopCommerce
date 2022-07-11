@@ -25,7 +25,7 @@
                         <div class="col-md-8 offset-md-4">
                             <button type="button" id="search-log" class="btn btn-primary btn-search">
                                 <i class="fas fa-search"></i>
-                                @T("Admin.Common.Search")
+                                @await T("Admin.Common.Search")
                             </button>
                         </div>
                     </div>
@@ -59,23 +59,23 @@
                     },
                     new ColumnProperty(nameof(TaxTransactionLogModel.StatusCode))
                     {
-                    Title = T("Plugins.Tax.Avalara.Log.StatusCode").Text,
+                    Title = (await T("Plugins.Tax.Avalara.Log.StatusCode")).Value,
                     Width = "100"
                     },
                     new ColumnProperty(nameof(TaxTransactionLogModel.Url))
                     {
-                    Title = T("Plugins.Tax.Avalara.Log.Url").Text,
+                    Title = (await T("Plugins.Tax.Avalara.Log.Url")).Value,
                     Width = "200"
                     },
                     new ColumnProperty(nameof(TaxTransactionLogModel.CreatedDate))
                     {
-                    Title = T("Plugins.Tax.Avalara.Log.CreatedDate").Text,
+                    Title = (await T("Plugins.Tax.Avalara.Log.CreatedDate")).Value,
                     Width = "200",
                     Render = new RenderDate()
                     },
                     new ColumnProperty(nameof(TaxTransactionLogModel.Id))
                     {
-                    Title = T("Admin.Common.View").Text,
+                    Title = (await T("Admin.Common.View")).Value,
                     Width = "100",
                     ClassName = NopColumnClassDefaults.Button,
                     Render = new RenderButtonView(new DataUrl("~/Admin/TaxTransactionLog/View/"))
@@ -102,7 +102,7 @@
                             complete: function (jqXHR, textStatus) {
                                 if (jqXHR.status === 204)
                                 {
-                                    showAlert('nothingSelectedAlert', '@T("Admin.Common.Alert.NothingSelected")');
+                                    showAlert('nothingSelectedAlert', '@await T("Admin.Common.Alert.NothingSelected")');
                                     return;
                                 }
                                 updateTable('#log-grid');
@@ -133,12 +133,12 @@
         <div class="card-footer">
             <button type="button" id="delete-selected" class="btn btn-danger">
                 <i class="far fa-trash-alt"></i>
-                @T("Admin.System.Log.DeleteSelected")
+                @await T("Admin.System.Log.DeleteSelected")
             </button>
             <nop-action-confirmation asp-button-id="delete-selected" />
             <button type="button" id="clear-all" class="btn btn-danger">
                 <i class="far fa-trash-alt"></i>
-                @T("Admin.System.Log.ClearLog")
+                @await T("Admin.System.Log.ClearLog")
             </button>
             <nop-action-confirmation asp-button-id="clear-all" />
         </div>

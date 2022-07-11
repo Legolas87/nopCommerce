@@ -6,7 +6,7 @@
 <!script nomodule src="https://cdn.what3words.com/javascript-components@4-latest/dist/what3words/what3words.js?key=@(Model.ApiKey)"></!script>
 
 <div class="inputs">
-    <label for="w3w">@T("Plugins.Widgets.What3words.Address.Field.Label"):</label>
+    <label for="w3w">@await T("Plugins.Widgets.What3words.Address.Field.Label"):</label>
     <what3words-autosuggest variant="inherit" api_key="@(Model.ApiKey)" id="what3words-autosuggest_@(Model.Prefix)">
         <input placeholder="e.g. ///lock.spout.radar"
                type="text"
@@ -16,8 +16,8 @@
     </what3words-autosuggest>
     <div class="what3words_tooltip">?
         <div class="what3words_tooltiptext">
-            <div>@T("Plugins.Widgets.What3words.Address.Field.Tooltip")</div>
-            <a href="http://delivery.w3w.co/" target="_blank">@T("Plugins.Widgets.What3words.Address.Field.Tooltip.Link")</a>
+            <div>@await T("Plugins.Widgets.What3words.Address.Field.Tooltip")</div>
+            <a href="http://delivery.w3w.co/" target="_blank">@await T("Plugins.Widgets.What3words.Address.Field.Tooltip.Link")</a>
         </div>
     </div>
 </div>

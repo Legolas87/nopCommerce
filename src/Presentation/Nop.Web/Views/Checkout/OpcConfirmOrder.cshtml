@@ -32,27 +32,27 @@
     </div>
     @if (string.IsNullOrEmpty(Model.MinOrderTotalWarning) && Model.TermsOfServiceOnOrderConfirmPage)
     {
-        <div id="terms-of-service-warning-box" title="@T("Checkout.TermsOfService")" style="display:none;">
-            <p>@T("Checkout.TermsOfService.PleaseAccept")</p>
+        <div id="terms-of-service-warning-box" title="@await T("Checkout.TermsOfService")" style="display:none;">
+            <p>@await T("Checkout.TermsOfService.PleaseAccept")</p>
         </div>
         <div class="terms-of-service">
             <input id="termsofservice" type="checkbox" name="termsofservice" />
-            <label for="termsofservice">@T("Checkout.TermsOfService.IAccept")</label>
+            <label for="termsofservice">@await T("Checkout.TermsOfService.IAccept")</label>
             @if (Model.TermsOfServicePopup)
             {
-                <a class="read" id="read-terms">@T("Checkout.TermsOfService.Read")</a>
+                <a class="read" id="read-terms">@await T("Checkout.TermsOfService.Read")</a>
                 <script>
                     $(document).ready(function() {
                         $('#read-terms').on('click', function(e) {
                             e.preventDefault();
-                            displayPopupContentFromUrl('@Url.RouteUrl("TopicPopup", new {SystemName = "conditionsofuse"})', '@T("Checkout.TermsOfService")');
+                            displayPopupContentFromUrl('@Url.RouteUrl("TopicPopup", new {SystemName = "conditionsofuse"})', '@await T("Checkout.TermsOfService")');
                         });
                     });
                 </script>
             }
             else
             {
-                <a class="read" id="read-terms" href="@Url.RouteTopicUrl("conditionsofuse")">@T("Checkout.TermsOfService.Read")</a>
+                <a class="read" id="read-terms" href="@Url.RouteTopicUrl("conditionsofuse")">@await T("Checkout.TermsOfService.Read")</a>
             }
         </div>
     }

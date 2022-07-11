@@ -111,7 +111,7 @@
                                     <nop-label asp-for="UploadedFileGuid" />
                                 </div>
                                 <div class="col-md-9">
-                                    <a asp-controller="Download" asp-action="DownloadFile" asp-route-downloadGuid="@Model.UploadedFileGuid">@T("Admin.ReturnRequests.Fields.UploadedFile.Download")</a>
+                                    <a asp-controller="Download" asp-action="DownloadFile" asp-route-downloadGuid="@Model.UploadedFileGuid">@await T("Admin.ReturnRequests.Fields.UploadedFile.Download")</a>
                                 </div>
                             </div>
                         }

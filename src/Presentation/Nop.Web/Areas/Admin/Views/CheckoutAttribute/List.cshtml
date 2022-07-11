@@ -2,24 +2,24 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Catalog.Attributes.CheckoutAttributes").Text;
+    ViewBag.PageTitle = (await T("Admin.Catalog.Attributes.CheckoutAttributes")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Checkout attributes");
 }
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Catalog.Attributes.CheckoutAttributes")
+        @await T("Admin.Catalog.Attributes.CheckoutAttributes")
     </h1>
     <div class="float-right">
         <a asp-action="Create" class="btn btn-primary">
             <i class="fas fa-plus-square"></i>
-            @T("Admin.Common.AddNew")
+            @await T("Admin.Common.AddNew")
         </a>
         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.CheckoutAttributeListButtons, additionalData = Model })
         <button type="button" id="delete-selected" class="btn btn-danger">
             <i class="far fa-trash-alt"></i>
-            @T("Admin.Common.Delete.Selected")
+            @await T("Admin.Common.Delete.Selected")
         </button>
         <nop-action-confirmation asp-button-id="delete-selected" />
     </div>
@@ -32,8 +32,8 @@
                 <div class="card card-default">
                     <div class="card-body">
                         <p>
-                            @T("Admin.Catalog.Attributes.CheckoutAttributes.Description")
-                            <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.CheckoutAttributes", Docs.CheckoutAttributes + Utm.OnAdmin)" asp-add-wrapper="false"/>
+                            @await T("Admin.Catalog.Attributes.CheckoutAttributes.Description")
+                            <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.CheckoutAttributes", Docs.CheckoutAttributes + Utm.OnAdmin)" asp-add-wrapper="false"/>
                         </p>
                         @await Html.PartialAsync("Table", new DataTablesModel
                         {
@@ -52,29 +52,29 @@
                                 },
                                 new ColumnProperty(nameof(CheckoutAttributeModel.Name))
                                 {
-                                    Title = T("Admin.Catalog.Attributes.CheckoutAttributes.Fields.Name").Text
+                                    Title = (await T("Admin.Catalog.Attributes.CheckoutAttributes.Fields.Name")).Value
                                 },
                                 new ColumnProperty(nameof(CheckoutAttributeModel.AttributeControlTypeName))
                                 {
-                                    Title = T("Admin.Catalog.Attributes.CheckoutAttributes.Fields.AttributeControlType").Text,
+                                    Title = (await T("Admin.Catalog.Attributes.CheckoutAttributes.Fields.AttributeControlType")).Value,
                                     Width = "200"
                                 },
                                 new ColumnProperty(nameof(CheckoutAttributeModel.IsRequired))
                                 {
-                                    Title = T("Admin.Catalog.Attributes.CheckoutAttributes.Fields.IsRequired").Text,
+                                    Title = (await T("Admin.Catalog.Attributes.CheckoutAttributes.Fields.IsRequired")).Value,
                                     Width = "100",
                                     ClassName = NopColumnClassDefaults.CenterAll,
                                     Render = new RenderBoolean()
                                 },
                                 new ColumnProperty(nameof(CheckoutAttributeModel.DisplayOrder))
                                 {
-                                    Title = T("Admin.Catalog.Attributes.CheckoutAttributes.Fields.DisplayOrder").Text,
+                                    Title = (await T("Admin.Catalog.Attributes.CheckoutAttributes.Fields.DisplayOrder")).Value,
                                     Width = "100",
                                     ClassName = NopColumnClassDefaults.CenterAll
                                 },
                                 new ColumnProperty(nameof(CheckoutAttributeModel.Id))
                                 {
-                                    Title = T("Admin.Common.Edit").Text,
+                                    Title = (await T("Admin.Common.Edit")).Value,
                                     Width = "100",
                                     ClassName = NopColumnClassDefaults.Button,
                                     Render = new RenderButtonEdit(new DataUrl("Edit"))
@@ -100,7 +100,7 @@
                                 complete: function (jqXHR, textStatus) {
                                     if (jqXHR.status === 204)
                                     {
-                                        showAlert('nothingSelectedAlert', '@T("Admin.Common.Alert.NothingSelected")');
+                                        showAlert('nothingSelectedAlert', '@await T("Admin.Common.Alert.NothingSelected")');
                                         return;
                                     }
                                     updateTable('#checkoutattributes-grid');

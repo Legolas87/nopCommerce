@@ -10,7 +10,7 @@
     <div class="card-header with-border">
         <h3 class="card-title">
             <i class="far fa-money-bill-alt"></i>
-            @T("Admin.SalesReport.Average")
+            @await T("Admin.SalesReport.Average")
         </h3>
         <div class="card-tools float-right">
             <button class="btn btn-tool" data-card-widget="collapse">
@@ -45,27 +45,27 @@
             {
                 new ColumnProperty(nameof(OrderAverageReportModel.OrderStatus))
                 {
-                    Title = T("Admin.SalesReport.Average.OrderStatus").Text
+                    Title = (await T("Admin.SalesReport.Average.OrderStatus")).Value
                 },
                 new ColumnProperty(nameof(OrderAverageReportModel.SumTodayOrders))
                 {
-                    Title = T("Admin.SalesReport.Average.SumTodayOrders").Text
+                    Title = (await T("Admin.SalesReport.Average.SumTodayOrders")).Value
                 },
                 new ColumnProperty(nameof(OrderAverageReportModel.SumThisWeekOrders))
                 {
-                    Title = T("Admin.SalesReport.Average.SumThisWeekOrders").Text
+                    Title = (await T("Admin.SalesReport.Average.SumThisWeekOrders")).Value
                 },
                 new ColumnProperty(nameof(OrderAverageReportModel.SumThisMonthOrders))
                 {
-                    Title = T("Admin.SalesReport.Average.SumThisMonthOrders").Text
+                    Title = (await T("Admin.SalesReport.Average.SumThisMonthOrders")).Value
                 },
                 new ColumnProperty(nameof(OrderAverageReportModel.SumThisYearOrders))
                 {
-                    Title = T("Admin.SalesReport.Average.SumThisYearOrders").Text
+                    Title = (await T("Admin.SalesReport.Average.SumThisYearOrders")).Value
                 },
                 new ColumnProperty(nameof(OrderAverageReportModel.SumAllTimeOrders))
                 {
-                    Title = T("Admin.SalesReport.Average.SumAllTimeOrders").Text
+                    Title = (await T("Admin.SalesReport.Average.SumAllTimeOrders")).Value
                 }
             }
         })

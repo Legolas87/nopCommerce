@@ -14,19 +14,19 @@
                 {
                     new ColumnProperty(nameof(FixedTaxRateModel.TaxCategoryName))
                     {
-                        Title = T("Plugins.Tax.FixedOrByCountryStateZip.Fields.TaxCategoryName").Text,
+                        Title = (await T("Plugins.Tax.FixedOrByCountryStateZip.Fields.TaxCategoryName")).Value,
                         Width = "400"
                     },
                     new ColumnProperty(nameof(FixedTaxRateModel.Rate))
                     {
-                        Title = T("Plugins.Tax.FixedOrByCountryStateZip.Fields.Rate").Text,
+                        Title = (await T("Plugins.Tax.FixedOrByCountryStateZip.Fields.Rate")).Value,
                         Width = "200",
                         Editable = true,
                         EditType = EditType.Number
                     },
                     new ColumnProperty(nameof(FixedTaxRateModel.TaxCategoryId))
                     {
-                        Title = T("Admin.Common.Edit").Text,
+                        Title = (await T("Admin.Common.Edit")).Value,
                         Width = "200",
                         ClassName =  NopColumnClassDefaults.Button + " column-edit",
                         Render = new RenderButtonsInlineEdit()

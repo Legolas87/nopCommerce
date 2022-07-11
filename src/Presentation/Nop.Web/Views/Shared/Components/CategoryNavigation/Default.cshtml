@@ -36,7 +36,7 @@
             <a href="@(Url.RouteUrl<Category>(new { SeName = lineModel.Category.SeName }))">@lineModel.Category.Name
                 @if (lineModel.Category.NumberOfProducts.HasValue)
                 {
-                    <text> </text>@T("Categories.TotalProducts", lineModel.Category.NumberOfProducts.Value)
+                    <text> </text>@await T("Categories.TotalProducts", lineModel.Category.NumberOfProducts.Value)
                 }
             </a>
             @{
@@ -67,7 +67,7 @@
 {
     <div class="block block-category-navigation">
         <div class="title">
-            <strong>@T("Categories")</strong>
+            <strong>@await T("Categories")</strong>
         </div>
         <div class="listbox">
             <ul class="list">

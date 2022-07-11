@@ -13,7 +13,7 @@
     <div class="card-header with-border">
         <h3 class="card-title">
             <i class="fas fa-search"></i>
-            @T("Admin.SearchTermReport")
+            @await T("Admin.SearchTermReport")
         </h3>
         <div class="card-tools float-right">
             <button class="btn btn-tool" data-card-widget="collapse">
@@ -52,11 +52,11 @@
             {
                 new ColumnProperty(nameof(PopularSearchTermModel.Keyword))
                 {
-                    Title = T("Admin.SearchTermReport.Keyword").Text
+                    Title = (await T("Admin.SearchTermReport.Keyword")).Value
                 },
                 new ColumnProperty(nameof(PopularSearchTermModel.Count))
                 {
-                    Title = T("Admin.SearchTermReport.Count").Text
+                    Title = (await T("Admin.SearchTermReport.Count")).Value
                 }
             }
         })

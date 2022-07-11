@@ -4,7 +4,7 @@
 {
     <div class="card-body">
         <p>
-            @T("Admin.Catalog.Attributes.ProductAttributes.UsedByProducts.Hint")
+            @await T("Admin.Catalog.Attributes.ProductAttributes.UsedByProducts.Hint")
         </p>
         @await Html.PartialAsync("Table", new DataTablesModel
         {
@@ -16,19 +16,19 @@
             {
                 new ColumnProperty(nameof(ProductAttributeProductModel.ProductName))
                 {
-                    Title = T("Admin.Catalog.Attributes.ProductAttributes.UsedByProducts.Product").Text,
+                    Title = (await T("Admin.Catalog.Attributes.ProductAttributes.UsedByProducts.Product")).Value,
                     Width = "400"
                 },
                 new ColumnProperty(nameof(ProductAttributeProductModel.Published))
                 {
-                    Title = T("Admin.Catalog.Attributes.ProductAttributes.UsedByProducts.Published").Text,
+                    Title = (await T("Admin.Catalog.Attributes.ProductAttributes.UsedByProducts.Published")).Value,
                     Width = "100",
                     ClassName =  NopColumnClassDefaults.CenterAll,
                     Render = new RenderBoolean()
                 },
                 new ColumnProperty(nameof(ProductAttributeProductModel.Id))
                 {
-                    Title = T("Admin.Common.View").Text,
+                    Title = (await T("Admin.Common.View")).Value,
                     Width = "100",
                     ClassName =  NopColumnClassDefaults.Button,
                     Render = new RenderButtonView(new DataUrl("~/Admin/Product/Edit/"))

@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Configuration.ACL").Text;
+    ViewBag.PageTitle = (await T("Admin.Configuration.ACL")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Access control list");
 }
@@ -10,12 +10,12 @@
 <form asp-controller="Security" asp-action="Permissions" method="post">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Configuration.ACL")
+            @await T("Admin.Configuration.ACL")
         </h1>
         <div class="float-right">
             <button type="submit" name="save" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.Save")
+                @await T("Admin.Common.Save")
             </button>
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.PermissionListButtons, additionalData = Model })
         </div>
@@ -28,8 +28,8 @@
                     <div class="card card-default">
                         <div class="card-body">
                             <p>
-                                @T("Admin.Configuration.ACL.Description")
-                                <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Acl", Docs.Acl + Utm.OnAdmin)" asp-add-wrapper="false"/>
+                                @await T("Admin.Configuration.ACL.Description")
+                                <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.Acl", Docs.Acl + Utm.OnAdmin)" asp-add-wrapper="false"/>
                             </p>
                             @if (Model.AvailablePermissions.Count == 0)
                             {
@@ -56,7 +56,7 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">
-                                                    <strong>@T("Admin.Configuration.ACL.Permission")</strong>
+                                                    <strong>@await T("Admin.Configuration.ACL.Permission")</strong>
                                                 </th>
                                                 @foreach (var cr in Model.AvailableCustomerRoles)
                                                 {

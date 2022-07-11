@@ -7,11 +7,11 @@
 <div class="breadcrumb forum-breadcrumb">
     <ul>
         <li>
-            <a href="@Url.RouteUrl("Homepage")" title="@T("Forum.Breadcrumb.HomeTitle")">@T("Forum.Home")</a>
+            <a href="@Url.RouteUrl("Homepage")" title="@await T("Forum.Breadcrumb.HomeTitle")">@await T("Forum.Home")</a>
         </li>
         <li>
             <span class="delimiter">@breadcrumbDelimiter</span>
-            @Html.RouteLink(T("Forum.Forums").Text, "Boards", null, new { title = T("Forum.Breadcrumb.ForumHomeTitle") })
+            @Html.RouteLink((await T("Forum.Forums")).Value, "Boards", null, new { title = await T("Forum.Breadcrumb.ForumHomeTitle") })
         </li>
         @if (Model.ForumGroupId > 0)
         {
@@ -19,7 +19,7 @@
                 <span class="delimiter">@breadcrumbDelimiter</span>
                 @Html.RouteLink(Model.ForumGroupName, "ForumGroupSlug",
                 new { id = Model.ForumGroupId, slug = Model.ForumGroupSeName },
-                new { title = $"{T("Forum.Breadcrumb.ForumGroupTitle")}: {Model.ForumGroupName} " })
+                new { title = $"{await T("Forum.Breadcrumb.ForumGroupTitle")}: {Model.ForumGroupName} " })
             </li>        
         }
         @if (Model.ForumId > 0)
@@ -28,7 +28,7 @@
                 <span class="delimiter">@breadcrumbDelimiter</span>
                 @Html.RouteLink(Model.ForumName, "ForumSlug",
                 new { id = Model.ForumId, slug = Model.ForumSeName },
-                new { title = $"{T("Forum.Breadcrumb.ForumTitle")}: {Model.ForumName} " })
+                new { title = $"{await T("Forum.Breadcrumb.ForumTitle")}: {Model.ForumName} " })
             </li>
         }
         @if (Model.ForumTopicId > 0)
@@ -37,7 +37,7 @@
                 <span class="delimiter">@breadcrumbDelimiter</span>
                 @Html.RouteLink(Model.ForumTopicSubject, "TopicSlug",
                 new { id = Model.ForumTopicId, slug = Model.ForumTopicSeName },
-                new { title = $"{T("Forum.Breadcrumb.TopicTitle")}: {Model.ForumTopicSubject} " })
+                new { title = $"{await T("Forum.Breadcrumb.TopicTitle")}: {Model.ForumTopicSubject} " })
             </li>
         }
     </ul>

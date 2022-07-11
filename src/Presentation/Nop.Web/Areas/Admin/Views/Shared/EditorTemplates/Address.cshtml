@@ -164,4 +164,4 @@
 {
     @await Html.PartialAsync("_AddressAttributes", Model.CustomAddressAttributes)
 }
-<nop-alert asp-alert-id="statesAlert" asp-alert-message="@T("Admin.Common.Alert.States.Failed")" />
+<nop-alert asp-alert-id="statesAlert" asp-alert-message="@await T("Admin.Common.Alert.States.Failed")" />

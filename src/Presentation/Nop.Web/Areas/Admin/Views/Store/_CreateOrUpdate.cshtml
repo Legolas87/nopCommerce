@@ -62,7 +62,7 @@
                             </div>
                             <div class="col-md-9">
                                 <nop-editor asp-for="SslEnabled" />
-                                <div><em>@T("Admin.Configuration.Stores.Fields.SslEnabled.Hint2")</em></div>
+                                <div><em>@await T("Admin.Configuration.Stores.Fields.SslEnabled.Hint2")</em></div>
                                 <span asp-validation-for="SslEnabled"></span>
                             </div>
                         </div>

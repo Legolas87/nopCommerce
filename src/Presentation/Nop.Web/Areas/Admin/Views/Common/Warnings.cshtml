@@ -2,14 +2,14 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.System.Warnings").Text;
+    ViewBag.PageTitle = (await T("Admin.System.Warnings")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Warnings");
 }
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.System.Warnings")
+        @await T("Admin.System.Warnings")
     </h1>
     <div class="float-right">
         &nbsp;

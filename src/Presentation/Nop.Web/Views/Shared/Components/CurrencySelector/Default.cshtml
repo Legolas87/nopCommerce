@@ -13,7 +13,7 @@
                 Value = Url.RouteUrl("ChangeCurrency", new { customercurrency = x.Id, returnUrl }, webHelper.GetCurrentRequestProtocol()),
                 Selected = x.Id.Equals(Model.CurrentCurrencyId)
             }).ToListAsync();
-            <select id="customerCurrency" name="customerCurrency" asp-items="@currencies" onchange="setLocation(this.value);" aria-label="@T("Currency.Selector.Label")"></select>
+            <select id="customerCurrency" name="customerCurrency" asp-items="@currencies" onchange="setLocation(this.value);" aria-label="@await T("Currency.Selector.Label")"></select>
         }
     </div>
 }

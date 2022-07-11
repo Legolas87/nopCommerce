@@ -28,7 +28,7 @@
         {
             <div class="fieldset new-comment" id="comments">
                 <div class="title">
-                    <strong>@T("News.Comments.LeaveYourComment")</strong>
+                    <strong>@await T("News.Comments.LeaveYourComment")</strong>
                 </div>
                 <div class="notifications">
                     <div asp-validation-summary="ModelOnly" class="message-error"></div>
@@ -60,12 +60,12 @@
                     @if (!Model.PreventNotRegisteredUsersToLeaveComments)
                     {
                         <div class="buttons">
-                            <button type="submit" name="add-comment" class="button-1 news-item-add-comment-button">@T("News.Comments.SubmitButton")</button>
+                            <button type="submit" name="add-comment" class="button-1 news-item-add-comment-button">@await T("News.Comments.SubmitButton")</button>
                         </div>
                     }
                     else
                     {
-                        <div class="message-error">@T("News.Comments.OnlyRegisteredUsersLeaveComments")</div>
+                        <div class="message-error">@await T("News.Comments.OnlyRegisteredUsersLeaveComments")</div>
                     }
                 </form>
             </div>
@@ -73,7 +73,7 @@
             {
                 <div class="comment-list">
                     <div class="title">
-                        <strong>@T("News.Comments")</strong>
+                        <strong>@await T("News.Comments")</strong>
                     </div>
                     <div class="comments">
                         @foreach (var comment in Model.Comments)
@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="comment-content">
                                     <div class="comment-time">
-                                        <label>@T("News.Comments.CreatedOn"):</label>
+                                        <label>@await T("News.Comments.CreatedOn"):</label>
                                         <span class="stat-value">@comment.CreatedOn.ToString("g")</span>
                                     </div>
                                     <div class="comment-title">

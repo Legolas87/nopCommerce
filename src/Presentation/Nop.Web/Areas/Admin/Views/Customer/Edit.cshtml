@@ -4,7 +4,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Customers.Customers.EditCustomerDetails").Text;
+    ViewBag.PageTitle = (await T("Admin.Customers.Customers.EditCustomerDetails")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Customers list");
 }
@@ -12,37 +12,37 @@
 <form asp-controller="Customer" asp-action="Edit" method="post">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Customers.Customers.EditCustomerDetails") - @Model.LastName @Model.FirstName
+            @await T("Admin.Customers.Customers.EditCustomerDetails") - @Model.LastName @Model.FirstName
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
-                <a asp-action="List">@T("Admin.Customers.Customers.BackToList")</a>
+                <a asp-action="List">@await T("Admin.Customers.Customers.BackToList")</a>
             </small>
         </h1>
         <div class="float-right">
             <button type="submit" name="save" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.Save")
+                @await T("Admin.Common.Save")
             </button>
             <button type="submit" name="save-continue" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.SaveContinue")
+                @await T("Admin.Common.SaveContinue")
             </button>
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#sendemail-window">
                 <i class="far fa-envelope"></i>
-                @T("Admin.Customers.Customers.SendEmail")
+                @await T("Admin.Customers.Customers.SendEmail")
             </button>
              @if (Model.AllowSendingOfPrivateMessage)
              {
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#sendprivatemessage-window">
                     <i class="fas fa-at"></i>
-                    @T("Admin.Customers.Customers.SendPM")
+                    @await T("Admin.Customers.Customers.SendPM")
                 </button>
              }
             @if (Model.AllowSendingOfWelcomeMessage)
             {
                 <button type="submit" id="send-welcome-message" name="send-welcome-message" class="btn btn-success">
                     <i class="far fa-smile"></i>
-                    @T("Admin.Customers.Customers.SendWelcomeMessage")
+                    @await T("Admin.Customers.Customers.SendWelcomeMessage")
                 </button>
                 <nop-action-confirmation asp-button-id="send-welcome-message" />
             }
@@ -50,7 +50,7 @@
             {
                 <button type="submit" id="resend-activation-message" name="resend-activation-message" class="btn btn-success">
                     <i class="fas fa-check-circle"></i>
-                    @T("Admin.Customers.Customers.ReSendActivationMessage")
+                    @await T("Admin.Customers.Customers.ReSendActivationMessage")
                 </button>
                 <nop-action-confirmation asp-button-id="resend-activation-message" />
             }
@@ -60,7 +60,7 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-success">
                         <i class="fas fa-download"></i>
-                        @T("Admin.Customers.Customers.Gdpr")
+                        @await T("Admin.Customers.Customers.Gdpr")
                     </button>
                     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <span class="caret"></span>
@@ -70,13 +70,13 @@
                         <li class="dropdown-item">
                             <a asp-action="GdprExport" asp-route-id="@Model.Id">
                                 <i class="far fa-file-code"></i>
-                                @T("Admin.Customers.Customers.Gdpr.Export")
+                                @await T("Admin.Customers.Customers.Gdpr.Export")
                             </a>
                         </li>
                         <li class="dropdown-item">
                             <a id="customer-gdpr-delete" href="#">
                                 <i class="far fa-trash-alt"></i>
-                                @T("Admin.Customers.Customers.Gdpr.Delete")
+                                @await T("Admin.Customers.Customers.Gdpr.Delete")
                             </a>
                         </li>
                     </ul>
@@ -84,7 +84,7 @@
             }
             <span id="customer-delete" class="btn btn-danger">
                 <i class="far fa-trash-alt"></i>
-                @T("Admin.Common.Delete")
+                @await T("Admin.Common.Delete")
             </span>
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.CustomerDetailsButtons, additionalData = Model })
         </div>
@@ -106,7 +106,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="sendemail-window-title">@T("Admin.Customers.Customers.SendEmail")</h4>
+                <h4 class="modal-title" id="sendemail-window-title">@await T("Admin.Customers.Customers.SendEmail")</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>                
             </div>
             <form asp-controller="Customer" asp-action="SendEmail" method="post">
@@ -159,7 +159,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">
-                            @T("Admin.Customers.Customers.SendEmail")
+                            @await T("Admin.Customers.Customers.SendEmail")
                         </button>
                     </div>
                 </div>
@@ -187,7 +187,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">                
-                <h4 class="modal-title" id="sendprivatemessage-window-title">@T("Admin.Customers.Customers.SendPM")</h4>
+                <h4 class="modal-title" id="sendprivatemessage-window-title">@await T("Admin.Customers.Customers.SendPM")</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <form asp-controller="Customer" asp-action="SendPm" method="post">
@@ -215,7 +215,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">
-                            @T("Admin.Customers.Customers.SendPM")
+                            @await T("Admin.Customers.Customers.SendPM")
                         </button>
                     </div>
                 </div>

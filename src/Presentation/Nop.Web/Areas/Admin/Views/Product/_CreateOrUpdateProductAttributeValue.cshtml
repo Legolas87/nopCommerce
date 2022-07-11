@@ -85,7 +85,7 @@
                                     <span id="associate-product-name">@Model.AssociatedProductName</span>
                                     <span asp-validation-for="AssociatedProductId"></span>
                                     <button type="submit" onclick="javascript:OpenWindow('@(Url.Action("AssociateProductToAttributeValuePopup", "Product", new {productIdInput = Html.IdFor(model => model.AssociatedProductId), productNameInput = "associate-product-name"}))', 800, 850, true); return false;" class="btn btn-primary">
-                                        @T("Admin.Catalog.Products.ProductAttributes.Attributes.Values.Fields.AssociatedProduct.AddNew")
+                                        @await T("Admin.Catalog.Products.ProductAttributes.Attributes.Values.Fields.AssociatedProduct.AddNew")
                                     </button>
                                     <script>
                                 $(document).ready(function () {
@@ -247,7 +247,7 @@
                                                    {
                                                        <text> checked="checked" </text>
                                                    }>
-                                                @T("Admin.Catalog.Products.ProductAttributes.Attributes.Values.Fields.Picture.NoPicture")
+                                                @await T("Admin.Catalog.Products.ProductAttributes.Attributes.Values.Fields.Picture.NoPicture")
                                             </label>
                                         </div>
                                         @foreach (var picture in Model.ProductPictureModels)

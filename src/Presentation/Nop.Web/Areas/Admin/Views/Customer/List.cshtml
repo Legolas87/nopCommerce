@@ -6,7 +6,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Customers.Customers").Text;
+    ViewBag.PageTitle = (await T("Admin.Customers.Customers")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Customers list");
 }
@@ -19,17 +19,17 @@
 <form asp-controller="Customer" asp-action="List" method="post">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Customers.Customers")
+            @await T("Admin.Customers.Customers")
         </h1>
         <div class="float-right">
             <a asp-action="Create" class="btn btn-primary">
                 <i class="fas fa-plus-square"></i>
-                @T("Admin.Common.AddNew")
+                @await T("Admin.Common.AddNew")
             </a>
             <div class="btn-group">
                 <button type="button" class="btn btn-success">
                     <i class="fas fa-download"></i>
-                    @T("Admin.Common.Export")
+                    @await T("Admin.Common.Export")
                 </button>
                 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <span class="caret"></span>
@@ -39,26 +39,26 @@
                     <li class="dropdown-item">
                         <button asp-action="ExportXML" type="submit" name="exportxml-all">
                             <i class="far fa-file-code"></i>
-                            @T("Admin.Common.ExportToXml.All")
+                            @await T("Admin.Common.ExportToXml.All")
                         </button>
                     </li>
                     <li class="dropdown-item">
                         <button type="button" id="exportxml-selected">
                             <i class="far fa-file-code"></i>
-                            @T("Admin.Common.ExportToXml.Selected")
+                            @await T("Admin.Common.ExportToXml.Selected")
                         </button>
                     </li>
                     <li class="dropdown-divider"></li>
                     <li class="dropdown-item">
                         <button asp-action="ExportExcel" type="submit" name="exportexcel-all">
                             <i class="far fa-file-excel"></i>
-                            @T("Admin.Common.ExportToExcel.All")
+                            @await T("Admin.Common.ExportToExcel.All")
                         </button>
                     </li>
                     <li class="dropdown-item">
                         <button type="button" id="exportexcel-selected">
                             <i class="far fa-file-excel"></i>
-                            @T("Admin.Common.ExportToExcel.Selected")
+                            @await T("Admin.Common.ExportToExcel.Selected")
                         </button>
                     </li>
                 </ul>
@@ -75,7 +75,7 @@
                     <div class="card card-default card-search">
                         <div class="card-body">
                             <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                                <div class="search-text">@T("Admin.Common.Search")</div>
+                                <div class="search-text">@await T("Admin.Common.Search")</div>
                                 <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                                 <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                             </div>
@@ -126,13 +126,13 @@
                                                 <div class="col-md-8">
                                                     @{
                                                         var monthOfBirthValues = new List<SelectListItem>();
-                                                        monthOfBirthValues.Add(new SelectListItem { Text = T("Admin.Customers.Customers.List.SearchDateOfBirth.Month").Text, Value = "0" });
+                                                        monthOfBirthValues.Add(new SelectListItem { Text = (await T("Admin.Customers.Customers.List.SearchDateOfBirth.Month")).Value, Value = "0" });
                                                         for (var i = 1; i <= 12; i++)
                                                         {
                                                             monthOfBirthValues.Add(new SelectListItem { Text = i.ToString(CultureInfo.InvariantCulture), Value = i.ToString(CultureInfo.InvariantCulture) });
                                                         }
                                                         var dayOfBirthValues = new List<SelectListItem>();
-                                                        dayOfBirthValues.Add(new SelectListItem { Text = T("Admin.Customers.Customers.List.SearchDateOfBirth.Day").Text, Value = "0" });
+                                                        dayOfBirthValues.Add(new SelectListItem { Text = (await T("Admin.Customers.Customers.List.SearchDateOfBirth.Day")).Value, Value = "0" });
                                                         for (var i = 1; i <= 31; i++)
                                                         {
                                                             dayOfBirthValues.Add(new SelectListItem { Text = i.ToString(CultureInfo.InvariantCulture), Value = i.ToString(CultureInfo.InvariantCulture) });
@@ -246,7 +246,7 @@
                                                         rolesIdsInput.setOptions({
                                                             enable: false,
                                                             placeholder:
-                                                                '@T("Admin.Catalog.Products.CustomerRoles.NoCustomerRolesAvailable")'
+                                                                '@await T("Admin.Catalog.Products.CustomerRoles.NoCustomerRolesAvailable")'
                                                         });
                                                         rolesIdsInput._placeholder();
                                                         rolesIdsInput._enable();
@@ -262,7 +262,7 @@
                                     <div class="text-center col-12">
                                         <button type="button" id="search-customers" class="btn btn-primary btn-search">
                                             <i class="fas fa-search"></i>
-                                            @T("Admin.Common.Search")
+                                            @await T("Admin.Common.Search")
                                         </button>
                                     </div>
                                 </div>
@@ -272,7 +272,7 @@
 
                     <div class="card card-default">
                         <div class="card-body">
-                            <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Customers", Docs.Customers + Utm.OnAdmin)" />
+                            <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.Customers", Docs.Customers + Utm.OnAdmin)" />
 
                             @{
                                 var gridModel = new DataTablesModel
@@ -311,13 +311,13 @@
                                 });
                                 gridModel.ColumnCollection.Add(new ColumnProperty(nameof(CustomerModel.Email))
                                 {
-                                    Title = T("Admin.Customers.Customers.Fields.Email").Text
+                                    Title = (await T("Admin.Customers.Customers.Fields.Email")).Value
                                 });
                                 if (Model.AvatarEnabled)
                                 {
                                     gridModel.ColumnCollection.Add(new ColumnProperty(nameof(CustomerModel.AvatarUrl))
                                     {
-                                        Title = T("Admin.Customers.Customers.Fields.Avatar").Text,
+                                        Title = (await T("Admin.Customers.Customers.Fields.Avatar")).Value,
                                         Width = "140",
                                         Render = new RenderPicture()
                                     });
@@ -326,49 +326,49 @@
                                 {
                                     gridModel.ColumnCollection.Add(new ColumnProperty(nameof(CustomerModel.Username))
                                     {
-                                        Title = T("Admin.Customers.Customers.Fields.Username").Text
+                                        Title = (await T("Admin.Customers.Customers.Fields.Username")).Value
                                     });
                                 }
                                 gridModel.ColumnCollection.Add(new ColumnProperty(nameof(CustomerModel.FullName))
                                 {
-                                    Title = T("Admin.Customers.Customers.Fields.FullName").Text
+                                    Title = (await T("Admin.Customers.Customers.Fields.FullName")).Value
                                 });
                                 gridModel.ColumnCollection.Add(new ColumnProperty(nameof(CustomerModel.CustomerRoleNames))
                                 {
-                                    Title = T("Admin.Customers.Customers.Fields.CustomerRoles").Text,
+                                    Title = (await T("Admin.Customers.Customers.Fields.CustomerRoles")).Value,
                                     Width = "100"
                                 });
                                 if (Model.CompanyEnabled)
                                 {
                                     gridModel.ColumnCollection.Add(new ColumnProperty(nameof(CustomerModel.Company))
                                     {
-                                        Title = T("Admin.Customers.Customers.Fields.Company").Text
+                                        Title = (await T("Admin.Customers.Customers.Fields.Company")).Value
                                     });
                                 }
                                 if (Model.PhoneEnabled)
                                 {
                                     gridModel.ColumnCollection.Add(new ColumnProperty(nameof(CustomerModel.Phone))
                                     {
-                                        Title = T("Admin.Customers.Customers.Fields.Phone").Text
+                                        Title = (await T("Admin.Customers.Customers.Fields.Phone")).Value
                                     });
                                 }
                                 if (Model.ZipPostalCodeEnabled)
                                 {
                                     gridModel.ColumnCollection.Add(new ColumnProperty(nameof(CustomerModel.ZipPostalCode))
                                     {
-                                        Title = T("Admin.Customers.Customers.Fields.ZipPostalCode").Text
+                                        Title = (await T("Admin.Customers.Customers.Fields.ZipPostalCode")).Value
                                     });
                                 }
                                 gridModel.ColumnCollection.Add(new ColumnProperty(nameof(CustomerModel.Active))
                                 {
-                                    Title = T("Admin.Customers.Customers.Fields.Active").Text,
+                                    Title = (await T("Admin.Customers.Customers.Fields.Active")).Value,
                                     Width = "70",
                                     ClassName = NopColumnClassDefaults.CenterAll,
                                     Render = new RenderBoolean()
                                 });
                                 gridModel.ColumnCollection.Add(new ColumnProperty(nameof(CustomerModel.Id))
                                 {
-                                    Title = T("Admin.Common.Edit").Text,
+                                    Title = (await T("Admin.Common.Edit")).Value,
                                     Width = "80",
                                     ClassName = NopColumnClassDefaults.Button,
                                     Render = new RenderButtonEdit(new DataUrl("Edit"))
@@ -393,7 +393,7 @@
             e.preventDefault();
             var ids = selectedIds.join(",");
             if (!ids) {
-                $('#exportXmlSelected-info').text("@T("Admin.Customers.NoCustomers")");
+                $('#exportXmlSelected-info').text("@await T("Admin.Customers.NoCustomers")");
                 $("#exportXmlSelected").click();
             }
             else {
@@ -417,7 +417,7 @@
             e.preventDefault();
             var ids = selectedIds.join(",");
             if (!ids) {
-                $('#exportExcelSelected-info').text("@T("Admin.Customers.NoCustomers")");
+                $('#exportExcelSelected-info').text("@await T("Admin.Customers.NoCustomers")");
                 $("#exportExcelSelected").click();
             }
             else {

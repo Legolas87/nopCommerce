@@ -14,12 +14,12 @@
 
         @if (Model.FreeShippingNotificationEnabled && Model.IsFreeShipping)
         {
-            <div id="free-shipping-@Model.Id" class="free-shipping">@T("Products.FreeShipping")</div>
+            <div id="free-shipping-@Model.Id" class="free-shipping">@await T("Products.FreeShipping")</div>
         }
         @if (!string.IsNullOrWhiteSpace(Model.DeliveryDate))
         {
             <div class="delivery-date">
-                <span class="label">@T("Products.DeliveryDate"):</span>
+                <span class="label">@await T("Products.DeliveryDate"):</span>
                 <span class="value">@Model.DeliveryDate</span>
             </div>
         }

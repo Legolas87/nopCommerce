@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Configuration.Plugins.OfficialFeed").Text;
+    ViewBag.PageTitle = (await T("Admin.Configuration.Plugins.OfficialFeed")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("All plugins and themes");
 }
@@ -15,7 +15,7 @@
 <form asp-controller="Plugin" asp-action="OfficialFeed" id="plugins-form-official-feed">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Configuration.Plugins.OfficialFeed")
+            @await T("Admin.Configuration.Plugins.OfficialFeed")
         </h1>
     </div>
 
@@ -27,14 +27,14 @@
                         <div class="card card-default card-search">
                             <div class="card-body">
                                 <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                                    <div class="search-text">@T("Admin.Common.Search")</div>
+                                    <div class="search-text">@await T("Admin.Common.Search")</div>
                                     <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                                     <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                                 </div>
 
                                 <div class="search-body @(hideSearchBlock ? "closed" : "")">
                                     <p>
-                                        @T("Admin.Configuration.Plugins.OfficialFeed.Instructions", OfficialSite.Marketplace + Utm.OnAdminPluginsFeed)
+                                        @await T("Admin.Configuration.Plugins.OfficialFeed.Instructions", OfficialSite.Marketplace + Utm.OnAdminPluginsFeed)
                                     </p>
                                     <div class="row">
                                         <div class="col-md-5">
@@ -78,7 +78,7 @@
                                         <div class="text-center col-12">
                                             <button type="button" id="search-plugins" class="btn btn-primary btn-search">
                                                 <i class="fas fa-search"></i>
-                                                @T("Admin.Common.Search")
+                                                @await T("Admin.Common.Search")
                                             </button>
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@
 
                         <div class="card card-default">
                             <div class="card-body">
-                                <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Plugins", Docs.Plugins + Utm.OnAdmin)" />
+                                <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.Plugins", Docs.Plugins + Utm.OnAdmin)" />
 
                                 @await Html.PartialAsync("Table", new DataTablesModel
                            {
@@ -108,34 +108,34 @@
                                     {
                                         new ColumnProperty(nameof(OfficialFeedPluginModel.PictureUrl))
                                         {
-                                            Title = T("Admin.Configuration.Plugins.OfficialFeed.Picture").Text,
+                                            Title = (await T("Admin.Configuration.Plugins.OfficialFeed.Picture")).Value,
                                             Render = new RenderPicture(width: 120)
                                         },
                                         new ColumnProperty(nameof(OfficialFeedPluginModel.Name))
                                         {
-                                            Title = T("Admin.Configuration.Plugins.OfficialFeed.Name").Text,
+                                            Title = (await T("Admin.Configuration.Plugins.OfficialFeed.Name")).Value,
                                             Width = "600"
                                         },
                                         new ColumnProperty(nameof(OfficialFeedPluginModel.Price))
                                         {
-                                            Title = T("Admin.Configuration.Plugins.OfficialFeed.Price").Text,
+                                            Title = (await T("Admin.Configuration.Plugins.OfficialFeed.Price")).Value,
                                             Width = "70"
                                         },
                                         new ColumnProperty(nameof(OfficialFeedPluginModel.Url))
                                         {
-                                            Title = T("Admin.Configuration.Plugins.OfficialFeed.Download").Text,
+                                            Title = (await T("Admin.Configuration.Plugins.OfficialFeed.Download")).Value,
                                             Width = "150",
                                             ClassName =  NopColumnClassDefaults.Button,
                                             Render = new RenderCustom("renderColumnUrl")
                                         },
                                         new ColumnProperty(nameof(OfficialFeedPluginModel.CategoryName))
                                         {
-                                            Title = T("Admin.Configuration.Plugins.OfficialFeed.Category").Text,
+                                            Title = (await T("Admin.Configuration.Plugins.OfficialFeed.Category")).Value,
                                             Width = "200"
                                         },
                                         new ColumnProperty(nameof(OfficialFeedPluginModel.SupportedVersions))
                                         {
-                                            Title = T("Admin.Configuration.Plugins.OfficialFeed.SupportedVersions").Text,
+                                            Title = (await T("Admin.Configuration.Plugins.OfficialFeed.SupportedVersions")).Value,
                                             Width = "200"
                                         }
                                     }
@@ -143,7 +143,7 @@
 
                                 <script>
                             function renderColumnUrl(data, type, row, meta) {
-                                return '<a class="btn btn-default" href="' + data + '?utm_source=admin-panel&utm_medium=official-plugins&utm_campaign=admin-panel" target="_blank"><i class="fas fa-download"></i>@T("Admin.Configuration.Plugins.OfficialFeed.Download").Text</a>';
+                                return '<a class="btn btn-default" href="' + data + '?utm_source=admin-panel&utm_medium=official-plugins&utm_campaign=admin-panel" target="_blank"><i class="fas fa-download"></i>@await T("Admin.Configuration.Plugins.OfficialFeed.Download")</a>';
                             }
                                 </script>
                             </div>

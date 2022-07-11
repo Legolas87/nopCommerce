@@ -1,7 +1,7 @@
 @model AppSettingsModel
 
 @{
-    ViewBag.PageTitle = T("Admin.Configuration.AppSettings").Text;
+    ViewBag.PageTitle = (await T("Admin.Configuration.AppSettings")).Value;
     NopHtml.SetActiveMenuItemSystemName("App settings");
 
     const string hideCacheBlockAttributeName = "AppSettingsPage.HideCacheBlock";
@@ -30,12 +30,12 @@
 <form asp-controller="Setting" asp-action="AppSettings" method="post">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Configuration.AppSettings")
+            @await T("Admin.Configuration.AppSettings")
         </h1>
         <div class="float-right">
             <button type="submit" name="save" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.Save")
+                @await T("Admin.Common.Save")
             </button>
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.AppSettingsButtons, additionalData = Model })
         </div>
@@ -49,22 +49,22 @@
                     <div class="card card-default">
                         <div class="card-body">
                             <p>
-                                @T("Admin.Configuration.AppSettings.Description", Docs.AppSettings)
+                                @await T("Admin.Configuration.AppSettings.Description", Docs.AppSettings)
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
             <nop-cards id="app-settings-cards">
-                <nop-card asp-name="app-settings-data" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.Data")" asp-hide-block-attribute-name="@hideDataBlockAttributeName" asp-hide="@hideDataBlock" asp-advanced="false">@await Html.PartialAsync("_AppSettings.Data", Model)</nop-card>
-                <nop-card asp-name="app-settings-cache" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.Cache")" asp-hide-block-attribute-name="@hideCacheBlockAttributeName" asp-hide="@hideCacheBlock" asp-advanced="false">@await Html.PartialAsync("_AppSettings.Cache", Model)</nop-card>
-                <nop-card asp-name="app-settings-distributed-cache" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.DistributedCache")" asp-hide-block-attribute-name="@hideDistributedCacheBlockAttributeName" asp-hide="@hideDistributedCacheBlock" asp-advanced="false">@await Html.PartialAsync("_AppSettings.DistributedCache", Model)</nop-card>
-                <nop-card asp-name="app-settings-hosting" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.Hosting")" asp-hide-block-attribute-name="@hideHostingBlockAttributeName" asp-hide="@hideHostingBlock" asp-advanced="false">@await Html.PartialAsync("_AppSettings.Hosting", Model)</nop-card>
-                <nop-card asp-name="app-settings-azure-blob" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.AzureBlob")" asp-hide-block-attribute-name="@hideAzureBlobBlockAttributeName" asp-hide="@hideAzureBlobBlock" asp-advanced="false">@await Html.PartialAsync("_AppSettings.AzureBlob", Model)</nop-card>
-                <nop-card asp-name="app-settings-installation" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.Installation")" asp-hide-block-attribute-name="@hideInstallationBlockAttributeName" asp-hide="@hideInstallationBlock" asp-advanced="true">@await Html.PartialAsync("_AppSettings.Installation", Model)</nop-card>
-                <nop-card asp-name="app-settings-plugin" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.Plugin")" asp-hide-block-attribute-name="@hidePluginBlockAttributeName" asp-hide="@hidePluginBlock" asp-advanced="true">@await Html.PartialAsync("_AppSettings.Plugin", Model)</nop-card>
-                <nop-card asp-name="app-settings-common" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.Common")" asp-hide-block-attribute-name="@hideCommonBlockAttributeName" asp-hide="@hideCommonBlock" asp-advanced="false">@await Html.PartialAsync("_AppSettings.Common", Model)</nop-card>
-                <nop-card asp-name="app-settings-web-optimizer" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.WebOptimizer")" asp-hide-block-attribute-name="@hideWebOptimizerBlockAttributeName" asp-hide="@hideWebOptimizerBlock" asp-advanced="false">@await Html.PartialAsync("_AppSettings.WebOptimizer", Model)</nop-card>
+                <nop-card asp-name="app-settings-data" asp-icon="fas fa-cogs" asp-title="@await T("Admin.Configuration.AppSettings.Data")" asp-hide-block-attribute-name="@hideDataBlockAttributeName" asp-hide="@hideDataBlock" asp-advanced="false">@await Html.PartialAsync("_AppSettings.Data", Model)</nop-card>
+                <nop-card asp-name="app-settings-cache" asp-icon="fas fa-cogs" asp-title="@await T("Admin.Configuration.AppSettings.Cache")" asp-hide-block-attribute-name="@hideCacheBlockAttributeName" asp-hide="@hideCacheBlock" asp-advanced="false">@await Html.PartialAsync("_AppSettings.Cache", Model)</nop-card>
+                <nop-card asp-name="app-settings-distributed-cache" asp-icon="fas fa-cogs" asp-title="@await T("Admin.Configuration.AppSettings.DistributedCache")" asp-hide-block-attribute-name="@hideDistributedCacheBlockAttributeName" asp-hide="@hideDistributedCacheBlock" asp-advanced="false">@await Html.PartialAsync("_AppSettings.DistributedCache", Model)</nop-card>
+                <nop-card asp-name="app-settings-hosting" asp-icon="fas fa-cogs" asp-title="@await T("Admin.Configuration.AppSettings.Hosting")" asp-hide-block-attribute-name="@hideHostingBlockAttributeName" asp-hide="@hideHostingBlock" asp-advanced="false">@await Html.PartialAsync("_AppSettings.Hosting", Model)</nop-card>
+                <nop-card asp-name="app-settings-azure-blob" asp-icon="fas fa-cogs" asp-title="@await T("Admin.Configuration.AppSettings.AzureBlob")" asp-hide-block-attribute-name="@hideAzureBlobBlockAttributeName" asp-hide="@hideAzureBlobBlock" asp-advanced="false">@await Html.PartialAsync("_AppSettings.AzureBlob", Model)</nop-card>
+                <nop-card asp-name="app-settings-installation" asp-icon="fas fa-cogs" asp-title="@await T("Admin.Configuration.AppSettings.Installation")" asp-hide-block-attribute-name="@hideInstallationBlockAttributeName" asp-hide="@hideInstallationBlock" asp-advanced="true">@await Html.PartialAsync("_AppSettings.Installation", Model)</nop-card>
+                <nop-card asp-name="app-settings-plugin" asp-icon="fas fa-cogs" asp-title="@await T("Admin.Configuration.AppSettings.Plugin")" asp-hide-block-attribute-name="@hidePluginBlockAttributeName" asp-hide="@hidePluginBlock" asp-advanced="true">@await Html.PartialAsync("_AppSettings.Plugin", Model)</nop-card>
+                <nop-card asp-name="app-settings-common" asp-icon="fas fa-cogs" asp-title="@await T("Admin.Configuration.AppSettings.Common")" asp-hide-block-attribute-name="@hideCommonBlockAttributeName" asp-hide="@hideCommonBlock" asp-advanced="false">@await Html.PartialAsync("_AppSettings.Common", Model)</nop-card>
+                <nop-card asp-name="app-settings-web-optimizer" asp-icon="fas fa-cogs" asp-title="@await T("Admin.Configuration.AppSettings.WebOptimizer")" asp-hide-block-attribute-name="@hideWebOptimizerBlockAttributeName" asp-hide="@hideWebOptimizerBlock" asp-advanced="false">@await Html.PartialAsync("_AppSettings.WebOptimizer", Model)</nop-card>
                 @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.AppSettingsBlock, additionalData = Model })
             </nop-cards>
         </div>
@@ -75,7 +75,7 @@
         });
 
         function checkEnvironmentVariables() {
-            var warningElem = "<span class='field-validation-custom warning'>@T("Admin.Configuration.AppSettings.EnvironmentVariablesWarning")</span>";
+            var warningElem = "<span class='field-validation-custom warning'>@await T("Admin.Configuration.AppSettings.EnvironmentVariablesWarning")</span>";
             
             @foreach (var controlId in Model.EnvironmentVariables)
             {

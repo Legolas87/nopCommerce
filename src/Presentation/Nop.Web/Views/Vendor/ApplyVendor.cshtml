@@ -4,13 +4,13 @@
     Layout = "_ColumnsOne";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.Vendors.Apply").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.Vendors.Apply")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-apply-vendor-page");
 }
 <div class="page apply-vendor-page">
     <div class="page-title">
-        <h1>@T("PageTitle.Vendors.Apply")</h1>
+        <h1>@await T("PageTitle.Vendors.Apply")</h1>
     </div>
     <div class="page-body">
         @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "ApplyVendor" })
@@ -29,13 +29,13 @@
                     <div class="form-fields">
                         <div class="inputs">
                             <label asp-for="Name" asp-postfix=":"></label>
-                            <input asp-for="Name" class="name" placeholder="@T("Vendors.ApplyAccount.Name.Hint")" />
+                            <input asp-for="Name" class="name" placeholder="@await T("Vendors.ApplyAccount.Name.Hint")" />
                             <nop-required />
                             <span asp-validation-for="Name"></span>
                         </div>
                         <div class="inputs">
                             <label asp-for="Email" asp-postfix=":"></label>
-                            <input asp-for="Email" class="name" placeholder="@T("Vendors.ApplyAccount.Email.Hint")" />
+                            <input asp-for="Email" class="name" placeholder="@await T("Vendors.ApplyAccount.Email.Hint")" />
                             <nop-required />
                             <span asp-validation-for="Email"></span>
                         </div>
@@ -44,7 +44,7 @@
                             <textarea asp-for="Description" class="description"></textarea>
                         </div>
                         <div class="inputs">
-                            <label>@T("Vendors.ApplyAccount.Picture"):</label>
+                            <label>@await T("Vendors.ApplyAccount.Picture"):</label>
                             <input name="uploadedFile" type="file" accept="image/*" />
                         </div>
                         @await Html.PartialAsync("_VendorAttributes", Model.VendorAttributes)
@@ -62,7 +62,7 @@
                                             return true;
                                         } else {
                                             //just show validation errors, dont post
-                                            alert('@Html.Raw(JavaScriptEncoder.Default.Encode(T("Vendors.ApplyAccount.AcceptTermsOfService.Required").Text))');
+                                            alert('@Html.Raw(JavaScriptEncoder.Default.Encode((await T("Vendors.ApplyAccount.AcceptTermsOfService.Required")).Value))');
                                             return false;
                                         }
                                     });
@@ -70,31 +70,31 @@
                             </script>
                             <div class="terms-of-service">
                                 <input id="termsofservice" type="checkbox" name="termsofservice" />
-                                <label for="termsofservice">@T("Vendors.ApplyAccount.AcceptTermsOfService")</label>
+                                <label for="termsofservice">@await T("Vendors.ApplyAccount.AcceptTermsOfService")</label>
                                 @if (Model.TermsOfServicePopup)
                                 {
-                                    <span class="read" id="read-acceptterms">@T("Vendors.ApplyAccount.AcceptTermsOfService.Read")</span>
+                                    <span class="read" id="read-acceptterms">@await T("Vendors.ApplyAccount.AcceptTermsOfService.Read")</span>
                                     <script asp-location="Footer">
                                         $(document).ready(function() {
                                             $('#read-acceptterms').on('click',
                                                 function (e) {
                                                     displayPopupContentFromUrl(
                                                         '@Url.RouteUrl("TopicPopup", new {SystemName = "VendorTermsOfService"})',
-                                                        '@T("Vendors.ApplyAccount.AcceptTermsOfService")');
+                                                        '@await T("Vendors.ApplyAccount.AcceptTermsOfService")');
                                                 });
                                         });
                                     </script>
                                 }
                                 else
                                 {
-                                    <a class="read" id="read-acceptterms" href="@Url.RouteTopicUrl("VendorTermsOfService")">@T("Vendors.ApplyAccount.AcceptTermsOfService.Read")</a>
+                                    <a class="read" id="read-acceptterms" href="@Url.RouteTopicUrl("VendorTermsOfService")">@await T("Vendors.ApplyAccount.AcceptTermsOfService.Read")</a>
                                 }
                             </div>
                         }
                     </div>
                 </div>
                 <div class="buttons">
-                    <button type="submit" id="apply-vendor" name="apply-vendor" class="button-1 apply-vendor-button">@T("Vendors.ApplyAccount.Button")</button>
+                    <button type="submit" id="apply-vendor" name="apply-vendor" class="button-1 apply-vendor-button">@await T("Vendors.ApplyAccount.Button")</button>
                 </div>
             </form>
         }

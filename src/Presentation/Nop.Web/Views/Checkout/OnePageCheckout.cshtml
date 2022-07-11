@@ -10,7 +10,7 @@
     var storeLocation = webHelper.GetStoreLocation();
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.Checkout").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.Checkout")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-checkout-page");
 }
@@ -43,7 +43,7 @@
 
 <div class="page checkout-page">
     <div class="page-title">
-        <h1>@T("Checkout")</h1>
+        <h1>@await T("Checkout")</h1>
     </div>
     <div class="page-body checkout-data">
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.OpcContentBefore, additionalData = Model })
@@ -51,7 +51,7 @@
             <li id="opc-billing" class="tab-section allow">
                 <div class="step-title">
                     <span class="number">@billingAddressStepNumber</span>
-                    <h2 class="title">@T("Checkout.BillingAddress")</h2>
+                    <h2 class="title">@await T("Checkout.BillingAddress")</h2>
                 </div>
                 <div id="checkout-step-billing" class="step a-item" style="display: none;">
                     <form id="co-billing-form" action="" method="post">
@@ -69,15 +69,15 @@
                         }
                     </script>
                     <div class="buttons" id="billing-buttons-container">
-                        <button id="edit-address-button" type="button" class="button-1" style="display: none" onclick="Billing.editAddress('@(storeLocation)checkout/GetAddressById/'); return false;">@T("Common.Edit")</button>
+                        <button id="edit-address-button" type="button" class="button-1" style="display: none" onclick="Billing.editAddress('@(storeLocation)checkout/GetAddressById/'); return false;">@await T("Common.Edit")</button>
 
-                        <button id="delete-address-button" type="button" class="button-1" style="display: none" onclick="Billing.deleteAddress('@(storeLocation)checkout/DeleteEditAddress/'); return false;">@T("Common.Delete")</button>
+                        <button id="delete-address-button" type="button" class="button-1" style="display: none" onclick="Billing.deleteAddress('@(storeLocation)checkout/DeleteEditAddress/'); return false;">@await T("Common.Delete")</button>
 
-                        <button id="save-address-button" type="button" class="button-1" style="display: none" onclick="Billing.saveEditAddress('@(storeLocation)checkout/SaveEditAddress/'); return false;">@T("Common.Save")</button>
+                        <button id="save-address-button" type="button" class="button-1" style="display: none" onclick="Billing.saveEditAddress('@(storeLocation)checkout/SaveEditAddress/'); return false;">@await T("Common.Save")</button>
 
-                        <button type="button" name="save" class="button-1 new-address-next-step-button" onclick="Billing.save()">@T("Common.Continue")</button>
+                        <button type="button" name="save" class="button-1 new-address-next-step-button" onclick="Billing.save()">@await T("Common.Continue")</button>
 
-                        <span class="please-wait" id="billing-please-wait" style="display: none;">@T("Common.LoadingNextStep")</span>
+                        <span class="please-wait" id="billing-please-wait" style="display: none;">@await T("Common.LoadingNextStep")</span>
                     </div>
                 </div>
             </li>
@@ -86,7 +86,7 @@
                 <li id="opc-shipping" class="tab-section">
                     <div class="step-title">
                         <span class="number">@shippingAddressStepNumber</span>
-                        <h2 class="title">@T("Checkout.ShippingAddress")</h2>
+                        <h2 class="title">@await T("Checkout.ShippingAddress")</h2>
                     </div>
                     <div id="checkout-step-shipping" class="step a-item" style="display: none;">
                         <form action="" id="co-shipping-form" method="post">
@@ -104,18 +104,18 @@
                             @if (!Model.DisableBillingAddressCheckoutStep)
                             {
                                 <p class="back-link">
-                                    <a href="#" onclick="Checkout.back(); return false; "><small>&laquo; </small>@T("Common.Back")</a>
+                                    <a href="#" onclick="Checkout.back(); return false; "><small>&laquo; </small>@await T("Common.Back")</a>
                                 </p>
                             }
-                            <button type="button" class="button-1 new-address-next-step-button" onclick="Shipping.save()">@T("Common.Continue")</button>
-                            <span id="shipping-please-wait" class="please-wait" style="display: none;"> @T("Common.LoadingNextStep")</span>
+                            <button type="button" class="button-1 new-address-next-step-button" onclick="Shipping.save()">@await T("Common.Continue")</button>
+                            <span id="shipping-please-wait" class="please-wait" style="display: none;"> @await T("Common.LoadingNextStep")</span>
                         </div>
                     </div>
                 </li>
                 <li id="opc-shipping_method" class="tab-section">
                     <div class="step-title">
                         <span class="number">@shippingMethodStepNumber</span>
-                        <h2 class="title">@T("Checkout.ShippingMethod")</h2>
+                        <h2 class="title">@await T("Checkout.ShippingMethod")</h2>
                     </div>
                     <div id="checkout-step-shipping-method" class="step a-item" style="display: none;">
                         <form id="co-shipping-method-form" action="" method="post">
@@ -124,17 +124,17 @@
                             </div>
                             <script asp-location="Footer">
                                 var localized_data = {
-                                    NotAvailableMethodsError: "@T("ShippingMethod.NotAvailableMethodsError")",
-                                    SpecifyMethodError: "@T("ShippingMethod.SpecifyMethodError")"
+                                    NotAvailableMethodsError: "@await T("ShippingMethod.NotAvailableMethodsError")",
+                                    SpecifyMethodError: "@await T("ShippingMethod.SpecifyMethodError")"
                                 };
                                 ShippingMethod.init('#co-shipping-method-form', '@(storeLocation)checkout/OpcSaveShippingMethod/', localized_data);
                             </script>
                             <div class="buttons" id="shipping-method-buttons-container">
                                 <p class="back-link">
-                                    <a href="#" onclick="Checkout.back(); return false;"><small>&laquo; </small>@T("Common.Back")</a>
+                                    <a href="#" onclick="Checkout.back(); return false;"><small>&laquo; </small>@await T("Common.Back")</a>
                                 </p>
-                                <button type="button" class="button-1 shipping-method-next-step-button" onclick="ShippingMethod.save()">@T("Common.Continue")</button>
-                                <span id="shipping-method-please-wait" class="please-wait" style="display: none;">@T("Common.LoadingNextStep")</span>
+                                <button type="button" class="button-1 shipping-method-next-step-button" onclick="ShippingMethod.save()">@await T("Common.Continue")</button>
+                                <span id="shipping-method-please-wait" class="please-wait" style="display: none;">@await T("Common.LoadingNextStep")</span>
                             </div>
                         </form>
                     </div>
@@ -143,7 +143,7 @@
             <li id="opc-payment_method" class="tab-section">
                 <div class="step-title">
                     <span class="number">@paymentMethodStepNumber</span>
-                    <h2 class="title">@T("Checkout.PaymentMethod")</h2>
+                    <h2 class="title">@await T("Checkout.PaymentMethod")</h2>
                 </div>
                 <div id="checkout-step-payment-method" class="step a-item" style="display: none;">
                     <form action="" id="co-payment-method-form" method="post">
@@ -153,24 +153,24 @@
                     </form>
                     <script asp-location="Footer">
                         var localized_data = {
-                            NotAvailableMethodsError: "@T("PaymentMethod.NotAvailableMethodsError")",
-                            SpecifyMethodError: "@T("PaymentMethod.SpecifyMethodError")"
+                            NotAvailableMethodsError: "@await T("PaymentMethod.NotAvailableMethodsError")",
+                            SpecifyMethodError: "@await T("PaymentMethod.SpecifyMethodError")"
                         };
                         PaymentMethod.init('#co-payment-method-form', '@(storeLocation)checkout/OpcSavePaymentMethod/', localized_data);
                     </script>
                     <div class="buttons" id="payment-method-buttons-container">
                         <p class="back-link">
-                            <a href="#" onclick="Checkout.back(); return false;"><small>&laquo; </small>@T("Common.Back")</a>
+                            <a href="#" onclick="Checkout.back(); return false;"><small>&laquo; </small>@await T("Common.Back")</a>
                         </p>
-                        <button type="button" name="save" class="button-1 payment-method-next-step-button" onclick="PaymentMethod.save()">@T("Common.Continue")</button>
-                        <span class="please-wait" id="payment-method-please-wait" style="display: none;">@T("Common.LoadingNextStep")</span>
+                        <button type="button" name="save" class="button-1 payment-method-next-step-button" onclick="PaymentMethod.save()">@await T("Common.Continue")</button>
+                        <span class="please-wait" id="payment-method-please-wait" style="display: none;">@await T("Common.LoadingNextStep")</span>
                     </div>
                 </div>
             </li>
             <li id="opc-payment_info" class="tab-section">
                 <div class="step-title">
                     <span class="number">@paymentInfoStepNumber</span>
-                    <h2 class="title">@T("Checkout.PaymentInfo")</h2>
+                    <h2 class="title">@await T("Checkout.PaymentInfo")</h2>
                 </div>
                 <div id="checkout-step-payment-info" class="step a-item" style="display: none;">
                     <form action="" id="co-payment-info-form" method="post">
@@ -183,17 +183,17 @@
                     </script>
                     <div class="buttons" id="payment-info-buttons-container">
                         <p class="back-link">
-                            <a href="#" onclick="Checkout.back(); return false;"><small>&laquo; </small>@T("Common.Back")</a>
+                            <a href="#" onclick="Checkout.back(); return false;"><small>&laquo; </small>@await T("Common.Back")</a>
                         </p>
-                        <button type="button" class="button-1 payment-info-next-step-button" onclick="PaymentInfo.save()">@T("Common.Continue")</button>
-                        <span class="please-wait" id="payment-info-please-wait" style="display: none;">@T("Common.LoadingNextStep")</span>
+                        <button type="button" class="button-1 payment-info-next-step-button" onclick="PaymentInfo.save()">@await T("Common.Continue")</button>
+                        <span class="please-wait" id="payment-info-please-wait" style="display: none;">@await T("Common.LoadingNextStep")</span>
                     </div>
                 </div>
             </li>
             <li id="opc-confirm_order" class="tab-section">
                 <div class="step-title">
                     <span class="number">@confirmOrderStepNumber</span>
-                    <h2 class="title">@T("Checkout.ConfirmOrder")</h2>
+                    <h2 class="title">@await T("Checkout.ConfirmOrder")</h2>
                 </div>
                 <div id="checkout-step-confirm-order" class="step a-item" style="display: none;">
                     <div id="checkout-confirm-order-load">
@@ -204,10 +204,10 @@
                     </script>
                     <div class="buttons" id="confirm-order-buttons-container">
                         <p class="back-link">
-                            <a href="#" onclick="Checkout.back(); return false;"><small>&laquo; </small>@T("Common.Back")</a>
+                            <a href="#" onclick="Checkout.back(); return false;"><small>&laquo; </small>@await T("Common.Back")</a>
                         </p>
-                        <button type="button" class="button-1 confirm-order-next-step-button" onclick="ConfirmOrder.save()">@T("Checkout.ConfirmButton")</button>
-                        <span class="please-wait" id="confirm-order-please-wait" style="display: none;">@T("Checkout.SubmittingOrder")</span>
+                        <button type="button" class="button-1 confirm-order-next-step-button" onclick="ConfirmOrder.save()">@await T("Checkout.ConfirmButton")</button>
+                        <span class="please-wait" id="confirm-order-please-wait" style="display: none;">@await T("Checkout.SubmittingOrder")</span>
                     </div>
                 </div>
             </li>

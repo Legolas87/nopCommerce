@@ -4,11 +4,11 @@
         <h1>
             @if (Model.AlreadySubscribed)
             {
-                @T("BackInStockSubscriptions.AlreadySubscribed")
+                @await T("BackInStockSubscriptions.AlreadySubscribed")
             }
             else
             {
-                @T("BackInStockSubscriptions.PopupTitle")
+                @await T("BackInStockSubscriptions.PopupTitle")
             }
         </h1>
     </div>
@@ -16,29 +16,29 @@
         @if (!Model.SubscriptionAllowed)
             {
             <div>
-                @T("BackInStockSubscriptions.NotAllowed")
+                @await T("BackInStockSubscriptions.NotAllowed")
             </div>
         }
         else if (!Model.IsCurrentCustomerRegistered)
         {
             <div>
-                @T("BackInStockSubscriptions.OnlyRegistered")
+                @await T("BackInStockSubscriptions.OnlyRegistered")
             </div>
         }
         else if (!Model.AlreadySubscribed && Model.CurrentNumberOfBackInStockSubscriptions >= Model.MaximumBackInStockSubscriptions)
         {
             <div>
-                @string.Format(T("BackInStockSubscriptions.MaxSubscriptions").Text, Model.MaximumBackInStockSubscriptions)
+                @string.Format((await T("BackInStockSubscriptions.MaxSubscriptions")).Value, Model.MaximumBackInStockSubscriptions)
             </div>
         }
         else
         {
             if (!Model.AlreadySubscribed)
             {
-                <div class="tooltip">@T("BackInStockSubscriptions.Tooltip")</div>
+                <div class="tooltip">@await T("BackInStockSubscriptions.Tooltip")</div>
             }
             <button type="submit" id="back-in-stock-notify-me" class="button-1 notify-me-button">
-                @(Model.AlreadySubscribed ? @T("BackInStockSubscriptions.Unsubscribe").Text : @T("BackInStockSubscriptions.NotifyMe").Text)
+                @await T(Model.AlreadySubscribed ? "BackInStockSubscriptions.Unsubscribe" : "BackInStockSubscriptions.NotifyMe")
             </button>
             <nop-antiforgery-token />
             <script>

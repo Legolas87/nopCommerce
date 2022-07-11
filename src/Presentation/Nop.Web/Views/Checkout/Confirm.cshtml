@@ -4,7 +4,7 @@
     Layout = "_ColumnsOne";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.Checkout").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.Checkout")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-checkout-page");
     NopHtml.AppendPageCssClassParts("html-order-confirm-page");
@@ -12,7 +12,7 @@
 <div class="page checkout-page order-confirm-page">
     @await Component.InvokeAsync(typeof(CheckoutProgressViewComponent), new { step = CheckoutProgressStep.Confirm })
     <div class="page-title">
-        <h1>@T("Checkout.ConfirmYourOrder")</h1>
+        <h1>@await T("Checkout.ConfirmYourOrder")</h1>
     </div>
     <div class="page-body checkout-data">
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.CheckoutConfirmTop, additionalData = Model })
@@ -50,33 +50,33 @@
                 {
                     if (Model.TermsOfServiceOnOrderConfirmPage)
                     {
-                        <div id="terms-of-service-warning-box" title="@T("Checkout.TermsOfService")" style="display: none;">
-                            <p>@T("Checkout.TermsOfService.PleaseAccept")</p>
+                        <div id="terms-of-service-warning-box" title="@await T("Checkout.TermsOfService")" style="display: none;">
+                            <p>@await T("Checkout.TermsOfService.PleaseAccept")</p>
                         </div>
                         <div class="terms-of-service">
                             <input id="termsofservice" type="checkbox" name="termsofservice" />
-                            <label for="termsofservice">@T("Checkout.TermsOfService.IAccept")</label>
+                            <label for="termsofservice">@await T("Checkout.TermsOfService.IAccept")</label>
                             @if (Model.TermsOfServicePopup)
                             {
-                                <a class="read" id="read-terms">@T("Checkout.TermsOfService.Read")</a>
+                                <a class="read" id="read-terms">@await T("Checkout.TermsOfService.Read")</a>
                                 <script asp-location="Footer">
                                     $(document).ready(function() {
                                         $('#read-terms').on('click',
                                             function(e) {
                                                 e.preventDefault();
-                                                displayPopupContentFromUrl('@Url.RouteUrl("TopicPopup", new {SystemName = "conditionsofuse"})', '@T("Checkout.TermsOfService")');
+                                                displayPopupContentFromUrl('@Url.RouteUrl("TopicPopup", new {SystemName = "conditionsofuse"})', '@await T("Checkout.TermsOfService")');
                                             });
                                     });
                                 </script>
                             }
                             else
                             {
-                                <a class="read" id="read-terms" href="@Url.RouteTopicUrl("conditionsofuse")">@T("Checkout.TermsOfService.Read")</a>
+                                <a class="read" id="read-terms" href="@Url.RouteTopicUrl("conditionsofuse")">@await T("Checkout.TermsOfService.Read")</a>
                             }
                         </div>
                     }
                     <div class="buttons">
-                        <button type="submit" name="nextstep" class="button-1 confirm-order-next-step-button">@T("Checkout.ConfirmButton")</button>
+                        <button type="submit" name="nextstep" class="button-1 confirm-order-next-step-button">@await T("Checkout.ConfirmButton")</button>
                     </div>
                     <script asp-location="Footer">
                         $('#confirm-order-form').on('submit',

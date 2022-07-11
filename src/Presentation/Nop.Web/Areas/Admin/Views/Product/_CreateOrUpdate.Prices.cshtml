@@ -190,7 +190,7 @@
                 <text>
                     discountsIdsInput.setOptions({
                         enable: false,
-                        placeholder: '@T("Admin.Catalog.Products.Fields.Discounts.NoDiscounts")'
+                        placeholder: '@await T("Admin.Catalog.Products.Fields.Discounts.NoDiscounts")'
                     });
                     discountsIdsInput._placeholder();
                     discountsIdsInput._enable();
@@ -231,13 +231,13 @@
     </div>
     <div class="card card-default @(Model.ProductEditorSettingsModel.TierPrices ? null : "advanced-setting")">
         <div class="card-header">
-            @T("Admin.Catalog.Products.TierPrices")
+            @await T("Admin.Catalog.Products.TierPrices")
         </div>
         @if (Model.Id > 0)
         {
             <div class="card-body">
                 <p>
-                    @T("Admin.Catalog.Products.TierPrices.Hint")
+                    @await T("Admin.Catalog.Products.TierPrices.Hint")
                 </p>
                 @await Html.PartialAsync("Table", new DataTablesModel
                 {
@@ -250,43 +250,43 @@
                     {
                         new ColumnProperty(nameof(TierPriceModel.Store))
                         {
-                            Title = T("Admin.Catalog.Products.TierPrices.Fields.Store").Text,
+                            Title = (await T("Admin.Catalog.Products.TierPrices.Fields.Store")).Value,
                             Visible = stores.Count > 1
                         },
                         new ColumnProperty(nameof(TierPriceModel.CustomerRole))
                         {
-                            Title = T("Admin.Catalog.Products.TierPrices.Fields.CustomerRole").Text
+                            Title = (await T("Admin.Catalog.Products.TierPrices.Fields.CustomerRole")).Value
                         },
                         new ColumnProperty(nameof(TierPriceModel.Quantity))
                         {
-                            Title = T("Admin.Catalog.Products.TierPrices.Fields.Quantity").Text
+                            Title = (await T("Admin.Catalog.Products.TierPrices.Fields.Quantity")).Value
                         },
                         new ColumnProperty(nameof(TierPriceModel.Price))
                         {
-                            Title = T("Admin.Catalog.Products.TierPrices.Fields.Price").Text
+                            Title = (await T("Admin.Catalog.Products.TierPrices.Fields.Price")).Value
                         },
                         new ColumnProperty(nameof(TierPriceModel.StartDateTimeUtc))
                         {
-                            Title = T("Admin.Catalog.Products.TierPrices.Fields.StartDateTimeUtc").Text,
+                            Title = (await T("Admin.Catalog.Products.TierPrices.Fields.StartDateTimeUtc")).Value,
                             Render = new RenderDate()
                         },
                         new ColumnProperty(nameof(TierPriceModel.EndDateTimeUtc))
                         {
-                            Title = T("Admin.Catalog.Products.TierPrices.Fields.EndDateTimeUtc").Text,
+                            Title = (await T("Admin.Catalog.Products.TierPrices.Fields.EndDateTimeUtc")).Value,
                             Render = new RenderDate()
                         },
                         new ColumnProperty(nameof(TierPriceModel.Id))
                         {
-                            Title = T("Admin.Common.Edit").Text,
+                            Title = (await T("Admin.Common.Edit")).Value,
                             Width = "100",
                             ClassName =  NopColumnClassDefaults.Button,
                             Render = new RenderCustom("renderPriceColumnEdit")
                         },
                         new ColumnProperty(nameof(TierPriceModel.Id))
                         {
-                            Title = T("Admin.Common.Delete").Text,
+                            Title = (await T("Admin.Common.Delete")).Value,
                             Width = "100",
-                            Render = new RenderButtonRemove(T("Admin.Common.Delete").Text),
+                            Render = new RenderButtonRemove((await T("Admin.Common.Delete")).Value),
                             ClassName =  NopColumnClassDefaults.Button
                         }
                     }
@@ -294,13 +294,13 @@
 
                 <script>
                     function renderPriceColumnEdit(data, type, row, meta) {
-                        return '<button onclick=\"javascript:OpenWindow(\'@Url.Content("~/Admin/Product/TierPriceEditPopup/")' + data + '?btnId=btnRefreshTierPrices&formId=product-form\', 800, 600, true); return false;\" class="btn btn-default"><i class="fas fa-pencil-alt"></i>@T("Admin.Common.Edit").Text</button>';
+                        return '<button onclick=\"javascript:OpenWindow(\'@Url.Content("~/Admin/Product/TierPriceEditPopup/")' + data + '?btnId=btnRefreshTierPrices&formId=product-form\', 800, 600, true); return false;\" class="btn btn-default"><i class="fas fa-pencil-alt"></i>@await T("Admin.Common.Edit")</button>';
                     }
                 </script>
             </div>
             <div class="card-footer">
                 <button type="submit" id="btnAddNewTierPrice" onclick="javascript:OpenWindow('@(Url.Action("TierPriceCreatePopup", "Product", new { productId = Model.Id, btnId = "btnRefreshTierPrices", formId = "product-form"}))', 800, 600, true); return false;" class="btn btn-primary">
-                    @T("Admin.Catalog.Products.TierPrices.AddNew")
+                    @await T("Admin.Catalog.Products.TierPrices.AddNew")
                 </button>
                 <button type="submit" id="btnRefreshTierPrices" style="display: none"></button>
                 <script>
@@ -317,7 +317,7 @@
         else
         {
             <div class="card-body">
-                @T("Admin.Catalog.Products.TierPrices.SaveBeforeEdit")
+                @await T("Admin.Catalog.Products.TierPrices.SaveBeforeEdit")
             </div>
         }
     </div>

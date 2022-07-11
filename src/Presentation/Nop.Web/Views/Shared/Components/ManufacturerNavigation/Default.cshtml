@@ -6,7 +6,7 @@
 {
     <div class="block block-manufacturer-navigation">
         <div class="title">
-            <strong>@T("Manufacturers")</strong>
+            <strong>@await T("Manufacturers")</strong>
         </div>
         <div class="listbox">
             <ul class="list">
@@ -20,7 +20,7 @@
             @if (Model.TotalManufacturers > Model.Manufacturers.Count)
             {
                 <div class="view-all">
-                    <a href="@Url.RouteUrl("ManufacturerList")">@T("Manufacturers.ViewAll")</a>
+                    <a href="@Url.RouteUrl("ManufacturerList")">@await T("Manufacturers.ViewAll")</a>
                 </div>
             }
         </div>

@@ -2,7 +2,7 @@
 
 <div class="card-body">
     <p>
-        @T("Admin.Catalog.Products.StockQuantityHistory.Hint")
+        @await T("Admin.Catalog.Products.StockQuantityHistory.Hint")
     </p>
     @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.ProductDetailsStockQuantityHistoryTop, additionalData = Model })
     @*hide the entire search block if no elements are displayed*@
@@ -19,7 +19,7 @@
             <div class="col-md-9 offset-md-3">
                 <button type="button" id="search-stock-quantity-history" class="btn btn-primary btn-search">
                     <i class="fas fa-search"></i>
-                    @T("Admin.Common.Search")
+                    @await T("Admin.Common.Search")
                 </button>
             </div>
         </div>
@@ -40,33 +40,33 @@
         {
             new ColumnProperty(nameof(StockQuantityHistoryModel.WarehouseName))
             {
-                Title = T("Admin.Catalog.Products.StockQuantityHistory.Fields.Warehouse").Text,
+                Title = (await T("Admin.Catalog.Products.StockQuantityHistory.Fields.Warehouse")).Value,
                 Width = "150"
             },
             new ColumnProperty(nameof(StockQuantityHistoryModel.AttributeCombination))
             {
-                Title = T("Admin.Catalog.Products.StockQuantityHistory.Fields.Combination").Text,
+                Title = (await T("Admin.Catalog.Products.StockQuantityHistory.Fields.Combination")).Value,
                 Width = "180",
                 Encode = false
             },
             new ColumnProperty(nameof(StockQuantityHistoryModel.QuantityAdjustment))
             {
-                Title = T("Admin.Catalog.Products.StockQuantityHistory.Fields.QuantityAdjustment").Text,
+                Title = (await T("Admin.Catalog.Products.StockQuantityHistory.Fields.QuantityAdjustment")).Value,
                 Width = "150",
                 Render = new RenderCustom("renderStockQuantityHistoryQuantityAdjustment")
             },
             new ColumnProperty(nameof(StockQuantityHistoryModel.StockQuantity))
             {
-                Title = T("Admin.Catalog.Products.StockQuantityHistory.Fields.StockQuantity").Text,
+                Title = (await T("Admin.Catalog.Products.StockQuantityHistory.Fields.StockQuantity")).Value,
                 Width = "130"
             },
             new ColumnProperty(nameof(StockQuantityHistoryModel.Message))
             {
-                Title = T("Admin.Catalog.Products.StockQuantityHistory.Fields.Message").Text
+                Title = (await T("Admin.Catalog.Products.StockQuantityHistory.Fields.Message")).Value
             },
             new ColumnProperty(nameof(StockQuantityHistoryModel.CreatedOn))
             {
-                Title = T("Admin.Catalog.Products.StockQuantityHistory.Fields.CreatedOn").Text,
+                Title = (await T("Admin.Catalog.Products.StockQuantityHistory.Fields.CreatedOn")).Value,
                 Width = "170",
                 Render = new RenderDate()
             }

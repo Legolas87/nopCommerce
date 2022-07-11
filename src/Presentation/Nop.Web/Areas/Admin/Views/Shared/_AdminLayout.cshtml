@@ -20,7 +20,7 @@
 
     //page title
     string adminPageTitle = !string.IsNullOrWhiteSpace(ViewBag.PageTitle) ? ViewBag.PageTitle + " / " : "";
-    adminPageTitle += T("Admin.PageTitle").Text;
+    adminPageTitle += (await T("Admin.PageTitle")).Value;
 
     //has "Manage Maintenance" permission?
     var canManageMaintenance = await permissionService.AuthorizeAsync(StandardPermissionProvider.ManageMaintenance);
@@ -55,7 +55,7 @@
         </div>
         <div class="curtain-content">
             <div>
-                <h1 class="throbber-header">@T("Common.Wait")</h1>
+                <h1 class="throbber-header">@await T("Common.Wait")</h1>
                 <p>
                     <img src="@Url.Content("~/css/admin/images/throbber-synchronizing.gif")" alt="" />
                 </p>
@@ -98,14 +98,14 @@
                                 <a href="#" class="nav-link disabled">@await customerService.GetCustomerFullNameAsync(currentCustomer)</a>
                             </li>
                             <li class="nav-item">
-                                <a asp-controller="Customer" asp-action="Logout" asp-area="" class="nav-link">@T("Admin.Header.Logout")</a>
+                                <a asp-controller="Customer" asp-action="Logout" asp-area="" class="nav-link">@await T("Admin.Header.Logout")</a>
                             </li>
                         }
                         <li class="nav-item">
                             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.HeaderMiddle })
                         </li>
                         <li class="nav-item">
-                            <a asp-controller="Home" asp-action="Index" asp-area="" class="nav-link">@T("Admin.Header.PublicStore")</a>
+                            <a asp-controller="Home" asp-action="Index" asp-area="" class="nav-link">@await T("Admin.Header.PublicStore")</a>
                         </li>
                         @if (canManageMaintenance)
                         {
@@ -119,7 +119,7 @@
                                             <input name="returnurl" type="hidden" value="@returnUrl">
                                             <div class="input-group-append">
                                                 <button type="submit" style="width:210px;background-color: Transparent;">
-                                                    <span>@T("Admin.Header.ClearCache")</span>
+                                                    <span>@await T("Admin.Header.ClearCache")</span>
                                                 </button>
                                             </div>
                                         </form>
@@ -128,12 +128,12 @@
                                         <form asp-controller="Common" asp-action="RestartApplication" asp-area="@AreaNames.Admin">
                                             <input name="returnurl" type="hidden" value="@returnUrl">
                                             <button id="restart-application" type="submit" style="width:210px;background-color: Transparent;">
-                                                <span>@T("Admin.Header.RestartApplication")</span>
+                                                <span>@await T("Admin.Header.RestartApplication")</span>
                                             </button>
                                             <script>
                                                 $(document).ready(function () {
                                                     $("#restart-application").click(function (e) {
-                                                        showThrobber('@Html.Raw(JavaScriptEncoder.Default.Encode(T("Admin.Header.RestartApplication.Progress").Text))');
+                                                        showThrobber('@Html.Raw(JavaScriptEncoder.Default.Encode((await T("Admin.Header.RestartApplication.Progress")).Value))');
                                                     });
                                                 });
                                             </script>
@@ -164,7 +164,7 @@
                 <div class="sidebar">
                     <div class="sidebar-form">
                         <div id="search-box">
-                            <input type="text" class="form-control admin-search-box typeahead" placeholder="@T("Admin.Menu.Search")">
+                            <input type="text" class="form-control admin-search-box typeahead" placeholder="@await T("Admin.Menu.Search")">
                         </div>
                     </div>
                     <nav class="mt-2">

@@ -35,7 +35,7 @@
         <div class="breadcrumb">
             <ul itemscope itemtype="http://schema.org/BreadcrumbList">
                 <li>
-                    <a href="@Url.RouteUrl("Homepage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
+                    <a href="@Url.RouteUrl("Homepage")" title="@await T("Categories.Breadcrumb.Top")">@await T("Categories.Breadcrumb.Top")</a>
                     <span class="delimiter">@breadcrumbDelimiter</span>
                 </li>
                 @{ int position = 1; }
@@ -117,7 +117,7 @@
         {
             <div class="product-grid featured-product-grid">
                 <div class="title">
-                    <strong>@T("Products.FeaturedProducts")</strong>
+                    <strong>@await T("Products.FeaturedProducts")</strong>
                 </div>
                 <div class="item-grid">
                     @foreach (var item in Model.FeaturedProducts)

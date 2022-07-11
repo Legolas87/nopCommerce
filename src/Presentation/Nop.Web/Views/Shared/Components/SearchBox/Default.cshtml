@@ -2,15 +2,15 @@
 <form asp-route="ProductSearch" method="get" id="small-search-box-form">
     @if (Model.ShowSearchBox)
     {
-        <input type="text" class="search-box-text" id="small-searchterms" autocomplete="off" name="q" placeholder="@T("Search.SearchBox.Tooltip")" aria-label="@T("Search.SearchBox.Text.Label")" />
+        <input type="text" class="search-box-text" id="small-searchterms" autocomplete="off" name="q" placeholder="@await T("Search.SearchBox.Tooltip")" aria-label="@await T("Search.SearchBox.Text.Label")" />
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.SearchBoxBeforeSearchButton, additionalData = Model })
-        <button type="submit" class="button-1 search-box-button">@T("Search.Button")</button>
+        <button type="submit" class="button-1 search-box-button">@await T("Search.Button")</button>
         @if (Model.SearchTermMinimumLength > 0)
         {
             <script asp-location="Footer">
                 $("#small-search-box-form").on("submit", function(event) {
                     if ($("#small-searchterms").val() == "") {
-                        alert('@Html.Raw(JavaScriptEncoder.Default.Encode(T("Search.EnterSearchTerms").Text))');
+                        alert('@Html.Raw(JavaScriptEncoder.Default.Encode((await T("Search.EnterSearchTerms")).Value))');
                         $("#small-searchterms").focus();
                         event.preventDefault();
                     }
@@ -23,7 +23,7 @@
             <script asp-location="Footer">
                 $(document).ready(function() {
                     var showLinkToResultSearch;
-                    var searchText;
+                    var searc.Value;
                     $('#small-searchterms').autocomplete({
                             delay: 500,
                             minLength: @(Model.SearchTermMinimumLength.ToString()),
@@ -39,7 +39,7 @@
                             //display link to search page
                             if (showLinkToResultSearch) {
                                 searchText = document.getElementById("small-searchterms").value;
-                                $(".ui-autocomplete").append("<li class=\"ui-menu-item\" role=\"presentation\"><a href=\"/search?q=" + searchText + "\">@T("Search.SearchBox.SearchPageLink")</a></li>");
+                                $(".ui-autocomplete").append("<li class=\"ui-menu-item\" role=\"presentation\"><a href=\"/search?q=" + searchText + "\">@await T("Search.SearchBox.SearchPageLink")</a></li>");
                             }
                         }
                     })

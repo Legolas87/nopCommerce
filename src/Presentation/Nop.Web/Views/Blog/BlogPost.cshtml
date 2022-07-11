@@ -34,7 +34,7 @@
         @if (Model.Tags.Count > 0)
         {
             <div class="tags">
-                <label>@T("Blog.Tags"):</label>
+                <label>@await T("Blog.Tags"):</label>
                 <ul>
                     @for (var i = 0; i < Model.Tags.Count; i++)
                     {
@@ -53,7 +53,7 @@
         {
             <div class="fieldset new-comment" id="comments">
                 <div class="title">
-                    <strong>@T("Blog.Comments.LeaveYourComment")</strong>
+                    <strong>@await T("Blog.Comments.LeaveYourComment")</strong>
                 </div>
                 <div class="notifications">
                     <div asp-validation-summary="ModelOnly" class="message-error"></div>
@@ -81,12 +81,12 @@
                     @if (!Model.PreventNotRegisteredUsersToLeaveComments)
                     {
                         <div class="buttons">
-                            <button type="submit" name="add-comment" class="button-1 blog-post-add-comment-button">@T("Blog.Comments.SubmitButton")</button>
+                            <button type="submit" name="add-comment" class="button-1 blog-post-add-comment-button">@await T("Blog.Comments.SubmitButton")</button>
                         </div>
                     }
                     else
                     {
-                        <div class="message-error">@T("Blog.Comments.OnlyRegisteredUsersLeaveComments")</div>
+                        <div class="message-error">@await T("Blog.Comments.OnlyRegisteredUsersLeaveComments")</div>
                     }
                 </form>
             </div>
@@ -94,7 +94,7 @@
             {
                 <div class="comment-list">
                     <div class="title">
-                        <strong>@T("Blog.Comments")</strong>
+                        <strong>@await T("Blog.Comments")</strong>
                     </div>
                     <div class="comments">
                         @foreach (var comment in Model.Comments)
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="comment-content">
                                     <div class="comment-time">
-                                        <label>@T("Blog.Comments.CreatedOn"):</label>
+                                        <label>@await T("Blog.Comments.CreatedOn"):</label>
                                         <span class="stat-value">@comment.CreatedOn.ToString("g")</span>
                                     </div>
                                     <div class="comment-body">

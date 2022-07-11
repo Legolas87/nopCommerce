@@ -98,10 +98,10 @@
                                 <span id="purchased-with-product-name">@Model.PurchasedWithProductName</span>
                                 <span asp-validation-for="PurchasedWithProductId"></span>
                                 <button type="submit" onclick="javascript:OpenWindow('@(Url.Action("AssociateProductToCustomerRolePopup", "CustomerRole", new {productIdInput = Html.IdFor(model => model.PurchasedWithProductId), productNameInput = "purchased-with-product-name", btnId = "btnRefreshPurchasedWithProduct"}))', 800, 850, true); return false;" class="btn btn-primary">
-                                    @T("Admin.Customers.CustomerRoles.Fields.PurchasedWithProduct.Choose")
+                                    @await T("Admin.Customers.CustomerRoles.Fields.PurchasedWithProduct.Choose")
                                 </button>
                                 <button type="submit" id="purchased-with-product-name-remove" class="btn btn-danger">
-                                    @T("Admin.Customers.CustomerRoles.Fields.PurchasedWithProduct.Remove")
+                                    @await T("Admin.Customers.CustomerRoles.Fields.PurchasedWithProduct.Remove")
                                 </button>
                                 <button type="submit" id="btnRefreshPurchasedWithProduct" style="display: none"></button>
 
@@ -130,7 +130,7 @@
                                 <nop-label asp-for="IsSystemRole" />
                             </div>
                             <div class="col-md-9">
-                                <div class="form-text-row">@T(Model.IsSystemRole ? "Admin.Common.Yes" : "Admin.Common.No")</div>
+                                <div class="form-text-row">@await T(Model.IsSystemRole ? "Admin.Common.Yes" : "Admin.Common.No")</div>
                                 <input type="hidden" asp-for="IsSystemRole" />
                                 <span asp-validation-for="IsSystemRole"></span>
                             </div>

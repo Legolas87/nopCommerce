@@ -3,7 +3,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Catalog.ProductReviews").Text;
+    ViewBag.PageTitle = (await T("Admin.Catalog.ProductReviews")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Product reviews");
 }
@@ -16,7 +16,7 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Catalog.ProductReviews")
+        @await T("Admin.Catalog.ProductReviews")
     </h1>
     <div class="float-right">
         @if (!Model.IsLoggedInAsVendor)
@@ -24,15 +24,15 @@
             //these buttons are not visible to vendors
             <button type="button" id="approve-selected" class="btn btn-success">
                 <i class="fas fa-check-square"></i>
-                @T("Admin.Catalog.ProductReviews.ApproveSelected")
+                @await T("Admin.Catalog.ProductReviews.ApproveSelected")
             </button>
             <button type="button" id="disapprove-selected" class="btn btn-secondary">
                 <i class="fas fa-minus-square"></i>
-                @T("Admin.Catalog.ProductReviews.DisapproveSelected")
+                @await T("Admin.Catalog.ProductReviews.DisapproveSelected")
             </button>
             <button type="button" id="delete-selected" class="btn btn-danger">
                 <i class="far fa-trash-alt"></i>
-                @T("Admin.Catalog.ProductReviews.DeleteSelected")
+                @await T("Admin.Catalog.ProductReviews.DeleteSelected")
             </button>
             <nop-action-confirmation asp-button-id="delete-selected" />
         }
@@ -47,7 +47,7 @@
             <div class="card card-default card-search">
                 <div class="card-body">
                     <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                        <div class="search-text">@T("Admin.Common.Search")</div>
+                        <div class="search-text">@await T("Admin.Common.Search")</div>
                         <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                         <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                     </div>
@@ -112,7 +112,7 @@
                                         </script>
 
                                         <span id="search-product-friendly-name"></span>
-                                        <button type="button" id="search-product-clear" class="btn bg-gray" style="display: none; margin-top: 5px;">@T("Admin.Common.Clear")</button>
+                                        <button type="button" id="search-product-clear" class="btn bg-gray" style="display: none; margin-top: 5px;">@await T("Admin.Common.Clear")</button>
                                         <input asp-for="SearchProductId" autocomplete="off" style="display: none;" />
 
                                         <script>
@@ -140,7 +140,7 @@
                             <div class="text-center col-12">
                                 <button type="button" id="search-productreviews" class="btn btn-primary btn-search">
                                     <i class="fas fa-search"></i>
-                                    @T("Admin.Common.Search")
+                                    @await T("Admin.Common.Search")
                                 </button>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
 
             <div class="card card-default">
                 <div class="card-body">
-                    <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.ProductReviews", Docs.ProductReviews + Utm.OnAdmin)" />
+                    <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.ProductReviews", Docs.ProductReviews + Utm.OnAdmin)" />
 
                     @await Html.PartialAsync("Table", new DataTablesModel
                     {
@@ -180,59 +180,59 @@
                             },
                             new ColumnProperty(nameof(ProductReviewModel.StoreName))
                             {
-                                Title = T("Admin.Catalog.ProductReviews.Fields.Store").Text,
+                                Title = (await T("Admin.Catalog.ProductReviews.Fields.Store")).Value,
                                 Visible = (await storeService.GetAllStoresAsync()).Count > 1 ? true : false,
                                 Width = "150"
                             },
                             new ColumnProperty(nameof(ProductReviewModel.ProductName))
                             {
-                                Title = T("Admin.Catalog.ProductReviews.Fields.Product").Text,
+                                Title = (await T("Admin.Catalog.ProductReviews.Fields.Product")).Value,
                                 Width = "200",
                                 Render = new RenderLink(new DataUrl("~/Admin/Product/Edit", nameof(ProductReviewModel.ProductId)))
                             },
                             new ColumnProperty(nameof(ProductReviewModel.CustomerInfo))
                             {
-                                Title = T("Admin.Catalog.ProductReviews.Fields.Customer").Text,
+                                Title = (await T("Admin.Catalog.ProductReviews.Fields.Customer")).Value,
                                 Width = "200",
                                 Render = new RenderLink(new DataUrl("~/Admin/Customer/Edit", nameof(ProductReviewModel.CustomerId)))
                             },
                             new ColumnProperty(nameof(ProductReviewModel.Title))
                             {
-                                Title = T("Admin.Catalog.ProductReviews.Fields.Title").Text,
+                                Title = (await T("Admin.Catalog.ProductReviews.Fields.Title")).Value,
                                 Width = "200"
                             },
                             new ColumnProperty(nameof(ProductReviewModel.ReviewText))
                             {
-                                Title = T("Admin.Catalog.ProductReviews.Fields.ReviewText").Text,
+                                Title = (await T("Admin.Catalog.ProductReviews.Fields.ReviewText")).Value,
                                 Encode = false
                             },
                             new ColumnProperty(nameof(ProductReviewModel.ReplyText))
                             {
-                                Title = T("Admin.Catalog.ProductReviews.Fields.ReplyText").Text,
+                                Title = (await T("Admin.Catalog.ProductReviews.Fields.ReplyText")).Value,
                                 Encode = false
                             },
                             new ColumnProperty(nameof(ProductReviewModel.Rating))
                             {
-                                Title = T("Admin.Catalog.ProductReviews.Fields.Rating").Text,
+                                Title = (await T("Admin.Catalog.ProductReviews.Fields.Rating")).Value,
                                 Width = "50",
                                 ClassName =  NopColumnClassDefaults.CenterAll
                             },
                             new ColumnProperty(nameof(ProductReviewModel.IsApproved))
                             {
-                                Title = T("Admin.Catalog.ProductReviews.Fields.IsApproved").Text,
+                                Title = (await T("Admin.Catalog.ProductReviews.Fields.IsApproved")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.CenterAll,
                                 Render = new RenderBoolean()
                             },
                             new ColumnProperty(nameof(ProductReviewModel.CreatedOn))
                             {
-                                Title = T("Admin.Catalog.ProductReviews.Fields.CreatedOn").Text,
+                                Title = (await T("Admin.Catalog.ProductReviews.Fields.CreatedOn")).Value,
                                 Width = "150",
                                 Render = new RenderDate()
                             },
                             new ColumnProperty(nameof(ProductReviewModel.Id))
                             {
-                                Title = T("Admin.Common.Edit").Text,
+                                Title = (await T("Admin.Common.Edit")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.Button,
                                 Render = new RenderButtonEdit(new DataUrl("Edit"))
@@ -264,7 +264,7 @@
                                     complete: function (jqXHR, textStatus) {
                                         if (jqXHR.status === 204)
                                         {
-                                            showAlert('nothingSelectedAlert', '@T("Admin.Common.Alert.NothingSelected")');
+                                            showAlert('nothingSelectedAlert', '@await T("Admin.Common.Alert.NothingSelected")');
                                             return;
                                         }
                                         updateTable('#productreviews-grid');
@@ -294,7 +294,7 @@
                                     complete: function (jqXHR, textStatus) {
                                         if (jqXHR.status === 204)
                                         {
-                                            showAlert('nothingSelectedAlert', '@T("Admin.Common.Alert.NothingSelected")');
+                                            showAlert('nothingSelectedAlert', '@await T("Admin.Common.Alert.NothingSelected")');
                                             return;
                                         }
                                         updateTable('#productreviews-grid');
@@ -320,7 +320,7 @@
                                     complete: function (jqXHR, textStatus) {
                                         if (jqXHR.status === 204)
                                         {
-                                            showAlert('nothingSelectedAlert', '@T("Admin.Common.Alert.NothingSelected")');
+                                            showAlert('nothingSelectedAlert', '@await T("Admin.Common.Alert.NothingSelected")');
                                             return;
                                         }
                                         updateTable('#productreviews-grid');

@@ -3,7 +3,7 @@
     Layout = "_ColumnsTwo";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.Account").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.Account")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-account-page");
     NopHtml.AppendPageCssClassParts("html-reward-points-page");
@@ -14,19 +14,19 @@
 }
 <div class="page account-page reward-points-page">
     <div class="page-title">
-        <h1>@T("Account.MyAccount") - @T("Account.RewardPoints")</h1>
+        <h1>@await T("Account.MyAccount") - @await T("Account.RewardPoints")</h1>
     </div>
     <div class="page-body">
         <div class="reward-points-overview">
-            <div class="current-balance">@T("RewardPoints.CurrentBalance", Model.RewardPointsBalance, Model.RewardPointsAmount)</div>
+            <div class="current-balance">@await T("RewardPoints.CurrentBalance", Model.RewardPointsBalance, Model.RewardPointsAmount)</div>
             @if (Model.MinimumRewardPointsBalance > 0)
             {
-                <div class="min-balance">@T("RewardPoints.MinimumBalance", Model.MinimumRewardPointsBalance, Model.MinimumRewardPointsAmount)</div>
+                <div class="min-balance">@await T("RewardPoints.MinimumBalance", Model.MinimumRewardPointsBalance, Model.MinimumRewardPointsAmount)</div>
             }
         </div>
         <div class="section reward-points-history">
             <div class="title">
-                <strong>@T("RewardPoints.History")</strong>
+                <strong>@await T("RewardPoints.History")</strong>
             </div>
             @if (Model.RewardPoints.Count > 0)
             {
@@ -42,19 +42,19 @@
                         <thead>
                         <tr>
                             <th class="date">
-                                @T("RewardPoints.Fields.CreatedDate")
+                                @await T("RewardPoints.Fields.CreatedDate")
                             </th>
                             <th class="points">
-                                @T("RewardPoints.Fields.Points")
+                                @await T("RewardPoints.Fields.Points")
                             </th>
                             <th class="points-balance">
-                                @T("RewardPoints.Fields.PointsBalance")
+                                @await T("RewardPoints.Fields.PointsBalance")
                             </th>
                             <th class="message">
-                                @T("RewardPoints.Fields.Message")
+                                @await T("RewardPoints.Fields.Message")
                             </th>
                             <th class="endDate">
-                                @T("RewardPoints.Fields.EndDate")
+                                @await T("RewardPoints.Fields.EndDate")
                             </th>
                         </tr>
                         </thead>
@@ -94,7 +94,7 @@
             else
             {
                 <div class="no-data">
-                    @T("RewardPoints.NoHistory")
+                    @await T("RewardPoints.NoHistory")
                 </div>
             }
         </div>

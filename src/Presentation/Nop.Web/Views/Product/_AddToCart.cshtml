@@ -30,13 +30,13 @@
                 <label asp-for="EnteredQuantity" asp-postfix=":" class="qty-label"></label>
                 @if (Model.AllowedQuantities.Count > 0)
                 {
-                    <select asp-for="EnteredQuantity" asp-items="Model.AllowedQuantities" id="product_enteredQuantity_@Model.ProductId" class="qty-dropdown" aria-label=@T("Products.Qty.AriaLabel")></select>
+                    <select asp-for="EnteredQuantity" asp-items="Model.AllowedQuantities" id="product_enteredQuantity_@Model.ProductId" class="qty-dropdown" aria-label=@await T("Products.Qty.AriaLabel")></select>
                     <script asp-location="Footer">
                         $(document).ready(function () {
                             $("#product_enteredQuantity_@Model.ProductId").on("change", function () {
                                 var data = {
                                     productId: @Model.ProductId,
-                                    quantity: $('#product_enteredQuantity_@Model.ProductId').find(":selected").text()
+                                    quantity: $('#product_enteredQuantity_@Model.ProductId').find(":selected").Value()
                                 };
                                 $(document).trigger({ type: "product_quantity_changed", changedData: data });
                             });
@@ -45,7 +45,7 @@
                 }
                 else
                 {
-                    <input asp-for="EnteredQuantity" id="product_enteredQuantity_@Model.ProductId" class="qty-input" type="text" aria-label=@T("Products.Qty.AriaLabel")/>
+                    <input asp-for="EnteredQuantity" id="product_enteredQuantity_@Model.ProductId" class="qty-input" type="text" aria-label=@await T("Products.Qty.AriaLabel")/>
                     <script asp-location="Footer">
                         //when a customer clicks 'Enter' button we submit the "add to cart" button (if visible)
                         $(document).ready(function() {
@@ -70,18 +70,18 @@
                     var addToCartText = "";
                     if (Model.UpdatedShoppingCartItemId > 0 && Model.UpdateShoppingCartItemType.HasValue && Model.UpdateShoppingCartItemType.Value == ShoppingCartType.ShoppingCart)
                     {
-                        addToCartText = T("ShoppingCart.AddToCart.Update").Text;
+                        addToCartText = (await T("ShoppingCart.AddToCart.Update")).Value;
                     }
                     else
                     {
-                        addToCartText = T("ShoppingCart.AddToCart").Text;
+                        addToCartText = (await T("ShoppingCart.AddToCart")).Value;
                         if (Model.IsRental)
                         {
-                            addToCartText = T("ShoppingCart.Rent").Text;
+                            addToCartText = (await T("ShoppingCart.Rent")).Value;
                         }
                         if (Model.AvailableForPreOrder)
                         {
-                            addToCartText = T("ShoppingCart.PreOrder").Text;
+                            addToCartText = (await T("ShoppingCart.PreOrder")).Value;
                         }
                     }
                     <button type="button" id="add-to-cart-button-@Model.ProductId" class="button-1 add-to-cart-button" data-productid="@Model.ProductId" onclick="AjaxCart.addproducttocart_details('@Url.RouteUrl("AddProductToCart-Details", new {productId = Model.ProductId, shoppingCartTypeId = (int) ShoppingCartType.ShoppingCart})', '#product-details-form');return false;">@addToCartText</button>
@@ -90,7 +90,7 @@
             if (!string.IsNullOrEmpty(Model.PreOrderAvailabilityStartDateTimeUserTime))
             {
                 <div class="pre-order-availability-date">
-                    <label>@T("ShoppingCart.PreOrderAvailability"):</label>
+                    <label>@await T("ShoppingCart.PreOrderAvailability"):</label>
                     @Html.Raw(Model.PreOrderAvailabilityStartDateTimeUserTime)
                 </div>
             }

@@ -46,7 +46,7 @@
         @if (Model.AllowCustomersToContactVendors)
         {
             <div class="contact-vendor">
-                <button type="button" class="button-2 contact-vendor-button" onclick="setLocation('@Url.RouteUrl("ContactVendor", new { vendorId = Model.Id })')">@T("ContactVendor")</button>
+                <button type="button" class="button-2 contact-vendor-button" onclick="setLocation('@Url.RouteUrl("ContactVendor", new { vendorId = Model.Id })')">@await T("ContactVendor")</button>
             </div>
         }
         @await Html.PartialAsync("_CatalogSelectors", Model.CatalogProductsModel)

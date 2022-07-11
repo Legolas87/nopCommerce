@@ -13,7 +13,7 @@
     @if (Model.AllowProductViewModeChanging)
     {
         <div class="product-viewmode">
-            <span>@T("Catalog.ViewMode")</span>
+            <span>@await T("Catalog.ViewMode")</span>
             @if (Model.AvailableViewModes.Count > 1)
             {
                 var gridMode = Model.AvailableViewModes[0];
@@ -48,8 +48,8 @@
     @if (Model.AllowProductSorting)
     {
         <div class="product-sorting">
-            <span>@T("Catalog.OrderBy")</span>
-            @Html.DropDownList("products-orderby", Model.AvailableSortOptions, new { aria_label = T("Catalog.OrderBy.Label") })
+            <span>@await T("Catalog.OrderBy")</span>
+            @Html.DropDownList("products-orderby", Model.AvailableSortOptions, new { aria_label = await T("Catalog.OrderBy.Label") })
         </div>
         <script asp-location="Footer">
             $(document).ready(function () {
@@ -69,9 +69,9 @@
     @if (Model.AllowCustomersToSelectPageSize)
     {
         <div class="product-page-size">
-            <span>@T("Catalog.PageSize")</span>
-            @Html.DropDownList("products-pagesize", Model.PageSizeOptions, new { aria_label = T("Catalog.PageSize.Label") })
-            <span>@T("Catalog.PageSize.PerPage")</span>
+            <span>@await T("Catalog.PageSize")</span>
+            @Html.DropDownList("products-pagesize", Model.PageSizeOptions, new { aria_label = await T("Catalog.PageSize.Label") })
+            <span>@await T("Catalog.PageSize.PerPage")</span>
         </div>
         <script asp-location="Footer">
             $(document).ready(function () {

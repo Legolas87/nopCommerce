@@ -3,20 +3,20 @@
     Layout = "_ColumnsOne";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.AccountActivation").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.AccountActivation")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-account-activation-page");
 }
 <div class="page account-activation-page">
     <div class="page-title">
-        <h1>@T("Account.AccountActivation")</h1>
+        <h1>@await T("Account.AccountActivation")</h1>
     </div>
     <div class="page-body">
         <div class="result">
             @Model.Result
         </div>
         <div class="buttons">
-            <a href="@Model.ReturnUrl" class="button-1">@T("Common.Continue")</a>
+            <a href="@Model.ReturnUrl" class="button-1">@await T("Common.Continue")</a>
         </div>
     </div>
 </div>

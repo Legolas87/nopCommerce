@@ -3,7 +3,7 @@
     Layout = "_ColumnsOne";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.Checkout").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.Checkout")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-checkout-page");
     NopHtml.AppendPageCssClassParts("html-payment-method-page");
@@ -11,7 +11,7 @@
 <div class="page checkout-page payment-method-page">
     @await Component.InvokeAsync(typeof(CheckoutProgressViewComponent), new { step = CheckoutProgressStep.Payment })
     <div class="page-title">
-        <h1>@T("Checkout.SelectPaymentMethod")</h1>
+        <h1>@await T("Checkout.SelectPaymentMethod")</h1>
     </div>
     <div class="page-body checkout-data">
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.CheckoutPaymentMethodTop, additionalData = Model })
@@ -21,7 +21,7 @@
                 {
                     <div class="use-reward-points">
                         <input asp-for="UseRewardPoints"/>
-                        <label asp-for="UseRewardPoints">@string.Format(T("Checkout.UseRewardPoints").Text, Model.RewardPointsToUse, Model.RewardPointsBalance, Model.RewardPointsToUseAmount)</label>
+                        <label asp-for="UseRewardPoints">@string.Format((await T("Checkout.UseRewardPoints")).Value, Model.RewardPointsToUse, Model.RewardPointsBalance, Model.RewardPointsToUseAmount)</label>
                         @if (Model.RewardPointsEnoughToPayForOrder)
                         {
                         <script asp-location="Footer">
@@ -51,7 +51,7 @@
                             var paymentMethodName = paymentMethod.Name;
                             if (!string.IsNullOrEmpty(paymentMethod.Fee))
                             {
-                                paymentMethodName = T("Checkout.SelectPaymentMethod.MethodAndFee", paymentMethodName, paymentMethod.Fee).Text;
+                                paymentMethodName = (await T("Checkout.SelectPaymentMethod.MethodAndFee", paymentMethodName, paymentMethod.Fee)).Value;
                             }
                             <li>
                                 <div class="method-name">
@@ -76,13 +76,13 @@
                         }
                     </ul>
                     <div class="buttons">
-                        <button type="submit" name="nextstep" class="button-1 payment-method-next-step-button">@T("Checkout.NextButton")</button>
+                        <button type="submit" name="nextstep" class="button-1 payment-method-next-step-button">@await T("Checkout.NextButton")</button>
                     </div>
                 }
                 else
                 {
                     <div class="message-error">
-                        @T("Checkout.NoPaymentMethods")
+                        @await T("Checkout.NoPaymentMethods")
                     </div>
                 }
             </form>
@@ -90,7 +90,7 @@
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.CheckoutPaymentMethodBottom, additionalData = Model })
         <div class="section order-summary">
             <div class="title">
-                <strong>@T("Checkout.OrderSummary")</strong>
+                <strong>@await T("Checkout.OrderSummary")</strong>
             </div>
             @await Component.InvokeAsync(typeof(OrderSummaryViewComponent))
         </div>

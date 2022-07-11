@@ -76,7 +76,7 @@
             {
                 ratingPercent = ((Model.ReviewOverviewModel.RatingSum * 100) / Model.ReviewOverviewModel.TotalReviews) / 5;
             }
-            <div class="product-rating-box" title="@string.Format(T("Reviews.TotalReviews").Text, Model.ReviewOverviewModel.TotalReviews)">
+            <div class="product-rating-box" title="@string.Format((await T("Reviews.TotalReviews")).Value, Model.ReviewOverviewModel.TotalReviews)">
                 <div class="rating">
                     <div style="width: @(ratingPercent)%">
                     </div>
@@ -100,7 +100,7 @@
                     //tax info is already included in the price (incl/excl tax). that's why we display only shipping info here
                     //of course, you can modify appropriate locales to include VAT info there
                     <span class="tax-shipping-info">
-                        @T(inclTax ? "Products.Price.TaxShipping.InclTax" : "Products.Price.TaxShipping.ExclTax", Url.RouteTopicUrl("shippinginfo"))
+                        @await T(inclTax ? "Products.Price.TaxShipping.InclTax" : "Products.Price.TaxShipping.ExclTax", Url.RouteTopicUrl("shippinginfo"))
                     </span>
                 }
                 @if (!string.IsNullOrEmpty(Model.ProductPrice.BasePricePAngV))
@@ -114,24 +114,24 @@
             <div class="buttons">
                 @if (!Model.ProductPrice.DisableBuyButton)
                 {
-                    var addToCartText = T("ShoppingCart.AddToCart").Text;
+                    var addToCartText = (await T("ShoppingCart.AddToCart")).Value;
                     if (Model.ProductPrice.IsRental)
                     {
-                        addToCartText = T("ShoppingCart.Rent").Text;
+                        addToCartText = (await T("ShoppingCart.Rent")).Value;
                     }
                     if (Model.ProductPrice.AvailableForPreOrder)
                     {
-                        addToCartText = T("ShoppingCart.PreOrder").Text;
+                        addToCartText = (await T("ShoppingCart.PreOrder")).Value;
                     }
                     <button type="button" class="button-2 product-box-add-to-cart-button" onclick="AjaxCart.addproducttocart_catalog('@addtocartlink');return false;">@(addToCartText)</button>
                 }
                 @if (!Model.ProductPrice.DisableAddToCompareListButton)
                 {
-                    <button type="button" class="button-2 add-to-compare-list-button" title="@T("ShoppingCart.AddToCompareList")" onclick="AjaxCart.addproducttocomparelist('@addtocomparelink');return false;">@T("ShoppingCart.AddToCompareList")</button>
+                    <button type="button" class="button-2 add-to-compare-list-button" title="@await T("ShoppingCart.AddToCompareList")" onclick="AjaxCart.addproducttocomparelist('@addtocomparelink');return false;">@await T("ShoppingCart.AddToCompareList")</button>
                 }
                 @if (!Model.ProductPrice.DisableWishlistButton)
                 {
-                    <button type="button" class="button-2 add-to-wishlist-button" title="@T("ShoppingCart.AddToWishlist")" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">@T("ShoppingCart.AddToWishlist")</button>
+                    <button type="button" class="button-2 add-to-wishlist-button" title="@await T("ShoppingCart.AddToWishlist")" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">@await T("ShoppingCart.AddToWishlist")</button>
                 }
             </div>
             @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductBoxAddinfoAfter, additionalData = Model })

@@ -8,12 +8,12 @@
     //title
     NopHtml.AddTitleParts(Model.ProductName);
     //page class
-    NopHtml.AddTitleParts(T("PageTitle.ProductEmailAFriend").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.ProductEmailAFriend")).Value);
     NopHtml.AppendPageCssClassParts("html-email-a-friend-page");
 }
 <div class="page email-a-friend-page">
     <div class="page-title">
-        <h1>@T("Products.EmailAFriend.Title")</h1>
+        <h1>@await T("Products.EmailAFriend.Title")</h1>
     </div>
     <div class="page-body">
         <div class="title">
@@ -33,19 +33,19 @@
                     <div class="form-fields">
                         <div class="inputs">
                             <label asp-for="FriendEmail" asp-postfix=":"></label>
-                            <input asp-for="FriendEmail" class="friend-email" placeholder="@T("Products.EmailAFriend.FriendEmail.Hint")"/>
+                            <input asp-for="FriendEmail" class="friend-email" placeholder="@await T("Products.EmailAFriend.FriendEmail.Hint")"/>
                             <nop-required />
                             <span asp-validation-for="FriendEmail"></span>
                         </div>
                         <div class="inputs">
                             <label asp-for="YourEmailAddress" asp-postfix=":"></label>
-                            <input asp-for="YourEmailAddress" class="your-email" placeholder="@T("Products.EmailAFriend.YourEmailAddress.Hint")"/>
+                            <input asp-for="YourEmailAddress" class="your-email" placeholder="@await T("Products.EmailAFriend.YourEmailAddress.Hint")"/>
                             <nop-required />
                             <span asp-validation-for="YourEmailAddress"></span>
                         </div>
                         <div class="inputs">
                             <label asp-for="PersonalMessage" asp-postfix=":"></label>
-                            <textarea asp-for="PersonalMessage" class="your-email" placeholder="@T("Products.EmailAFriend.PersonalMessage.Hint")"></textarea>
+                            <textarea asp-for="PersonalMessage" class="your-email" placeholder="@await T("Products.EmailAFriend.PersonalMessage.Hint")"></textarea>
                             <span asp-validation-for="PersonalMessage"></span>
                         </div>
                         @if (Model.DisplayCaptcha)
@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <button type="submit" name="send-email" class="button-1 send-email-a-friend-button">@T("Products.EmailAFriend.Button")</button>
+                    <button type="submit" name="send-email" class="button-1 send-email-a-friend-button">@await T("Products.EmailAFriend.Button")</button>
                 </div>
             </form>
         }

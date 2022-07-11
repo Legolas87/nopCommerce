@@ -10,7 +10,7 @@
     Layout = isRegisterCustomer ? "_ColumnsTwo" : "_ColumnsOne";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.MultiFactorAuthentication").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.MultiFactorAuthentication")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-account-page");
 }
@@ -27,11 +27,11 @@
     <div class="page-title">
         @if (isRegisterCustomer)
         {
-            <h1>@T("PageTitle.MultiFactorAuthentication") - @Model.Name</h1>
+            <h1>@await T("PageTitle.MultiFactorAuthentication") - @Model.Name</h1>
         }
         else
         {
-            <h1>@T("PageTitle.MultiFactorAuthentication")</h1>
+            <h1>@await T("PageTitle.MultiFactorAuthentication")</h1>
         }
     </div>
     <div class="page-body">

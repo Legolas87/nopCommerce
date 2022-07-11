@@ -10,7 +10,7 @@
     Layout = isRegisterCustomer ? "_ColumnsTwo" : "_ColumnsOne";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.MultiFactorAuthentication").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.MultiFactorAuthentication")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-account-page");
 }
@@ -27,21 +27,21 @@
     <div class="page-title">
         @if (isRegisterCustomer)
         {
-            <h1>@T("Account.MyAccount") - @T("PageTitle.MultiFactorAuthentication")</h1>
+            <h1>@await T("Account.MyAccount") - @await T("PageTitle.MultiFactorAuthentication")</h1>
         }
         else
         {
-            <h1>@T("PageTitle.MultiFactorAuthentication")</h1>
+            <h1>@await T("PageTitle.MultiFactorAuthentication")</h1>
         }
     </div>
     <div class="page-body">        
         <div class="description">
-            @T("Account.MultiFactorAuthentication.Description")
+            @await T("Account.MultiFactorAuthentication.Description")
         </div>
          <form asp-route="MultiFactorAuthenticationSettings" method="post">
             <div class="fieldset">
                 <div class="title">
-                    <strong>@T("Account.MultiFactorAuthentication.Settings")</strong>
+                    <strong>@await T("Account.MultiFactorAuthentication.Settings")</strong>
                 </div>
                 <div class="form-fields">
                     @if (!string.IsNullOrEmpty(Model.Message))
@@ -59,7 +59,7 @@
             </div>
             <div class="fieldset">
                 <div class="title">
-                    <strong>@T("Account.MultiFactorAuthentication.Providers")</strong>
+                    <strong>@await T("Account.MultiFactorAuthentication.Providers")</strong>
                 </div>
                 <div class="form-fields">
                     <div class="section payment-method">
@@ -69,14 +69,14 @@
                         }
                         else
                         {
-                            @T("Account.MultiFactorAuthentication.Providers.NoActive")
+                            @await T("Account.MultiFactorAuthentication.Providers.NoActive")
                         }
                     </div>                        
                 </div>
             </div>
             
             <div class="buttons">
-                <button type="submit" id="save-mfa-settings-button" name="save-mfa-settsing-button" class="button-1 save-customer-mfa-button">@T("Common.Save")</button>
+                <button type="submit" id="save-mfa-settings-button" name="save-mfa-settsing-button" class="button-1 save-customer-mfa-button">@await T("Common.Save")</button>
             </div>
         </form>        
     </div>

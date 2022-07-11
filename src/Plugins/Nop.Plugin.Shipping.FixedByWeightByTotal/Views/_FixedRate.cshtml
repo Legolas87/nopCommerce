@@ -14,25 +14,25 @@
                 {
                     new ColumnProperty(nameof(FixedRateModel.ShippingMethodName))
                     {
-                        Title = T("Plugins.Shipping.FixedByWeightByTotal.Fields.ShippingMethod").Text
+                        Title = (await T("Plugins.Shipping.FixedByWeightByTotal.Fields.ShippingMethod")).Value
                     },
                     new ColumnProperty(nameof(FixedRateModel.Rate))
                     {
-                        Title = T("Plugins.Shipping.FixedByWeightByTotal.Fields.Rate").Text,
+                        Title = (await T("Plugins.Shipping.FixedByWeightByTotal.Fields.Rate")).Value,
                         Width = "200",
                         Editable = true,
                         EditType = EditType.Number	 
                     },
                     new ColumnProperty(nameof(FixedRateModel.TransitDays))
                     {
-                        Title = T("Plugins.Shipping.FixedByWeightByTotal.Fields.TransitDays").Text,
+                        Title = (await T("Plugins.Shipping.FixedByWeightByTotal.Fields.TransitDays")).Value,
                         Width = "200",
                         Editable = true,
                         EditType = EditType.Number	 
                     },
                     new ColumnProperty(nameof(FixedRateModel.ShippingMethodId))
                     {
-                        Title = T("Admin.Common.Edit").Text,
+                        Title = (await T("Admin.Common.Edit")).Value,
                         Width = "200",
                         ClassName =  NopColumnClassDefaults.Button,
                         Render = new RenderButtonsInlineEdit()

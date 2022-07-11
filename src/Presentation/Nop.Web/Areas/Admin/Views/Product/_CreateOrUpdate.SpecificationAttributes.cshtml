@@ -2,7 +2,7 @@
 
 <div class="card-body">
     <p>
-        @T("Admin.Catalog.Products.SpecificationAttributes.Hint")
+        @await T("Admin.Catalog.Products.SpecificationAttributes.Hint")
     </p>
     @if (Model.Id > 0)
     {
@@ -21,43 +21,43 @@
                         {
                             new ColumnProperty(nameof(ProductSpecificationAttributeModel.AttributeTypeName))
                             {
-                                Title = T("Admin.Catalog.Products.SpecificationAttributes.Fields.AttributeType").Text,
+                                Title = (await T("Admin.Catalog.Products.SpecificationAttributes.Fields.AttributeType")).Value,
                                 Width = "150"
                             },
                             new ColumnProperty(nameof(ProductSpecificationAttributeModel.AttributeName))
                             {
-                                Title = T("Admin.Catalog.Products.SpecificationAttributes.Fields.SpecificationAttribute").Text,
+                                Title = (await T("Admin.Catalog.Products.SpecificationAttributes.Fields.SpecificationAttribute")).Value,
                                 Width = "200"
                             },
                             new ColumnProperty(nameof(ProductSpecificationAttributeModel.ValueRaw))
                             {
-                                Title = T("Admin.Catalog.Products.SpecificationAttributes.Fields.Value").Text,
+                                Title = (await T("Admin.Catalog.Products.SpecificationAttributes.Fields.Value")).Value,
                                 Width = "200",
                                 Encode = false
                             },
                             new ColumnProperty(nameof(ProductSpecificationAttributeModel.AllowFiltering))
                             {
-                                Title = T("Admin.Catalog.Products.SpecificationAttributes.Fields.AllowFiltering").Text,
+                                Title = (await T("Admin.Catalog.Products.SpecificationAttributes.Fields.AllowFiltering")).Value,
                                 Width = "150",
                                 ClassName = NopColumnClassDefaults.CenterAll,
                                 Render = new RenderBoolean()
                             },
                             new ColumnProperty(nameof(ProductSpecificationAttributeModel.ShowOnProductPage))
                             {
-                                Title = T("Admin.Catalog.Products.SpecificationAttributes.Fields.ShowOnProductPage").Text,
+                                Title = (await T("Admin.Catalog.Products.SpecificationAttributes.Fields.ShowOnProductPage")).Value,
                                 Width = "150",
                                 ClassName = NopColumnClassDefaults.CenterAll,
                                 Render = new RenderBoolean()
                             },
                             new ColumnProperty(nameof(ProductSpecificationAttributeModel.DisplayOrder))
                             {
-                                Title = T("Admin.Catalog.Products.SpecificationAttributes.Fields.DisplayOrder").Text,
+                                Title = (await T("Admin.Catalog.Products.SpecificationAttributes.Fields.DisplayOrder")).Value,
                                 Width = "150",
                                 ClassName =  NopColumnClassDefaults.CenterAll
                             },
                             new ColumnProperty(nameof(ProductSpecificationAttributeModel.Id))
                             {
-                                Title = T("Admin.Common.Edit").Text,
+                                Title = (await T("Admin.Common.Edit")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.Button,
                                 Render = new RenderButtonEdit(new DataUrl("~/Admin/Product/ProductSpecAttributeAddOrEdit?productId=" + Model.ProductSpecificationAttributeSearchModel.ProductId + "&specificationId=", true))  
@@ -70,7 +70,7 @@
                        asp-route-productId="@Model.Id"
                        class="btn btn-primary">
                         <i class="fas fa-plus-square"></i>
-                        @T("Admin.Catalog.Products.SpecificationAttributes.AddButton")
+                        @await T("Admin.Catalog.Products.SpecificationAttributes.AddButton")
                     </a>
 
                 </div>
@@ -80,7 +80,7 @@
         {
             <div class="card card-default">
                 <div class="card-body">
-                    @T("Admin.Catalog.Products.SpecificationAttributes.NoAttributes")
+                    @await T("Admin.Catalog.Products.SpecificationAttributes.NoAttributes")
                 </div>
             </div>
         }
@@ -89,7 +89,7 @@
     {
         <div class="card card-default">
             <div class="card-body">
-                @T("Admin.Catalog.Products.SpecificationAttributes.SaveBeforeEdit")
+                @await T("Admin.Catalog.Products.SpecificationAttributes.SaveBeforeEdit")
             </div>
         </div>
     }

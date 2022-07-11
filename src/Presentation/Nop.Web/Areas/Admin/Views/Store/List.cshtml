@@ -2,19 +2,19 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Configuration.Stores").Text;
+    ViewBag.PageTitle = (await T("Admin.Configuration.Stores")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Stores");
 }
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Configuration.Stores")
+        @await T("Admin.Configuration.Stores")
     </h1>
     <div class="float-right">
         <a asp-action="Create" class="btn btn-primary">
             <i class="fas fa-plus-square"></i>
-            @T("Admin.Common.AddNew")
+            @await T("Admin.Common.AddNew")
         </a>
         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.StoreListButtons, additionalData = Model })
     </div>
@@ -26,7 +26,7 @@
         <div class="cards-group">
             <div class="card card-default">
                 <div class="card-body">
-                    <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.MultiStore", Docs.MultiStore + Utm.OnAdmin)" />
+                    <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.MultiStore", Docs.MultiStore + Utm.OnAdmin)" />
 
                     @await Html.PartialAsync("Table", new DataTablesModel
                     {
@@ -38,20 +38,20 @@
                         {
                             new ColumnProperty(nameof(StoreModel.Name))
                             {
-                                Title = T("Admin.Configuration.Stores.Fields.Name").Text
+                                Title = (await T("Admin.Configuration.Stores.Fields.Name")).Value
                             },
                             new ColumnProperty(nameof(StoreModel.Url))
                             {
-                                Title = T("Admin.Configuration.Stores.Fields.Url").Text
+                                Title = (await T("Admin.Configuration.Stores.Fields.Url")).Value
                             },
                             new ColumnProperty(nameof(StoreModel.DisplayOrder))
                             {
-                                Title = T("Admin.Configuration.Stores.Fields.DisplayOrder").Text,
+                                Title = (await T("Admin.Configuration.Stores.Fields.DisplayOrder")).Value,
                                 ClassName =  NopColumnClassDefaults.CenterAll
                             },
                             new ColumnProperty(nameof(StoreModel.Id))
                             {
-                                Title = T("Admin.Common.Edit").Text,
+                                Title = (await T("Admin.Common.Edit")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.Button,
                                 Render = new RenderButtonEdit(new DataUrl("Edit"))

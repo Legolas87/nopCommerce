@@ -15,20 +15,20 @@
             {
                 new ColumnProperty(nameof(DiscountProductModel.ProductName))
                 {
-                    Title = T("Admin.Promotions.Discounts.AppliedToProducts.Product").Text
+                    Title = (await T("Admin.Promotions.Discounts.AppliedToProducts.Product")).Value
                 },
                 new ColumnProperty(nameof(DiscountProductModel.ProductId))
                 {
-                    Title = T("Admin.Common.View").Text,
+                    Title = (await T("Admin.Common.View")).Value,
                     Width = "150",
                     ClassName =  NopColumnClassDefaults.Button,
                     Render = new RenderButtonView(new DataUrl("~/Admin/Product/Edit/"))
                 },
                 new ColumnProperty(nameof(DiscountProductModel.ProductId))
                 {
-                    Title = T("Admin.Common.Delete").Text,
+                    Title = (await T("Admin.Common.Delete")).Value,
                     Width = "150",
-                    Render = new RenderButtonRemove(T("Admin.Common.Delete").Text),
+                    Render = new RenderButtonRemove((await T("Admin.Common.Delete")).Value),
                     ClassName =  NopColumnClassDefaults.Button
                 }
             }
@@ -36,7 +36,7 @@
     </div>
     <div class="card-footer">
         <button type="submit" id="btnAddNewProduct" onclick="javascript:OpenWindow('@(Url.Action("ProductAddPopup", "Discount", new { discountId = Model.Id, btnId = "btnRefreshProducts", formId = "discount-form" }))', 800, 800, true); return false;" class="btn btn-primary">
-            @T("Admin.Promotions.Discounts.AppliedToProducts.AddNew")
+            @await T("Admin.Promotions.Discounts.AppliedToProducts.AddNew")
         </button>
         <button type="submit" id="btnRefreshProducts" style="display: none"></button>
         <script>
@@ -54,6 +54,6 @@
 else
 {
     <div class="card-body">
-        @T("Admin.Promotions.Discounts.AppliedToProducts.SaveBeforeEdit")
+        @await T("Admin.Promotions.Discounts.AppliedToProducts.SaveBeforeEdit")
     </div>
 }

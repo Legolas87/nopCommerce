@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Configuration.Shipping.Measures").Text;
+    ViewBag.PageTitle = (await T("Admin.Configuration.Shipping.Measures")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Measures");
     
@@ -16,7 +16,7 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Configuration.Shipping.Measures")
+        @await T("Admin.Configuration.Shipping.Measures")
     </h1>
     <div class="float-right">
         &nbsp;
@@ -27,11 +27,11 @@
 <section class="content">
     <div class="container-fluid">
         <div class="form-horizontal">
-            <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Measures", Docs.Measures + Utm.OnAdmin)" />
+            <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.Measures", Docs.Measures + Utm.OnAdmin)" />
 
             <nop-cards id="category-cards">
-                <nop-card asp-name="measures-dimensions" asp-icon="fas fa-cog" asp-title="@T("Admin.Configuration.Shipping.Measures.Dimensions")" asp-hide-block-attribute-name="@hideDimensionsBlockAttributeName" asp-hide="@hideDimensionsBlock" asp-advanced="false">@await Html.PartialAsync("Dimensions", Model)</nop-card>
-                <nop-card asp-name="measures-weights" asp-icon="fas fa-truck" asp-title="@T("Admin.Configuration.Shipping.Measures.Weights")" asp-hide-block-attribute-name="@hideWeightsBlockAttributeName" asp-hide="@hideWeightsBlock" asp-advanced="false">@await Html.PartialAsync("Weights", Model)</nop-card>
+                <nop-card asp-name="measures-dimensions" asp-icon="fas fa-cog" asp-title="@await T("Admin.Configuration.Shipping.Measures.Dimensions")" asp-hide-block-attribute-name="@hideDimensionsBlockAttributeName" asp-hide="@hideDimensionsBlock" asp-advanced="false">@await Html.PartialAsync("Dimensions", Model)</nop-card>
+                <nop-card asp-name="measures-weights" asp-icon="fas fa-truck" asp-title="@await T("Admin.Configuration.Shipping.Measures.Weights")" asp-hide-block-attribute-name="@hideWeightsBlockAttributeName" asp-hide="@hideWeightsBlock" asp-advanced="false">@await Html.PartialAsync("Weights", Model)</nop-card>
 
                 @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.MeasureListBlock, additionalData = Model })
             </nop-cards>

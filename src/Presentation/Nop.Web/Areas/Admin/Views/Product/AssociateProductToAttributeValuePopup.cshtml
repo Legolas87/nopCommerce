@@ -4,7 +4,7 @@
     Layout = "_AdminPopupLayout";
 
     //page title
-    ViewBag.PageTitle = T("Admin.Catalog.Products.ProductAttributes.Attributes.Values.Fields.AssociatedProduct.AddNew").Text;
+    ViewBag.PageTitle = (await T("Admin.Catalog.Products.ProductAttributes.Attributes.Values.Fields.AssociatedProduct.AddNew")).Value;
 }
 
 @if (ViewBag.RefreshPage == true)
@@ -24,7 +24,7 @@
       asp-route-productNameInput="@Context.Request.Query["productNameInput"]">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Catalog.Products.ProductAttributes.Attributes.Values.Fields.AssociatedProduct.AddNew")
+            @await T("Admin.Catalog.Products.ProductAttributes.Attributes.Values.Fields.AssociatedProduct.AddNew")
         </h1>
         <div class="float-right">
             &nbsp;
@@ -97,7 +97,7 @@
                                         <div class="col-sm-12">
                                             <button type="button" id="search-products" class="btn btn-primary btn-search">
                                                 <i class="fas fa-search"></i>
-                                                @T("Admin.Common.Search")
+                                                @await T("Admin.Common.Search")
                                             </button>
                                         </div>
                                     </div>
@@ -126,20 +126,20 @@
                                         {
                                             new ColumnProperty(nameof(ProductModel.Id))
                                             {
-                                                Title = T("Admin.Common.Select").Text,
+                                                Title = (await T("Admin.Common.Select")).Value,
                                                 Width = "50",
-                                                Render = new RenderButtonCustom(NopButtonClassDefaults.Default, T("Admin.Common.Select").Text)
+                                                Render = new RenderButtonCustom(NopButtonClassDefaults.Default, (await T("Admin.Common.Select")).Value)
                                                 {
                                                     OnClickFunctionName = "selectAssociatedProduct"
                                                 }
                                             },
                                             new ColumnProperty(nameof(ProductModel.Name))
                                             {
-                                                Title = T("Admin.Catalog.Products.Fields.Name").Text
+                                                Title = (await T("Admin.Catalog.Products.Fields.Name")).Value
                                             },
                                             new ColumnProperty(nameof(ProductModel.Published))
                                             {
-                                                Title = T("Admin.Catalog.Products.Fields.Published").Text,
+                                                Title = (await T("Admin.Catalog.Products.Fields.Published")).Value,
                                                 Width = "100",
                                                 ClassName = NopColumnClassDefaults.CenterAll,
                                                 Render = new RenderBoolean()
@@ -149,7 +149,7 @@
                                 </div>
                                 <div class="card-footer" style="display: none">
                                     <button type="submit" id="save" name="save" class="btn btn-primary">
-                                        @T("Admin.Common.Save")
+                                        @await T("Admin.Common.Save")
                                     </button>
                                 </div>
 

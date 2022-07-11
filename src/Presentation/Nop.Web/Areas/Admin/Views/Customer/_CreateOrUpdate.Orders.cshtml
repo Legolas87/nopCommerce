@@ -12,45 +12,45 @@
         {
             new ColumnProperty(nameof(CustomerOrderModel.CustomOrderNumber))
             {
-                Title = T("Admin.Customers.Customers.Orders.CustomOrderNumber").Text,
+                Title = (await T("Admin.Customers.Customers.Orders.CustomOrderNumber")).Value,
                 Width = "200"
             },
             new ColumnProperty(nameof(CustomerOrderModel.OrderTotal))
             {
-                Title = T("Admin.Customers.Customers.Orders.OrderTotal").Text,
+                Title = (await T("Admin.Customers.Customers.Orders.OrderTotal")).Value,
                 Width = "200"
             },
             new ColumnProperty(nameof(CustomerOrderModel.OrderStatus))
             {
-                Title = T("Admin.Customers.Customers.Orders.OrderStatus").Text,
+                Title = (await T("Admin.Customers.Customers.Orders.OrderStatus")).Value,
                 Width = "200",
                 Render = new RenderCustom("renderColumnOrderStatus")
             },
             new ColumnProperty(nameof(CustomerOrderModel.PaymentStatus))
             {
-                Title = T("Admin.Orders.Fields.PaymentStatus").Text,
+                Title = (await T("Admin.Orders.Fields.PaymentStatus")).Value,
                 Width = "200"
             },
             new ColumnProperty(nameof(CustomerOrderModel.ShippingStatus))
             {
-                Title = T("Admin.Orders.Fields.ShippingStatus").Text,
+                Title = (await T("Admin.Orders.Fields.ShippingStatus")).Value,
                 Width = "200"
             },
             new ColumnProperty(nameof(CustomerOrderModel.StoreName))
             {
-                Title = T("Admin.Orders.Fields.Store").Text,
+                Title = (await T("Admin.Orders.Fields.Store")).Value,
                 Width = "200",
                 Visible = (await storeService.GetAllStoresAsync()).Count > 1
             },
             new ColumnProperty(nameof(CustomerOrderModel.CreatedOn))
             {
-                Title = T("Admin.System.Log.Fields.CreatedOn").Text,
+                Title = (await T("Admin.System.Log.Fields.CreatedOn")).Value,
                 Width = "200",
                 Render = new RenderDate()
             },
             new ColumnProperty(nameof(CustomerOrderModel.Id))
             {
-                Title = T("Admin.Common.View").Text,
+                Title = (await T("Admin.Common.View")).Value,
                 Width = "100",
                 ClassName = NopColumnClassDefaults.Button,
                 Render = new RenderButtonView(new DataUrl("~/Admin/Order/Edit/"))

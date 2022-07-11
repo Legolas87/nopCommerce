@@ -4,7 +4,7 @@
     Layout = "_AdminPopupLayout";
 
     //page title
-    ViewBag.PageTitle = T("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.GenerateSeveralTitle").Text;
+    ViewBag.PageTitle = (await T("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.GenerateSeveralTitle")).Value;
 }
 
 @if (ViewBag.RefreshPage == true)
@@ -34,12 +34,12 @@
       asp-route-formId="@Context.Request.Query["formId"]">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.GenerateSeveralTitle")
+            @await T("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.GenerateSeveralTitle")
         </h1>
         <div class="float-right">
             <button type="submit" name="save" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Generate")
+                @await T("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Generate")
             </button>
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.ProductAttributeCombinationDetailsButtons, additionalData = Model })
         </div>
@@ -47,7 +47,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="form-horizontal">
-                <h4>@T("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.RequiredAttribute")</h4>
+                <h4>@await T("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.RequiredAttribute")</h4>
                 <div class="form-horizontal">
                     @foreach (var attribute in Model.ProductAttributes)
                     {

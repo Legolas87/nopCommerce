@@ -23,50 +23,50 @@
                {
                    new ColumnProperty(nameof(CountryStateZipModel.StoreName))
                    {
-                       Title = T("Plugins.Tax.FixedOrByCountryStateZip.Fields.Store").Text,
+                       Title = (await T("Plugins.Tax.FixedOrByCountryStateZip.Fields.Store")).Value,
                        Width = "300"
                    },
                    new ColumnProperty(nameof(CountryStateZipModel.CountryName))
                    {
-                       Title = T("Plugins.Tax.FixedOrByCountryStateZip.Fields.Country").Text,
+                       Title = (await T("Plugins.Tax.FixedOrByCountryStateZip.Fields.Country")).Value,
                        Width = "200"
                    },
                    new ColumnProperty(nameof(CountryStateZipModel.StateProvinceName))
                    {
-                       Title = T("Plugins.Tax.FixedOrByCountryStateZip.Fields.StateProvince").Text,
+                       Title = (await T("Plugins.Tax.FixedOrByCountryStateZip.Fields.StateProvince")).Value,
                        Width = "200"
                    },
                    new ColumnProperty(nameof(CountryStateZipModel.Zip))
                    {
-                       Title = T("Plugins.Tax.FixedOrByCountryStateZip.Fields.Zip").Text,
+                       Title = (await T("Plugins.Tax.FixedOrByCountryStateZip.Fields.Zip")).Value,
                        Width = "200",
                        Editable = true,
                        EditType = EditType.String
                    },
                    new ColumnProperty(nameof(CountryStateZipModel.TaxCategoryName))
                    {
-                       Title = T("Plugins.Tax.FixedOrByCountryStateZip.Fields.TaxCategory").Text,
+                       Title = (await T("Plugins.Tax.FixedOrByCountryStateZip.Fields.TaxCategory")).Value,
                        Width = "200"
                    },
                    new ColumnProperty(nameof(CountryStateZipModel.Percentage))
                    {
-                       Title = T("Plugins.Tax.FixedOrByCountryStateZip.Fields.Percentage").Text,
+                       Title = (await T("Plugins.Tax.FixedOrByCountryStateZip.Fields.Percentage")).Value,
                        Width = "100",
                        Editable = true,
                        EditType = EditType.Number
                    },
                    new ColumnProperty(nameof(CountryStateZipModel.Id))
                    {
-                       Title = T("Admin.Common.Edit").Text,
+                       Title = (await T("Admin.Common.Edit")).Value,
                        Width = "200",
                        ClassName =  NopColumnClassDefaults.Button,
                        Render = new RenderButtonsInlineEdit()
                    },
                    new ColumnProperty(nameof(CountryStateZipModel.Id))
                    {
-                       Title = T("Admin.Common.Delete").Text,
+                       Title = (await T("Admin.Common.Delete")).Value,
                        ClassName = NopColumnClassDefaults.Button,
-                       Render = new RenderButtonRemove(T("Admin.Common.Delete").Text),
+                       Render = new RenderButtonRemove((await T("Admin.Common.Delete")).Value),
                        Width = "100"
                    }
                }
@@ -79,7 +79,7 @@
     <form asp-controller="FixedOrByCountryStateZip" asp-action="Configure" method="post">
         <div class="card card-default">
             <div class="card-header">
-                @T("Plugins.Tax.FixedOrByCountryStateZip.AddRecordTitle")
+                @await T("Plugins.Tax.FixedOrByCountryStateZip.AddRecordTitle")
             </div>
             <div class="card-body">
                 <script>
@@ -172,7 +172,7 @@
                         &nbsp;
                     </div>
                     <div class="col-md-9">
-                        <button type="button" id="addtaxrate" class="btn btn-primary">@T("Plugins.Tax.FixedOrByCountryStateZip.AddRecord")</button>
+                        <button type="button" id="addtaxrate" class="btn btn-primary">@await T("Plugins.Tax.FixedOrByCountryStateZip.AddRecord")</button>
 
                         <script>
                             $(document)
@@ -206,5 +206,5 @@
         </div>
     </form>
 </div>
-<nop-alert asp-alert-id="getStatesByCountryIdAlert" asp-alert-message="@T("Admin.Common.Alert.States.Failed")" />
-<nop-alert asp-alert-id="addRateByCountryStateZipAlert" asp-alert-message="@T("Admin.Common.Alert.Add.Error")" />
+<nop-alert asp-alert-id="getStatesByCountryIdAlert" asp-alert-message="@await T("Admin.Common.Alert.States.Failed")" />
+<nop-alert asp-alert-id="addRateByCountryStateZipAlert" asp-alert-message="@await T("Admin.Common.Alert.Add.Error")" />

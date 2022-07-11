@@ -3,7 +3,7 @@
     Layout = "_ColumnsOne";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.Checkout").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.Checkout")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-checkout-page");
     NopHtml.AppendPageCssClassParts("html-shipping-method-page");
@@ -11,7 +11,7 @@
 <div class="page checkout-page shipping-method-page">
     @await Component.InvokeAsync(typeof(CheckoutProgressViewComponent), new { step = CheckoutProgressStep.Shipping })
     <div class="page-title">
-        <h1>@T("Checkout.SelectShippingMethod")</h1>
+        <h1>@await T("Checkout.SelectShippingMethod")</h1>
     </div>
     <div class="page-body checkout-data">
         <div class="section shipping-method">
@@ -44,7 +44,7 @@
                                 <li>
                                     <div class="method-name">
                                         <input id="shippingoption_@(i)" type="radio" name="shippingoption" value="@(shippingMethod.Name)___@(shippingMethod.ShippingRateComputationMethodSystemName)" checked="@shippingMethod.Selected" />
-                                        <label for="shippingoption_@(i)">@T("Checkout.SelectShippingMethod.MethodAndFee", shippingMethod.Name, shippingMethod.Fee)</label>
+                                        <label for="shippingoption_@(i)">@await T("Checkout.SelectShippingMethod.MethodAndFee", shippingMethod.Name, shippingMethod.Fee)</label>
                                     </div>
                                     @if (!string.IsNullOrEmpty(shippingMethod.Description))
                                     {
@@ -58,11 +58,11 @@
                         if (Model.NotifyCustomerAboutShippingFromMultipleLocations)
                         {
                             <div class="multiple-locations">
-                                @T("Checkout.ShippingMethod.ShippingFromMultipleLocations")
+                                @await T("Checkout.ShippingMethod.ShippingFromMultipleLocations")
                             </div>
                         }
                         <div class="buttons">
-                            <button type="submit" name="nextstep" class="button-1 shipping-method-next-step-button">@T("Checkout.NextButton")</button>
+                            <button type="submit" name="nextstep" class="button-1 shipping-method-next-step-button">@await T("Checkout.NextButton")</button>
                         </div>
                     }
                     else
@@ -83,7 +83,7 @@
         </div>
         <div class="section order-summary">
             <div class="title">
-                <strong>@T("Checkout.OrderSummary")</strong>
+                <strong>@await T("Checkout.OrderSummary")</strong>
             </div>
             @await Component.InvokeAsync(typeof(OrderSummaryViewComponent))
         </div>

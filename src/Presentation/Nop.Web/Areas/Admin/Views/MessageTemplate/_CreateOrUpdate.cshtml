@@ -15,14 +15,14 @@
                 <div class="card card-default">
                     <div class="card-body">
                         <div class="margin-bottom">
-                            <em>@T($"Admin.ContentManagement.MessageTemplates.Description.{Model.Name}")</em>
+                            <em>@await T($"Admin.ContentManagement.MessageTemplates.Description.{Model.Name}")</em>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-3">
                                 <nop-label asp-for="AllowedTokens" />
                             </div>
                             <div class="col-md-9">
-                                <a id="allowedTokensShowHide" href="javascript:toggleLoadedAllowedTokens();">@T("Admin.Common.Show")</a>
+                                <a id="allowedTokensShowHide" href="javascript:toggleLoadedAllowedTokens();">@await T("Admin.Common.Show")</a>
                                 <div id="pnlAllowedTokens" class="d-none" style="white-space: pre-line">
                                     <div class="form-text-row">@Model.AllowedTokens</div>
                                 </div>
@@ -41,9 +41,9 @@
                         function toggleLoadedAllowedTokens() {
                             $('#pnlAllowedTokens').toggleClass('d-none');
                             if ($('#pnlAllowedTokens').hasClass('d-none')) {
-                                $('#allowedTokensShowHide').text('@T("Admin.Common.Show")');
+                                $('#allowedTokensShowHide').text('@await T("Admin.Common.Show")');
                             } else {
-                                $('#allowedTokensShowHide').text('@T("Admin.Common.Hide")');
+                                $('#allowedTokensShowHide').text('@await T("Admin.Common.Hide")');
                             }
                         }
                         </script>
@@ -104,12 +104,12 @@
                                         <div class="col-md-3">
                                             <div class="label-wrapper">
                                                 <label class="col-form-label">
-                                                    @T("Admin.ContentManagement.MessageTemplates.Test")
+                                                    @await T("Admin.ContentManagement.MessageTemplates.Test")
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-md-9">
-                                            <button type="button" class="btn btn-primary" onclick="setLocation('@(Url.Action("TestTemplate", new {id = Model.Id, languageId = Model.Locales[item].LanguageId}))')">@T("Admin.ContentManagement.MessageTemplates.Test")</button>
+                                            <button type="button" class="btn btn-primary" onclick="setLocation('@(Url.Action("TestTemplate", new {id = Model.Id, languageId = Model.Locales[item].LanguageId}))')">@await T("Admin.ContentManagement.MessageTemplates.Test")</button>
                                         </div>
                                     </div>
                                     <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
@@ -176,11 +176,11 @@
                                     <div class="form-group row">
                                         <div class="col-md-3">
                                             <div class="label-wrapper">
-                                                <label class="col-form-label">@T("Admin.ContentManagement.MessageTemplates.Test")</label>
+                                                <label class="col-form-label">@await T("Admin.ContentManagement.MessageTemplates.Test")</label>
                                             </div>
                                         </div>
                                         <div class="col-md-9">
-                                            <button type="button" class="btn btn-primary" onclick="setLocation('@(Url.Action("TestTemplate", new {id = Model.Id}))')">@T("Admin.ContentManagement.MessageTemplates.Test")</button>
+                                            <button type="button" class="btn btn-primary" onclick="setLocation('@(Url.Action("TestTemplate", new {id = Model.Id}))')">@await T("Admin.ContentManagement.MessageTemplates.Test")</button>
                                         </div>
                                     </div>
                                 </div>
@@ -235,7 +235,7 @@
                                 <div class="form-check">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="checkbox" asp-for="HasAttachedDownload" />
-                                        @T("Admin.ContentManagement.MessageTemplates.Fields.AttachedDownload.Exists")
+                                        @await T("Admin.ContentManagement.MessageTemplates.Fields.AttachedDownload.Exists")
                                     </label>
                                 </div>
                                 <div id="pnlAttachedDownload">

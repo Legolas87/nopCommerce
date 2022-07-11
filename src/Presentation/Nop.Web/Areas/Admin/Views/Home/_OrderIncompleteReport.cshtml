@@ -10,7 +10,7 @@
     <div class="card-header with-border">
         <h3 class="card-title">
             <i class="fas fa-hourglass-start"></i>
-            @T("Admin.Dashboard.IncompleteOrders")
+            @await T("Admin.Dashboard.IncompleteOrders")
         </h3>
         <div class="card-tools float-right">
             <button class="btn btn-tool" data-card-widget="collapse">
@@ -45,16 +45,16 @@
             {
                 new ColumnProperty(nameof(OrderIncompleteReportModel.Item))
                 {
-                    Title = T("Admin.SalesReport.Incomplete.Item").Text
+                    Title = (await T("Admin.SalesReport.Incomplete.Item")).Value
                 },
                 new ColumnProperty(nameof(OrderIncompleteReportModel.Total))
                 {
-                    Title = T("Admin.SalesReport.Incomplete.Total").Text,
+                    Title = (await T("Admin.SalesReport.Incomplete.Total")).Value,
                     Width = "50"
                 },
                 new ColumnProperty(nameof(OrderIncompleteReportModel.Count))
                 {
-                    Title = T("Admin.SalesReport.Incomplete.Count").Text,
+                    Title = (await T("Admin.SalesReport.Incomplete.Count")).Value,
                     Width = "120",
                     ClassName =  NopColumnClassDefaults.Button,
                     Render = new RenderCustom("renderColumnOrderIncompleteReportCount")
@@ -63,7 +63,7 @@
         })
         <script>
             function renderColumnOrderIncompleteReportCount(data, type, row, meta) {
-                return '<a class="btn btn-default" href="' + row.ViewLink +'"><i class="far fa-eye"></i>' + row.Count + ' - @T("Admin.SalesReport.Incomplete.View").Text</a>';
+                return '<a class="btn btn-default" href="' + row.ViewLink +'"><i class="far fa-eye"></i>' + row.Count + ' - @await T("Admin.SalesReport.Incomplete.View")</a>';
             }
         </script>
     </div>

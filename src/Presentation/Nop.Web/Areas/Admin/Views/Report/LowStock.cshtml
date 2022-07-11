@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Reports.LowStock").Text;
+    ViewBag.PageTitle = (await T("Admin.Reports.LowStock")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Low stock");
 }
@@ -15,7 +15,7 @@
 <form asp-controller="Report" asp-action="LowStock" method="post">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Reports.LowStock")
+            @await T("Admin.Reports.LowStock")
         </h1>
         <div class="float-right">
             &nbsp;
@@ -29,7 +29,7 @@
                 <div class="card card-default card-search">
                     <div class="card-body">
                         <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                            <div class="search-text">@T("Admin.Common.Search")</div>
+                            <div class="search-text">@await T("Admin.Common.Search")</div>
                             <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                             <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                         </div>
@@ -51,7 +51,7 @@
                                 <div class="col-md-8 offset-md-4">
                                     <button type="button" id="search-products" class="btn btn-primary btn-search">
                                         <i class="fas fa-search"></i>
-                                        @T("Admin.Common.Search")
+                                        @await T("Admin.Common.Search")
                                     </button>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
 
                 <div class="card card-default">
                     <div class="card-body">
-                        <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Reports", Docs.Reports + Utm.OnAdmin)" />
+                        <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.Reports", Docs.Reports + Utm.OnAdmin)" />
 
                         @await Html.PartialAsync("Table", new DataTablesModel
                         {
@@ -78,30 +78,30 @@
                             {
                                 new ColumnProperty(nameof(LowStockProductModel.Name))
                                 {
-                                    Title = T("Admin.Catalog.Products.Fields.Name").Text,
+                                    Title = (await T("Admin.Catalog.Products.Fields.Name")).Value,
                                     Width = "300",
                                     Render = new RenderCustom("renderColumnName")
                                 },
                                 new ColumnProperty(nameof(LowStockProductModel.ManageInventoryMethod))
                                 {
-                                    Title = T("Admin.Catalog.Products.Fields.ManageInventoryMethod").Text,
+                                    Title = (await T("Admin.Catalog.Products.Fields.ManageInventoryMethod")).Value,
                                     Width = "150"
                                 },
                                 new ColumnProperty(nameof(LowStockProductModel.StockQuantity))
                                 {
-                                    Title = T("Admin.Catalog.Products.Fields.StockQuantity").Text,
+                                    Title = (await T("Admin.Catalog.Products.Fields.StockQuantity")).Value,
                                     Width = "100"
                                 },
                                 new ColumnProperty(nameof(LowStockProductModel.Published))
                                 {
-                                    Title = T("Admin.Catalog.Products.Fields.Published").Text,
+                                    Title = (await T("Admin.Catalog.Products.Fields.Published")).Value,
                                     Width = "100",
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Render = new RenderBoolean()
                                 },
                                 new ColumnProperty(nameof(LowStockProductModel.Id))
                                 {
-                                    Title = T("Admin.Common.View").Text,
+                                    Title = (await T("Admin.Common.View")).Value,
                                     Width = "100",
                                     ClassName =  NopColumnClassDefaults.Button,
                                     Render = new RenderButtonView(new DataUrl("~/Admin/Product/Edit/"))

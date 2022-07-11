@@ -6,14 +6,14 @@
     Layout = "_ColumnsTwo";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.NewsArchive").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.NewsArchive")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-news-list-page");
 }
 <div class="page news-list-page">
     <div class="page-title">
-        <a href="@Url.RouteUrl("NewsRSS", new { languageId = Model.WorkingLanguageId })" class="link-rss" title="@T("News.RSS.Hint")">@T("News.RSS")</a>
-        <h1>@T("News")</h1>
+        <a href="@Url.RouteUrl("NewsRSS", new { languageId = Model.WorkingLanguageId })" class="link-rss" title="@await T("News.RSS.Hint")">@await T("News.RSS")</a>
+        <h1>@await T("News")</h1>
     </div>
     <div class="page-body">
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.NewsListPageBeforeItems, additionalData = Model })
@@ -29,7 +29,7 @@
                         @Html.Raw(item.Short)
                     </div>
                     <div class="buttons">
-                        <a href="@(Url.RouteUrl<NewsItem>(new { SeName = item.SeName }))" class="read-more">@T("News.MoreInfo")</a>
+                        <a href="@(Url.RouteUrl<NewsItem>(new { SeName = item.SeName }))" class="read-more">@await T("News.MoreInfo")</a>
                     </div>
                     @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.NewsListPageInsideItem, additionalData = item })
                 </div>

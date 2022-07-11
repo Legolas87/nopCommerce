@@ -5,7 +5,7 @@
 <script asp-exclude-from-bundle="true" src="~/lib_npm/magnific-popup/jquery.magnific-popup.min.js" asp-location="Footer"></script>
 
 <div class="ship-to-title">
-    <strong>@T("Shipping.EstimateShippingPopUp.ShipToTitle")</strong>
+    <strong>@await T("Shipping.EstimateShippingPopUp.ShipToTitle")</strong>
 </div>
 
 <div class="estimate-shipping-row shipping-address">
@@ -18,7 +18,7 @@
                     data-url="@(Url.RouteUrl("GetStatesByCountryId"))"
                     data-stateprovince="#@Html.IdFor(model => model.StateProvinceId)"
                     data-loading="#estimate-shipping-loading-progress"
-                    placeholder="@T("Shipping.EstimateShippingPopUp.Country")"></select>
+                    placeholder="@await T("Shipping.EstimateShippingPopUp.Country")"></select>
             <nop-required />
         </div>
     </div>
@@ -26,7 +26,7 @@
         <select asp-for="StateProvinceId"
                 asp-items="Model.AvailableStates"
                 class="estimate-shipping-address-control"
-                placeholder="@T("Shipping.EstimateShippingPopUp.StateProvince")"></select>
+                placeholder="@await T("Shipping.EstimateShippingPopUp.StateProvince")"></select>
     </div>
     <div class="estimate-shipping-row-item address-item">
         <div class="estimate-shipping-row">
@@ -34,14 +34,14 @@
             {
                 <input asp-for="City"
                        class="estimate-shipping-address-control"
-                       placeholder="@T("Shipping.EstimateShippingPopUp.City")" />
+                       placeholder="@await T("Shipping.EstimateShippingPopUp.City")" />
                 <nop-required />
             }
             else
             {
                 <input asp-for="ZipPostalCode"
                        class="estimate-shipping-address-control"
-                       placeholder="@T("Shipping.EstimateShippingPopUp.ZipPostalCode")" />
+                       placeholder="@await T("Shipping.EstimateShippingPopUp.ZipPostalCode")" />
                 <nop-required />
             }
         </div>
@@ -49,7 +49,7 @@
 </div>
 
 <div class="choose-shipping-title">
-    <strong>@T("Shipping.EstimateShippingPopUp.ChooseShippingTitle")</strong>
+    <strong>@await T("Shipping.EstimateShippingPopUp.ChooseShippingTitle")</strong>
 </div>
 
 <div class="shipping-options">
@@ -58,22 +58,22 @@
             <div class="estimate-shipping-row-item-radio">
             </div>
             <div class="estimate-shipping-row-item shipping-item shipping-header-item">
-                @T("Shipping.EstimateShippingPopUp.ShippingOption.Name")
+                @await T("Shipping.EstimateShippingPopUp.ShippingOption.Name")
             </div>
             <div class="estimate-shipping-row-item shipping-item shipping-header-item">
-                @T("Shipping.EstimateShippingPopUp.ShippingOption.EstimatedDelivery")
+                @await T("Shipping.EstimateShippingPopUp.ShippingOption.EstimatedDelivery")
             </div>
             <div class="estimate-shipping-row-item shipping-item shipping-header-item">
-                @T("Shipping.EstimateShippingPopUp.ShippingOption.Price")
+                @await T("Shipping.EstimateShippingPopUp.ShippingOption.Price")
             </div>
         </div>
     </div>
     <div class="shipping-options-body">
-        <div class="no-shipping-options">@T("Shipping.EstimateShippingPopUp.NoShippingOptions")</div>
+        <div class="no-shipping-options">@await T("Shipping.EstimateShippingPopUp.NoShippingOptions")</div>
     </div>
 </div>
 
 <div class="apply-shipping-button-container">
-    <button type="button" class="button-2 apply-shipping-button">@T("Shipping.EstimateShippingPopUp.SelectShippingOption.Button")</button>
+    <button type="button" class="button-2 apply-shipping-button">@await T("Shipping.EstimateShippingPopUp.SelectShippingOption.Button")</button>
     <div class="message-failure"></div>
 </div>

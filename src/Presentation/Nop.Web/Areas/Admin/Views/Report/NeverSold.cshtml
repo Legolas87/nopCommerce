@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Reports.Sales.NeverSold").Text;
+    ViewBag.PageTitle = (await T("Admin.Reports.Sales.NeverSold")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Products never purchased");
 }
@@ -14,7 +14,7 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Reports.Sales.NeverSold")
+        @await T("Admin.Reports.Sales.NeverSold")
     </h1>
     <div class="float-right">
         &nbsp;
@@ -28,7 +28,7 @@
             <div class="card card-default card-search">
                 <div class="card-body">
                     <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                        <div class="search-text">@T("Admin.Common.Search")</div>
+                        <div class="search-text">@await T("Admin.Common.Search")</div>
                         <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                         <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                     </div>
@@ -92,7 +92,7 @@
                             <div class="text-center col-12">
                                 <button type="button" id="search-neversoldreport" class="btn btn-primary btn-search">
                                     <i class="fas fa-chart-line"></i>
-                                    @T("Admin.Reports.Sales.NeverSold.RunReport")
+                                    @await T("Admin.Reports.Sales.NeverSold.RunReport")
                                 </button>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
 
             <div class="card card-default">
                 <div class="card-body">
-                    <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Reports", Docs.Reports + Utm.OnAdmin)" />
+                    <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.Reports", Docs.Reports + Utm.OnAdmin)" />
 
                     @await Html.PartialAsync("Table", new DataTablesModel
                     {
@@ -124,11 +124,11 @@
                         {
                             new ColumnProperty(nameof(NeverSoldReportModel.ProductName))
                             {
-                                Title = T("Admin.Reports.Sales.NeverSold.Fields.Name").Text
+                                Title = (await T("Admin.Reports.Sales.NeverSold.Fields.Name")).Value
                             },
                             new ColumnProperty(nameof(NeverSoldReportModel.ProductId))
                             {
-                                Title = T("Admin.Common.Edit").Text,
+                                Title = (await T("Admin.Common.Edit")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.Button,
                                 Render = new RenderButtonView(new DataUrl("~/Admin/Product/Edit/"))

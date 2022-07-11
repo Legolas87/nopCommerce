@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Configuration.Languages").Text;
+    ViewBag.PageTitle = (await T("Admin.Configuration.Languages")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Languages");
 }
@@ -10,12 +10,12 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Configuration.Languages")
+        @await T("Admin.Configuration.Languages")
     </h1>
     <div class="float-right">
         <a asp-action="Create" class="btn btn-primary">
             <i class="fas fa-plus-square"></i>
-            @T("Admin.Common.AddNew")
+            @await T("Admin.Common.AddNew")
         </a>
         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.LanguageListButtons, additionalData = Model })
     </div>
@@ -27,7 +27,7 @@
             <div class="cards-group">
                 <div class="card card-default">
                     <div class="card-body">
-                        <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Localization", Docs.Localization + Utm.OnAdmin)" />
+                        <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.Localization", Docs.Localization + Utm.OnAdmin)" />
 
                         @await Html.PartialAsync("Table", new DataTablesModel
                         {
@@ -40,36 +40,36 @@
                             {
                                 new ColumnProperty(nameof(LanguageModel.Name))
                                 {
-                                    Title = T("Admin.Configuration.Languages.Fields.Name").Text
+                                    Title = (await T("Admin.Configuration.Languages.Fields.Name")).Value
                                 },
                                 new ColumnProperty(nameof(LanguageModel.FlagImageFileName))
                                 {
-                                    Title = T("Admin.Configuration.Languages.Fields.FlagImage").Text,
+                                    Title = (await T("Admin.Configuration.Languages.Fields.FlagImage")).Value,
                                     Width = "100",
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Render = new RenderPicture(Url.Content("~/images/flags/"))
                                 },
                                 new ColumnProperty(nameof(LanguageModel.LanguageCulture))
                                 {
-                                    Title = T("Admin.Configuration.Languages.Fields.LanguageCulture").Text,
+                                    Title = (await T("Admin.Configuration.Languages.Fields.LanguageCulture")).Value,
                                     Width = "200"
                                 },
                                 new ColumnProperty(nameof(LanguageModel.DisplayOrder))
                                 {
-                                    Title = T("Admin.Configuration.Languages.Fields.DisplayOrder").Text,
+                                    Title = (await T("Admin.Configuration.Languages.Fields.DisplayOrder")).Value,
                                     Width = "150",
                                     ClassName =  NopColumnClassDefaults.CenterAll
                                 },
                                 new ColumnProperty(nameof(LanguageModel.Published))
                                 {
-                                    Title = T("Admin.Configuration.Languages.Fields.Published").Text,
+                                    Title = (await T("Admin.Configuration.Languages.Fields.Published")).Value,
                                     Width = "150",
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Render = new RenderBoolean()
                                 },
                                 new ColumnProperty(nameof(LanguageModel.Id))
                                 {
-                                    Title = T("Admin.Common.Edit").Text,
+                                    Title = (await T("Admin.Common.Edit")).Value,
                                     Width = "100",
                                     ClassName =  NopColumnClassDefaults.Button,
                                     Render = new RenderButtonEdit(new DataUrl("Edit"))

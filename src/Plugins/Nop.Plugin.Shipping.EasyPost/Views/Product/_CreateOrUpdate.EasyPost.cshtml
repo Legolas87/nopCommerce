@@ -1,10 +1,10 @@
 ﻿@model ProductDetailsModel
 
-<nop-card asp-name="product-easypost" asp-icon="fas fa-truck" asp-title="@T("Plugins.Shipping.EasyPost.Product")" asp-hide-block-attribute-name="EasyPost.HideProductBlock" asp-hide="false" asp-advanced="false">
+<nop-card asp-name="product-easypost" asp-icon="fas fa-truck" asp-title="@await T("Plugins.Shipping.EasyPost.Product")" asp-hide-block-attribute-name="EasyPost.HideProductBlock" asp-hide="false" asp-advanced="false">
     <div class="card-body">
         <div class="card card-default no-margin">
             <div class="card-header">
-                @T("Plugins.Shipping.EasyPost.Product.PredefinedPackage")
+                @await T("Plugins.Shipping.EasyPost.Product.PredefinedPackage")
             </div>
             <div class="card-body">
                 <p>
@@ -27,7 +27,7 @@
         </div>
         <div class="card card-default no-margin">
             <div class="card-header">
-                @T("Plugins.Shipping.EasyPost.Product.CustomsInfo")
+                @await T("Plugins.Shipping.EasyPost.Product.CustomsInfo")
             </div>
             <div class="card-body">
                 <p>

@@ -2,19 +2,19 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Customers.CustomerRoles").Text;
+    ViewBag.PageTitle = (await T("Admin.Customers.CustomerRoles")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Customer roles");
 }
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Customers.CustomerRoles")
+        @await T("Admin.Customers.CustomerRoles")
     </h1>
     <div class="float-right">
         <a asp-action="Create" class="btn btn-primary">
             <i class="fas fa-plus-square"></i>
-            @T("Admin.Common.AddNew")
+            @await T("Admin.Common.AddNew")
         </a>
         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.CustomerRoleListButtons, additionalData = Model })
     </div>
@@ -26,7 +26,7 @@
         <div class="cards-group">
             <div class="card card-default">
                 <div class="card-body">
-                    <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.CustomerRoles", Docs.CustomerRoles + Utm.OnAdmin)" />
+                    <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.CustomerRoles", Docs.CustomerRoles + Utm.OnAdmin)" />
 
                     @await Html.PartialAsync("Table", new DataTablesModel
                     {
@@ -38,40 +38,40 @@
                         {
                             new ColumnProperty(nameof(CustomerRoleModel.Name))
                             {
-                                Title = T("Admin.Customers.CustomerRoles.Fields.Name").Text,
+                                Title = (await T("Admin.Customers.CustomerRoles.Fields.Name")).Value,
                                 Width = "300"
                             },
                             new ColumnProperty(nameof(CustomerRoleModel.FreeShipping))
                             {
-                                Title = T("Admin.Customers.CustomerRoles.Fields.FreeShipping").Text,
+                                Title = (await T("Admin.Customers.CustomerRoles.Fields.FreeShipping")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.CenterAll,
                                 Render = new RenderBoolean()
                             },
                             new ColumnProperty(nameof(CustomerRoleModel.TaxExempt))
                             {
-                                Title = T("Admin.Customers.CustomerRoles.Fields.TaxExempt").Text,
+                                Title = (await T("Admin.Customers.CustomerRoles.Fields.TaxExempt")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.CenterAll,
                                 Render = new RenderBoolean()
                             },
                             new ColumnProperty(nameof(CustomerRoleModel.Active))
                             {
-                                Title = T("Admin.Customers.CustomerRoles.Fields.Active").Text,
+                                Title = (await T("Admin.Customers.CustomerRoles.Fields.Active")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.CenterAll,
                                 Render = new RenderBoolean()
                             },
                             new ColumnProperty(nameof(CustomerRoleModel.IsSystemRole))
                             {
-                                Title = T("Admin.Customers.CustomerRoles.Fields.IsSystemRole").Text,
+                                Title = (await T("Admin.Customers.CustomerRoles.Fields.IsSystemRole")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.CenterAll,
                                 Render = new RenderBoolean()
                             },
                             new ColumnProperty(nameof(CustomerRoleModel.Id))
                             {
-                                Title = T("Admin.Common.Edit").Text,
+                                Title = (await T("Admin.Common.Edit")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.Button,
                                 Render = new RenderButtonEdit(new DataUrl("Edit"))

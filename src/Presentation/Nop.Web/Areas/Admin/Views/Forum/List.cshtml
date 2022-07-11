@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.ContentManagement.Forums").Text;
+    ViewBag.PageTitle = (await T("Admin.ContentManagement.Forums")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Manage forums");
 }
@@ -10,11 +10,11 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.ContentManagement.Forums")
+        @await T("Admin.ContentManagement.Forums")
     </h1>
     <div class="float-right">
-        <a asp-action="CreateForumGroup" class="btn btn-primary">@T("Admin.ContentManagement.Forums.ForumGroup.CreateForumGroup")</a>
-        <a asp-action="CreateForum" class="btn btn-primary">@T("Admin.ContentManagement.Forums.Forum.CreateForum")</a>
+        <a asp-action="CreateForumGroup" class="btn btn-primary">@await T("Admin.ContentManagement.Forums.ForumGroup.CreateForumGroup")</a>
+        <a asp-action="CreateForum" class="btn btn-primary">@await T("Admin.ContentManagement.Forums.Forum.CreateForum")</a>
         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.ForumListButtons, additionalData = Model })
     </div>
 </div>
@@ -25,7 +25,7 @@
             <div class="cards-group">
                 <div class="card card-default">
                     <div class="card-body">
-                        <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Forums", Docs.Forums + Utm.OnAdmin)" />
+                        <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.Forums", Docs.Forums + Utm.OnAdmin)" />
 
                         @await Html.PartialAsync("Table", new DataTablesModel
                         {
@@ -45,24 +45,24 @@
                                 },
                                 new ColumnProperty(nameof(ForumGroupModel.Name))
                                 {
-                                    Title = T("Admin.ContentManagement.Forums.ForumGroup.Fields.Name").Text,
+                                    Title = (await T("Admin.ContentManagement.Forums.ForumGroup.Fields.Name")).Value,
                                     Width = "300"
                                 },
                                 new ColumnProperty(nameof(ForumGroupModel.DisplayOrder))
                                 {
-                                    Title = T("Admin.ContentManagement.Forums.ForumGroup.Fields.DisplayOrder").Text,
+                                    Title = (await T("Admin.ContentManagement.Forums.ForumGroup.Fields.DisplayOrder")).Value,
                                     Width = "100",
                                     ClassName =  NopColumnClassDefaults.CenterAll
                                 },
                                 new ColumnProperty(nameof(ForumGroupModel.CreatedOn))
                                 {
-                                    Title = T("Admin.ContentManagement.Forums.ForumGroup.Fields.CreatedOn").Text,
+                                    Title = (await T("Admin.ContentManagement.Forums.ForumGroup.Fields.CreatedOn")).Value,
                                     Width = "200",
                                     Render = new RenderDate()
                                 },
                                 new ColumnProperty(nameof(ForumGroupModel.Id))
                                 {
-                                    Title = T("Admin.Common.Edit").Text,
+                                    Title = (await T("Admin.Common.Edit")).Value,
                                     Width = "50",
                                     ClassName = NopColumnClassDefaults.Button,
                                     Render = new RenderButtonEdit(new DataUrl("EditForumGroup"))
@@ -83,24 +83,24 @@
                                 {
                                     new ColumnProperty(nameof(ForumModel.Name))
                                     {
-                                        Title = T("Admin.ContentManagement.Forums.Forum.Fields.Name").Text,
+                                        Title = (await T("Admin.ContentManagement.Forums.Forum.Fields.Name")).Value,
                                         Width = "300"
                                     },
                                     new ColumnProperty(nameof(ForumModel.DisplayOrder))
                                     {
-                                        Title = T("Admin.ContentManagement.Forums.Forum.Fields.DisplayOrder").Text,
+                                        Title = (await T("Admin.ContentManagement.Forums.Forum.Fields.DisplayOrder")).Value,
                                         Width = "150",
                                         ClassName =  NopColumnClassDefaults.CenterAll
                                     },
                                     new ColumnProperty(nameof(ForumModel.CreatedOn))
                                     {
-                                        Title = T("Admin.ContentManagement.Forums.Forum.Fields.CreatedOn").Text,
+                                        Title = (await T("Admin.ContentManagement.Forums.Forum.Fields.CreatedOn")).Value,
                                         Width = "150",
                                         Render = new RenderDate()
                                     },
                                     new ColumnProperty(nameof(ForumModel.Id))
                                     {
-                                        Title = T("Admin.Common.Edit").Text,
+                                        Title = (await T("Admin.Common.Edit")).Value,
                                         Width = "50",
                                         ClassName = NopColumnClassDefaults.Button,
                                         Render = new RenderButtonEdit(new DataUrl("EditForum"))

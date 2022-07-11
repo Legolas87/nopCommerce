@@ -2,7 +2,7 @@
 
 <div class="card-body">
     <p>
-        @T("Admin.Catalog.Products.ProductAttributes.Hint")
+        @await T("Admin.Catalog.Products.ProductAttributes.Hint")
     </p>
     @if (Model.Id > 0)
     {
@@ -12,8 +12,8 @@
             if (Model.CanCreateCombinations)
             {
 				<nop-tabs id="productattribute-edit" asp-tab-name-to-select="tab-attributes" asp-render-selected-tab-input="false">
-					<nop-tab asp-name="tab-attributes" asp-title="@T("Admin.Catalog.Products.ProductAttributes.Attributes")" asp-default="true">@await Html.PartialAsync("_CreateOrUpdate.ProductAttributes.Info", Model)</nop-tab>
-					<nop-tab asp-name="tab-attribute-combinations" asp-title="@T("Admin.Catalog.Products.ProductAttributes.AttributeCombinations")">@await Html.PartialAsync("_CreateOrUpdate.ProductAttributes.Combinations", Model)</nop-tab>
+					<nop-tab asp-name="tab-attributes" asp-title="@await T("Admin.Catalog.Products.ProductAttributes.Attributes")" asp-default="true">@await Html.PartialAsync("_CreateOrUpdate.ProductAttributes.Info", Model)</nop-tab>
+					<nop-tab asp-name="tab-attribute-combinations" asp-title="@await T("Admin.Catalog.Products.ProductAttributes.AttributeCombinations")">@await Html.PartialAsync("_CreateOrUpdate.ProductAttributes.Combinations", Model)</nop-tab>
 				</nop-tabs>
             }
             else
@@ -25,7 +25,7 @@
         {
             <div class="card card-default">
                 <div class="card-body">
-                    @T("Admin.Catalog.Products.ProductAttributes.NoAttributesAvailable")
+                    @await T("Admin.Catalog.Products.ProductAttributes.NoAttributesAvailable")
                 </div>
             </div>
         }
@@ -34,7 +34,7 @@
     {
         <div class="card card-default">
             <div class="card-body">
-                @T("Admin.Catalog.Products.ProductAttributes.SaveBeforeEdit")
+                @await T("Admin.Catalog.Products.ProductAttributes.SaveBeforeEdit")
             </div>
         </div>
     }    

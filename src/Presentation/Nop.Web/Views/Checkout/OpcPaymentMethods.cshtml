@@ -13,7 +13,7 @@
                 {
                     <input asp-for="UseRewardPoints" />
                 }
-                <label asp-for="UseRewardPoints">@string.Format(T("Checkout.UseRewardPoints").Text, Model.RewardPointsToUse, Model.RewardPointsBalance, Model.RewardPointsToUseAmount)</label>
+                <label asp-for="UseRewardPoints">@string.Format((await T("Checkout.UseRewardPoints")).Value, Model.RewardPointsToUse, Model.RewardPointsBalance, Model.RewardPointsToUseAmount)</label>
                 @if (Model.RewardPointsEnoughToPayForOrder)
                 {
                     <script>
@@ -33,7 +33,7 @@
                     var paymentMethodName = paymentMethod.Name;
                     if (!string.IsNullOrEmpty(paymentMethod.Fee))
                     {
-                        paymentMethodName = T("Checkout.SelectPaymentMethod.MethodAndFee", paymentMethodName, paymentMethod.Fee).Text;
+                        paymentMethodName = (await T("Checkout.SelectPaymentMethod.MethodAndFee", paymentMethodName, paymentMethod.Fee)).Value;
                     }
                     <li>
                         <div class="method-name">
@@ -61,7 +61,7 @@
         else
         {
             <div class="message-error">
-                @T("Checkout.NoPaymentMethods")
+                @await T("Checkout.NoPaymentMethods")
             </div>
         }
     </div>

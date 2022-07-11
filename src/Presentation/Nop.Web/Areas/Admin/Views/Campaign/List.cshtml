@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Promotions.Campaigns").Text;
+    ViewBag.PageTitle = (await T("Admin.Promotions.Campaigns")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Campaigns");
 }
@@ -15,12 +15,12 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Promotions.Campaigns")
+        @await T("Admin.Promotions.Campaigns")
     </h1>
     <div class="float-right">
         <a href="@Url.Action("Create")" class="btn btn-primary">
             <i class="fas fa-plus-square"></i>
-            @T("Admin.Common.AddNew")
+            @await T("Admin.Common.AddNew")
         </a>
         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.CampaignListButtons, additionalData = Model })
     </div>
@@ -34,7 +34,7 @@
             <div class="card card-default card-search" @(Model.HideStoresList ? Html.Raw("style=\"display:none\"") : null)>
                 <div class="card-body">
                     <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                        <div class="search-text">@T("Admin.Common.Search")</div>
+                        <div class="search-text">@await T("Admin.Common.Search")</div>
                         <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                         <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                     </div>
@@ -56,7 +56,7 @@
                             <div class="col-md-8 offset-md-4">
                                 <button type="button" id="search-campaigns" class="btn btn-primary btn-search">
                                     <i class="fas fa-search"></i>
-                                    @T("Admin.Common.Search")
+                                    @await T("Admin.Common.Search")
                                 </button>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
 
             <div class="card card-default">
                 <div class="card-body">
-                    <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.EmailCampaigns", Docs.EmailCampaigns + Utm.OnAdmin)" />
+                    <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.EmailCampaigns", Docs.EmailCampaigns + Utm.OnAdmin)" />
 
                     @await Html.PartialAsync("Table", new DataTablesModel
                     {
@@ -83,23 +83,23 @@
                         {
                             new ColumnProperty(nameof(CampaignModel.Name))
                             {
-                                Title = T("Admin.Promotions.Campaigns.Fields.Name").Text
+                                Title = (await T("Admin.Promotions.Campaigns.Fields.Name")).Value
                             },
                             new ColumnProperty(nameof(CampaignModel.CreatedOn))
                             {
-                                Title = T("Admin.Promotions.Campaigns.Fields.CreatedOn").Text,
+                                Title = (await T("Admin.Promotions.Campaigns.Fields.CreatedOn")).Value,
                                 Width = "200",
                                 Render = new RenderDate()
                             },
                             new ColumnProperty(nameof(CampaignModel.DontSendBeforeDate))
                             {
-                                Title = T("Admin.Promotions.Campaigns.Fields.DontSendBeforeDate").Text,
+                                Title = (await T("Admin.Promotions.Campaigns.Fields.DontSendBeforeDate")).Value,
                                 Width = "200",
                                 Render = new RenderDate()
                             },
                             new ColumnProperty(nameof(CampaignModel.Id))
                             {
-                                Title = T("Admin.Common.Edit").Text,
+                                Title = (await T("Admin.Common.Edit")).Value,
                                 Width = "100",
                                 ClassName = NopColumnClassDefaults.Button,
                                 Render = new RenderButtonEdit(new DataUrl("Edit"))

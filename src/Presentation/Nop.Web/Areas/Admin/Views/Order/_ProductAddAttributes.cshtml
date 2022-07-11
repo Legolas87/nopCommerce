@@ -14,8 +14,8 @@
     var attributeChangeHandlerFuncName = $"attribute_change_handler_{productId}";
 
     var getAttributeValueName = new Func<AddProductToOrderModel.ProductAttributeValueModel, string>((attributeValue) =>
-        string.IsNullOrEmpty(attributeValue.PriceAdjustment) ? attributeValue.Name : T("Products.ProductAttributes.PriceAdjustment",
-            attributeValue.Name, attributeValue.PriceAdjustment, attributeValue.CustomerEntersQty ? T("Products.ProductAttributes.PriceAdjustment.PerItem").Text : string.Empty).Text);
+        string.IsNullOrEmpty(attributeValue.PriceAdjustment) ? attributeValue.Name : 
+            T("Products.ProductAttributes.PriceAdjustment", attributeValue.Name, attributeValue.PriceAdjustment, attributeValue.CustomerEntersQty ? T("Products.ProductAttributes.PriceAdjustment.PerItem").Result.Value : string.Empty).Result.Value);
 
     <div class="card card-default">
         <div class="card-body">
@@ -54,7 +54,7 @@
                                         foreach (var attributeValue in attribute.Values.Where(value => value.CustomerEntersQty))
                                         {
                                             <div id="@(controlId)_@(attributeValue.Id)_qty_box" style="display: none">
-                                                <label class="margin-l-10 margin-r-5" for="@(controlId)_@(attributeValue.Id)_qty">@(T("Products.ProductAttributes.PriceAdjustment.Quantity").Text)</label>
+                                                <label class="margin-l-10 margin-r-5" for="@(controlId)_@(attributeValue.Id)_qty">@((await T("Products.ProductAttributes.PriceAdjustment.Quantity")).Value)</label>
                                                 <input class="qty-box form-control" type="text" name="@(controlId)_@(attributeValue.Id)_qty" id="@(controlId)_@(attributeValue.Id)_qty" value="@(attributeValue.Quantity)" />
                                             </div>
                                         }
@@ -81,7 +81,7 @@
                                                 @if (attributeValue.CustomerEntersQty)
                                                 {
                                                     <div id="@(controlId)_@(attributeValue.Id)_qty_box" style="display: none">
-                                                        <label class="margin-l-10 margin-r-5" for="@(controlId)_@(attributeValue.Id)_qty">@(T("Products.ProductAttributes.PriceAdjustment.Quantity").Text)</label>
+                                                        <label class="margin-l-10 margin-r-5" for="@(controlId)_@(attributeValue.Id)_qty">@((await T("Products.ProductAttributes.PriceAdjustment.Quantity")).Value)</label>
                                                         <input class="qty-box form-control" type="text" name="@(controlId)_@(attributeValue.Id)_qty" id="@(controlId)_@(attributeValue.Id)_qty" value="@(attributeValue.Quantity)" />
                                                     </div>
                                                 }
@@ -109,7 +109,7 @@
                                                 @if (attributeValue.CustomerEntersQty)
                                                 {
                                                     <div id="@(controlId)_@(attributeValue.Id)_qty_box" style="display: none">
-                                                        <label class="margin-l-10 margin-r-5" for="@(controlId)_@(attributeValue.Id)_qty">@(T("Products.ProductAttributes.PriceAdjustment.Quantity").Text)</label>
+                                                        <label class="margin-l-10 margin-r-5" for="@(controlId)_@(attributeValue.Id)_qty">@((await T("Products.ProductAttributes.PriceAdjustment.Quantity")).Value)</label>
                                                         <input class="qty-box form-control" type="text" name="@(controlId)_@(attributeValue.Id)_qty" id="@(controlId)_@(attributeValue.Id)_qty" value="@(attributeValue.Quantity)" />
                                                         <script>
                                                             $(document).ready(function() {
@@ -160,13 +160,13 @@
                                         <script asp-location="Footer" type="text/template" id="@(controlId)-qq-template">
                                             <div class="qq-uploader-selector qq-uploader">
                                                 <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
-                                                    <span>@T("Common.FileUploader.DropFiles")</span>
+                                                    <span>@await T("Common.FileUploader.DropFiles")</span>
                                                 </div>
                                                 <div class="qq-upload-button-selector qq-upload-button">
-                                                    <div>@T("Common.FileUploader.Upload")</div>
+                                                    <div>@await T("Common.FileUploader.Upload")</div>
                                                 </div>
                                                 <span class="qq-drop-processing-selector qq-drop-processing">
-                                                    <span>@T("Common.FileUploader.Processing")</span>
+                                                    <span>@await T("Common.FileUploader.Processing")</span>
                                                     <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
                                                 </span>
                                                 <ul class="qq-upload-list-selector qq-upload-list">
@@ -179,9 +179,9 @@
                                                         <span class="qq-upload-file-selector qq-upload-file"></span>
                                                         <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
                                                         <span class="qq-upload-size-selector qq-upload-size"></span>
-                                                        <a class="qq-upload-cancel-selector qq-upload-cancel" href="#">@T("Common.FileUploader.Cancel")</a>
-                                                        <a class="qq-upload-retry-selector qq-upload-retry" href="#">@T("Common.FileUploader.Retry")</a>
-                                                        <a class="qq-upload-delete-selector qq-upload-delete" href="#">@T("Common.FileUploader.Delete")</a>
+                                                        <a class="qq-upload-cancel-selector qq-upload-cancel" href="#">@await T("Common.FileUploader.Cancel")</a>
+                                                        <a class="qq-upload-retry-selector qq-upload-retry" href="#">@await T("Common.FileUploader.Retry")</a>
+                                                        <a class="qq-upload-delete-selector qq-upload-delete" href="#">@await T("Common.FileUploader.Delete")</a>
                                                         <span class="qq-upload-status-text-selector qq-upload-status-text"></span>
                                                     </li>
                                                 </ul>
@@ -207,7 +207,7 @@
                                                 }).on("complete", function(event, id, name, responseJSON, xhr) {
                                                     $("#@(controlId)").val(responseJSON.downloadGuid);
                                                     if (responseJSON.success) {
-                                                        $("#@(controlId + "downloadurl")").html("<a href='" + responseJSON.downloadUrl + "'>@T("Common.FileUploader.DownloadUploadedFile")</a>");
+                                                        $("#@(controlId + "downloadurl")").html("<a href='" + responseJSON.downloadUrl + "'>@await T("Common.FileUploader.DownloadUploadedFile")</a>");
                                                         $("#@(controlId + "remove")").show();
                                                     }
 
@@ -226,7 +226,7 @@
                                         </script>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <span id="@(controlId + "remove")" class="btn btn-default margin-t-5" style="display: none;">@T("Admin.Download.RemoveDownload")</span>
+                                                <span id="@(controlId + "remove")" class="btn btn-default margin-t-5" style="display: none;">@await T("Admin.Download.RemoveDownload")</span>
                                             </div>
                                         </div>
                                         <nop-alert asp-alert-id="uploadFileProductAttributeFailed" />

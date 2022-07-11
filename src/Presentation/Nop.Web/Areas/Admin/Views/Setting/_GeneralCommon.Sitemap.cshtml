@@ -1,7 +1,7 @@
 @model GeneralCommonSettingsModel
 
 <div class="card-body">
-    @(Html.Raw(string.Format(T("Admin.Configuration.Settings.GeneralCommon.Sitemap.Instructions").Text, Url.Action("AllSettings", "Setting", new { settingName = "sitemapxml" }))))
+    @(Html.Raw(string.Format((await T("Admin.Configuration.Settings.GeneralCommon.Sitemap.Instructions")).Value, Url.Action("AllSettings", "Setting", new { settingName = "sitemapxml" }))))
     <div class="form-group row">
         <div class="col-md-3">
             <nop-override-store-checkbox asp-for="SitemapSettings.SitemapEnabled_OverrideForStore" asp-input="SitemapSettings.SitemapEnabled" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />

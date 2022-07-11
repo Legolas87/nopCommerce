@@ -48,7 +48,7 @@
 
         <div class="card card-default no-margin">
             <div class="card-header">
-                @T("Plugins.Shipping.EasyPost.Configuration.Credentials")
+                @await T("Plugins.Shipping.EasyPost.Configuration.Credentials")
             </div>
             <div class="card-body">
                 <p>
@@ -95,7 +95,7 @@
         {
             <div class="card card-default no-margin" id="carriers">
                 <div class="card-header">
-                    @T("Plugins.Shipping.EasyPost.Configuration.Carriers")
+                    @await T("Plugins.Shipping.EasyPost.Configuration.Carriers")
                 </div>
                 <div class="card-body">
                     <p>
@@ -118,7 +118,7 @@
                         <div class="col-md-9">
                             @if (!Model.AvailableCarrierAccounts.Any())
                             {
-                                @T("Plugins.Shipping.EasyPost.Configuration.Fields.CarrierAccounts.None")
+                                @await T("Plugins.Shipping.EasyPost.Configuration.Fields.CarrierAccounts.None")
                             }
                             @foreach (var account in Model.AvailableCarrierAccounts)
                             {
@@ -137,7 +137,7 @@
 
         <div class="card card-default no-margin">
             <div class="card-header">
-                @T("Plugins.Shipping.EasyPost.Configuration.AddressVerification")
+                @await T("Plugins.Shipping.EasyPost.Configuration.AddressVerification")
             </div>
             <div class="card-body">
                 <p>
@@ -170,7 +170,7 @@
 
         <div class="form-group row">
             <div class="col-md-9 offset-md-3">
-                <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                <button type="submit" name="save" class="btn btn-primary">@await T("Admin.Common.Save")</button>
             </div>
         </div>
 

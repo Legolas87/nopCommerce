@@ -2,14 +2,14 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.System.SystemInfo").Text;
+    ViewBag.PageTitle = (await T("Admin.System.SystemInfo")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("System information");
 }
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.System.SystemInfo")
+        @await T("Admin.System.SystemInfo")
     </h1>
     <div class="float-right">
         &nbsp;
@@ -21,20 +21,20 @@
     function toggleLoadedAssemblies() {
         $('#pnlLoadedAssemblies').toggleClass('d-none');
         if ($('#pnlLoadedAssemblies').hasClass('d-none')) {
-            $('#loadedAssembliesShowHide').text('@T("Admin.Common.Show")');
+            $('#loadedAssembliesShowHide').text('@await T("Admin.Common.Show")');
         }
         else {
-            $('#loadedAssembliesShowHide').text('@T("Admin.Common.Hide")');
+            $('#loadedAssembliesShowHide').text('@await T("Admin.Common.Hide")');
         }
     }
 
     function toggleLoadedHeaders() {
         $('#pnlHeaders').toggleClass('d-none');
         if ($('#pnlHeaders').hasClass('d-none')) {
-            $('#headersShowHide').text('@T("Admin.Common.Show")');
+            $('#headersShowHide').text('@await T("Admin.Common.Show")');
         }
         else {
-            $('#headersShowHide').html('@T("Admin.Common.Hide")');
+            $('#headersShowHide').html('@await T("Admin.Common.Hide")');
         }
     }
 </script>
@@ -75,7 +75,7 @@
                                 <nop-label asp-for="IsFullTrust" />
                             </div>
                             <div class="col-md-9">
-                                <div class="form-text-row">@T(Model.IsFullTrust ? "Admin.Common.Yes" : "Admin.Common.No")</div>
+                                <div class="form-text-row">@await T(Model.IsFullTrust ? "Admin.Common.Yes" : "Admin.Common.No")</div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -123,7 +123,7 @@
                                 <nop-label asp-for="Headers" />
                             </div>
                             <div class="col-md-9">
-                                <a id="headersShowHide" href="javascript:toggleLoadedHeaders();">@T("Admin.Common.Show")</a>
+                                <a id="headersShowHide" href="javascript:toggleLoadedHeaders();">@await T("Admin.Common.Show")</a>
                                 <div id="pnlHeaders" class="d-none" style="word-break: break-all">
                                     <ul>
                                         @foreach (var header in Model.Headers)
@@ -141,7 +141,7 @@
                                 <nop-label asp-for="LoadedAssemblies" />
                             </div>
                             <div class="col-md-9">
-                                <a id="loadedAssembliesShowHide" href="javascript:toggleLoadedAssemblies();">@T("Admin.Common.Show")</a>
+                                <a id="loadedAssembliesShowHide" href="javascript:toggleLoadedAssemblies();">@await T("Admin.Common.Show")</a>
                                 <div id="pnlLoadedAssemblies" class="d-none">
                                     <ul>
                                         @foreach (var assembly in Model.LoadedAssemblies)
@@ -189,7 +189,7 @@
                                 <nop-label asp-for="AzureBlobStorageEnabled" />
                             </div>
                             <div class="col-md-9">
-                                <div class="form-text-row">@T(Model.AzureBlobStorageEnabled ? "Admin.Common.Yes" : "Admin.Common.No")</div>
+                                <div class="form-text-row">@await T(Model.AzureBlobStorageEnabled ? "Admin.Common.Yes" : "Admin.Common.No")</div>
                             </div>
                         </div>
                     </div>

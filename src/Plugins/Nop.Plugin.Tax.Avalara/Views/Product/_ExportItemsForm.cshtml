@@ -5,7 +5,7 @@
                 e.preventDefault();
                 var ids = selectedIds.join(',');
                 if (!ids) {
-                    $('#export-avalara-selected-alert-info').text('@T("Admin.Products.NoProducts")');
+                    $('#export-avalara-selected-alert-info').text('@await T("Admin.Products.NoProducts")');
                     $('#export-avalara-selected-alert').click();
                 }
                 else {

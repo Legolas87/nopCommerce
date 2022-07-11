@@ -4,7 +4,7 @@
     Layout = "_AdminPopupLayout";
 
     //page title
-    ViewBag.PageTitle = T("Admin.Orders.Products.License.UploadFile").Text;
+    ViewBag.PageTitle = (await T("Admin.Orders.Products.License.UploadFile")).Value;
 }
 
 @if (ViewBag.RefreshPage == true)
@@ -22,7 +22,7 @@
       asp-route-formId="@Context.Request.Query["formId"]">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Orders.Products.License.UploadFile")
+            @await T("Admin.Orders.Products.License.UploadFile")
         </h1>
         <div class="float-right">
             &nbsp;
@@ -47,12 +47,12 @@
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <button type="submit" name="uploadlicense" id="uploadlicense" class="btn btn-primary">
-                                    @T("Admin.Common.Save")
+                                    @await T("Admin.Common.Save")
                                 </button>
                                 @if (Model.LicenseDownloadId > 0)
                                 {
                                     <button type="submit" name="deletelicense" id="deletelicense" class="btn btn-danger">
-                                        @T("Admin.Common.Delete")
+                                        @await T("Admin.Common.Delete")
                                     </button>
                                 }
                             </div>

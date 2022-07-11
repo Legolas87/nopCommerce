@@ -29,7 +29,7 @@
                         <li>
                             <div class="method-name">
                                 <input id="shippingoption_@(i)" type="radio" name="shippingoption" value="@(shippingMethod.Name)___@(shippingMethod.ShippingRateComputationMethodSystemName)" checked="@shippingMethod.Selected" />
-                                <label for="shippingoption_@(i)">@T("Checkout.SelectShippingMethod.MethodAndFee", shippingMethod.Name, shippingMethod.Fee)</label>
+                                <label for="shippingoption_@(i)">@await T("Checkout.SelectShippingMethod.MethodAndFee", shippingMethod.Name, shippingMethod.Fee)</label>
                             </div>
                             @if (!string.IsNullOrEmpty(shippingMethod.Description))
                             {
@@ -43,7 +43,7 @@
                 if (Model.NotifyCustomerAboutShippingFromMultipleLocations)
                 {
                     <div class="multiple-locations">
-                        @T("Checkout.ShippingMethod.ShippingFromMultipleLocations")
+                        @await T("Checkout.ShippingMethod.ShippingFromMultipleLocations")
                     </div>
                 }
             }

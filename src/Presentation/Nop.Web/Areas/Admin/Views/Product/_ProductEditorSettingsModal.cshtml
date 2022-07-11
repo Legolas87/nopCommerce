@@ -7,7 +7,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="productsettings-window-title">
-                    @T("Admin.Configuration.Settings.ProductEditor.ModalTitle")
+                    @await T("Admin.Configuration.Settings.ProductEditor.ModalTitle")
                 </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 
@@ -17,7 +17,7 @@
                     <input type="hidden" name="returnurl" value="@webHelper.GetRawUrl(Context.Request)" />
                     <div class="row">
                         <div class="col-md-12">
-                            @T("Admin.Configuration.Settings.ProductEditor.ModalDescription")
+                            @await T("Admin.Configuration.Settings.ProductEditor.ModalDescription")
                         </div>
                     </div>
                     <div class="row">
@@ -27,7 +27,7 @@
                                     <div class="card-header clearfix">
                                         <div class="form-group row">
                                             <div class="col-md-10">
-                                                @T("Admin.Configuration.Settings.ProductEditor.BlockTitle.CommonInfo")
+                                                @await T("Admin.Configuration.Settings.ProductEditor.BlockTitle.CommonInfo")
                                             </div>
                                             <div class="col-md-2">
                                                 <input type="checkbox" class="select-all-fields" />
@@ -207,7 +207,7 @@
                                     <div class="card-header clearfix">
                                         <div class="form-group row">
                                             <div class="col-md-10">
-                                                @T("Admin.Configuration.Settings.ProductEditor.BlockTitle.Price")
+                                                @await T("Admin.Configuration.Settings.ProductEditor.BlockTitle.Price")
                                             </div>
                                             <div class="col-md-2">
                                                 <input type="checkbox" class="select-all-fields" />
@@ -320,7 +320,7 @@
                                     <div class="card-header clearfix">
                                         <div class="form-group row">
                                             <div class="col-md-10">
-                                                @T("Admin.Configuration.Settings.ProductEditor.BlockTitle.Shipping")
+                                                @await T("Admin.Configuration.Settings.ProductEditor.BlockTitle.Shipping")
                                             </div>
                                             <div class="col-md-2">
                                                 <input type="checkbox" class="select-all-fields" />
@@ -392,7 +392,7 @@
                                     <div class="card-header clearfix">
                                         <div class="form-group row">
                                             <div class="col-md-10">
-                                                @T("Admin.Configuration.Settings.ProductEditor.BlockTitle.Inventory")
+                                                @await T("Admin.Configuration.Settings.ProductEditor.BlockTitle.Inventory")
                                             </div>
                                             <div class="col-md-2">
                                                 <input type="checkbox" class="select-all-fields" />
@@ -532,7 +532,7 @@
                                     <div class="card-header clearfix">
                                         <div class="form-group row">
                                             <div class="col-md-10">
-                                                @T("Admin.Configuration.Settings.ProductEditor.BlockTitle.Tabs")
+                                                @await T("Admin.Configuration.Settings.ProductEditor.BlockTitle.Tabs")
                                             </div>
                                             <div class="col-md-2">
                                                 <input type="checkbox" class="select-all-fields" />

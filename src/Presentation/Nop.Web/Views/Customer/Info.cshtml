@@ -5,7 +5,7 @@
     Layout = "_ColumnsTwo";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.Account").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.Account")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-account-page");
     NopHtml.AppendPageCssClassParts("html-customer-info-page");
@@ -18,28 +18,28 @@
 
 <div class="page account-page customer-info-page">
     <div class="page-title">
-        <h1>@T("Account.MyAccount") - @T("Account.CustomerInfo")</h1>
+        <h1>@await T("Account.MyAccount") - @await T("Account.CustomerInfo")</h1>
     </div>
     <div class="page-body">
         <form asp-route="CustomerInfo" method="post">
             <div asp-validation-summary="ModelOnly" class="message-error"></div>
             <div class="fieldset">
                 <div class="title">
-                    <strong>@T("Account.YourPersonalDetails")</strong>
+                    <strong>@await T("Account.YourPersonalDetails")</strong>
                 </div>
                 <div class="form-fields">
                     @if (Model.GenderEnabled)
                     {
                         <div class="inputs">
-                            <label>@T("Account.Fields.Gender"):</label>
+                            <label>@await T("Account.Fields.Gender"):</label>
                             <div class="gender">
                                 <span class="male">
                                     <input type="radio" asp-for="Gender" value="M" checked="@(Model.Gender == "M")" id="gender-male" />
-                                    <label class="forcheckbox" for="gender-male">@T("Account.Fields.Gender.Male")</label>
+                                    <label class="forcheckbox" for="gender-male">@await T("Account.Fields.Gender.Male")</label>
                                 </span>
                                 <span class="female">
                                     <input type="radio" asp-for="Gender" value="F" checked="@(Model.Gender == "F")" id="gender-female" />
-                                    <label class="forcheckbox" for="gender-female">@T("Account.Fields.Gender.Female")</label>
+                                    <label class="forcheckbox" for="gender-female">@await T("Account.Fields.Gender.Female")</label>
                                 </span>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                     @if (Model.DateOfBirthEnabled)
                     {
                         <div class="inputs date-of-birth">
-                            <label>@T("Account.Fields.DateOfBirth"):</label>
+                            <label>@await T("Account.Fields.DateOfBirth"):</label>
                             <nop-date-picker asp-day-name="@Html.NameFor(x => x.DateOfBirthDay)"
                                              asp-month-name="@Html.NameFor(x => x.DateOfBirthMonth)"
                                              asp-year-name="@Html.NameFor(x => x.DateOfBirthYear)"
@@ -100,7 +100,7 @@
                             <label asp-for="EmailToRevalidate"></label>
                             <span class="email-to-revalidate">@Model.EmailToRevalidate</span>
                             <span class="email-to-revalidate-note">
-                                <em>@T("Account.Fields.EmailToRevalidate.Note")</em>
+                                <em>@await T("Account.Fields.EmailToRevalidate.Note")</em>
                             </span>
                         </div>
                     }
@@ -133,7 +133,7 @@
             {
                 <div class="fieldset">
                     <div class="title">
-                        <strong>@T("Account.CompanyDetails")</strong>
+                        <strong>@await T("Account.CompanyDetails")</strong>
                     </div>
                     <div class="form-fields">
                         @if (Model.CompanyEnabled)
@@ -155,7 +155,7 @@
                                 <input asp-for="VatNumber" />
                                 <span class="vat-status">@Model.VatNumberStatusNote</span>
                                 <span class="vat-note">
-                                    <em>@T("Account.Fields.VatNumber.Note")</em>
+                                    <em>@await T("Account.Fields.VatNumber.Note")</em>
                                 </span>
                             </div>
                         }
@@ -171,7 +171,7 @@
             {
                 <div class="fieldset">
                     <div class="title">
-                        <strong>@T("Account.YourAddress")</strong>
+                        <strong>@await T("Account.YourAddress")</strong>
                     </div>
                     <div class="form-fields">
                         @if (Model.StreetAddressEnabled)
@@ -259,7 +259,7 @@
                                 {
                                     <nop-required />
                                 }
-                                <span id="states-loading-progress" style="display: none;" class="please-wait">@T("Common.Wait")</span>
+                                <span id="states-loading-progress" style="display: none;" class="please-wait">@await T("Common.Wait")</span>
                                 <span asp-validation-for="StateProvinceId"></span>
                             </div>
                         }
@@ -270,7 +270,7 @@
             {
                 <div class="fieldset">
                     <div class="title">
-                        <strong>@T("Account.YourContactInformation")</strong>
+                        <strong>@await T("Account.YourContactInformation")</strong>
                     </div>
                     <div class="form-fields">
                         @if (Model.PhoneEnabled)
@@ -304,7 +304,7 @@
             {
                 <div class="fieldset">
                     <div class="title">
-                        <strong>@T("Account.Options")</strong>
+                        <strong>@await T("Account.Options")</strong>
                     </div>
                     <div class="form-fields">
                         @if (Model.NewsletterEnabled)
@@ -326,7 +326,7 @@
             {
                 <div class="fieldset">
                     <div class="title">
-                        <strong>@T("Account.Preferences")</strong>
+                        <strong>@await T("Account.Preferences")</strong>
                     </div>
                     <div class="form-fields">
                         @if (Model.AllowCustomersToSetTimeZone)
@@ -351,7 +351,7 @@
             {
                 <div class="fieldset">
                     <div class="title">
-                        <strong>@T("Account.AssociatedExternalAuth")</strong>
+                        <strong>@await T("Account.AssociatedExternalAuth")</strong>
                     </div>
                     @if (Model.AssociatedExternalAuthRecords.Count > 0)
                     {
@@ -366,18 +366,18 @@
                                 <thead>
                                     <tr>
                                         <th class="auth-method-name">
-                                            @T("Account.AssociatedExternalAuth.AuthMethodName")
+                                            @await T("Account.AssociatedExternalAuth.AuthMethodName")
                                         </th>
                                         <th class="email">
-                                            @T("Account.AssociatedExternalAuth.Email")
+                                            @await T("Account.AssociatedExternalAuth.Email")
                                         </th>
                                         <th class="external-id">
-                                            @T("Account.AssociatedExternalAuth.ExternalIdentifier")
+                                            @await T("Account.AssociatedExternalAuth.ExternalIdentifier")
                                         </th>
                                         @if (Model.AllowCustomersToRemoveAssociations)
                                         {
                                             <th class="remove">
-                                                @T("Account.AssociatedExternalAuth.Remove")
+                                                @await T("Account.AssociatedExternalAuth.Remove")
                                             </th>
                                         }
                                     </tr>
@@ -398,7 +398,7 @@
                                             @if (Model.AllowCustomersToRemoveAssociations)
                                             {
                                                 <td class="remove">
-                                                    <a href="#" onclick="return removeexternalassociation(@item.Id)">@T("Account.AssociatedExternalAuth.Remove")</a>
+                                                    <a href="#" onclick="return removeexternalassociation(@item.Id)">@await T("Account.AssociatedExternalAuth.Remove")</a>
                                                 </td>
                                             }
                                         </tr>
@@ -412,7 +412,7 @@
                         //we can add more external records
                         var loginUrl = Url.RouteUrl("Login", null, webHelper.GetCurrentRequestProtocol());
                         <div class="form-fields add-more-external-records">
-                            @T("Account.AssociatedExternalAuth.AddMoreRecords")
+                            @await T("Account.AssociatedExternalAuth.AddMoreRecords")
                             <a href="@loginUrl">@loginUrl</a>
                         </div>
                     }
@@ -423,7 +423,7 @@
             {
                 <div class="fieldset">
                     <div class="title">
-                        <strong>@T("Account.UserAgreement")</strong>
+                        <strong>@await T("Account.UserAgreement")</strong>
                     </div>
                     <div class="form-fields">
                         @foreach (var consent in Model.GdprConsents)
@@ -454,7 +454,7 @@
                 </div>
             }
             <div class="buttons">
-                <button type="submit" id="save-info-button" name="save-info-button" class="button-1 save-customer-info-button">@T("Common.Save")</button>
+                <button type="submit" id="save-info-button" name="save-info-button" class="button-1 save-customer-info-button">@await T("Common.Save")</button>
             </div>
         </form>
     </div>
@@ -462,7 +462,7 @@
 
 <script asp-location="Footer">
     function removeexternalassociation(itemId) {
-        if (confirm('@T("Common.AreYouSure")')) {
+        if (confirm('@await T("Common.AreYouSure")')) {
             var postData = {
                 id: itemId
             };

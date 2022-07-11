@@ -30,13 +30,13 @@
                             <input type="checkbox" id="select-all-inbox" />
                         </th>
                         <th class="from">
-                            @T("PrivateMessages.Inbox.FromColumn")
+                            @await T("PrivateMessages.Inbox.FromColumn")
                         </th>
                         <th class="subject">
-                            @T("PrivateMessages.Inbox.SubjectColumn")
+                            @await T("PrivateMessages.Inbox.SubjectColumn")
                         </th>
                         <th class="date">
-                            @T("PrivateMessages.Inbox.DateColumn")
+                            @await T("PrivateMessages.Inbox.DateColumn")
                         </th>
                     </tr>
                     </thead>
@@ -79,13 +79,13 @@
                 </div>
             }
             <div class="buttons">
-                <button type="submit" class="button-1 delete-selected-pm-button" name="delete-inbox">@T("PrivateMessages.Inbox.DeleteSelected")</button>
-                <button type="submit" name="mark-unread" class="button-2 mark-unread-pm-button">@T("PrivateMessages.Inbox.MarkAsUnread")</button>
+                <button type="submit" class="button-1 delete-selected-pm-button" name="delete-inbox">@await T("PrivateMessages.Inbox.DeleteSelected")</button>
+                <button type="submit" name="mark-unread" class="button-2 mark-unread-pm-button">@await T("PrivateMessages.Inbox.MarkAsUnread")</button>
             </div>
         </form>
     }
     else
     {
-        <div class="no-items">@T("PrivateMessages.Inbox.NoItems")</div>
+        <div class="no-items">@await T("PrivateMessages.Inbox.NoItems")</div>
     }
 </div>

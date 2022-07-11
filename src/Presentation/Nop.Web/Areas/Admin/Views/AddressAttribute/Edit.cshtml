@@ -1,7 +1,7 @@
 @model AddressAttributeModel
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Address.AddressAttributes.EditAttributeDetails").Text;
+    ViewBag.PageTitle = (await T("Admin.Address.AddressAttributes.EditAttributeDetails")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Customer and user settings");
 }
@@ -9,24 +9,24 @@
 <form asp-controller="AddressAttribute" asp-action="Edit" method="post" id="addressattribute-form">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Address.AddressAttributes.EditAttributeDetails") - @Model.Name
+            @await T("Admin.Address.AddressAttributes.EditAttributeDetails") - @Model.Name
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
-                <a asp-action="List">@T("Admin.Address.AddressAttributes.BackToList")</a>
+                <a asp-action="List">@await T("Admin.Address.AddressAttributes.BackToList")</a>
             </small>
         </h1>
         <div class="float-right">
             <button type="submit" name="save" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.Save")
+                @await T("Admin.Common.Save")
             </button>
             <button type="submit" name="save-continue" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.SaveContinue")
+                @await T("Admin.Common.SaveContinue")
             </button>
             <span id="addressattribute-delete" class="btn btn-danger">
                 <i class="far fa-trash-alt"></i>
-                @T("Admin.Common.Delete")
+                @await T("Admin.Common.Delete")
             </span>
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.AddressAttributeDetailsButtons, additionalData = Model })
         </div>

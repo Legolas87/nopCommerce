@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Configuration.Shipping.DeliveryDates.EditDeliveryDateDetails").Text;
+    ViewBag.PageTitle = (await T("Admin.Configuration.Shipping.DeliveryDates.EditDeliveryDateDetails")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Delivery dates");
 }
@@ -10,24 +10,24 @@
 <form asp-controller="Shipping" asp-action="EditDeliveryDate" method="post">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Configuration.Shipping.DeliveryDates.EditDeliveryDateDetails") - @Model.Name
+            @await T("Admin.Configuration.Shipping.DeliveryDates.EditDeliveryDateDetails") - @Model.Name
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
-                <a asp-action="DatesAndRanges">@T("Admin.Configuration.Shipping.DeliveryDates.BackToList")</a>
+                <a asp-action="DatesAndRanges">@await T("Admin.Configuration.Shipping.DeliveryDates.BackToList")</a>
             </small>
         </h1>
         <div class="float-right">
             <button type="submit" name="save" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.Save")
+                @await T("Admin.Common.Save")
             </button>
             <button type="submit" name="save-continue" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.SaveContinue")
+                @await T("Admin.Common.SaveContinue")
             </button>
             <span id="delivery-date-delete" class="btn btn-danger">
                 <i class="far fa-trash-alt"></i>
-                @T("Admin.Common.Delete")
+                @await T("Admin.Common.Delete")
             </span>
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.DeliveryDateDetailsButtons, additionalData = Model })
         </div>

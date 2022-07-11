@@ -4,7 +4,7 @@
     Layout = "_AdminPopupLayout";
 
     //page title
-    ViewBag.PageTitle = T("Admin.Promotions.Discounts.AppliedToCategories.AddNew").Text;
+    ViewBag.PageTitle = (await T("Admin.Promotions.Discounts.AppliedToCategories.AddNew")).Value;
 }
 
 
@@ -24,7 +24,7 @@ else
           asp-route-formId="@Context.Request.Query["formId"]">
         <div class="content-header clearfix">
             <h1 class="float-left">
-                @T("Admin.Promotions.Discounts.AppliedToCategories.AddNew")
+                @await T("Admin.Promotions.Discounts.AppliedToCategories.AddNew")
             </h1>
             <div class="float-right">
                 &nbsp;
@@ -49,7 +49,7 @@ else
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-8 offset-sm-4">
-                                                    <button type="button" id="search-categories" class="btn btn-primary btn-search">@T("Admin.Common.Search")</button>
+                                                    <button type="button" id="search-categories" class="btn btn-primary btn-search">@await T("Admin.Common.Search")</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -81,11 +81,11 @@ else
                                             },
                                             new ColumnProperty(nameof(CategoryModel.Breadcrumb))
                                             {
-                                                Title = T("Admin.Catalog.Categories.Fields.Name").Text
+                                                Title = (await T("Admin.Catalog.Categories.Fields.Name")).Value
                                             },
                                             new ColumnProperty(nameof(CategoryModel.Published))
                                             {
-                                                Title = T("Admin.Catalog.Categories.Fields.Published").Text,
+                                                Title = (await T("Admin.Catalog.Categories.Fields.Published")).Value,
                                                 Width = "100",
                                                 ClassName = NopColumnClassDefaults.CenterAll,
                                                 Render = new RenderBoolean()
@@ -96,7 +96,7 @@ else
                                 <div class="card-footer">
                                     <button type="submit" name="save" class="btn btn-primary">
                                         <i class="far fa-save"></i>
-                                        @T("Admin.Common.Save")
+                                        @await T("Admin.Common.Save")
                                     </button>
                                 </div>
                             </div>

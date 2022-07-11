@@ -2,14 +2,14 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.RecurringPayments").Text;
+    ViewBag.PageTitle = (await T("Admin.RecurringPayments")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Recurring payments");
 }
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.RecurringPayments")
+        @await T("Admin.RecurringPayments")
     </h1>
     <div class="float-right">
         &nbsp;
@@ -25,8 +25,8 @@
                     <div class="card card-default">
                         <div class="card-body">
                             <p>
-                                @T("Admin.RecurringPayments.Description")
-                                <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.RecurringPayments", Docs.RecurringPayments + Utm.OnAdmin)"  asp-add-wrapper="false"/>
+                                @await T("Admin.RecurringPayments.Description")
+                                <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.RecurringPayments", Docs.RecurringPayments + Utm.OnAdmin)"  asp-add-wrapper="false"/>
                             </p>
                             @await Html.PartialAsync("Table", new DataTablesModel
                             {
@@ -38,55 +38,55 @@
                                 {
                                     new ColumnProperty(nameof(RecurringPaymentModel.Id))
                                     {
-                                        Title = T("Admin.RecurringPayments.Fields.ID").Text,
+                                        Title = (await T("Admin.RecurringPayments.Fields.ID")).Value,
                                         Width = "50"
                                     },
                                     new ColumnProperty(nameof(RecurringPaymentModel.CustomerId))
                                     {
-                                        Title = T("Admin.RecurringPayments.Fields.Customer").Text,
+                                        Title = (await T("Admin.RecurringPayments.Fields.Customer")).Value,
                                         Width = "200",
                                         Render = new RenderCustom("renderColumnCustomerInfo")
                                     },
                                     new ColumnProperty(nameof(RecurringPaymentModel.CycleLength))
                                     {
-                                        Title = T("Admin.RecurringPayments.Fields.CycleLength").Text,
+                                        Title = (await T("Admin.RecurringPayments.Fields.CycleLength")).Value,
                                         Width = "100"
                                     },
                                     new ColumnProperty(nameof(RecurringPaymentModel.CyclePeriodStr))
                                     {
-                                        Title = T("Admin.RecurringPayments.Fields.CyclePeriod").Text,
+                                        Title = (await T("Admin.RecurringPayments.Fields.CyclePeriod")).Value,
                                         Width = "100"
                                     },
                                     new ColumnProperty(nameof(RecurringPaymentModel.IsActive))
                                     {
-                                        Title = T("Admin.RecurringPayments.Fields.IsActive").Text,
+                                        Title = (await T("Admin.RecurringPayments.Fields.IsActive")).Value,
                                         Width = "200",
                                         ClassName = NopColumnClassDefaults.CenterAll,
                                         Render = new RenderBoolean()
                                     },
                                     new ColumnProperty(nameof(RecurringPaymentModel.StartDate))
                                     {
-                                        Title = T("Admin.RecurringPayments.Fields.StartDate").Text,
+                                        Title = (await T("Admin.RecurringPayments.Fields.StartDate")).Value,
                                         Width = "200"
                                     },
                                     new ColumnProperty(nameof(RecurringPaymentModel.NextPaymentDate))
                                     {
-                                        Title = T("Admin.RecurringPayments.Fields.NextPaymentDate").Text,
+                                        Title = (await T("Admin.RecurringPayments.Fields.NextPaymentDate")).Value,
                                         Width = "200"
                                     },
                                     new ColumnProperty(nameof(RecurringPaymentModel.TotalCycles))
                                     {
-                                        Title = T("Admin.RecurringPayments.Fields.TotalCycles").Text,
+                                        Title = (await T("Admin.RecurringPayments.Fields.TotalCycles")).Value,
                                         Width = "100"
                                     },
                                     new ColumnProperty(nameof(RecurringPaymentModel.CyclesRemaining))
                                     {
-                                        Title = T("Admin.RecurringPayments.Fields.CyclesRemaining").Text,
+                                        Title = (await T("Admin.RecurringPayments.Fields.CyclesRemaining")).Value,
                                         Width = "100"
                                     },
                                     new ColumnProperty(nameof(RecurringPaymentModel.Id))
                                     {
-                                        Title = T("Admin.Common.Edit").Text,
+                                        Title = (await T("Admin.Common.Edit")).Value,
                                         Width = "100",
                                         ClassName = NopColumnClassDefaults.Button,
                                         Render = new RenderButtonEdit(new DataUrl("Edit"))

@@ -20,14 +20,14 @@
         <div class="actions">
             @if (Model.IsCustomerAllowedToEditTopic)
             {
-                @Html.RouteLink(T("Forum.EditTopic").Text, "TopicEdit", new { id = Model.Id }, new { @class = "edit-topic-button" })
+                @Html.RouteLink((await T("Forum.EditTopic")).Value, "TopicEdit", new { id = Model.Id }, new { @class = "edit-topic-button" })
             }
             @if (Model.IsCustomerAllowedToDeleteTopic)
             {
-                <a href="#" class="delete-topic-button" onclick="return deletetopic(@(Model.Id))">@T("Forum.DeleteTopic").Text</a>
+                <a href="#" class="delete-topic-button" onclick="return deletetopic(@(Model.Id))">@await T("Forum.DeleteTopic")</a>
                 <script asp-location="Footer">
                     function deletetopic(topicId) {
-                        if (confirm('@T("Common.AreYouSure")')) {
+                        if (confirm('@await T("Common.AreYouSure")')) {
                             var postData = {
                                 id: topicId
                             };
@@ -52,9 +52,9 @@
             }
             @if (Model.IsCustomerAllowedToMoveTopic)
             {
-                @Html.RouteLink(T("Forum.MoveTopic").Text, "TopicMove", new { id = Model.Id }, new { @class = "move-topic-button" })
+                @Html.RouteLink((await T("Forum.MoveTopic")).Value, "TopicMove", new { id = Model.Id }, new { @class = "move-topic-button" })
             }
-            @Html.RouteLink(T("Forum.Reply").Text, "PostCreate", new { id = Model.Id }, new { @class = "reply-topic-button" })
+            @Html.RouteLink((await T("Forum.Reply")).Value, "PostCreate", new { id = Model.Id }, new { @class = "reply-topic-button" })
             @if (Model.IsCustomerAllowedToSubscribe)
             {
                 <a class="watch-topic-button" href="#" id="watch-topic-top">@Model.WatchTopicText</a>
@@ -112,7 +112,7 @@
 
     <div class="topic-actions lower">
         <div class="actions">
-            @Html.RouteLink(T("Forum.Reply").Text, "PostCreate", new {id = Model.Id}, new {@class = "reply-topic-button"})
+            @Html.RouteLink((await T("Forum.Reply")).Value, "PostCreate", new {id = Model.Id}, new {@class = "reply-topic-button"})
             @if (Model.IsCustomerAllowedToSubscribe)
             {
                 <a class="watch-topic-button" href="#" id="watch-topic-bottom">@Model.WatchTopicText</a>
@@ -152,7 +152,7 @@
 </div>
 <script asp-location="Footer">
     function deletepost(postId) {
-        if (confirm('@T("Common.AreYouSure")')) {
+        if (confirm('@await T("Common.AreYouSure")')) {
             var postData = {
                 id: postId
             };

@@ -2,7 +2,7 @@
 @{    
     Layout = "_ColumnsOne";
 
-    NopHtml.AddTitleParts(T("Forum.PageTitle.TopicNew").Text);
+    NopHtml.AddTitleParts((await T("Forum.PageTitle.TopicNew")).Value);
 }
 @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.BoardsTopicCreateBefore, additionalData = Model })
 <form asp-route="TopicCreate" method="post">

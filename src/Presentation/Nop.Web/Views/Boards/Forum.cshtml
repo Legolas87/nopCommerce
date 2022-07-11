@@ -18,7 +18,7 @@
         <div class="forum-name">
             @if (Model.ForumFeedsEnabled)
             {
-                <a href="@Url.RouteUrl("ForumRSS", new { id = Model.Id })" class="link-rss" title="@T("Forum.ForumRSSLinkTitle")">@T("Forum.RSS")</a>
+                <a href="@Url.RouteUrl("ForumRSS", new { id = Model.Id })" class="link-rss" title="@await T("Forum.ForumRSSLinkTitle")">@await T("Forum.RSS")</a>
             }
             <h1>@Model.Name</h1>
         </div>
@@ -28,7 +28,7 @@
     </div>
     <div class="forum-actions">
         <div class="actions">
-            @Html.RouteLink(T("Forum.NewTopic").ToString(), "TopicCreate", new { id = Model.Id }, new { @class = "new-topic" })
+            @Html.RouteLink((await T("Forum.NewTopic")).Value, "TopicCreate", new { id = Model.Id }, new { @class = "new-topic" })
             @if (Model.IsCustomerAllowedToSubscribe)
             {
                 <a class="watch-forum" href="#" id="watch-forum">@Model.WatchForumText</a>
@@ -93,22 +93,22 @@
                     <thead>
                         <tr>
                             <th class="topic-details" colspan="2">
-                                @T("Forum.TopicTitle")
+                                @await T("Forum.TopicTitle")
                             </th>
                             <th class="replies">
-                                @T("Forum.Replies")
+                                @await T("Forum.Replies")
                             </th>
                             <th class="views">
-                                @T("Forum.Views")
+                                @await T("Forum.Views")
                             </th>
                             @if (Model.AllowPostVoting)
                             {
                                 <th class="votes">
-                                    @T("Forum.Votes")
+                                    @await T("Forum.Votes")
                                 </th>
                             }
                             <th class="latest-post">
-                                @T("Forum.LatestPost")
+                                @await T("Forum.LatestPost")
                             </th>
                         </tr>
                     </thead>
@@ -124,11 +124,11 @@
                                     break;
                                 case ForumTopicType.Sticky:
                                     topicType = "sticky";
-                                    topicText = $"[{T("Forum.Sticky")}]";
+                                    topicText = $"[{await T("Forum.Sticky")}]";
                                     break;
                                 case ForumTopicType.Announcement:
                                     topicType = "announcement";
-                                    topicText = $"[{T("Forum.Announcement")}]";
+                                    topicText = $"[{await T("Forum.Announcement")}]";
                                     break;
                                 default:
                                     topicType = "post";
@@ -155,7 +155,7 @@
                                     <div class="topic-starter">
                                         @if (topic.CustomerId > 0)
                                         {
-                                            <label>@T("Forum.Author"):</label>
+                                            <label>@await T("Forum.Author"):</label>
                                             if (topic.AllowViewingProfiles)
                                             {
                                                 @Html.RouteLink(topic.CustomerName, "CustomerProfile", new { Id = topic.CustomerId })

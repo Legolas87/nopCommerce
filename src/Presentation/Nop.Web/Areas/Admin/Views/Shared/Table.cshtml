@@ -107,7 +107,7 @@
         <text>
         <script asp-location="Footer">
             function table_deletedata_@(tableName)(dataId) {
-                if (confirm('@T("Admin.Common.DeleteConfirmation")')) {
+                if (confirm('@await T("Admin.Common.DeleteConfirmation")')) {
                     var postData = {
                         @if (!string.IsNullOrEmpty(Model.BindColumnNameActionDelete))
                         {

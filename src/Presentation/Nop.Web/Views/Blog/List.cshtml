@@ -6,7 +6,7 @@
     Layout = "_ColumnsTwo";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.Blog").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.Blog")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-blog-page");
 }
@@ -19,22 +19,22 @@
 }
 <div class="page blog-page">
     <div class="page-title">
-        <a href="@Url.RouteUrl("BlogRSS", new { languageId = Model.WorkingLanguageId })" class="link-rss" title="@T("Blog.RSS.Hint")">@T("Blog.RSS")</a>
+        <a href="@Url.RouteUrl("BlogRSS", new { languageId = Model.WorkingLanguageId })" class="link-rss" title="@await T("Blog.RSS.Hint")">@await T("Blog.RSS")</a>
         <h1>
             @if (string.IsNullOrEmpty(Model.PagingFilteringContext.Tag))
             {
                 if (Model.PagingFilteringContext.GetParsedMonth().HasValue)
                 {
-                    @string.Format(T("Blog.FilteredByMonth").Text, Model.PagingFilteringContext.GetParsedMonth().Value.Year, Model.PagingFilteringContext.GetParsedMonth().Value.ToString("MMMM"))
+                    @string.Format((await T("Blog.FilteredByMonth")).Value, Model.PagingFilteringContext.GetParsedMonth().Value.Year, Model.PagingFilteringContext.GetParsedMonth().Value.ToString("MMMM"))
                 }
                 else
                 {
-                    @T("Blog")
+                    @await T("Blog")
                 }
             }
             else
             {
-                @string.Format(T("Blog.TaggedWith").Text, Model.PagingFilteringContext.Tag)
+                @string.Format((await T("Blog.TaggedWith")).Value, Model.PagingFilteringContext.Tag)
             }
         </h1>
     </div>
@@ -58,7 +58,7 @@
                         @if (item.Tags.Count > 0)
                         {
                             <div class="tags">
-                                <label>@T("Blog.Tags"):</label>
+                                <label>@await T("Blog.Tags"):</label>
                                 <ul>
                                     @for (var i = 0; i < item.Tags.Count; i++)
                                     {
@@ -75,9 +75,9 @@
                         <div class="buttons">
                             @if (item.AllowComments)
                             {
-                                <a href="@(Url.RouteUrl<BlogPost>(new { SeName = item.SeName }, fragment: "comments"))" class="read-comments">@string.Format(T("Blog.CommentsLink").Text, item.NumberOfComments)</a>
+                                <a href="@(Url.RouteUrl<BlogPost>(new { SeName = item.SeName }, fragment: "comments"))" class="read-comments">@string.Format((await T("Blog.CommentsLink")).Value, item.NumberOfComments)</a>
                             }
-                            <a href="@(Url.RouteUrl<BlogPost>(new { SeName = item.SeName }))" class="read-more">@T("Blog.MoreInfo")</a>
+                            <a href="@(Url.RouteUrl<BlogPost>(new { SeName = item.SeName }))" class="read-more">@await T("Blog.MoreInfo")</a>
                         </div>
                     </div>
                     @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.BlogListPageInsidePost, additionalData = item })

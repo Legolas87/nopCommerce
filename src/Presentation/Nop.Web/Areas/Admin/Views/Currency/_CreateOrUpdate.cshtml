@@ -73,7 +73,7 @@
                                     cultures.Insert(0, new SelectListItem
                                     {
                                         Value = "",
-                                        Text = @T("Admin.Configuration.Currencies.Fields.DisplayLocale.Select").Text
+                                        Text = (await T("Admin.Configuration.Currencies.Fields.DisplayLocale.Select")).Value
                                     });
                                 }
                                 <nop-select asp-for="DisplayLocale" asp-items="@cultures"/>

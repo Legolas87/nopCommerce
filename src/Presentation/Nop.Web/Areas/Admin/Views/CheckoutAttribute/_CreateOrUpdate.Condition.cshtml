@@ -96,7 +96,7 @@
             {
                 <div class="form-group row">
                     <div class="col-md-9 offset-md-3 mt-3">
-                        @T("Admin.Catalog.Attributes.CheckoutAttributes.Condition.NoAttributeExists")
+                        @await T("Admin.Catalog.Attributes.CheckoutAttributes.Condition.NoAttributeExists")
                     </div>
                 </div>
             }
@@ -106,6 +106,6 @@
 else
 {
     <div class="card-body">
-        @T("Admin.Catalog.Attributes.CheckoutAttributes.Condition.SaveBeforeEdit")
+        @await T("Admin.Catalog.Attributes.CheckoutAttributes.Condition.SaveBeforeEdit")
     </div>
 }

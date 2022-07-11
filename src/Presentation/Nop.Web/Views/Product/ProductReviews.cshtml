@@ -9,13 +9,13 @@
 
     //title
     NopHtml.AddTitleParts(Model.ProductName);
-    NopHtml.AddTitleParts(T("PageTitle.ProductReviews").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.ProductReviews")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-product-reviews-page");
 }
 <div class="page product-reviews-page">
     <div class="page-title">
-        <h1>@T("Reviews.ProductReviewsFor") <a href="@(Url.RouteUrl<Product>(new { SeName = Model.ProductSeName }))">@Model.ProductName</a></h1>
+        <h1>@await T("Reviews.ProductReviewsFor") <a href="@(Url.RouteUrl<Product>(new { SeName = Model.ProductSeName }))">@Model.ProductName</a></h1>
     </div>
     <div class="page-body">
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductReviewsPageTop, additionalData = Model })
@@ -28,14 +28,14 @@
         else if (!Model.AddProductReview.CanAddNewReview)
         {
             <div class="result review-already-added">
-                @T("Reviews.AlreadyAddedProductReviews")
+                @await T("Reviews.AlreadyAddedProductReviews")
             </div>
         }
         else
         {
             <div class="write-review" id="review-form">
                 <div class="title">
-                    <strong>@T("Reviews.Write")</strong>
+                    <strong>@await T("Reviews.Write")</strong>
                 </div>
                 <form asp-route="ProductReviews" method="post">
                     <div asp-validation-summary="ModelOnly" class="message-error"></div>
@@ -58,16 +58,16 @@
                                     <label asp-for="AddProductReview.Rating" asp-postfix=":"></label>
                                 </div>
                                 <div class="rating-wrapper">
-                                    <div class="label first">@T("Reviews.Fields.Rating.Bad")</div>
+                                    <div class="label first">@await T("Reviews.Fields.Rating.Bad")</div>
                                     <div class="rating-options">
                                         <input asp-for="AddProductReview.Rating" value="0" type="radio" id="addproductrating_0" style="display: none;"/>
-                                        <input asp-for="AddProductReview.Rating" value="1" type="radio" id="addproductrating_1" aria-label="@T("Reviews.Fields.Rating.Bad")" />
-                                        <input asp-for="AddProductReview.Rating" value="2" type="radio" id="addproductrating_2" aria-label="@T("Reviews.Fields.Rating.NotGood")" />
-                                        <input asp-for="AddProductReview.Rating" value="3" type="radio" id="addproductrating_3" aria-label="@T("Reviews.Fields.Rating.NotBadNotExcellent")" />
-                                        <input asp-for="AddProductReview.Rating" value="4" type="radio" id="addproductrating_4" aria-label="@T("Reviews.Fields.Rating.Good")" />
-                                        <input asp-for="AddProductReview.Rating" value="5" type="radio" id="addproductrating_5" aria-label="@T("Reviews.Fields.Rating.Excellent")" />
+                                        <input asp-for="AddProductReview.Rating" value="1" type="radio" id="addproductrating_1" aria-label="@await T("Reviews.Fields.Rating.Bad")" />
+                                        <input asp-for="AddProductReview.Rating" value="2" type="radio" id="addproductrating_2" aria-label="@await T("Reviews.Fields.Rating.NotGood")" />
+                                        <input asp-for="AddProductReview.Rating" value="3" type="radio" id="addproductrating_3" aria-label="@await T("Reviews.Fields.Rating.NotBadNotExcellent")" />
+                                        <input asp-for="AddProductReview.Rating" value="4" type="radio" id="addproductrating_4" aria-label="@await T("Reviews.Fields.Rating.Good")" />
+                                        <input asp-for="AddProductReview.Rating" value="5" type="radio" id="addproductrating_5" aria-label="@await T("Reviews.Fields.Rating.Excellent")" />
                                     </div>                                    
-                                    <div class="label last">@T("Reviews.Fields.Rating.Excellent")</div>
+                                    <div class="label last">@await T("Reviews.Fields.Rating.Excellent")</div>
                                 </div>
                             </div>
                             @if (Model.ReviewTypeList.Count > 0)
@@ -83,7 +83,7 @@
                                             </div>
                                         </div>
                                         <div class="rating-wrapper">
-                                            <div class="label first">@T("Reviews.Fields.Rating.Bad")</div>
+                                            <div class="label first">@await T("Reviews.Fields.Rating.Bad")</div>
                                             <div class="rating-options">
                                                 <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].ReviewTypeId" value="@(additionalReview.ReviewTypeId)" type="hidden" />
                                                 <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Name" value="@(additionalReview.Name)" type="hidden" />
@@ -98,7 +98,7 @@
                                                 <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Rating" value="4" type="radio" id="addproductratingext_4_@(additionalReview.ReviewTypeId)" />
                                                 <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Rating" value="5" type="radio" id="addproductratingext_5_@(additionalReview.ReviewTypeId)" />
                                             </div>
-                                            <div class="label last">@T("Reviews.Fields.Rating.Excellent")</div>
+                                            <div class="label last">@await T("Reviews.Fields.Rating.Excellent")</div>
                                         </div>
                                     </div>
                                 }
@@ -111,7 +111,7 @@
                         </div>
                     </div>
                     <div class="buttons">
-                        <button type="submit" name="add-review" class="button-1 write-product-review-button">@T("Reviews.SubmitButton")</button>
+                        <button type="submit" name="add-review" class="button-1 write-product-review-button">@await T("Reviews.SubmitButton")</button>
                     </div>
                 </form>
             </div>
@@ -120,7 +120,7 @@
         {
             <div class="product-review-list">
                 <div class="title">
-                    <strong>@T("Reviews.ExistingReviews")</strong>
+                    <strong>@await T("Reviews.ExistingReviews")</strong>
                 </div>
                 @foreach (var review in Model.Items)
                 {
@@ -175,7 +175,7 @@
                             }
                             <div class="review-info">
                                 <span class="user">
-                                    <label>@T("Reviews.From"):</label>
+                                    <label>@await T("Reviews.From"):</label>
                                     @if (review.AllowViewingProfiles)
                                     {
                                         <a href="@Url.RouteUrl("CustomerProfile", new { id = review.CustomerId })">@(review.CustomerName)</a>
@@ -187,7 +187,7 @@
                                 </span>
                                 <span class="separator">|</span>
                                 <span class="date">
-                                    <label>@T("Reviews.Date"):</label>
+                                    <label>@await T("Reviews.Date"):</label>
                                     <span>@review.WrittenOnStr</span>
                                 </span>
                             </div>
@@ -197,7 +197,7 @@
                             {
                                 <div class="reply">
                                     <div class="reply-header">
-                                        @T("Reviews.Reply")
+                                        @await T("Reviews.Reply")
                                     </div>
                                     <div class="reply-text">
                                         @Html.Raw(htmlFormatter.FormatText(review.ReplyText, false, true, false, false, false, false))

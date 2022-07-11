@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Orders.Address.EditAddress").Text;
+    ViewBag.PageTitle = (await T("Admin.Orders.Address.EditAddress")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Orders");
 }
@@ -12,16 +12,16 @@
       asp-route-orderId="@Context.Request.Query["orderId"]">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Orders.Address.EditAddress")
+            @await T("Admin.Orders.Address.EditAddress")
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
-                <a asp-action="Edit" asp-route-id="@Model.OrderId">@T("Admin.Orders.Address.BackToOrder")</a>
+                <a asp-action="Edit" asp-route-id="@Model.OrderId">@await T("Admin.Orders.Address.BackToOrder")</a>
             </small>
         </h1>
         <div class="float-right">
             <button type="submit" name="save" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.Save")
+                @await T("Admin.Common.Save")
             </button>
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.OrderAddressDetailsButtons, additionalData = Model })
         </div>

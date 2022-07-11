@@ -4,7 +4,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Catalog.Products").Text;
+    ViewBag.PageTitle = (await T("Admin.Catalog.Products")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Products");
 }
@@ -17,21 +17,21 @@
     <form asp-controller="Product" asp-action="List" method="post">
         <div class="content-header clearfix">
             <h1 class="float-left">
-                @T("Admin.Catalog.Products")
+                @await T("Admin.Catalog.Products")
             </h1>
             <div class="float-right">
                 <a asp-action="Create" class="btn btn-primary">
                     <i class="fas fa-plus-square"></i>
-                    @T("Admin.Common.AddNew")
+                    @await T("Admin.Common.AddNew")
                 </a>
                 <button asp-action="DownloadCatalogPDF" type="submit" name="download-catalog-pdf" class="btn bg-purple">
                     <i class="far fa-file-pdf"></i>
-                    @T("Admin.Catalog.Products.List.DownloadPDF")
+                    @await T("Admin.Catalog.Products.List.DownloadPDF")
                 </button>
                 <div class="btn-group">
                     <button type="button" class="btn btn-success">
                         <i class="fas fa-download"></i>
-                        @T("Admin.Common.Export")
+                        @await T("Admin.Common.Export")
                     </button>
                     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <span class="caret"></span>
@@ -42,27 +42,27 @@
                             
                                 <button asp-action="ExportToXml" type="submit" name="exportxml-all">
                                     <i class="far fa-file-code"></i>
-                                    @T("Admin.Common.ExportToXml.All")
+                                    @await T("Admin.Common.ExportToXml.All")
                                 </button>                            
                         </li>
                         <li class="dropdown-item">
                            
                                 <button type="button" id="exportxml-selected">
                                     <i class="far fa-file-code"></i>
-                                    @T("Admin.Common.ExportToXml.Selected")
+                                    @await T("Admin.Common.ExportToXml.Selected")
                                 </button>                            
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="dropdown-item">                            
                                 <button asp-action="ExportToExcel" type="submit" name="exportexcel-all">
                                     <i class="far fa-file-excel"></i>
-                                    @T("Admin.Common.ExportToExcel.All")
+                                    @await T("Admin.Common.ExportToExcel.All")
                                 </button>                            
                         </li>
                         <li class="dropdown-item">                            
                                 <button type="button" id="exportexcel-selected">
                                     <i class="far fa-file-excel"></i>
-                                    @T("Admin.Common.ExportToExcel.Selected")
+                                    @await T("Admin.Common.ExportToExcel.Selected")
                                 </button>                            
                         </li>
                     </ul>
@@ -72,12 +72,12 @@
                     //a vendor cannot import products
                     <button type="button" name="importexcel" class="btn bg-olive" data-toggle="modal" data-target="#importexcel-window">
                         <i class="fas fa-upload"></i>
-                        @T("Admin.Common.Import")
+                        @await T("Admin.Common.Import")
                     </button>
                 }
                 <button type="button" id="delete-selected" class="btn btn-danger">
                     <i class="far fa-trash-alt"></i>
-                    @T("Admin.Common.Delete.Selected")
+                    @await T("Admin.Common.Delete.Selected")
                 </button>
                 <nop-action-confirmation asp-button-id="delete-selected" />
                 @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.ProductListButtons, additionalData = Model })
@@ -91,7 +91,7 @@
                       <div class="card card-default card-search">
                         <div class="card-body">
                             <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                                <div class="search-text">@T("Admin.Common.Search")</div>
+                                <div class="search-text">@await T("Admin.Common.Search")</div>
                                 <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                                 <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                             </div>
@@ -182,7 +182,7 @@
                                                     <nop-editor asp-for="GoDirectlyToSku" />
                                                     <span class="input-group-append">
                                                         <button type="submit" id="go-to-product-by-sku" name="go-to-product-by-sku" class="btn btn-info btn-flat">
-                                                            @T("Admin.Common.Go")
+                                                            @await T("Admin.Common.Go")
                                                         </button>
                                                     </span>
                                                 </div>
@@ -194,7 +194,7 @@
                                     <div class="text-center col-12">
                                         <button type="button" id="search-products" class="btn btn-primary btn-search">
                                             <i class="fas fa-search"></i>
-                                            @T("Admin.Common.Search")
+                                            @await T("Admin.Common.Search")
                                         </button>
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@
 
                       <div class="card card-default">
                           <div class="card-body">
-                            <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Products", Docs.Products + Utm.OnAdmin)" />
+                            <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.Products", Docs.Products + Utm.OnAdmin)" />
 
                               @await Html.PartialAsync("Table", new DataTablesModel
                          {
@@ -236,38 +236,38 @@
                                       },
                                       new ColumnProperty(nameof(ProductModel.PictureThumbnailUrl))
                                       {
-                                          Title = T("Admin.Catalog.Products.Fields.PictureThumbnailUrl").Text,
+                                          Title = (await T("Admin.Catalog.Products.Fields.PictureThumbnailUrl")).Value,
                                           Width = "100",
                                           Render = new RenderPicture()
                                       },
                                       new ColumnProperty(nameof(ProductModel.Name))
                                       {
-                                          Title = T("Admin.Catalog.Products.Fields.Name").Text
+                                          Title = (await T("Admin.Catalog.Products.Fields.Name")).Value
                                       },
                                       new ColumnProperty(nameof(ProductModel.Sku))
                                       {
-                                          Title = T("Admin.Catalog.Products.Fields.Sku").Text,
+                                          Title = (await T("Admin.Catalog.Products.Fields.Sku")).Value,
                                           Width = "100"
                                       },
                                       new ColumnProperty(nameof(ProductModel.Price))
                                       {
-                                          Title = T("Admin.Catalog.Products.Fields.Price").Text,
+                                          Title = (await T("Admin.Catalog.Products.Fields.Price")).Value,
                                           Render = new RenderCustom("renderColumnPrice")
                                       },
                                       new ColumnProperty(nameof(ProductModel.StockQuantityStr))
                                       {
-                                          Title = T("Admin.Catalog.Products.Fields.StockQuantity").Text
+                                          Title = (await T("Admin.Catalog.Products.Fields.StockQuantity")).Value
                                       },                                      
                                       new ColumnProperty(nameof(ProductModel.Published))
                                       {
-                                          Title = T("Admin.Catalog.Products.Fields.Published").Text,
+                                          Title = (await T("Admin.Catalog.Products.Fields.Published")).Value,
                                           Width = "80",
                                           ClassName = NopColumnClassDefaults.CenterAll,
                                           Render = new RenderBoolean()
                                       },
                                       new ColumnProperty(nameof(ProductModel.Id))
                                       {
-                                          Title = T("Admin.Common.Edit").Text,
+                                          Title = (await T("Admin.Common.Edit")).Value,
                                           Width = "80",
                                           ClassName =  NopColumnClassDefaults.Button,
                                           Render = new RenderButtonEdit(new DataUrl("Edit"))
@@ -297,7 +297,7 @@
                                         complete: function (jqXHR, textStatus) {
                                             if (jqXHR.status === 204)
                                             {
-                                                showAlert('nothingSelectedAlert', '@T("Admin.Common.Alert.NothingSelected")');
+                                                showAlert('nothingSelectedAlert', '@await T("Admin.Common.Alert.NothingSelected")');
                                                 return;
                                             }
                                             updateTable('#products-grid');
@@ -334,7 +334,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="importexcel-window-title">@T("Admin.Common.ImportFromExcel")</h4>
+                    <h4 class="modal-title" id="importexcel-window-title">@await T("Admin.Common.ImportFromExcel")</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>                    
                 </div>
                 <form asp-controller="Product" asp-action="ImportExcel" method="post" enctype="multipart/form-data">
@@ -342,17 +342,17 @@
                         <div class="modal-body">
                             <ul class="common-list">
                                 <li>
-                                    <em>@T("Admin.Catalog.Products.List.ImportFromExcelTip")</em>
+                                    <em>@await T("Admin.Catalog.Products.List.ImportFromExcelTip")</em>
                                 </li>
                                 <li>
-                                    <em>@T("Admin.Common.ImportFromExcel.ManyRecordsWarning")</em>
+                                    <em>@await T("Admin.Common.ImportFromExcel.ManyRecordsWarning")</em>
                                 </li>
                             </ul>
                             <div class="form-group row">
                                 <div class="col-md-2">
                                     <div class="label-wrapper">
                                         <label class="col-form-label">
-                                            @T("Admin.Common.ExcelFile")
+                                            @await T("Admin.Common.ExcelFile")
                                         </label>
                                     </div>
                                 </div>
@@ -363,7 +363,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">
-                                @T("Admin.Common.ImportFromExcel")
+                                @await T("Admin.Common.ImportFromExcel")
                             </button>
                         </div>
                     </div>
@@ -383,7 +383,7 @@
             e.preventDefault();
             var ids = selectedIds.join(",");
             if (!ids) {
-                $('#exportXmlSelected-info').text("@T("Admin.Products.NoProducts")");
+                $('#exportXmlSelected-info').text("@await T("Admin.Products.NoProducts")");
                 $("#exportXmlSelected").click();
             }
             else {
@@ -408,7 +408,7 @@
                 e.preventDefault();
                 var ids = selectedIds.join(",");
                  if (!ids) {
-                    $('#exportExcelSelected-info').text("@T("Admin.Products.NoProducts")");
+                    $('#exportExcelSelected-info').text("@await T("Admin.Products.NoProducts")");
                     $("#exportExcelSelected").click();
                 }
                 else {

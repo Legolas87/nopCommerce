@@ -10,11 +10,11 @@
     <div class="page-title">
         @if (Model.IsEdit)
         {
-            <h1>@T("Forum.EditPost")</h1>
+            <h1>@await T("Forum.EditPost")</h1>
         }
         else
         {
-            <h1>@T("Forum.NewPost")</h1>
+            <h1>@await T("Forum.NewPost")</h1>
         }
     </div>
     <div class="page-body">
@@ -24,11 +24,11 @@
         <div class="fieldset">
             <div class="form-fields">
                 <div class="inputs">
-                    <label>@T("Forum.ForumName"):</label>
+                    <label>@await T("Forum.ForumName"):</label>
                     <strong class="forum-subject">@Model.ForumName</strong>
                 </div>
                 <div class="inputs">
-                    <label>@T("Forum.TopicTitle"):</label>
+                    <label>@await T("Forum.TopicTitle"):</label>
                     <strong class="topic-subject">@Model.ForumTopicSubject</strong>
                 </div>
                 <div class="inputs">
@@ -43,7 +43,7 @@
                 {
                     <div class="inputs reversed">
                         <input asp-for="Subscribed" />
-                        <label asp-for="Subscribed">@T("Forum.NotifyWhenSomeonePostsInThisTopic")</label>
+                        <label asp-for="Subscribed">@await T("Forum.NotifyWhenSomeonePostsInThisTopic")</label>
                     </div>
                 }
                 @if (Model.DisplayCaptcha)
@@ -53,8 +53,8 @@
             </div>
         </div>
         <div class="buttons">
-            <button type="submit" class="button-1 submit-post-button">@T("Forum.Submit")</button>
-            <button type="button" class="button-2 cancel-post-button" onclick="setLocation('@Url.RouteUrl("TopicSlug", new {id = Model.ForumTopicId, slug = Model.ForumTopicSeName})')">@T("Forum.Cancel")</button>
+            <button type="submit" class="button-1 submit-post-button">@await T("Forum.Submit")</button>
+            <button type="button" class="button-2 cancel-post-button" onclick="setLocation('@Url.RouteUrl("TopicSlug", new {id = Model.ForumTopicId, slug = Model.ForumTopicSeName})')">@await T("Forum.Cancel")</button>
         </div>
     </div>
 </div>

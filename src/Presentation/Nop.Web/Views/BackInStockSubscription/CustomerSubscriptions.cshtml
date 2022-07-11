@@ -6,7 +6,7 @@
     Layout = "_ColumnsTwo";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.BackInStockSubscriptions").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.BackInStockSubscriptions")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-account-page");
     NopHtml.AppendPageCssClassParts("html-back-in-stock-subscription-list-page");
@@ -17,13 +17,13 @@
 }
 <div class="page account-page back-in-stock-subscription-list-page">
     <div class="page-title">
-        <h1>@T("Account.MyAccount") - @T("Account.BackInStockSubscriptions")</h1>
+        <h1>@await T("Account.MyAccount") - @await T("Account.BackInStockSubscriptions")</h1>
     </div>
     <div class="page-body">
         @if (Model.Subscriptions.Count > 0)
         {
             <div class="description">
-                @T("Account.BackInStockSubscriptions.Description")
+                @await T("Account.BackInStockSubscriptions.Description")
             </div>
             <script asp-location="Footer">
                 $(document).ready(function () {
@@ -52,7 +52,7 @@
                                     <input type="checkbox" id="selectall" />
                                 </th>
                                 <th class="product">
-                                    @T("Account.BackInStockSubscriptions.ProductColumn")
+                                    @await T("Account.BackInStockSubscriptions.ProductColumn")
                                 </th>
                             </tr>
                             </thead>
@@ -82,7 +82,7 @@
                         </div>
                     }
                     <div class="buttons">
-                        <button type="submit" name="save" class="button-1 delete-selected-biss-button">@T("Account.BackInStockSubscriptions.DeleteSelected")</button>
+                        <button type="submit" name="save" class="button-1 delete-selected-biss-button">@await T("Account.BackInStockSubscriptions.DeleteSelected")</button>
                     </div>
                 </div>
             </form>
@@ -90,7 +90,7 @@
         else
         {
             <div class="no-data">
-                @T("Account.BackInStockSubscriptions.NoSubscriptions")
+                @await T("Account.BackInStockSubscriptions.NoSubscriptions")
             </div>
         }
     </div>

@@ -10,20 +10,20 @@
         {
             new ColumnProperty(nameof(GiftCardUsageHistoryModel.CreatedOn))
             {
-                Title = T("Admin.GiftCards.History.CreatedOn").Text,
+                Title = (await T("Admin.GiftCards.History.CreatedOn")).Value,
                 Width = "200",
                 Render = new RenderDate()
             },
             new ColumnProperty(nameof(GiftCardUsageHistoryModel.OrderId))
             {
-                Title = T("Admin.GiftCards.History.CustomOrderNumber").Text,
+                Title = (await T("Admin.GiftCards.History.CustomOrderNumber")).Value,
                 Width = "200",
                 ClassName =  NopColumnClassDefaults.Button,
                 Render = new RenderCustom("renderColumnOrderNumber")
             },
             new ColumnProperty(nameof(GiftCardUsageHistoryModel.UsedValue))
             {
-                Title = T("Admin.GiftCards.History.UsedValue").Text,
+                Title = (await T("Admin.GiftCards.History.UsedValue")).Value,
                 Width = "200"
             }
         }
@@ -31,7 +31,7 @@
     <script asp-location="Footer">
         function renderColumnOrderNumber(data, type, row, meta) {
             var textRenderer = $.fn.dataTable.render.text().display;
-            return '<a class="btn btn-default" href="@Url.Content("~/Admin/Order/Edit/")' + row.OrderId + '"><i class="far fa-eye"></i>' + textRenderer(row.CustomOrderNumber) + ' - @T("Admin.Common.View").Text</a>';
+            return '<a class="btn btn-default" href="@Url.Content("~/Admin/Order/Edit/")' + row.OrderId + '"><i class="far fa-eye"></i>' + textRenderer(row.CustomOrderNumber) + ' - @await T("Admin.Common.View")</a>';
         }
     </script>
 </div>

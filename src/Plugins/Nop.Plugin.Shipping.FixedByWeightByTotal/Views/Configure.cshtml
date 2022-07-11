@@ -16,8 +16,8 @@
             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="advanced-settings-mode" checked="@Model.ShippingByWeightByTotalEnabled">
             <label class="onoffswitch-label" for="advanced-settings-mode">
                 <span class="onoffswitch-inner"
-                      data-locale-basic="@T("Plugins.Shipping.FixedByWeightByTotal.Fixed")"
-                      data-locale-advanced="@T("Plugins.Shipping.FixedByWeightByTotal.ShippingByWeight")"></span>
+                      data-locale-basic="@await T("Plugins.Shipping.FixedByWeightByTotal.Fixed")"
+                      data-locale-advanced="@await T("Plugins.Shipping.FixedByWeightByTotal.ShippingByWeight")"></span>
                 <span class="onoffswitch-switch"></span>
             </label>
         </div>
@@ -26,11 +26,11 @@
         <div class="float-right">
             <a asp-controller="Shipping" asp-action="Methods" class="btn btn-primary" id="manage-shipping-methods-button">
                 <i class="fas fa-truck"></i>
-                @T("Admin.Configuration.Shipping.Methods.Manage")
+                @await T("Admin.Configuration.Shipping.Methods.Manage")
             </a>
             <a asp-controller="Shipping" asp-action="Restrictions" class="btn btn-primary">
                 <i class="fas fa-globe"></i>
-                @T("Admin.Configuration.Shipping.Restrictions")
+                @await T("Admin.Configuration.Shipping.Restrictions")
             </a>
         </div>
     </div>
@@ -74,7 +74,7 @@
         });
 </script>
 
-<nop-alert asp-alert-id="saveModeAlert" asp-alert-message="@T("Admin.Common.Alert.Save.Error")" />
+<nop-alert asp-alert-id="saveModeAlert" asp-alert-message="@await T("Admin.Common.Alert.Save.Error")" />
 
 @await Html.PartialAsync("~/Plugins/Shipping.FixedByWeightByTotal/Views/_FixedRate.cshtml")
 @await Html.PartialAsync("~/Plugins/Shipping.FixedByWeightByTotal/Views/_ByWeightByTotal.cshtml", Model)

@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Catalog.ProductTags").Text;
+    ViewBag.PageTitle = (await T("Admin.Catalog.ProductTags")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Product tags");
 }
@@ -15,14 +15,14 @@
 <form asp-controller="Product" asp-action="ProductTags" method="post" id="product-tags-form">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Catalog.ProductTags")
+            @await T("Admin.Catalog.ProductTags")
         </h1>
         <div class="float-right">
             &nbsp;
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.ProductTagListButtons, additionalData = Model })
             <button type="button" id="delete-selected" class="btn btn-danger">
                 <i class="far fa-trash-alt"></i>
-                @T("Admin.Common.Delete.Selected")
+                @await T("Admin.Common.Delete.Selected")
             </button>
             <nop-action-confirmation asp-button-id="delete-selected" />
         </div>
@@ -35,7 +35,7 @@
                     <div class="card card-default card-search">
                         <div class="card-body">
                             <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                                <div class="search-text">@T("Admin.Common.Search")</div>
+                                <div class="search-text">@await T("Admin.Common.Search")</div>
                                 <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                                 <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                             </div>
@@ -56,7 +56,7 @@
                                     <div class="text-center col-12">
                                         <button type="button" id="search-product-tags" class="btn btn-primary btn-search">
                                             <i class="fas fa-search"></i>
-                                            @T("Admin.Common.Search")
+                                            @await T("Admin.Common.Search")
                                         </button>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                 <div class="cards-group">
                     <div class="card card-default">
                         <div class="card-body">
-                            <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.ProductTags", Docs.ProductTags + Utm.OnAdmin)" />
+                            <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.ProductTags", Docs.ProductTags + Utm.OnAdmin)" />
 
                             @await Html.PartialAsync("Table", new DataTablesModel
                             {
@@ -91,17 +91,17 @@
                                     },
                                     new ColumnProperty(nameof(ProductTagModel.Name))
                                     {
-                                        Title = T("Admin.Catalog.ProductTags.Fields.Name").Text
+                                        Title = (await T("Admin.Catalog.ProductTags.Fields.Name")).Value
                                     },
                                     new ColumnProperty(nameof(ProductTagModel.ProductCount))
                                     {
-                                        Title = T("Admin.Catalog.ProductTags.Fields.ProductCount").Text,
+                                        Title = (await T("Admin.Catalog.ProductTags.Fields.ProductCount")).Value,
                                         Width = "150",
                                         ClassName =  NopColumnClassDefaults.CenterAll
                                     },
                                     new ColumnProperty(nameof(ProductTagModel.Id))
                                     {
-                                        Title = T("Admin.Common.Edit").Text,
+                                        Title = (await T("Admin.Common.Edit")).Value,
                                         Width = "100",
                                         ClassName =  NopColumnClassDefaults.Button,
                                         Render = new RenderButtonEdit(new DataUrl("EditProductTag"))
@@ -127,7 +127,7 @@
                                     complete: function (jqXHR, textStatus) {
                                         if (jqXHR.status === 204)
                                         {
-                                            showAlert('nothingSelectedAlert', '@T("Admin.Common.Alert.NothingSelected")');
+                                            showAlert('nothingSelectedAlert', '@await T("Admin.Common.Alert.NothingSelected")');
                                             return;
                                         }
                                         updateTable('#product-tags-grid');

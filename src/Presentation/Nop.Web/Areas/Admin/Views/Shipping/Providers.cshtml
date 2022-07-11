@@ -3,7 +3,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Configuration.Shipping.Providers.Title").Text;
+    ViewBag.PageTitle = (await T("Admin.Configuration.Shipping.Providers.Title")).Value;
     //tour step
     ViewBag.TourStep = TourStep.ShippingProviders;
     //active menu item (system name)
@@ -21,7 +21,7 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Configuration.Shipping.Providers.Title")
+        @await T("Admin.Configuration.Shipping.Providers.Title")
     </h1>
     <div class="float-right">
         &nbsp;
@@ -36,8 +36,8 @@
                 <div class="card card-default">
                     <div class="card-body">
                         <p>
-                            <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.ShippingProviders", Docs.ShippingProviders + Utm.OnAdmin)" asp-add-wrapper="false"/>
-                            @T("Admin.Configuration.Shipping.Providers.DownloadMorePlugins", OfficialSite.ShippingPlugins + Utm.OnAdminShippingPlugins.Replace('?', '&'))
+                            <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.ShippingProviders", Docs.ShippingProviders + Utm.OnAdmin)" asp-add-wrapper="false"/>
+                            @await T("Admin.Configuration.Shipping.Providers.DownloadMorePlugins", OfficialSite.ShippingPlugins + Utm.OnAdminShippingPlugins.Replace('?', '&'))
                         </p>
 
                         <div id="shipping-methods-area">
@@ -53,16 +53,16 @@
                                     {
                                         new ColumnProperty(nameof(ShippingProviderModel.FriendlyName))
                                         {
-                                            Title = T("Admin.Configuration.Shipping.Providers.Fields.FriendlyName").Text
+                                            Title = (await T("Admin.Configuration.Shipping.Providers.Fields.FriendlyName")).Value
                                         },
                                         new ColumnProperty(nameof(ShippingProviderModel.SystemName))
                                         {
-                                            Title = T("Admin.Configuration.Shipping.Providers.Fields.SystemName").Text,
+                                            Title = (await T("Admin.Configuration.Shipping.Providers.Fields.SystemName")).Value,
                                             Width = "250"
                                         },
                                         new ColumnProperty(nameof(ShippingProviderModel.DisplayOrder))
                                         {
-                                            Title = T("Admin.Configuration.Shipping.Providers.Fields.DisplayOrder").Text,
+                                            Title = (await T("Admin.Configuration.Shipping.Providers.Fields.DisplayOrder")).Value,
                                             Width = "100",
                                             ClassName = NopColumnClassDefaults.CenterAll,
                                             Editable = true,
@@ -70,7 +70,7 @@
                                         },
                                         new ColumnProperty(nameof(ShippingProviderModel.IsActive))
                                         {
-                                            Title = T("Admin.Configuration.Shipping.Providers.Fields.IsActive").Text,
+                                            Title = (await T("Admin.Configuration.Shipping.Providers.Fields.IsActive")).Value,
                                             Width = "100",
                                             ClassName = NopColumnClassDefaults.CenterAll,
                                             Render = new RenderBoolean(),
@@ -79,14 +79,14 @@
                                         },
                                         new ColumnProperty(nameof(ShippingProviderModel.SystemName))
                                         {
-                                            Title = T("Admin.Configuration.Shipping.Providers.Configure").Text,
+                                            Title = (await T("Admin.Configuration.Shipping.Providers.Configure")).Value,
                                             Width = "200",
                                             ClassName =  NopColumnClassDefaults.Button + " column-configure",
                                             Render = new RenderCustom("renderColumnConfigure")
                                         },
                                         new ColumnProperty(nameof(ShippingProviderModel.SystemName))
                                         {
-                                            Title = T("Admin.Common.Edit").Text,
+                                            Title = (await T("Admin.Common.Edit")).Value,
                                             Width = "150",
                                             ClassName =  NopColumnClassDefaults.Button + " column-edit",
                                             Render = new RenderButtonsInlineEdit()
@@ -98,7 +98,7 @@
                         <script>
                             function renderColumnConfigure(data, type, row, meta) {
                                 if (row.ConfigurationUrl && row.ConfigurationUrl.length > 0) {
-                                    return '<a class="btn btn-default" href="' + row.ConfigurationUrl + '@(editQueryString)"><i class="fas fa-cog"></i>@T("Admin.Configuration.Shipping.Providers.Configure").Text</a>';
+                                    return '<a class="btn btn-default" href="' + row.ConfigurationUrl + '@(editQueryString)"><i class="fas fa-cog"></i>@await T("Admin.Configuration.Shipping.Providers.Configure")</a>';
                                 } else {
                                     return '';
                                 }

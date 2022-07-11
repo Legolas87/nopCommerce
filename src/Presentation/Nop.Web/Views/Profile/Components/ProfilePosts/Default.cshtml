@@ -7,14 +7,14 @@
         {
             <div class="topic">
                 <div class="topic-title">
-                    <label>@T("Profile.Topic"):</label>
+                    <label>@await T("Profile.Topic"):</label>
                     @Html.RouteLink(item.ForumTopicTitle, "TopicSlug", new { id = item.ForumTopicId, slug = item.ForumTopicSlug })
                 </div>
                 <div class="topic-body">
                     <p>@Html.Raw(item.ForumPostText)</p>
                 </div>
                 <div class="topic-data">
-                    <label>@T("Profile.PostedOn"):</label>
+                    <label>@await T("Profile.PostedOn"):</label>
                     <span>@item.Posted</span>
                 </div>
             </div>
@@ -24,7 +24,7 @@
 else
 {
     <div class="no-data">
-        @T("Profile.LatestPosts.NoPosts")
+        @await T("Profile.LatestPosts.NoPosts")
     </div>
 }
 @{

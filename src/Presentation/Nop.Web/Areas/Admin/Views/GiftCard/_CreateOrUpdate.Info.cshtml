@@ -19,7 +19,7 @@
                 <nop-label asp-for="PurchasedWithOrderNumber"/>
             </div>
             <div class="col-md-9">
-                <a asp-controller="Order" asp-action="Edit" asp-route-id="@Model.PurchasedWithOrderId.Value">@Model.PurchasedWithOrderNumber - @T("Admin.Common.View")</a>
+                <a asp-controller="Order" asp-action="Edit" asp-route-id="@Model.PurchasedWithOrderId.Value">@Model.PurchasedWithOrderNumber - @await T("Admin.Common.View")</a>
             </div>
         </div>
     }
@@ -61,7 +61,7 @@
                 <nop-editor asp-for="GiftCardCouponCode"/>
                 <span asp-validation-for="GiftCardCouponCode"></span>
                 <div class="input-group-append">
-                    <button type="button" id="generateCouponCode" class="btn btn-info">@T("Admin.GiftCards.Fields.GiftCardCouponCode.Generate")</button>
+                    <button type="button" id="generateCouponCode" class="btn btn-info">@await T("Admin.GiftCards.Fields.GiftCardCouponCode.Generate")</button>
                     <script>
                         $(document).ready(function() {
                             $('#generateCouponCode').click(function() {
@@ -143,11 +143,11 @@
             <div class="col-md-9">
                 <div class="input-group input-group-short">
                     <div class="input-group-text">
-                        @T(Model.IsRecipientNotified ? "Admin.Common.Yes" : "Admin.Common.No")
+                        @await T(Model.IsRecipientNotified ? "Admin.Common.Yes" : "Admin.Common.No")
                     </div>
                     <div class="input-group-append">
                         <button type="submit" name="notifyRecipient" class="btn btn-info">
-                            @T("Admin.GiftCards.Fields.IsRecipientNotified.Notify")
+                            @await T("Admin.GiftCards.Fields.IsRecipientNotified.Notify")
                         </button>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
     }
 </div>
 
-<nop-alert asp-alert-id="generateCouponCodeFailed" asp-alert-message="@T("Admin.GiftCards.Fields.GiftCardCouponCode.Alert.FailedGenerate")" />
+<nop-alert asp-alert-id="generateCouponCodeFailed" asp-alert-message="@await T("Admin.GiftCards.Fields.GiftCardCouponCode.Alert.FailedGenerate")" />
 
 <script>
     $(document).ready(function() {

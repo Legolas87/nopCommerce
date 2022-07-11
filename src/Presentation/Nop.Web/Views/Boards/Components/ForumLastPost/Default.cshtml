@@ -7,12 +7,12 @@
     if (Model.ShowTopic)
     {
         <div class="origin">
-            <label>@T("Forum.In"):</label>
+            <label>@await T("Forum.In"):</label>
             @Html.RouteLink(Model.ForumTopicSubject, "TopicSlug", new { id = Model.ForumTopicId, slug = Model.ForumTopicSeName })
         </div>
     }
     <div class="author">
-        <label>@T("Forum.By"):</label>
+        <label>@await T("Forum.By"):</label>
         @if (Model.AllowViewingProfiles)
         {
             @Html.RouteLink(Model.CustomerName, "CustomerProfile", new { Id = Model.CustomerId })
@@ -26,6 +26,6 @@
 else
 {
     <div class="no-post">
-        @T("Forum.NoPosts")
+        @await T("Forum.NoPosts")
     </div>
 }

@@ -68,7 +68,7 @@
                     @if (Model.Id > 0)
                     {
                         <button type="submit" name="changepassword" class="btn btn-info">
-                            @T("Admin.Customers.Customers.Fields.Password.Change")
+                            @await T("Admin.Customers.Customers.Fields.Password.Change")
                         </button>
                     }
                 </div>
@@ -105,13 +105,13 @@
                     <div class="form-check">
                         <input type="radio" class="form-check-input" name="Gender" id="Gender_Male" value="M" @(Model.Gender == "M" ? Html.Raw("checked") : null)>
                         <label class="form-check-label" for="Gender_Male">
-                            @T("Admin.Customers.Customers.Fields.Gender.Male")
+                            @await T("Admin.Customers.Customers.Fields.Gender.Male")
                         </label>
                     </div>
                     <div class="form-check">
                         <input type="radio" class="form-check-input" name="Gender" id="Gender_Female" value="F" @(Model.Gender == "F" ? Html.Raw("checked") : null)>
                         <label class="form-check-label" for="Gender_Female">
-                            @T("Admin.Customers.Customers.Fields.Gender.Female")
+                            @await T("Admin.Customers.Customers.Fields.Gender.Female")
                         </label>
                     </div>
                 </div>
@@ -272,12 +272,12 @@
             <div class="col-md-9">
                 <nop-editor asp-for="VatNumber" />
                 <div class="margin-t-5">
-                    (@string.Format(T("Admin.Customers.Customers.Fields.VatNumberStatus").Text, Model.VatNumberStatusNote))
+                    (@string.Format((await T("Admin.Customers.Customers.Fields.VatNumberStatus")).Value, Model.VatNumberStatusNote))
                     <button type="submit" name="markVatNumberAsValid" class="btn btn-primary">
-                        @T("Admin.Customers.Customers.Fields.VatNumber.MarkAsValid")
+                        @await T("Admin.Customers.Customers.Fields.VatNumber.MarkAsValid")
                     </button>
                     <button type="submit" name="markVatNumberAsInvalid" class="btn btn-danger">
-                        @T("Admin.Customers.Customers.Fields.VatNumber.MarkAsInvalid")
+                        @await T("Admin.Customers.Customers.Fields.VatNumber.MarkAsInvalid")
                     </button>
                 </div>
                 <span asp-validation-for="VatNumber"></span>
@@ -348,7 +348,7 @@
                         <text>
                             customerRoleIdsInput.setOptions({
                                 enable: false,
-                                placeholder: '@T("Admin.Customers.Customers.Fields.CustomerRoles.NoRoles")'
+                                placeholder: '@await T("Admin.Customers.Customers.Fields.CustomerRoles.NoRoles")'
                             });
                             customerRoleIdsInput._placeholder();
                             customerRoleIdsInput._enable();
@@ -365,7 +365,7 @@
         <div class="col-md-9">
             <nop-select asp-for="VendorId" asp-items="Model.AvailableVendors" />
             <span asp-validation-for="VendorId"></span>
-            <em>@T("Admin.Customers.Customers.VendorShouldBeInVendorsRole")</em>
+            <em>@await T("Admin.Customers.Customers.VendorShouldBeInVendorsRole")</em>
         </div>
     </div>
     @if (Model.AffiliateId > 0)
@@ -375,9 +375,9 @@
                 <nop-label asp-for="AffiliateId" />
             </div>
             <div class="col-md-9">
-                <a asp-controller="Affiliate" asp-action="Edit" asp-route-id="@Model.AffiliateId">@Model.AffiliateName - @T("Admin.Common.View")</a>
+                <a asp-controller="Affiliate" asp-action="Edit" asp-route-id="@Model.AffiliateId">@Model.AffiliateName - @await T("Admin.Common.View")</a>
                 <button type="submit" name="remove-affiliate" class="btn btn-danger">
-                    @T("Admin.Customers.Customers.Fields.Affiliate.Remove")
+                    @await T("Admin.Customers.Customers.Fields.Affiliate.Remove")
                 </button>
             </div>
         </div>
@@ -404,7 +404,7 @@
                         @if (Model.Id > 0)
                         {
                             <a id="mfa-bind-delete" href="#" class="btn btn-danger">
-                                @T("Admin.Common.Delete")
+                                @await T("Admin.Common.Delete")
                             </a>
                         }
                     </div>
@@ -432,17 +432,17 @@
                     {
                         new ColumnProperty(nameof(CustomerAssociatedExternalAuthModel.AuthMethodName))
                         {
-                            Title = T("Admin.Customers.Customers.AssociatedExternalAuth.Fields.AuthMethodName").Text,
+                            Title = (await T("Admin.Customers.Customers.AssociatedExternalAuth.Fields.AuthMethodName")).Value,
                             Width = "100"
                         },
                         new ColumnProperty(nameof(CustomerAssociatedExternalAuthModel.Email))
                         {
-                            Title = T("Admin.Customers.Customers.AssociatedExternalAuth.Fields.Email").Text,
+                            Title = (await T("Admin.Customers.Customers.AssociatedExternalAuth.Fields.Email")).Value,
                             Width = "100"
                         },
                         new ColumnProperty(nameof(CustomerAssociatedExternalAuthModel.ExternalIdentifier))
                         {
-                            Title = T("Admin.Customers.Customers.AssociatedExternalAuth.Fields.ExternalIdentifier").Text,
+                            Title = (await T("Admin.Customers.Customers.AssociatedExternalAuth.Fields.ExternalIdentifier")).Value,
                             Width = "300"
                         }
                     },
@@ -523,4 +523,4 @@
     }
 </div>
 
-<nop-alert asp-alert-id="statesAlert" asp-alert-message="@T("Admin.Common.Alert.States.Failed")" />
+<nop-alert asp-alert-id="statesAlert" asp-alert-message="@await T("Admin.Common.Alert.States.Failed")" />

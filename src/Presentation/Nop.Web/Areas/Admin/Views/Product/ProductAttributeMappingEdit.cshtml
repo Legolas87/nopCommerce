@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Catalog.Products.ProductAttributes.Attributes.EditAttributeDetails").Text;
+    ViewBag.PageTitle = (await T("Admin.Catalog.Products.ProductAttributes.Attributes.EditAttributeDetails")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Products");
 }
@@ -10,24 +10,24 @@
 <form asp-controller="Product" asp-action="ProductAttributeMappingEdit" method="post" id="productattribute-form">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Catalog.Products.ProductAttributes.Attributes.EditAttributeDetails")
+            @await T("Admin.Catalog.Products.ProductAttributes.Attributes.EditAttributeDetails")
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
-                <a asp-action="Edit" asp-route-id="@Model.ProductId">@T("Admin.Catalog.Products.ProductAttributes.Attributes.BackToProduct")</a>
+                <a asp-action="Edit" asp-route-id="@Model.ProductId">@await T("Admin.Catalog.Products.ProductAttributes.Attributes.BackToProduct")</a>
             </small>
         </h1>
         <div class="float-right">
             <button type="submit" name="save" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.Save")
+                @await T("Admin.Common.Save")
             </button>
             <button type="submit" name="save-continue" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.SaveContinue")
+                @await T("Admin.Common.SaveContinue")
             </button>
             <span id="productattribute-delete" class="btn btn-danger">
                 <i class="far fa-trash-alt"></i>
-                @T("Admin.Common.Delete")
+                @await T("Admin.Common.Delete")
             </span>
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.ProductAttributeMappingDetailsButtons, additionalData = Model })
         </div>

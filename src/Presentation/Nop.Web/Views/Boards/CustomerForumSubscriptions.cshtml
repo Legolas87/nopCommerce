@@ -3,7 +3,7 @@
     Layout = "_ColumnsTwo";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.ForumSubscriptions").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.ForumSubscriptions")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-account-page");
     NopHtml.AppendPageCssClassParts("html-forum-subscriptions-page");
@@ -14,13 +14,13 @@
 }
 <div class="page account-page forum-subscriptions-page">
     <div class="page-title">
-        <h1>@T("Account.MyAccount") - @T("Account.ForumSubscriptions")</h1>
+        <h1>@await T("Account.MyAccount") - @await T("Account.ForumSubscriptions")</h1>
     </div>
     <div class="page-body">
         @if (Model.ForumSubscriptions.Count > 0)
         {
             <div class="description">
-                @T("Account.ForumSubscriptions.Description")
+                @await T("Account.ForumSubscriptions.Description")
             </div>
             <script asp-location="Footer">
                 $(document).ready(function () {
@@ -49,7 +49,7 @@
                                     <input type="checkbox" id="selectall" />
                                 </th>
                                 <th class="info">
-                                    @T("Account.ForumSubscriptions.InfoColumn")
+                                    @await T("Account.ForumSubscriptions.InfoColumn")
                                 </th>
                             </tr>
                             </thead>
@@ -86,7 +86,7 @@
                         </div>
                     }
                     <div class="buttons">
-                        <button type="submit" class="button-1 delete-selected-fs-button">@T("Account.ForumSubscriptions.DeleteSelected")</button>
+                        <button type="submit" class="button-1 delete-selected-fs-button">@await T("Account.ForumSubscriptions.DeleteSelected")</button>
                     </div>
                 </div>
             </form>
@@ -94,7 +94,7 @@
         else
         {
             <div class="no-data">
-                @T("Account.ForumSubscriptions.NoSubscriptions")
+                @await T("Account.ForumSubscriptions.NoSubscriptions")
             </div>
         }
     </div>

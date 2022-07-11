@@ -11,8 +11,8 @@
     <div class="card-header with-border">
         <h3 class="card-title">
             <i class="fas fa-cart-plus"></i>
-            @T("Admin.Dashboard.LatestOrders")
-            <a asp-controller="Order" asp-action="List" class="btn btn-xs btn-info btn-flat margin-l-10">@T("Admin.Dashboard.LatestOrders.ViewAll")</a>
+            @await T("Admin.Dashboard.LatestOrders")
+            <a asp-controller="Order" asp-action="List" class="btn btn-xs btn-info btn-flat margin-l-10">@await T("Admin.Dashboard.LatestOrders.ViewAll")</a>
         </h3>
         <div class="card-tools float-right">
             <button class="btn btn-tool" data-card-widget="collapse">
@@ -50,30 +50,30 @@
             {
                 new ColumnProperty(nameof(OrderModel.CustomOrderNumber))
                 {
-                    Title = T("Admin.Orders.Fields.CustomOrderNumber").Text,
+                    Title = (await T("Admin.Orders.Fields.CustomOrderNumber")).Value,
                     Width = "80"
                 },
                 new ColumnProperty(nameof(OrderModel.OrderStatus))
                 {
-                    Title = T("Admin.Orders.Fields.OrderStatus").Text,
+                    Title = (await T("Admin.Orders.Fields.OrderStatus")).Value,
                     Width = "100",
                     Render = new RenderCustom("renderColumnOrderStatus")
                 },
                 new ColumnProperty(nameof(OrderModel.CustomerEmail))
                 {
-                    Title = T("Admin.Orders.Fields.Customer").Text,
+                    Title = (await T("Admin.Orders.Fields.Customer")).Value,
                     Width = "250",
                     Render = new RenderCustom("renderColumnCustomerEmail")
                 },
                 new ColumnProperty(nameof(OrderModel.CreatedOn))
                 {
-                    Title = T("Admin.Orders.Fields.CreatedOn").Text,
+                    Title = (await T("Admin.Orders.Fields.CreatedOn")).Value,
                     Width = "100",
                     Render = new RenderDate()
                 },
                 new ColumnProperty(nameof(OrderModel.Id))
                 {
-                    Title = T("Admin.Common.View").Text,
+                    Title = (await T("Admin.Common.View")).Value,
                     Width = "50",
                     ClassName = NopColumnClassDefaults.Button,
                     Render = new RenderButtonView(new DataUrl("~/Admin/Order/Edit/"))

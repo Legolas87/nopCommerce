@@ -231,7 +231,7 @@
         <div class="cards-group">
             <div class="card card-default">
                 <div class="card-header">
-                    @T("Plugins.Widgets.FacebookPixel.Configuration.CustomEvents")
+                    @await T("Plugins.Widgets.FacebookPixel.Configuration.CustomEvents")
                 </div>
                 @if (Model.Id > 0)
                 {
@@ -252,7 +252,7 @@
                                         <div class="col-md-9 offset-md-4">
                                             <button type="button" id="search" class="btn btn-primary btn-search">
                                                 <i class="fas fa-search"></i>
-                                                @T("Admin.Common.Search")
+                                                @await T("Admin.Common.Search")
                                             </button>
                                         </div>
                                     </div>
@@ -276,19 +276,19 @@
                             {
                                 new ColumnProperty(nameof(CustomEventModel.EventName))
                                 {
-                                    Title = T("Plugins.Widgets.FacebookPixel.Configuration.CustomEvents.Fields.EventName").Text,
+                                    Title = (await T("Plugins.Widgets.FacebookPixel.Configuration.CustomEvents.Fields.EventName")).Value,
                                     Width = "200"
                                 },
                                 new ColumnProperty(nameof(CustomEventModel.WidgetZonesName))
                                 {
-                                    Title = T("Plugins.Widgets.FacebookPixel.Configuration.CustomEvents.Fields.WidgetZones").Text
+                                    Title = (await T("Plugins.Widgets.FacebookPixel.Configuration.CustomEvents.Fields.WidgetZones")).Value
                                 },
                                 new ColumnProperty(nameof(CustomEventModel.EventName))
                                 {
-                                    Title = T("Admin.Common.Delete").Text,
+                                    Title = (await T("Admin.Common.Delete")).Value,
                                     Width = "100",
                                     ClassName =  NopColumnClassDefaults.Button,
-                                    Render = new RenderButtonRemove(T("Admin.Common.Delete").Text)
+                                    Render = new RenderButtonRemove((await T("Admin.Common.Delete")).Value)
                                 }
                             }
                         })
@@ -322,7 +322,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-9 offset-md-3">
-                                <button type="button" id="add" class="btn btn-primary">@T("Admin.Common.AddNewRecord")</button>
+                                <button type="button" id="add" class="btn btn-primary">@await T("Admin.Common.AddNewRecord")</button>
                             </div>
                         </div>
 
@@ -368,7 +368,7 @@
                 else
                 {
                     <div class="card-body">
-                        @T("Plugins.Widgets.FacebookPixel.Configuration.CustomEvents.SaveBeforeEdit")
+                        @await T("Plugins.Widgets.FacebookPixel.Configuration.CustomEvents.SaveBeforeEdit")
                     </div>
                 }
             </div>

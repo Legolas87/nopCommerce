@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Configuration.Currencies").Text;
+    ViewBag.PageTitle = (await T("Admin.Configuration.Currencies")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Currencies");
 }
@@ -10,20 +10,20 @@
 <form asp-controller="Currency" asp-action="List" method="post">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Configuration.Currencies")
+            @await T("Admin.Configuration.Currencies")
         </h1>
         <div class="float-right">
             <button type="submit" name="save" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.Save")
+                @await T("Admin.Common.Save")
             </button>
             <a asp-controller="Currency" asp-action="List" asp-route-liveRates="true" class="btn btn-success">
                 <i class="fas fa-tasks"></i>
-                @T("Admin.Configuration.Currencies.GetLiveRates")
+                @await T("Admin.Configuration.Currencies.GetLiveRates")
             </a>
             <a asp-action="Create" class="btn btn-primary">
                 <i class="fas fa-plus-square"></i>
-                @T("Admin.Common.AddNew")
+                @await T("Admin.Common.AddNew")
             </a>
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.CurrencyListButtons, additionalData = Model })
         </div>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="card card-default">
                             <div class="card-body">
-                                <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Currencies", Docs.Currencies + Utm.OnAdmin)" />
+                                <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.Currencies", Docs.Currencies + Utm.OnAdmin)" />
 
                                 @await Html.PartialAsync("Table", new DataTablesModel
                             {
@@ -70,66 +70,66 @@
                                 {
                                     new ColumnProperty(nameof(CurrencyModel.Name))
                                     {
-                                        Title = T("Admin.Configuration.Currencies.Fields.Name").Text
+                                        Title = (await T("Admin.Configuration.Currencies.Fields.Name")).Value
                                     },
                                     new ColumnProperty(nameof(CurrencyModel.CurrencyCode))
                                     {
-                                        Title = T("Admin.Configuration.Currencies.Fields.CurrencyCode").Text,
+                                        Title = (await T("Admin.Configuration.Currencies.Fields.CurrencyCode")).Value,
                                         Width = "100"
                                     },
                                     new ColumnProperty(nameof(CurrencyModel.Rate))
                                     {
-                                        Title = T("Admin.Configuration.Currencies.Fields.Rate").Text,
+                                        Title = (await T("Admin.Configuration.Currencies.Fields.Rate")).Value,
                                         Width = "80"
                                     },
                                     new ColumnProperty(nameof(CurrencyModel.IsPrimaryExchangeRateCurrency))
                                     {
-                                        Title = T("Admin.Configuration.Currencies.Fields.IsPrimaryExchangeRateCurrency").Text,
+                                        Title = (await T("Admin.Configuration.Currencies.Fields.IsPrimaryExchangeRateCurrency")).Value,
                                         Width = "100",
                                         ClassName =  NopColumnClassDefaults.CenterAll,
                                         Render = new RenderBoolean()
                                     },
                                     new ColumnProperty(nameof(CurrencyModel.Id))
                                     {
-                                        Title = T("Admin.Configuration.Currencies.Fields.MarkAsPrimaryExchangeRateCurrency").Text,
+                                        Title = (await T("Admin.Configuration.Currencies.Fields.MarkAsPrimaryExchangeRateCurrency")).Value,
                                         ClassName =  NopColumnClassDefaults.CenterAll,
-                                        Render = new RenderButtonCustom(NopButtonClassDefaults.Olive, T("Admin.Configuration.Currencies.Fields.MarkAsPrimaryExchangeRateCurrency").Text)
+                                        Render = new RenderButtonCustom(NopButtonClassDefaults.Olive, (await T("Admin.Configuration.Currencies.Fields.MarkAsPrimaryExchangeRateCurrency")).Value)
                                         {
                                             OnClickFunctionName =  "markAsPrimaryExchangeRateCurrency"
                                         }
                                     },
                                     new ColumnProperty(nameof(CurrencyModel.IsPrimaryStoreCurrency))
                                     {
-                                        Title = T("Admin.Configuration.Currencies.Fields.IsPrimaryStoreCurrency").Text,
+                                        Title = (await T("Admin.Configuration.Currencies.Fields.IsPrimaryStoreCurrency")).Value,
                                         Width = "100",
                                         ClassName =  NopColumnClassDefaults.CenterAll,
                                         Render = new RenderBoolean()
                                     },
                                     new ColumnProperty(nameof(CurrencyModel.Id))
                                     {
-                                        Title = T("Admin.Configuration.Currencies.Fields.MarkAsPrimaryStoreCurrency").Text,                                        
+                                        Title = (await T("Admin.Configuration.Currencies.Fields.MarkAsPrimaryStoreCurrency")).Value,                                        
                                         ClassName =  NopColumnClassDefaults.CenterAll,
-                                        Render = new RenderButtonCustom(NopButtonClassDefaults.Olive, T("Admin.Configuration.Currencies.Fields.MarkAsPrimaryStoreCurrency").Text)
+                                        Render = new RenderButtonCustom(NopButtonClassDefaults.Olive, (await T("Admin.Configuration.Currencies.Fields.MarkAsPrimaryStoreCurrency")).Value)
                                         {
                                             OnClickFunctionName = "markAsPrimaryStoreCurrency"
                                         }
                                     },
                                     new ColumnProperty(nameof(CurrencyModel.DisplayOrder))
                                     {
-                                        Title = T("Admin.Configuration.Currencies.Fields.DisplayOrder").Text,
+                                        Title = (await T("Admin.Configuration.Currencies.Fields.DisplayOrder")).Value,
                                         Width = "50",
                                         ClassName =  NopColumnClassDefaults.CenterAll
                                     },
                                     new ColumnProperty(nameof(CurrencyModel.Published))
                                     {
-                                        Title = T("Admin.Configuration.Currencies.Fields.Published").Text,
+                                        Title = (await T("Admin.Configuration.Currencies.Fields.Published")).Value,
                                         Width = "50",
                                         ClassName =  NopColumnClassDefaults.CenterAll,
                                         Render = new RenderBoolean()
                                     },
                                     new ColumnProperty(nameof(CurrencyModel.Id))
                                     {
-                                        Title = T("Admin.Common.Edit").Text,
+                                        Title = (await T("Admin.Common.Edit")).Value,
                                         Width = "80",
                                         ClassName =  NopColumnClassDefaults.Button,
                                         Render = new RenderButtonEdit(new DataUrl("Edit"))
@@ -204,11 +204,11 @@
                         {
                             <div class="card card-default">
                                 <div class="card-header">
-                                    @T("Admin.Configuration.Currencies.LiveRates")
+                                    @await T("Admin.Configuration.Currencies.LiveRates")
                                 </div>
                                 <div class="card-body">
 
-                                    <a onclick="applyCurrencyRate()" class="btn bg-olive">@T("Admin.Configuration.Currencies.ApplyRate.All")</a>
+                                    <a onclick="applyCurrencyRate()" class="btn bg-olive">@await T("Admin.Configuration.Currencies.ApplyRate.All")</a>
                                     @await Html.PartialAsync("Table", new DataTablesModel
                                     {
                                         Name = "rate-grid",
@@ -221,17 +221,17 @@
                                         {
                                             new ColumnProperty(nameof(CurrencyModel.CurrencyCode))
                                             {
-                                                Title = T("Admin.Configuration.Currencies.Fields.CurrencyCode").Text,
+                                                Title = (await T("Admin.Configuration.Currencies.Fields.CurrencyCode")).Value,
                                                 Width = "300"
                                             },
                                             new ColumnProperty(nameof(CurrencyModel.Rate))
                                             {
-                                                Title = T("Admin.Configuration.Currencies.Fields.Rate").Text,
+                                                Title = (await T("Admin.Configuration.Currencies.Fields.Rate")).Value,
                                                 Width = "300"
                                             },
                                             new ColumnProperty(nameof(CurrencyModel.CurrencyCode))
                                             {
-                                                Title = T("Admin.Configuration.Currencies.ApplyRate").Text,
+                                                Title = (await T("Admin.Configuration.Currencies.ApplyRate")).Value,
                                                 Width = "200",
                                                 ClassName = NopColumnClassDefaults.Button,
                                                 Render = new RenderCustom("renderColumnApplyRate")
@@ -244,7 +244,7 @@
                                         row.Rate +
                                         '\',\'' +
                                         row.CurrencyCode +
-                                        '\')" class="btn bg-olive">@T("Admin.Configuration.Currencies.ApplyRate")</a>';
+                                        '\')" class="btn bg-olive">@await T("Admin.Configuration.Currencies.ApplyRate")</a>';
                                 }
 
                                 function applyCurrencyRate(rate, currencyCode) {
@@ -297,4 +297,4 @@
 </form>
 <nop-action-confirmation asp-button-id="btnMarkPERC" asp-additional-confirm="Admin.Configuration.Currencies.AdditionalConfirm" />
 <nop-action-confirmation asp-button-id="btnMarkPSC" asp-additional-confirm="Admin.Configuration.Currencies.AdditionalConfirm" />
-<nop-alert asp-alert-id="currencyAlert" asp-alert-message="@T("Admin.Configuration.Currencies.Alert.Error")" />
+<nop-alert asp-alert-id="currencyAlert" asp-alert-message="@await T("Admin.Configuration.Currencies.Alert.Error")" />

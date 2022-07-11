@@ -7,10 +7,10 @@
     <div class="section pickup-in-store">
         <div class="selector">
             <input asp-for="PickupInStore" onclick="togglePickupInStore(this)" />
-            <label asp-for="PickupInStore">@T("Checkout.PickupPoints")</label>
+            <label asp-for="PickupInStore">@await T("Checkout.PickupPoints")</label>
         </div>
         <div class="description">
-            @T("Checkout.PickupPoints.Description")
+            @await T("Checkout.PickupPoints.Description")
         </div>
         <script asp-location="Footer">
             $(document).ready(function () {
@@ -54,7 +54,7 @@
             }
             else
             {
-                <label for="pickup-points-select">@T("Checkout.PickupPoints.SelectPickupPoint")</label>
+                <label for="pickup-points-select">@await T("Checkout.PickupPoints.SelectPickupPoint")</label>
                 <select name="pickup-points-id" id="pickup-points-select" class="address-select" title="">
                     @foreach (var point in Model.PickupPoints)
                     {

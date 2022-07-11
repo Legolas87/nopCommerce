@@ -4,7 +4,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = string.Format(T("Admin.Orders.Products.AddNew.Title2").Text, Model.Name, Model.OrderId);
+    ViewBag.PageTitle = string.Format((await T("Admin.Orders.Products.AddNew.Title2")).Value, Model.Name, Model.OrderId);
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Orders");
 }
@@ -18,10 +18,10 @@
 
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @string.Format(T("Admin.Orders.Products.AddNew.Title2").Text, Model.Name, Model.OrderId)
+            @string.Format((await T("Admin.Orders.Products.AddNew.Title2")).Value, Model.Name, Model.OrderId)
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
-                <a asp-action="AddProductToOrder" asp-route-orderId="@Model.OrderId">@T("Admin.Orders.Products.AddNew.BackToList")</a>
+                <a asp-action="AddProductToOrder" asp-route-orderId="@Model.OrderId">@await T("Admin.Orders.Products.AddNew.BackToList")</a>
             </small>
         </h1>
         <div class="float-right">
@@ -108,7 +108,7 @@
                                     <div class="form-group row">
                                         <div class="col-md-9 offset-md-3">
                                             <p>
-                                                <strong>@T("Admin.Orders.Products.AddNew.UpdateTotals")</strong>
+                                                <strong>@await T("Admin.Orders.Products.AddNew.UpdateTotals")</strong>
                                             </p>
                                         </div>
                                     </div>
@@ -116,7 +116,7 @@
                                 <div class="form-group row">
                                     <div class="col-md-9 offset-md-3">
                                         <button type="submit" class="btn btn-primary">
-                                            @T("Admin.Orders.Products.AddNew")
+                                            @await T("Admin.Orders.Products.AddNew")
                                         </button>
                                     </div>
                                 </div>

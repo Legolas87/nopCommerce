@@ -3,7 +3,7 @@
     Layout = "_ColumnsOne";
 
     //title
-    NopHtml.AddTitleParts(T("Forum.PageTitle.Default").Text);
+    NopHtml.AddTitleParts((await T("Forum.PageTitle.Default")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-forums-main-page");
 }

@@ -2,11 +2,11 @@
 
 <div class="card card-default">
     <div class="card-header">
-        @T("Admin.Customers.CustomerAttributes")
+        @await T("Admin.Customers.CustomerAttributes")
     </div>
     <div class="card-body">
         <p>
-            <em>@T("Admin.Customers.CustomerAttributes.Description")</em>
+            <em>@await T("Admin.Customers.CustomerAttributes.Description")</em>
         </p>
         @await Html.PartialAsync("Table", new DataTablesModel
         {
@@ -18,30 +18,30 @@
             {
                 new ColumnProperty(nameof(CustomerAttributeModel.Name))
                 {
-                    Title = T("Admin.Customers.CustomerAttributes.Fields.Name").Text,
+                    Title = (await T("Admin.Customers.CustomerAttributes.Fields.Name")).Value,
                     Width = "300"
                 },
                 new ColumnProperty(nameof(CustomerAttributeModel.AttributeControlTypeName))
                 {
-                    Title = T("Admin.Customers.CustomerAttributes.Fields.AttributeControlType").Text,
+                    Title = (await T("Admin.Customers.CustomerAttributes.Fields.AttributeControlType")).Value,
                     Width = "200"
                 },
                 new ColumnProperty(nameof(CustomerAttributeModel.IsRequired))
                 {
-                    Title = T("Admin.Customers.CustomerAttributes.Fields.IsRequired").Text,
+                    Title = (await T("Admin.Customers.CustomerAttributes.Fields.IsRequired")).Value,
                     Width = "200",
                     ClassName =  NopColumnClassDefaults.CenterAll,
                     Render = new RenderBoolean()
                 },
                 new ColumnProperty(nameof(CustomerAttributeModel.DisplayOrder))
                 {
-                    Title = T("Admin.Customers.CustomerAttributes.Fields.DisplayOrder").Text,
+                    Title = (await T("Admin.Customers.CustomerAttributes.Fields.DisplayOrder")).Value,
                     Width = "100",
                     ClassName =  NopColumnClassDefaults.CenterAll
                 },
                 new ColumnProperty(nameof(CustomerAttributeModel.Id))
                 {
-                    Title = T("Admin.Common.Edit").Text,
+                    Title = (await T("Admin.Common.Edit")).Value,
                     Width = "100",
                     ClassName =  NopColumnClassDefaults.Button,
                     Render = new RenderButtonEdit(new DataUrl("~/Admin/CustomerAttribute/Edit/"))
@@ -52,7 +52,7 @@
     <div class="card-footer">
         <a class="btn btn-primary" href="@Url.Action("Create", "CustomerAttribute")">
             <i class="fas fa-plus-square"></i>
-            @T("Admin.Common.AddNew")
+            @await T("Admin.Common.AddNew")
         </a>
     </div>
 </div>

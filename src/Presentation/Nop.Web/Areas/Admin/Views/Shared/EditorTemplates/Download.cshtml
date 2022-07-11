@@ -82,7 +82,7 @@
                 <div class="col-sm-4">
                     <div class="label-wrapper">
                         <label class="col-form-label">
-                            @T("Admin.Download.UseDownloadURL")
+                            @await T("Admin.Download.UseDownloadURL")
                         </label>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                 <div class="col-sm-4">
                     <div class="label-wrapper">
                         <label class="col-form-label">
-                            @T("Admin.Download.DownloadURL")
+                            @await T("Admin.Download.DownloadURL")
                         </label>
                     </div>
                 </div>
@@ -108,8 +108,8 @@
             </div>
             <div class="form-group row">
                 <div class="col-sm-8 offset-sm-4">
-                    <button type="button" id="saveDownloadUrl@(randomNumber)" class="btn btn-primary">@T("Admin.Download.SaveDownloadURL")</button>
-                    <div id="pnlDownloadURLResult@(randomNumber)" style="display: none;">@T("Admin.Download.DownloadURLSaved")</div>
+                    <button type="button" id="saveDownloadUrl@(randomNumber)" class="btn btn-primary">@await T("Admin.Download.SaveDownloadURL")</button>
+                    <div id="pnlDownloadURLResult@(randomNumber)" style="display: none;">@await T("Admin.Download.DownloadURLSaved")</div>
                 </div>
             </div>
         </div>
@@ -117,7 +117,7 @@
             <div class="col-sm-4">
                 <div class="label-wrapper">
                     <label class="col-form-label">
-                        @T("Admin.Download.UploadFile")
+                        @await T("Admin.Download.UploadFile")
                     </label>
                 </div>
             </div>
@@ -135,13 +135,13 @@
                 <script type="text/template" id="@(clientId)-qq-template">
                     <div class="qq-uploader-selector qq-uploader">
                         <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
-                            <span>@T("Common.FileUploader.DropFiles")</span>
+                            <span>@await T("Common.FileUploader.DropFiles")</span>
                         </div>
                         <div class="qq-upload-button-selector qq-upload-button">
-                            <div>@T("Common.FileUploader.Upload")</div>
+                            <div>@await T("Common.FileUploader.Upload")</div>
                         </div>
                         <span class="qq-drop-processing-selector qq-drop-processing">
-                            <span>@T("Common.FileUploader.Processing")</span>
+                            <span>@await T("Common.FileUploader.Processing")</span>
                             <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
                         </span>
                         <ul class="qq-upload-list-selector qq-upload-list">
@@ -154,9 +154,9 @@
                                 <span class="qq-upload-file-selector qq-upload-file"></span>
                                 <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
                                 <span class="qq-upload-size-selector qq-upload-size"></span>
-                                <a class="qq-upload-cancel-selector qq-upload-cancel" href="#">@T("Common.FileUploader.Cancel")</a>
-                                <a class="qq-upload-retry-selector qq-upload-retry" href="#">@T("Common.FileUploader.Retry")</a>
-                                <a class="qq-upload-delete-selector qq-upload-delete" href="#">@T("Common.FileUploader.Delete")</a>
+                                <a class="qq-upload-cancel-selector qq-upload-cancel" href="#">@await T("Common.FileUploader.Cancel")</a>
+                                <a class="qq-upload-retry-selector qq-upload-retry" href="#">@await T("Common.FileUploader.Retry")</a>
+                                <a class="qq-upload-delete-selector qq-upload-delete" href="#">@await T("Common.FileUploader.Delete")</a>
                                 <span class="qq-upload-status-text-selector qq-upload-status-text"></span>
                             </li>
                         </ul>
@@ -173,7 +173,7 @@
                             template: "@(clientId)-qq-template",
                             multiple: false
                         }).on("complete", function (event, id, name, responseJSON, xhr) {
-                            $("#@(clientId + "downloadurl")").html("<a class='btn btn-default ml-1' href='" + responseJSON.downloadUrl + "'><i class='fas fa-download'></i>@T("Admin.Download.DownloadUploadedFile")</a>");
+                            $("#@(clientId + "downloadurl")").html("<a class='btn btn-default ml-1' href='" + responseJSON.downloadUrl + "'><i class='fas fa-download'></i>@await T("Admin.Download.DownloadUploadedFile")</a>");
                             $("#@(clientId + "value") input").val(responseJSON.downloadId);
                             $("#@(clientId + "remove")").show();
                         });
@@ -192,17 +192,17 @@
                     <div id="@(clientId + "downloadurl")" class="float-left my-1">
                         @if (download != null)
                         {
-                            <a class='btn btn-default' href="@(Url.Action("DownloadFile", "Download", new { downloadGuid = download.DownloadGuid, area = AreaNames.Admin }))"><i class='fas fa-download'></i>@T("Admin.Download.DownloadUploadedFile")</a>
+                            <a class='btn btn-default' href="@(Url.Action("DownloadFile", "Download", new { downloadGuid = download.DownloadGuid, area = AreaNames.Admin }))"><i class='fas fa-download'></i>@await T("Admin.Download.DownloadUploadedFile")</a>
                         }
                     </div>
                     <div class="float-left my-1">
                         @if (download != null)
                         {
-                            <span id="@(clientId + "remove")" class="btn btn-default ml-2"><i class="far fa-trash-alt"></i>@T("Admin.Download.RemoveDownload")</span>
+                            <span id="@(clientId + "remove")" class="btn btn-default ml-2"><i class="far fa-trash-alt"></i>@await T("Admin.Download.RemoveDownload")</span>
                         }
                         else
                         {
-                            <span id="@(clientId + "remove")" class="btn btn-default ml-2" style="display:none;"><i class="far fa-trash-alt"></i>@T("Admin.Download.RemoveDownload")</span>
+                            <span id="@(clientId + "remove")" class="btn btn-default ml-2" style="display:none;"><i class="far fa-trash-alt"></i>@await T("Admin.Download.RemoveDownload")</span>
                         }
                     </div>
                 </div>
@@ -210,5 +210,5 @@
         </div>
     </div>
 </div>
-<nop-alert asp-alert-id="saveDownloadUrlAlert" asp-alert-message="@T("Admin.Download.SaveDownloadURL.Alert.FailedSave")" />
+<nop-alert asp-alert-id="saveDownloadUrlAlert" asp-alert-message="@await T("Admin.Download.SaveDownloadURL.Alert.FailedSave")" />
 <nop-alert asp-alert-id="saveDownloadUrlFailed" />

@@ -6,7 +6,7 @@
 {
     <div class="block block-vendor-navigation">
         <div class="title">
-            <strong>@T("Vendors")</strong>
+            <strong>@await T("Vendors")</strong>
         </div>
         <div class="listbox">
             <ul class="list">
@@ -20,7 +20,7 @@
             @if (Model.TotalVendors > Model.Vendors.Count)
             {
                 <div class="view-all">
-                    <a href="@Url.RouteUrl("VendorList")">@T("Vendors.ViewAll")</a>
+                    <a href="@Url.RouteUrl("VendorList")">@await T("Vendors.ViewAll")</a>
                 </div>
             }
         </div>

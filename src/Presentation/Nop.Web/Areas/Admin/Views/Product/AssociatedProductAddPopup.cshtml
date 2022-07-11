@@ -4,7 +4,7 @@
     Layout = "_AdminPopupLayout";
 
     //page title
-    ViewBag.PageTitle = T("Admin.Catalog.Products.AssociatedProducts.AddNew").Text;
+    ViewBag.PageTitle = (await T("Admin.Catalog.Products.AssociatedProducts.AddNew")).Value;
 }
 
 @if (ViewBag.RefreshPage == true)
@@ -27,7 +27,7 @@
         asp-route-formId="@Context.Request.Query["formId"]">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Catalog.Products.AssociatedProducts.AddNew")
+            @await T("Admin.Catalog.Products.AssociatedProducts.AddNew")
         </h1>
         <div class="float-right">
             &nbsp;
@@ -98,7 +98,7 @@
                             <div class="col-sm-12">
                                 <button type="button" id="search-products" class="btn btn-primary btn-search">
                                     <i class="fas fa-search"></i>
-                                    @T("Admin.Common.Search")
+                                    @await T("Admin.Common.Search")
                                 </button>
                             </div>
                         </div>
@@ -134,12 +134,12 @@
                                 },
                                 new ColumnProperty(nameof(ProductModel.Name))
                                 {
-                                    Title = T("Admin.Catalog.Products.Fields.Name").Text,
+                                    Title = (await T("Admin.Catalog.Products.Fields.Name")).Value,
                                     Render = new RenderCustom("renderColumnName")
                                 },
                                 new ColumnProperty(nameof(ProductModel.Published))
                                 {
-                                    Title = T("Admin.Catalog.Products.Fields.Published").Text,
+                                    Title = (await T("Admin.Catalog.Products.Fields.Published")).Value,
                                     Width = "100",
                                     ClassName = NopColumnClassDefaults.CenterAll,
                                     Render = new RenderBoolean()
@@ -151,7 +151,7 @@
                                 var textRenderer = $.fn.dataTable.render.text().display;
                                 var associatedProductBlock = '';
                                 if (row.AssociatedToProductName !== null) {
-                                    associatedProductBlock = '<div><i>@T("Admin.Catalog.Products.Fields.AssociatedToProductName").Text ' + textRenderer(row.AssociatedToProductName) + '</i></div>';
+                                    associatedProductBlock = '<div><i>@await T("Admin.Catalog.Products.Fields.AssociatedToProductName") ' + textRenderer(row.AssociatedToProductName) + '</i></div>';
                                 }
                                 return textRenderer(row.Name) + associatedProductBlock;
                             }
@@ -160,7 +160,7 @@
                     <div class="card-footer">
                         <button type="submit" name="save" class="btn btn-primary">
                             <i class="far fa-save"></i>
-                            @T("Admin.Common.Save")
+                            @await T("Admin.Common.Save")
                         </button>
                     </div>
                 </div>

@@ -14,39 +14,39 @@
             {
                 new ColumnProperty(nameof(StateProvinceModel.Name))
                 {
-                    Title = T("Admin.Configuration.Countries.States.Fields.Name").Text,
+                    Title = (await T("Admin.Configuration.Countries.States.Fields.Name")).Value,
                     Width = "300"
                 },
                 new ColumnProperty(nameof(StateProvinceModel.Abbreviation))
                 {
-                    Title = T("Admin.Configuration.Countries.States.Fields.Abbreviation").Text,
+                    Title = (await T("Admin.Configuration.Countries.States.Fields.Abbreviation")).Value,
                     Width = "150"
                 },
                 new ColumnProperty(nameof(StateProvinceModel.Published))
                 {
-                    Title = T("Admin.Configuration.Countries.States.Fields.Published").Text,
+                    Title = (await T("Admin.Configuration.Countries.States.Fields.Published")).Value,
                     Width = "100",
                     ClassName = NopColumnClassDefaults.CenterAll,
                     Render = new RenderBoolean()
                 },
                 new ColumnProperty(nameof(StateProvinceModel.DisplayOrder))
                 {
-                    Title = T("Admin.Configuration.Countries.States.Fields.DisplayOrder").Text,
+                    Title = (await T("Admin.Configuration.Countries.States.Fields.DisplayOrder")).Value,
                     Width = "100",
                     ClassName =  NopColumnClassDefaults.CenterAll
                 },
                 new ColumnProperty(nameof(StateProvinceModel.Id))
                 {
-                    Title = T("Admin.Common.Edit").Text,
+                    Title = (await T("Admin.Common.Edit")).Value,
                     Width = "100",
                     ClassName = NopColumnClassDefaults.Button,
                     Render = new RenderCustom("renderColumnEdit")
                 },
                 new ColumnProperty(nameof(StateProvinceModel.Id))
                 {
-                    Title = T("Admin.Common.Delete").Text,
+                    Title = (await T("Admin.Common.Delete")).Value,
                     Width = "100",
-                    Render = new RenderButtonRemove(T("Admin.Common.Delete").Text),
+                    Render = new RenderButtonRemove((await T("Admin.Common.Delete")).Value),
                     ClassName = NopColumnClassDefaults.Button
                 }
             }
@@ -57,7 +57,7 @@
             <button type="submit" id="btnAddNewState"
                     onclick="javascript:OpenWindow('@(Url.Action("StateCreatePopup", "Country", new { countryId = Model.Id, btnId = "btnRefresh", formId = "country-form" }))', 800, 450, true); return false;"
                     class="btn btn-primary">
-                @T("Admin.Configuration.Countries.States.AddNew")
+                @await T("Admin.Configuration.Countries.States.AddNew")
             </button>
             <button type="submit" id="btnRefresh" style="display: none"></button>
             <script>
@@ -77,12 +77,12 @@
 else
 {
     <div class="card-body">
-        @T("Admin.Configuration.Countries.States.SaveBeforeEdit")
+        @await T("Admin.Configuration.Countries.States.SaveBeforeEdit")
     </div>
 }
 
 <script>
     function renderColumnEdit(data, type, row, meta) {
-        return '<button onclick=\"javascript:OpenWindow(\'@Url.Content("~/Admin/Country/StateEditPopup/")' + data + '?btnId=btnRefresh&formId=country-form\', 800, 400, true); return false;\" class="btn btn-default"><i class="fas fa-pencil-alt"></i>@T("Admin.Common.Edit").Text</button>';
+        return '<button onclick=\"javascript:OpenWindow(\'@Url.Content("~/Admin/Country/StateEditPopup/")' + data + '?btnId=btnRefresh&formId=country-form\', 800, 400, true); return false;\" class="btn btn-default"><i class="fas fa-pencil-alt"></i>@await T("Admin.Common.Edit")</button>';
     }
 </script>

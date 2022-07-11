@@ -22,7 +22,7 @@
     <div class="cards-group">
         <div class="card card-default">
             <div class="card-body">
-                @Html.Raw(T("Plugins.Payments.PayPalStandard.Instructions", $"{webHelper.GetStoreLocation()}Plugins/PaymentPayPalStandard/PDTHandler"))
+                @Html.Raw(await T("Plugins.Payments.PayPalStandard.Instructions", $"{webHelper.GetStoreLocation()}Plugins/PaymentPayPalStandard/PDTHandler"))
                 <div class="form-group row">
                     <div class="col-md-3">
                         <nop-override-store-checkbox asp-for="UseSandbox_OverrideForStore" asp-input="UseSandbox" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
@@ -85,7 +85,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-9 offset-md-3">
-                        <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                        <button type="submit" name="save" class="btn btn-primary">@await T("Admin.Common.Save")</button>
                     </div>
                 </div>
             </div>

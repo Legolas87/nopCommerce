@@ -3,13 +3,13 @@
 {
     <div class="giftcard-box">
         <div class="title">
-            <strong>@T("ShoppingCart.GiftCardCouponCode")</strong>
+            <strong>@await T("ShoppingCart.GiftCardCouponCode")</strong>
         </div>
-        <div class="hint">@T("ShoppingCart.GiftCardCouponCode.Tooltip")</div>
+        <div class="hint">@await T("ShoppingCart.GiftCardCouponCode.Tooltip")</div>
         <div class="coupon-code">
-            <input name="giftcardcouponcode" id="giftcardcouponcode" type="text" class="gift-card-coupon-code" aria-label="@T("ShoppingCart.GiftCardCouponCode.Label")" />
+            <input name="giftcardcouponcode" id="giftcardcouponcode" type="text" class="gift-card-coupon-code" aria-label="@await T("ShoppingCart.GiftCardCouponCode.Label")" />
 
-            <button type="submit" name="applygiftcardcouponcode" id="applygiftcardcouponcode" class="button-2 apply-gift-card-coupon-code-button">@T("ShoppingCart.GiftCardCouponCode.Button")</button>
+            <button type="submit" name="applygiftcardcouponcode" id="applygiftcardcouponcode" class="button-2 apply-gift-card-coupon-code-button">@await T("ShoppingCart.GiftCardCouponCode.Button")</button>
         </div>
         @if (!string.IsNullOrEmpty(Model.Message))
         {

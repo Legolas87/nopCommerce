@@ -4,7 +4,7 @@
     Layout = "_AdminPopupLayout";
     
     //page title
-    ViewBag.PageTitle = T("Admin.Customers.CustomerRoles.Fields.PurchasedWithProduct.Choose").Text;
+    ViewBag.PageTitle = (await T("Admin.Customers.CustomerRoles.Fields.PurchasedWithProduct.Choose")).Value;
 }
 
 <form asp-controller="CustomerRole" asp-action="AssociateProductToCustomerRolePopup"
@@ -13,7 +13,7 @@
       asp-route-btnId="@Context.Request.Query["btnId"]">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Customers.CustomerRoles.Fields.PurchasedWithProduct.Choose")
+            @await T("Admin.Customers.CustomerRoles.Fields.PurchasedWithProduct.Choose")
         </h1>
         <div class="float-right">
             &nbsp;
@@ -100,7 +100,7 @@
                                         <div class="col-sm-12">
                                             <button type="button" id="search-products" class="btn btn-primary btn-search">
                                                 <i class="fas fa-search"></i>
-                                                @T("Admin.Common.Search")
+                                                @await T("Admin.Common.Search")
                                             </button>
                                         </div>
                                     </div>
@@ -128,18 +128,18 @@
                                         {
                                             new ColumnProperty(nameof(ProductModel.Id))
                                             {
-                                                Title = T("Admin.Common.Select").Text,
+                                                Title = (await T("Admin.Common.Select")).Value,
                                                 Render = new RenderCustom("renderColumnSelectProduct"),
                                                 ClassName =  NopColumnClassDefaults.Button,
                                                 Width = "50",
                                             },
                                             new ColumnProperty(nameof(ProductModel.Name))
                                             {
-                                                Title = T("Admin.Catalog.Products.Fields.Name").Text
+                                                Title = (await T("Admin.Catalog.Products.Fields.Name")).Value
                                             },
                                             new ColumnProperty(nameof(ProductModel.Published))
                                             {
-                                                Title = T("Admin.Catalog.Products.Fields.Published").Text,
+                                                Title = (await T("Admin.Catalog.Products.Fields.Published")).Value,
                                                 Width = "100",
                                                 ClassName = NopColumnClassDefaults.CenterAll,
                                                 Render = new RenderBoolean()
@@ -148,7 +148,7 @@
                                     })
                                     <script>
                                         function renderColumnSelectProduct(data, type, row, meta) {
-                                            return '<button type="button" onclick="selectAssociatedProduct(' + row.Id + ' )" class="btn btn-default">@T("Admin.Common.Select").Text</button>';
+                                            return '<button type="button" onclick="selectAssociatedProduct(' + row.Id + ' )" class="btn btn-default">@await T("Admin.Common.Select")</button>';
                                         }
                                         function selectAssociatedProduct(productid) {
                                             $("#@Html.IdFor(model => model.AddProductToCustomerRoleModel.AssociatedToProductId)").val(productid);
@@ -158,7 +158,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" id="save" name="save" class="btn btn-default" style="display: none">
-                                        @T("Admin.Common.Save")
+                                        @await T("Admin.Common.Save")
                                     </button>
                                 </div>
                             </div>

@@ -112,7 +112,7 @@
                 source: initialProductTags
             },
             delimiter: ',',
-            placeholder: '@T("Admin.Catalog.Products.Fields.ProductTags.Placeholder")'
+            placeholder: '@await T("Admin.Catalog.Products.Fields.ProductTags.Placeholder")'
         });
     });
 
@@ -267,7 +267,7 @@
                     <text>
                         categoryIdsInput.setOptions({
                             enable: false,
-                            placeholder: '@T("Admin.Catalog.Products.Fields.Categories.NoCategoriesAvailable")'
+                            placeholder: '@await T("Admin.Catalog.Products.Fields.Categories.NoCategoriesAvailable")'
                         });
                         categoryIdsInput._placeholder();
                         categoryIdsInput._enable();
@@ -296,7 +296,7 @@
                     <text>
                         manufacturersIdsInput.setOptions({
                             enable: false,
-                            placeholder: '@T("Admin.Catalog.Products.Fields.Manufacturers.NoManufacturersAvailable")'
+                            placeholder: '@await T("Admin.Catalog.Products.Fields.Manufacturers.NoManufacturersAvailable")'
                         });
                         manufacturersIdsInput._placeholder();
                         manufacturersIdsInput._enable();
@@ -385,17 +385,17 @@
     }
     <div class="card card-default margin-bottom" id="group-associated-products">
         <div class="card-header">
-            @T("Admin.Catalog.Products.AssociatedProducts")
+            @await T("Admin.Catalog.Products.AssociatedProducts")
         </div>
         @if (Model.Id > 0)
         {
             <div class="card-body">                
             <ul class="common-list">
                 <li>
-                    @T("Admin.Catalog.Products.AssociatedProducts.Note1")
+                    @await T("Admin.Catalog.Products.AssociatedProducts.Note1")
                 </li>
                 <li>
-                    @T("Admin.Catalog.Products.AssociatedProducts.Note2")
+                    @await T("Admin.Catalog.Products.AssociatedProducts.Note2")
                 </li>
             </ul>
 
@@ -411,11 +411,11 @@
                     {
 					new ColumnProperty(nameof(AssociatedProductModel.ProductName))
                         {
-                            Title = T("Admin.Catalog.Products.AssociatedProducts.Fields.Product").Text
+                            Title = (await T("Admin.Catalog.Products.AssociatedProducts.Fields.Product")).Value
                         },
                         new ColumnProperty(nameof(AssociatedProductModel.DisplayOrder))
                         {
-                            Title = T("Admin.Catalog.Products.AssociatedProducts.Fields.DisplayOrder").Text,
+                            Title = (await T("Admin.Catalog.Products.AssociatedProducts.Fields.DisplayOrder")).Value,
                             Width = "150",
                             ClassName = NopColumnClassDefaults.CenterAll,
                             Editable = true,
@@ -423,23 +423,23 @@
                         },
                         new ColumnProperty(nameof(AssociatedProductModel.Id))
                         {
-                            Title = T("Admin.Common.View").Text,
+                            Title = (await T("Admin.Common.View")).Value,
                             Width = "150",
                             ClassName = NopColumnClassDefaults.Button,
                             Render = new RenderButtonView(new DataUrl("~/Admin/Product/Edit/", nameof(AssociatedProductModel.Id)))
                         },
                         new ColumnProperty(nameof(AssociatedProductModel.Id))
                         {
-                            Title = T("Admin.Common.Edit").Text,
+                            Title = (await T("Admin.Common.Edit")).Value,
                             Width = "200",
                             ClassName =  NopColumnClassDefaults.Button,
                             Render = new RenderButtonsInlineEdit()
                         },
                         new ColumnProperty(nameof(AssociatedProductModel.Id))
                         {
-                            Title = T("Admin.Common.Delete").Text,
+                            Title = (await T("Admin.Common.Delete")).Value,
                             Width = "100",
-                            Render = new RenderButtonRemove(T("Admin.Common.Delete").Text),
+                            Render = new RenderButtonRemove((await T("Admin.Common.Delete")).Value),
                             ClassName = NopColumnClassDefaults.Button
                         }                               
                     }
@@ -447,7 +447,7 @@
             </div>
             <div class="card-footer">
                 <button type="submit" id="btnAddNewAssociatedProduct" onclick="javascript:OpenWindow('@(Url.Action("AssociatedProductAddPopup", "Product", new {productId = Model.Id, btnId = "btnRefreshAssociatedProducts", formId = "product-form"}))', 800, 800, true); return false;" class="btn btn-primary">
-                    @T("Admin.Catalog.Products.AssociatedProducts.AddNew")
+                    @await T("Admin.Catalog.Products.AssociatedProducts.AddNew")
                 </button>
                 <button type="submit" id="btnRefreshAssociatedProducts" style="display: none"></button>
                 <script>
@@ -466,7 +466,7 @@
         else
         {
             <div class="card-body">
-                @T("Admin.Catalog.Products.AssociatedProducts.SaveBeforeEdit")
+                @await T("Admin.Catalog.Products.AssociatedProducts.SaveBeforeEdit")
             </div>
         }
     </div>
@@ -584,7 +584,7 @@
             <div class="col-md-3">
                 <nop-label asp-for="RequiredProductIds" />
                 <span id="required-products-check-progress" style="display: none; float: right; clear: both" class="please-wait">
-                    @T("Common.Wait")
+                    @await T("Common.Wait")
                 </span>
             </div>
             <div class="col-md-9">
@@ -604,7 +604,7 @@
                             });
                         </script>
                         <button type="submit" id="btnAddNewRequiredProduct" onclick="javascript:OpenWindow('@(Url.Action("RequiredProductAddPopup", "Product", new {btnId = "btnRefreshRequiredProducts", productIdsInput = "RequiredProductIds"}))', 800, 850, true); return false;" class="btn btn-info">
-                            @T("Admin.Catalog.Products.Fields.RequiredProductIds.AddNew")
+                            @await T("Admin.Catalog.Products.Fields.RequiredProductIds.AddNew")
                         </button>
                     </div>
                 </div>

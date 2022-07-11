@@ -2,7 +2,7 @@
 
 <div class="card-body">
     <p>
-        @T("Admin.Catalog.Products.PurchasedWithOrders.Hint")
+        @await T("Admin.Catalog.Products.PurchasedWithOrders.Hint")
     </p>
     @{ 
         var table = new DataTablesModel
@@ -16,42 +16,42 @@
         var columns = new List<ColumnProperty>();
         columns.Add(new ColumnProperty(nameof(OrderModel.CustomOrderNumber))
         {
-            Title = T("Admin.Orders.Fields.CustomOrderNumber").Text,
+            Title = (await T("Admin.Orders.Fields.CustomOrderNumber")).Value,
             Width = "200"
         });
         columns.Add(new ColumnProperty(nameof(OrderModel.CustomerEmail))
         {
-            Title = T("Admin.Orders.Fields.CustomerEmail").Text,
+            Title = (await T("Admin.Orders.Fields.CustomerEmail")).Value,
             Width = "200"
         });
         if (!Model.IsLoggedInAsVendor)
         {
             columns.Add(new ColumnProperty(nameof(OrderModel.OrderStatus))
             {
-                Title = T("Admin.Orders.Fields.OrderStatus").Text,
+                Title = (await T("Admin.Orders.Fields.OrderStatus")).Value,
                 Width = "100"
             });
             columns.Add(new ColumnProperty(nameof(OrderModel.PaymentStatus))
             {
-                Title = T("Admin.Orders.Fields.PaymentStatus").Text,
+                Title = (await T("Admin.Orders.Fields.PaymentStatus")).Value,
                 Width = "100"
             });
             columns.Add(new ColumnProperty(nameof(OrderModel.ShippingStatus))
             {
-                Title = T("Admin.Orders.Fields.ShippingStatus").Text,
+                Title = (await T("Admin.Orders.Fields.ShippingStatus")).Value,
                 Width = "100"
             });
         }
         columns.Add(new ColumnProperty(nameof(OrderModel.CreatedOn))
         {
-            Title = T("Admin.Orders.Fields.CreatedOn").Text,
+            Title = (await T("Admin.Orders.Fields.CreatedOn")).Value,
             Width = "200",
             Render = new RenderDate(),
             ClassName = NopColumnClassDefaults.CenterAll
         });
         columns.Add(new ColumnProperty(nameof(OrderModel.Id))
         {
-            Title = T("Admin.Common.View").Text,
+            Title = (await T("Admin.Common.View")).Value,
             Width = "100",
             ClassName = NopColumnClassDefaults.Button,
             Render = new RenderButtonView(new DataUrl("~/Admin/Order/Edit/"))

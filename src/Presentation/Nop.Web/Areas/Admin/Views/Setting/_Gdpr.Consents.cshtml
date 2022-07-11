@@ -11,34 +11,34 @@
         {
             new ColumnProperty(nameof(GdprConsentModel.Message))
             {
-                Title = T("Admin.Configuration.Settings.Gdpr.Consent.Message").Text
+                Title = (await T("Admin.Configuration.Settings.Gdpr.Consent.Message")).Value
             },
             new ColumnProperty(nameof(GdprConsentModel.IsRequired))
             {
-                Title = T("Admin.Configuration.Settings.Gdpr.Consent.IsRequired").Text,
+                Title = (await T("Admin.Configuration.Settings.Gdpr.Consent.IsRequired")).Value,
                 ClassName =  NopColumnClassDefaults.CenterAll,
                 Render = new RenderBoolean()
             },
             new ColumnProperty(nameof(GdprConsentModel.DisplayDuringRegistration))
             {
-                Title = T("Admin.Configuration.Settings.Gdpr.Consent.DisplayDuringRegistration").Text,
+                Title = (await T("Admin.Configuration.Settings.Gdpr.Consent.DisplayDuringRegistration")).Value,
                 ClassName =  NopColumnClassDefaults.CenterAll,
                 Render = new RenderBoolean()
             },
             new ColumnProperty(nameof(GdprConsentModel.DisplayOnCustomerInfoPage))
             {
-                Title = T("Admin.Configuration.Settings.Gdpr.Consent.DisplayOnCustomerInfoPage").Text,
+                Title = (await T("Admin.Configuration.Settings.Gdpr.Consent.DisplayOnCustomerInfoPage")).Value,
                 ClassName =  NopColumnClassDefaults.CenterAll,
                 Render = new RenderBoolean()
             },
             new ColumnProperty(nameof(GdprConsentModel.DisplayOrder))
             {
-                Title = T("Admin.Configuration.Settings.Gdpr.Consent.DisplayOrder").Text,
+                Title = (await T("Admin.Configuration.Settings.Gdpr.Consent.DisplayOrder")).Value,
                 ClassName = NopColumnClassDefaults.CenterAll
             },
             new ColumnProperty(nameof(GdprConsentModel.Id))
             {
-                Title = T("Admin.Common.Edit").Text,
+                Title = (await T("Admin.Common.Edit")).Value,
                 Width = "100",
                 ClassName =  NopColumnClassDefaults.Button,
                 Render = new RenderButtonEdit(new DataUrl("~/Admin/Setting/EditGdprConsent/"))
@@ -48,6 +48,6 @@
 </div>
 <div class="card-footer">
     <button type="submit" id="btnAddNewConsent" name="btnAddNewConsent" onclick="javascript:setLocation('@(Url.Action("CreateGdprConsent", "Setting"))'); return false;" class="btn btn-primary">
-        @T("Admin.Configuration.Settings.Gdpr.Consent.AddNew")
+        @await T("Admin.Configuration.Settings.Gdpr.Consent.AddNew")
     </button>
 </div>

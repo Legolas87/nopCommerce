@@ -3,7 +3,7 @@
     Layout = "_ColumnsOne";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.ShoppingCart").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.ShoppingCart")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-shopping-cart-page");
 }
@@ -13,7 +13,7 @@
 }
 <div class="page shopping-cart-page">
     <div class="page-title">
-        <h1>@T("ShoppingCart")</h1>
+        <h1>@await T("ShoppingCart")</h1>
     </div>
     <div class="page-body">
         @await Component.InvokeAsync(typeof(OrderSummaryViewComponent), new { overriddenModel = Model})

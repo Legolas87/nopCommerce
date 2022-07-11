@@ -3,13 +3,13 @@
     Layout = "_ColumnsOne";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.WishlistEmailAFriend").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.WishlistEmailAFriend")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-email-a-friend-page");
 }
 <div class="page email-a-friend-page">
     <div class="page-title">
-        <h1>@T("Wishlist.EmailAFriend.Title")</h1>
+        <h1>@await T("Wishlist.EmailAFriend.Title")</h1>
     </div>
     <div class="page-body">
         @if (Model.SuccessfullySent)
@@ -26,17 +26,17 @@
                     <div class="form-fields">
                         <div class="inputs">
                             <label asp-for="FriendEmail" asp-postfix=":"></label>
-                            <input asp-for="FriendEmail" class="friend-email" placeholder="@T("Wishlist.EmailAFriend.FriendEmail.Hint")"/>
+                            <input asp-for="FriendEmail" class="friend-email" placeholder="@await T("Wishlist.EmailAFriend.FriendEmail.Hint")"/>
                             <span asp-validation-for="FriendEmail"></span>
                         </div>
                         <div class="inputs">
                             <label asp-for="YourEmailAddress" asp-postfix=":"></label>
-                            <input asp-for="YourEmailAddress" class="your-email" placeholder="@T("Wishlist.EmailAFriend.YourEmailAddress.Hint")"/>
+                            <input asp-for="YourEmailAddress" class="your-email" placeholder="@await T("Wishlist.EmailAFriend.YourEmailAddress.Hint")"/>
                             <span asp-validation-for="YourEmailAddress"></span>
                         </div>
                         <div class="inputs">
                             <label asp-for="PersonalMessage" asp-postfix=":"></label>
-                            <textarea asp-for="PersonalMessage" placeholder="@T("Wishlist.EmailAFriend.PersonalMessage.Hint")" class="personal-message"></textarea>
+                            <textarea asp-for="PersonalMessage" placeholder="@await T("Wishlist.EmailAFriend.PersonalMessage.Hint")" class="personal-message"></textarea>
                             <span asp-validation-for="PersonalMessage"></span>
                         </div>
                         @if (Model.DisplayCaptcha)
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <button type="submit" name="send-email" class="button-1 send-email-a-friend-button">@T("Wishlist.EmailAFriend.Button")</button>
+                    <button type="submit" name="send-email" class="button-1 send-email-a-friend-button">@await T("Wishlist.EmailAFriend.Button")</button>
                 </div>
             </form>
         }

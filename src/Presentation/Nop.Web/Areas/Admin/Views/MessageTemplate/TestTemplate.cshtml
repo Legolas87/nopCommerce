@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.ContentManagement.MessageTemplates.TestDetails").Text;
+    ViewBag.PageTitle = (await T("Admin.ContentManagement.MessageTemplates.TestDetails")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Message templates");
 }
@@ -10,15 +10,15 @@
 <form asp-controller="MessageTemplate" asp-action="TestTemplate" method="post" id="specificationattribute-form">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.ContentManagement.MessageTemplates.TestDetails")
+            @await T("Admin.ContentManagement.MessageTemplates.TestDetails")
             <small>
-                <a asp-action="Edit" asp-route-id="@Model.Id">@T("Admin.ContentManagement.MessageTemplates.Test.BackToTemplate")</a>
+                <a asp-action="Edit" asp-route-id="@Model.Id">@await T("Admin.ContentManagement.MessageTemplates.Test.BackToTemplate")</a>
                 <i class="fas fa-arrow-circle-left"></i>
             </small>
         </h1>
         <div class="float-right">
             <button type="submit" name="send-test" class="btn btn-primary">
-                @T("Admin.ContentManagement.MessageTemplates.Test.Send")
+                @await T("Admin.ContentManagement.MessageTemplates.Test.Send")
             </button>
         </div>
         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.MessageTemplateTestButtons, additionalData = Model })
@@ -42,7 +42,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-9 offset-md-3">
-                                    @T("Admin.ContentManagement.MessageTemplates.Test.Tokens.Description")
+                                    @await T("Admin.ContentManagement.MessageTemplates.Test.Tokens.Description")
                                 </div>
                             </div>
                             @foreach (var token in Model.Tokens)

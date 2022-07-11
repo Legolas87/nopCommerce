@@ -3,7 +3,7 @@
     Layout = "_ColumnsTwo";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.Search").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.Search")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-search-page");
 }
@@ -29,7 +29,7 @@
 
 <div class="page search-page">
     <div class="page-title">
-        <h1>@T("Search")</h1>
+        <h1>@await T("Search")</h1>
     </div>
     <div class="page-body">
         <div class="search-input">
@@ -38,51 +38,51 @@
                     <div class="form-fields">
                         <div class="basic-search">
                             <div class="inputs">
-                                <label asp-for="q">@T("Search.SearchTerm"):</label>
+                                <label asp-for="q">@await T("Search.SearchTerm"):</label>
                                 <input asp-for="q" class="search-text" />
                             </div>
                             @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductSearchPageBasic, additionalData = Model })
                             <div class="inputs reversed">
                                 <input asp-for="advs" />
-                                <label asp-for="advs">@T("Search.AdvancedSearch")</label>
+                                <label asp-for="advs">@await T("Search.AdvancedSearch")</label>
                             </div>
                         </div>
                         <div class="advanced-search" id="advanced-search-block">
                             @if (Model.AvailableCategories.Count > 0)
                             {
                                 <div class="inputs">
-                                    <label asp-for="cid">@T("Search.Category"):</label>
+                                    <label asp-for="cid">@await T("Search.Category"):</label>
                                     <select asp-for="cid" asp-items="Model.AvailableCategories"></select>
                                 </div>
                                 <div class="inputs reversed">
                                     <input asp-for="isc" />
-                                    <label asp-for="isc">@T("Search.IncludeSubCategories")</label>
+                                    <label asp-for="isc">@await T("Search.IncludeSubCategories")</label>
                                 </div>
                             }
                             @if (Model.AvailableManufacturers.Count > 0)
                             {
                                 <div class="inputs">
-                                    <label asp-for="mid">@T("Search.Manufacturer"):</label>
+                                    <label asp-for="mid">@await T("Search.Manufacturer"):</label>
                                     <select asp-for="mid" asp-items="Model.AvailableManufacturers"></select>
                                 </div>
                             }
                             @if (Model.asv && Model.AvailableVendors.Count > 0)
                             {
                                 <div class="inputs">
-                                    <label asp-for="vid">@T("Search.Vendor"):</label>
+                                    <label asp-for="vid">@await T("Search.Vendor"):</label>
                                     <select asp-for="vid" asp-items="Model.AvailableVendors"></select>
                                 </div>
                             }
                             <div class="inputs reversed">
                                 <input asp-for="sid" />
-                                <label asp-for="sid">@T("Search.SearchInDescriptions")</label>
+                                <label asp-for="sid">@await T("Search.SearchInDescriptions")</label>
                             </div>
                             @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductSearchPageAdvanced, additionalData = Model })
                         </div>
                     </div>
                 </div>
                 <div class="buttons">
-                    <button type="submit" class="button-1 search-button">@T("Search.Button")</button>
+                    <button type="submit" class="button-1 search-button">@await T("Search.Button")</button>
                 </div>
             </form>
         </div>

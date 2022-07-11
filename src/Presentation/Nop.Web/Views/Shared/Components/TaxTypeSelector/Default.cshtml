@@ -8,17 +8,17 @@
     var taxTypes = new List<SelectListItem>();
     taxTypes.Add(new SelectListItem
     {
-        Text = T("Tax.Inclusive").Text,
+        Text = (await T("Tax.Inclusive")).Value,
         Value = Url.RouteUrl("ChangeTaxType", new { customertaxtype = ((int)TaxDisplayType.IncludingTax), returnUrl }, webHelper.GetCurrentRequestProtocol()),
         Selected = Model.CurrentTaxType == TaxDisplayType.IncludingTax
     });
     taxTypes.Add(new SelectListItem
     {
-        Text = T("Tax.Exclusive").Text,
+        Text = (await T("Tax.Exclusive")).Value,
         Value = Url.RouteUrl("ChangeTaxType", new { customertaxtype = ((int)TaxDisplayType.ExcludingTax), returnUrl }, webHelper.GetCurrentRequestProtocol()),
         Selected = Model.CurrentTaxType == TaxDisplayType.ExcludingTax
     });
 }
 <div class="tax-display-type-selector">
-    <select id="customerTaxType" name="customerTaxType" asp-items="@taxTypes" onchange="setLocation(this.value);" aria-label="@T("Tax.Selector.Label")"></select>
+    <select id="customerTaxType" name="customerTaxType" asp-items="@taxTypes" onchange="setLocation(this.value);" aria-label="@await T("Tax.Selector.Label")"></select>
 </div>

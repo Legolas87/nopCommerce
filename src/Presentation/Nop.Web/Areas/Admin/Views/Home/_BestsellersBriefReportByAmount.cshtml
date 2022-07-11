@@ -13,7 +13,7 @@
     <div class="card-header with-border">
         <h3 class="card-title">
             <i class="far fa-star"></i>
-            @T("Admin.Reports.Sales.BestSellers.ByAmount")
+            @await T("Admin.Reports.Sales.BestSellers.ByAmount")
         </h3>
         <div class="card-tools float-right">
             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -51,19 +51,19 @@
                 {
                     new ColumnProperty(nameof(BestsellerModel.ProductName))
                     {
-                        Title = T("Admin.Reports.Sales.Bestsellers.Fields.Name").Text
+                        Title = (await T("Admin.Reports.Sales.Bestsellers.Fields.Name")).Value
                     },
                     new ColumnProperty(nameof(BestsellerModel.TotalQuantity))
                     {
-                        Title = T("Admin.Reports.Sales.Bestsellers.Fields.TotalQuantity").Text
+                        Title = (await T("Admin.Reports.Sales.Bestsellers.Fields.TotalQuantity")).Value
                     },
                     new ColumnProperty(nameof(BestsellerModel.TotalAmount))
                     {
-                        Title = T("Admin.Reports.Sales.Bestsellers.Fields.TotalAmount").Text
+                        Title = (await T("Admin.Reports.Sales.Bestsellers.Fields.TotalAmount")).Value
                     },
                     new ColumnProperty(nameof(BestsellerModel.ProductId))
                     {
-                        Title = T("Admin.Common.View").Text,
+                        Title = (await T("Admin.Common.View")).Value,
                         Width = "80",
                         ClassName = NopColumnClassDefaults.Button,
                         Render = new RenderButtonView(new DataUrl("~/Admin/Product/Edit/"))

@@ -12,7 +12,7 @@
     }).ToListAsync();
     stores.Insert(0, new SelectListItem
     {
-        Text = T("Admin.Configuration.Settings.StoreScope.AllStores").Text,
+        Text = (await T("Admin.Configuration.Settings.StoreScope.AllStores")).Value,
         Value = Url.Action("ChangeStoreScopeConfiguration", "Setting", new { storeid = 0, returnUrl }, webHelper.GetCurrentRequestProtocol()),
         Selected = 0.Equals(Model.StoreId)
     });
@@ -22,7 +22,7 @@
     <div class="col-md-12 store-scope-configuration">
         <div class="label-wrapper">
             <label class="col-form-label">
-                @T("Admin.Configuration.Settings.StoreScope")
+                @await T("Admin.Configuration.Settings.StoreScope")
             </label>
         </div>
         <nop-select asp-for-name="store-scope-configuration" asp-items="@stores" onchange="setLocation(this.value);" style="width: auto;min-width: 300px;" />
@@ -31,7 +31,7 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" onclick="checkAllOverriddenStoreValue(this)">
-                    <b>@T("Admin.Configuration.Settings.StoreScope.CheckAll")</b> @T("Admin.Configuration.Settings.StoreScope.CheckAll.Hint")
+                    <b>@await T("Admin.Configuration.Settings.StoreScope.CheckAll")</b> @await T("Admin.Configuration.Settings.StoreScope.CheckAll.Hint")
                 </label>
             </div>
         }

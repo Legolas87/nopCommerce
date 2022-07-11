@@ -42,12 +42,12 @@
                             enabled: true,
                             navigateByImgClick: true,
                             preload: [0, 1],
-                            tPrev: '@T("Media.MagnificPopup.Previous")',
-                            tNext: '@T("Media.MagnificPopup.Next")',
-                            tCounter: '@T("Media.MagnificPopup.Counter")'
+                            tPrev: '@await T("Media.MagnificPopup.Previous")',
+                            tNext: '@await T("Media.MagnificPopup.Next")',
+                            tCounter: '@await T("Media.MagnificPopup.Counter")'
                         },
-                        tClose: '@T("Media.MagnificPopup.Close")',
-                        tLoading: '@T("Media.MagnificPopup.Loading")'
+                        tClose: '@await T("Media.MagnificPopup.Close")',
+                        tLoading: '@await T("Media.MagnificPopup.Loading")'
                     });
             });
         </script>

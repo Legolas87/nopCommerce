@@ -6,8 +6,8 @@
             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="advanced-settings-mode" checked="@Model.Enabled">
             <label class="onoffswitch-label" for="advanced-settings-mode">
                 <span class="onoffswitch-inner" 
-                      data-locale-basic="@T("Admin.Configuration.Settings.Mode.Basic")" 
-                      data-locale-advanced="@T("Admin.Configuration.Settings.Mode.Advanced")"></span>
+                      data-locale-basic="@await T("Admin.Configuration.Settings.Mode.Basic")" 
+                      data-locale-advanced="@await T("Admin.Configuration.Settings.Mode.Advanced")"></span>
                 <span class="onoffswitch-switch"></span>
             </label>
         </div>

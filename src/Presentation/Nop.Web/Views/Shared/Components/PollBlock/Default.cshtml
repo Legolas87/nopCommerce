@@ -1,7 +1,7 @@
 ﻿@model PollModel
 <div class="block block-poll">
     <div class="title">
-        <strong>@T("Polls.Title")</strong>
+        <strong>@await T("Polls.Title")</strong>
     </div>
     <div class="listbox">
         @await Html.PartialAsync("_Poll", Model)

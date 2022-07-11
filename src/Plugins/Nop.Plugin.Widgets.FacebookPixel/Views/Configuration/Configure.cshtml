@@ -18,7 +18,7 @@
                 <div class="card card-default card-search">
                     <div class="card-body">
                         <div class="row search-row @(!Model.FacebookPixelSearchModel.HideSearchBlock ? "opened" : "")" data-hideAttribute="@FacebookPixelDefaults.HideSearchBlockAttribute">
-                            <div class="search-text">@T("Admin.Common.Search")</div>
+                            <div class="search-text">@await T("Admin.Common.Search")</div>
                             <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                             <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                         </div>
@@ -38,7 +38,7 @@
                                         <div class="col-md-8 offset-md-4">
                                             <button type="button" id="search" class="btn btn-primary btn-search">
                                                 <i class="fas fa-search"></i>
-                                                @T("Admin.Common.Search")
+                                                @await T("Admin.Common.Search")
                                             </button>
                                         </div>
                                     </div>
@@ -68,31 +68,31 @@
                             {
                                 new ColumnProperty(nameof(FacebookPixelModel.PixelId))
                                 {
-                                    Title = T("Plugins.Widgets.FacebookPixel.Configuration.Fields.PixelId").Text
+                                    Title = (await T("Plugins.Widgets.FacebookPixel.Configuration.Fields.PixelId")).Value
                                 },
                                 new ColumnProperty(nameof(FacebookPixelModel.StoreName))
                                 {
-                                    Title = T("Plugins.Widgets.FacebookPixel.Configuration.Fields.Store").Text,
+                                    Title = (await T("Plugins.Widgets.FacebookPixel.Configuration.Fields.Store")).Value,
                                     Width = "200",
                                     Visible = (await storeService.GetAllStoresAsync()).Count > 1
                                 },
                                 new ColumnProperty(nameof(FacebookPixelModel.PixelScriptEnabled))
                                 {
-                                    Title = T("Plugins.Widgets.FacebookPixel.Configuration.Fields.PixelScriptEnabled").Text,
+                                    Title = (await T("Plugins.Widgets.FacebookPixel.Configuration.Fields.PixelScriptEnabled")).Value,
                                     Width = "100",
                                     ClassName = NopColumnClassDefaults.CenterAll,
                                     Render = new RenderBoolean()
                                 },
                                 new ColumnProperty(nameof(FacebookPixelModel.ConversionsApiEnabled))
                                 {
-                                    Title = T("Plugins.Widgets.FacebookPixel.Configuration.Fields.ConversionsApiEnabled").Text,
+                                    Title = (await T("Plugins.Widgets.FacebookPixel.Configuration.Fields.ConversionsApiEnabled")).Value,
                                     Width = "100",
                                     ClassName = NopColumnClassDefaults.CenterAll,
                                     Render = new RenderBoolean()
                                 },
                                 new ColumnProperty(nameof(FacebookPixelModel.Id))
                                 {
-                                    Title = T("Admin.Common.Edit").Text,
+                                    Title = (await T("Admin.Common.Edit")).Value,
                                     Width = "100",
                                     Render = new RenderButtonEdit(new DataUrl("~/Admin/FacebookPixel/Edit/"))
                                 }
@@ -103,7 +103,7 @@
                 <div class="card-footer">
                     <a asp-controller="FacebookPixel" asp-action="Create" class="btn btn-primary">
                         <i class="fas fa-plus-square"></i>
-                        @T("Admin.Common.AddNew") @T("Plugins.Widgets.FacebookPixel.Configuration")
+                        @await T("Admin.Common.AddNew") @await T("Plugins.Widgets.FacebookPixel.Configuration")
                     </a>
                 </div>
             </div>

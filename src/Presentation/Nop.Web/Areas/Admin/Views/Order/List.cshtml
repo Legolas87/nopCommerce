@@ -5,7 +5,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Orders").Text;
+    ViewBag.PageTitle = (await T("Admin.Orders")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Orders");
 }
@@ -18,13 +18,13 @@
 <form asp-controller="Order" asp-action="List" method="post">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Orders")
+            @await T("Admin.Orders")
         </h1>
         <div class="float-right">
             <div class="btn-group">
                 <button type="button" class="btn btn-success">
                     <i class="fas fa-download"></i>
-                    @T("Admin.Common.Export")
+                    @await T("Admin.Common.Export")
                 </button>
                 <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
                     <span class="sr-only">&nbsp;</span>
@@ -33,38 +33,38 @@
                     <li class="dropdown-item">
                         <button asp-action="ExportXml" type="submit" name="exportxml-all">
                             <i class="far fa-file-code"></i>
-                            @T("Admin.Common.ExportToXml.All")
+                            @await T("Admin.Common.ExportToXml.All")
                         </button>
                     </li>
                     <li class="dropdown-item">
                         <button type="button" id="exportxml-selected">
                             <i class="far fa-file-code"></i>
-                            @T("Admin.Common.ExportToXml.Selected")
+                            @await T("Admin.Common.ExportToXml.Selected")
                         </button>
                     </li>
                     <li class="dropdown-divider"></li>
                     <li class="dropdown-item">
                         <button asp-action="ExportExcel" type="submit" name="exportexcel-all">
                             <i class="far fa-file-excel"></i>
-                            @T("Admin.Common.ExportToExcel.All")
+                            @await T("Admin.Common.ExportToExcel.All")
                         </button>
                     </li>
                     <li class="dropdown-item">
                         <button type="button" id="exportexcel-selected">
                             <i class="far fa-file-excel"></i>
-                            @T("Admin.Common.ExportToExcel.Selected")
+                            @await T("Admin.Common.ExportToExcel.Selected")
                         </button>
                     </li>
                 </ul>
             </div>
             <button type="button" name="importexcel" class="btn bg-olive" data-toggle="modal" data-target="#importexcel-window">
                 <i class="fas fa-upload"></i>
-                @T("Admin.Common.Import")
+                @await T("Admin.Common.Import")
             </button>
             <div class="btn-group">
                 <button type="button" class="btn btn-info">
                     <i class="far fa-file-pdf"></i>
-                    @T("Admin.Orders.PdfInvoices")
+                    @await T("Admin.Orders.PdfInvoices")
                 </button>
                 <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
                     <span class="sr-only">&nbsp;</span>
@@ -72,12 +72,12 @@
                 <ul class="dropdown-menu" role="menu">
                     <li class="dropdown-item">
                         <button asp-action="PdfInvoice" type="submit" name="pdf-invoice-all">
-                            @T("Admin.Orders.PdfInvoices.All")
+                            @await T("Admin.Orders.PdfInvoices.All")
                         </button>
                     </li>
                     <li class="dropdown-item">
                         <button type="button" id="pdf-invoice-selected">
-                            @T("Admin.Orders.PdfInvoices.Selected")
+                            @await T("Admin.Orders.PdfInvoices.Selected")
                         </button>
                     </li>
                 </ul>
@@ -92,7 +92,7 @@
                     <div class="card card-default card-search">
                         <div class="card-body">
                             <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                                <div class="search-text">@T("Admin.Common.Search")</div>
+                                <div class="search-text">@await T("Admin.Common.Search")</div>
                                 <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                                 <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                             </div>
@@ -131,7 +131,7 @@
                                             <div class="col-md-8">
                                                 <input type="text" id="search-product-name" autocomplete="off" class="form-control" />
                                                 <span id="search-product-friendly-name"></span>
-                                                <button type="button" id="search-product-clear" class="btn bg-gray" style="display: none; margin-top: 5px;">@T("Admin.Common.Clear")</button>
+                                                <button type="button" id="search-product-clear" class="btn bg-gray" style="display: none; margin-top: 5px;">@await T("Admin.Common.Clear")</button>
                                                 <input asp-for="ProductId" autocomplete="off" style="display: none;" />
                                                 <script>
                                                 $(document).ready(function() {
@@ -261,7 +261,7 @@
                                                     <nop-editor asp-for="GoDirectlyToCustomOrderNumber" />
                                                     <span class="input-group-append">
                                                         <button type="submit" id="go-to-order-by-number" name="go-to-order-by-number" class="btn btn-info btn-flat">
-                                                            @T("Admin.Common.Go")
+                                                            @await T("Admin.Common.Go")
                                                         </button>
                                                     </span>
                                                 </div>
@@ -273,7 +273,7 @@
                                     <div class="text-center col-12">
                                         <button type="button" id="search-orders" class="btn btn-primary btn-search">
                                             <i class="fas fa-search"></i>
-                                            @T("Admin.Common.Search")
+                                            @await T("Admin.Common.Search")
                                         </button>
                                     </div>
                                 </div>
@@ -283,7 +283,7 @@
 
                     <div class="card card-default">
                         <div class="card-body">
-                            <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Orders", Docs.Orders + Utm.OnAdmin)" />
+                            <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.Orders", Docs.Orders + Utm.OnAdmin)" />
 
                             @{
                                 var gridModel = new DataTablesModel
@@ -325,7 +325,7 @@
                                     },
                                     new ColumnProperty(nameof(OrderModel.CustomOrderNumber))
                                     {
-                                        Title = T("Admin.Orders.Fields.CustomOrderNumber").Text,
+                                        Title = (await T("Admin.Orders.Fields.CustomOrderNumber")).Value,
                                         Width = "80"
                                     }
                                 };
@@ -334,14 +334,14 @@
                                 {
                                     gridModel.ColumnCollection.Add(new ColumnProperty(nameof(OrderModel.OrderStatus))
                                     {
-                                        Title = T("Admin.Orders.Fields.OrderStatus").Text,
+                                        Title = (await T("Admin.Orders.Fields.OrderStatus")).Value,
                                         Width = "100",
                                         Render = new RenderCustom("renderColumnOrderStatus")
                                     });
                                 }
                                 gridModel.ColumnCollection.Add(new ColumnProperty(nameof(OrderModel.PaymentStatus))
                                 {
-                                    Title = T("Admin.Orders.Fields.PaymentStatus").Text,
+                                    Title = (await T("Admin.Orders.Fields.PaymentStatus")).Value,
                                     Width = "150"
                                 });
                                 //a vendor does not have access to this functionality
@@ -349,24 +349,24 @@
                                 {
                                     gridModel.ColumnCollection.Add(new ColumnProperty(nameof(OrderModel.ShippingStatus))
                                     {
-                                        Title = T("Admin.Orders.Fields.ShippingStatus").Text,
+                                        Title = (await T("Admin.Orders.Fields.ShippingStatus")).Value,
                                         Width = "150"
                                     });
                                 }
                                 gridModel.ColumnCollection.Add(new ColumnProperty(nameof(OrderModel.CustomerEmail))
                                 {
-                                    Title = T("Admin.Orders.Fields.Customer").Text,
+                                    Title = (await T("Admin.Orders.Fields.Customer")).Value,
                                     Render = new RenderLink(new DataUrl("~/Admin/Customer/Edit", nameof(OrderModel.CustomerId)))
                                 });
                                 gridModel.ColumnCollection.Add(new ColumnProperty(nameof(OrderModel.StoreName))
                                 {
-                                    Title = T("Admin.Orders.Fields.Store").Text,
+                                    Title = (await T("Admin.Orders.Fields.Store")).Value,
                                     Width = "100",
                                     Visible = (await storeService.GetAllStoresAsync()).Count > 1
                                 });
                                 gridModel.ColumnCollection.Add(new ColumnProperty(nameof(OrderModel.CreatedOn))
                                 {
-                                    Title = T("Admin.Orders.Fields.CreatedOn").Text,
+                                    Title = (await T("Admin.Orders.Fields.CreatedOn")).Value,
                                     Width = "120",
                                     Render = new RenderDate()
                                 });
@@ -375,13 +375,13 @@
                                 {
                                     gridModel.ColumnCollection.Add(new ColumnProperty(nameof(OrderModel.OrderTotal))
                                     {
-                                        Title = T("Admin.Orders.Fields.OrderTotal").Text,
+                                        Title = (await T("Admin.Orders.Fields.OrderTotal")).Value,
                                         Width = "100",
                                     });
                                 }
                                 gridModel.ColumnCollection.Add(new ColumnProperty(nameof(OrderModel.Id))
                                 {
-                                    Title = T("Admin.Common.View").Text,
+                                    Title = (await T("Admin.Common.View")).Value,
                                     Width = "50",
                                     ClassName = NopColumnClassDefaults.Button,
                                     Render = new RenderButtonView(new DataUrl("Edit"))
@@ -449,11 +449,11 @@
                                     success: function (data, textStatus, jqXHR) {
                                         if (data) {
                                             for (var key in data) {
-                                                var reportSummary = '<div><strong>@T("Admin.Orders.Report.Summary").Text</strong></div>' +
-                                                    '<div>@T("Admin.Orders.Report.Profit").Text <span>' + data['aggregatorprofit'] +'</span></div>' +
-                                                    '<div>@T("Admin.Orders.Report.Shipping").Text <span>' + data['aggregatorshipping'] + '</span></div>' +
-                                                    '<div>@T("Admin.Orders.Report.Tax").Text <span>' +  data['aggregatortax'] + '</span></div>' +
-                                                    '<div>@T("Admin.Orders.Report.Total").Text <span>' + data['aggregatortotal'] + '</span></div>'
+                                                var reportSummary = '<div><strong>@await T("Admin.Orders.Report.Summary")</strong></div>' +
+                                                    '<div>@await T("Admin.Orders.Report.Profit") <span>' + data['aggregatorprofit'] +'</span></div>' +
+                                                    '<div>@await T("Admin.Orders.Report.Shipping") <span>' + data['aggregatorshipping'] + '</span></div>' +
+                                                    '<div>@await T("Admin.Orders.Report.Tax") <span>' +  data['aggregatortax'] + '</span></div>' +
+                                                    '<div>@await T("Admin.Orders.Report.Total") <span>' + data['aggregatortotal'] + '</span></div>'
                                                 var orderTotalsColumn = $('#orders-grid').DataTable().column(@(orderSummaryColumnNumber));
                                                 $(orderTotalsColumn.footer()).html(reportSummary);
                                             }
@@ -481,7 +481,7 @@
             e.preventDefault();
             var ids = selectedIds.join(",");
             if (!ids) {
-                $('#exportXmlSelected-info').text("@T("Admin.Orders.NoOrders")");
+                $('#exportXmlSelected-info').text("@await T("Admin.Orders.NoOrders")");
                 $("#exportXmlSelected").click();
             }
             else {
@@ -506,7 +506,7 @@
             e.preventDefault();
             var ids = selectedIds.join(",");
              if (!ids) {
-                $('#exportExcelSelected-info').text("@T("Admin.Orders.NoOrders")");
+                $('#exportExcelSelected-info').text("@await T("Admin.Orders.NoOrders")");
                 $("#exportExcelSelected").click();
             }
             else {
@@ -531,7 +531,7 @@
             e.preventDefault();
             var ids = selectedIds.join(",");
            if (!ids) {
-                $('#pdfInvoiceSelected-info').text("@T("Admin.Orders.NoOrders")");
+                $('#pdfInvoiceSelected-info').text("@await T("Admin.Orders.NoOrders")");
                 $("#pdfInvoiceSelected").click();
             }
             else {
@@ -550,7 +550,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="importexcel-window-title">@T("Admin.Common.ImportFromExcel")</h4>
+                <h4 class="modal-title" id="importexcel-window-title">@await T("Admin.Common.ImportFromExcel")</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>                
             </div>
             <form asp-controller="Order" asp-action="ImportFromXlsx" method="post" enctype="multipart/form-data">
@@ -558,17 +558,17 @@
                     <div class="modal-body">
                         <ul class="common-list">
                             <li>
-                                <em>@T("Admin.Orders.List.ImportFromExcelTip")</em>
+                                <em>@await T("Admin.Orders.List.ImportFromExcelTip")</em>
                             </li>
                             <li>
-                                <em>@T("Admin.Common.ImportFromExcel.ManyRecordsWarning")</em>
+                                <em>@await T("Admin.Common.ImportFromExcel.ManyRecordsWarning")</em>
                             </li>
                         </ul>
                         <div class="form-group row">
                             <div class="col-md-2">
                                 <div class="label-wrapper">
                                     <label class="col-form-label">
-                                        @T("Admin.Common.ExcelFile")
+                                        @await T("Admin.Common.ExcelFile")
                                     </label>
                                 </div>
                             </div>
@@ -579,7 +579,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">
-                            @T("Admin.Common.ImportFromExcel")
+                            @await T("Admin.Common.ImportFromExcel")
                         </button>
                     </div>
                 </div>

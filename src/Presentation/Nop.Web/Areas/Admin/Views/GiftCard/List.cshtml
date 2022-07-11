@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.GiftCards").Text;
+    ViewBag.PageTitle = (await T("Admin.GiftCards")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Gift cards");
 }
@@ -15,12 +15,12 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.GiftCards")
+        @await T("Admin.GiftCards")
     </h1>
     <div class="float-right">
         <a asp-action="Create" class="btn btn-primary">
             <i class="fas fa-plus-square"></i>
-            @T("Admin.Common.AddNew")
+            @await T("Admin.Common.AddNew")
         </a>
         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.GiftCardListButtons, additionalData = Model })
     </div>
@@ -33,7 +33,7 @@
                 <div class="card card-default card-search">
                     <div class="card-body">
                         <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                            <div class="search-text">@T("Admin.Common.Search")</div>
+                            <div class="search-text">@await T("Admin.Common.Search")</div>
                             <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                             <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                         </div>
@@ -74,7 +74,7 @@
                                 <div class="text-center col-12">
                                     <button type="button" id="search-giftcards" class="btn btn-primary btn-search">
                                         <i class="fas fa-search"></i>
-                                        @T("Admin.Common.Search")
+                                        @await T("Admin.Common.Search")
                                     </button>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
 
                 <div class="card card-default">
                     <div class="card-body">
-                        <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.GiftCards", Docs.GiftCards + Utm.OnAdmin)" />
+                        <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.GiftCards", Docs.GiftCards + Utm.OnAdmin)" />
 
                         @await Html.PartialAsync("Table", new DataTablesModel
                         {
@@ -103,36 +103,36 @@
                             {
                                 new ColumnProperty(nameof(GiftCardModel.AmountStr))
                                 {
-                                    Title = T("Admin.GiftCards.Fields.Amount").Text
+                                    Title = (await T("Admin.GiftCards.Fields.Amount")).Value
                                 },
                                 new ColumnProperty(nameof(GiftCardModel.RemainingAmountStr))
                                 {
-                                    Title = T("Admin.GiftCards.Fields.RemainingAmount").Text
+                                    Title = (await T("Admin.GiftCards.Fields.RemainingAmount")).Value
                                 },
                                 new ColumnProperty(nameof(GiftCardModel.GiftCardCouponCode))
                                 {
-                                    Title = T("Admin.GiftCards.Fields.GiftCardCouponCode").Text
+                                    Title = (await T("Admin.GiftCards.Fields.GiftCardCouponCode")).Value
                                 },
                                 new ColumnProperty(nameof(GiftCardModel.RecipientName))
                                 {
-                                    Title = T("Admin.GiftCards.Fields.RecipientName").Text
+                                    Title = (await T("Admin.GiftCards.Fields.RecipientName")).Value
                                 },
                                 new ColumnProperty(nameof(GiftCardModel.IsGiftCardActivated))
                                 {
-                                    Title = T("Admin.GiftCards.Fields.IsGiftCardActivated").Text,
+                                    Title = (await T("Admin.GiftCards.Fields.IsGiftCardActivated")).Value,
                                     Width = "200",
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Render = new RenderBoolean()
                                 },
                                 new ColumnProperty(nameof(GiftCardModel.CreatedOn))
                                 {
-                                    Title = T("Admin.GiftCards.Fields.CreatedOn").Text,
+                                    Title = (await T("Admin.GiftCards.Fields.CreatedOn")).Value,
                                     Width = "200",
                                     Render = new RenderDate()
                                 },
                                 new ColumnProperty(nameof(GiftCardModel.Id))
                                 {
-                                    Title = T("Admin.Common.Edit").Text,
+                                    Title = (await T("Admin.Common.Edit")).Value,
                                     Width = "100",
                                     ClassName =  NopColumnClassDefaults.Button,
                                     Render = new RenderButtonEdit(new DataUrl("Edit"))

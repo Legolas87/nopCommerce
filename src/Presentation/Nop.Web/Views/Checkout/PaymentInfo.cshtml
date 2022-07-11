@@ -3,7 +3,7 @@
     Layout = "_ColumnsOne";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.Checkout").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.Checkout")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-checkout-page");
     NopHtml.AppendPageCssClassParts("html-payment-info-page");
@@ -11,7 +11,7 @@
 <div class="page checkout-page payment-info-page">
     @await Component.InvokeAsync(typeof(CheckoutProgressViewComponent), new { step = CheckoutProgressStep.Payment })
     <div class="page-title">
-        <h1>@T("Checkout.PaymentInfo")</h1>
+        <h1>@await T("Checkout.PaymentInfo")</h1>
     </div>
     <div class="page-body checkout-data">
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.CheckoutPaymentInfoTop, additionalData = Model })
@@ -22,14 +22,14 @@
                     @await Component.InvokeAsync(Model.PaymentViewComponent)
                 </div>
                 <div class="buttons">
-                    <button type="submit" name="nextstep" class="button-1 payment-info-next-step-button">@T("Checkout.NextButton")</button>
+                    <button type="submit" name="nextstep" class="button-1 payment-info-next-step-button">@await T("Checkout.NextButton")</button>
                 </div>
             </form>
         </div>
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.CheckoutPaymentInfoBottom, additionalData = Model })
         <div class="section order-summary">
             <div class="title">
-                <strong>@T("Checkout.OrderSummary")</strong>
+                <strong>@await T("Checkout.OrderSummary")</strong>
             </div>
             @await Component.InvokeAsync(typeof(OrderSummaryViewComponent), "ShoppingCart")
         </div>

@@ -3,13 +3,13 @@
     Layout = "_ColumnsOne";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.ContactVendor", Model.VendorName).Text);
+    NopHtml.AddTitleParts((await T("PageTitle.ContactVendor", Model.VendorName)).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-contact-page");
 }
 <div class="page contact-page">
     <div class="page-title">
-        <h1>@T("PageTitle.ContactVendor", Model.VendorName)</h1>
+        <h1>@await T("PageTitle.ContactVendor", Model.VendorName)</h1>
     </div>
     <div class="page-body">
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContactVendorTop, additionalData = Model })
@@ -27,13 +27,13 @@
                     <div class="form-fields">
                         <div class="inputs">
                             <label asp-for="FullName" asp-postfix=":"></label>
-                            <input asp-for="FullName" placeholder="@T("ContactVendor.FullName.Hint")" class="fullname" />
+                            <input asp-for="FullName" placeholder="@await T("ContactVendor.FullName.Hint")" class="fullname" />
                             <nop-required />
                             <span asp-validation-for="FullName"></span>
                         </div>
                         <div class="inputs">
                             <label asp-for="Email" asp-postfix=":"></label>
-                            <input asp-for="Email" placeholder="@T("ContactVendor.Email.Hint")" class="email" />
+                            <input asp-for="Email" placeholder="@await T("ContactVendor.Email.Hint")" class="email" />
                             <nop-required />
                             <span asp-validation-for="Email"></span>
                         </div>
@@ -41,14 +41,14 @@
                         {
                             <div class="inputs">
                                 <label asp-for="Subject" asp-postfix=":"></label>
-                                <input asp-for="Subject" placeholder="@T("ContactVendor.Subject.Hint")" class="subject" />
+                                <input asp-for="Subject" placeholder="@await T("ContactVendor.Subject.Hint")" class="subject" />
                                 <nop-required />
                                 <span asp-validation-for="Subject"></span>
                             </div>
                         }
                         <div class="inputs">
                             <label asp-for="Enquiry" asp-postfix=":"></label>
-                            <textarea asp-for="Enquiry" placeholder="@T("ContactVendor.Enquiry.Hint")" class="enquiry"></textarea>
+                            <textarea asp-for="Enquiry" placeholder="@await T("ContactVendor.Enquiry.Hint")" class="enquiry"></textarea>
                             <nop-required />
                             <span asp-validation-for="Enquiry"></span>
                         </div>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <button type="submit" name="send-email" class="button-1 contact-us-button">@T("ContactVendor.Button")</button>
+                    <button type="submit" name="send-email" class="button-1 contact-us-button">@await T("ContactVendor.Button")</button>
                 </div>
             </form>
         }

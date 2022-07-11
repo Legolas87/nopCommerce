@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.ReturnRequests").Text;
+    ViewBag.PageTitle = (await T("Admin.ReturnRequests")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Return requests");
 }
@@ -14,7 +14,7 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.ReturnRequests")
+        @await T("Admin.ReturnRequests")
     </h1>
     <div class="float-right">
         &nbsp;
@@ -28,7 +28,7 @@
             <div class="card card-default card-search">
                 <div class="card-body">
                     <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                        <div class="search-text">@T("Admin.Common.Search")</div>
+                        <div class="search-text">@await T("Admin.Common.Search")</div>
                         <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                         <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                     </div>
@@ -77,7 +77,7 @@
                             <div class="text-center col-12">
                                 <button type="button" id="search-returnrequests" class="btn btn-primary btn-search">
                                     <i class="fas fa-search"></i>
-                                    @T("Admin.Common.Search")
+                                    @await T("Admin.Common.Search")
                                 </button>
                             </div>
                         </div>
@@ -88,8 +88,8 @@
             <div class="card card-default">
                 <div class="card-body">
                     <p>
-                        @T("Admin.ReturnRequests.Description")
-                        <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.ReturnRequests", Docs.ReturnRequests + Utm.OnAdmin)" asp-add-wrapper="false"/>
+                        @await T("Admin.ReturnRequests.Description")
+                        <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.ReturnRequests", Docs.ReturnRequests + Utm.OnAdmin)" asp-add-wrapper="false"/>
                     </p>
                     @await Html.PartialAsync("Table", new DataTablesModel
                     {
@@ -109,52 +109,52 @@
                         {
                             new ColumnProperty(nameof(ReturnRequestModel.CustomNumber))
                             {
-                                Title = T("Admin.ReturnRequests.Fields.CustomNumber").Text,
+                                Title = (await T("Admin.ReturnRequests.Fields.CustomNumber")).Value,
                                 Width = "100"
                             },
                             new ColumnProperty(nameof(ReturnRequestModel.ProductName))
                             {
-                                Title = T("Admin.ReturnRequests.Fields.Product").Text,
+                                Title = (await T("Admin.ReturnRequests.Fields.Product")).Value,
                                 Width = "350",
                                 Render = new RenderCustom("renderColumnProductName")
                             },
                             new ColumnProperty(nameof(ReturnRequestModel.Quantity))
                             {
-                                Title = T("Admin.ReturnRequests.Fields.Quantity").Text,
+                                Title = (await T("Admin.ReturnRequests.Fields.Quantity")).Value,
                                 Width = "100"
                             },
                             new ColumnProperty(nameof(ReturnRequestModel.ReturnedQuantity))
                             {
-                                Title = T("Admin.ReturnRequests.Fields.ReturnedQuantity").Text,
+                                Title = (await T("Admin.ReturnRequests.Fields.ReturnedQuantity")).Value,
                                 Width = "100"
                             },
                             new ColumnProperty(nameof(ReturnRequestModel.CustomerId))
                             {
-                                Title = T("Admin.ReturnRequests.Fields.Customer").Text,
+                                Title = (await T("Admin.ReturnRequests.Fields.Customer")).Value,
                                 Width = "350",
                                 Render = new RenderCustom("renderColumnCustomerInfo")
                             },
                             new ColumnProperty(nameof(ReturnRequestModel.CustomOrderNumber))
                             {
-                                Title = T("Admin.ReturnRequests.Fields.CustomOrderNumber").Text,
+                                Title = (await T("Admin.ReturnRequests.Fields.CustomOrderNumber")).Value,
                                 ClassName =  NopColumnClassDefaults.Button,
                                 Width = "200",
                                 Render = new RenderCustom("renderColumnOrderInfo")
                             },
                             new ColumnProperty(nameof(ReturnRequestModel.ReturnRequestStatusStr))
                             {
-                                Title = T("Admin.ReturnRequests.Fields.Status").Text,
+                                Title = (await T("Admin.ReturnRequests.Fields.Status")).Value,
                                 Width = "200"
                             },
                             new ColumnProperty(nameof(ReturnRequestModel.CreatedOn))
                             {
-                                Title = T("Admin.ReturnRequests.Fields.CreatedOn").Text,
+                                Title = (await T("Admin.ReturnRequests.Fields.CreatedOn")).Value,
                                 Width = "100",
                                 Render = new RenderDate()
                             },
                             new ColumnProperty(nameof(ReturnRequestModel.Id))
                             {
-                                Title = T("Admin.Common.Edit").Text,
+                                Title = (await T("Admin.Common.Edit")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.Button,
                                 Render = new RenderButtonEdit(new DataUrl("Edit"))
@@ -185,7 +185,7 @@
                         function renderColumnOrderInfo(data, type, row, meta) {
                             if (row.OrderId > 0) {
                                 var textRenderer = $.fn.dataTable.render.text().display;
-                                return '<a class="btn btn-default" href="@Url.Content("~/Admin/Order/Edit/")' + row.OrderId + '"><i class="far fa-eye"></i>' + textRenderer(row.CustomOrderNumber) + ' - @T("Admin.Common.View").Text</a>';
+                                return '<a class="btn btn-default" href="@Url.Content("~/Admin/Order/Edit/")' + row.OrderId + '"><i class="far fa-eye"></i>' + textRenderer(row.CustomOrderNumber) + ' - @await T("Admin.Common.View")</a>';
                             } else {
                                 return 'order item is deleted';
                             }

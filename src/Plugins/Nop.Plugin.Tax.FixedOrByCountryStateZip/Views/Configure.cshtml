@@ -18,8 +18,8 @@
                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="advanced-settings-mode" checked="@Model.CountryStateZipEnabled">
                 <label class="onoffswitch-label" for="advanced-settings-mode">
                     <span class="onoffswitch-inner"
-                          data-locale-basic="@T("Plugins.Tax.FixedOrByCountryStateZip.Fixed")"
-                          data-locale-advanced="@T("Plugins.Tax.FixedOrByCountryStateZip.TaxByCountryStateZip")"></span>
+                          data-locale-basic="@await T("Plugins.Tax.FixedOrByCountryStateZip.Fixed")"
+                          data-locale-advanced="@await T("Plugins.Tax.FixedOrByCountryStateZip.TaxByCountryStateZip")"></span>
                     <span class="onoffswitch-switch"></span>
                 </label>
             </div>
@@ -27,7 +27,7 @@
         <div class="col-md-9">
             <div class="float-right">
                 <a asp-controller="Tax" asp-action="Categories" class="btn btn-primary" id="manage-tax-categories-button">
-                    @T("Plugins.Tax.FixedOrByCountryStateZip.Tax.Categories.Manage")
+                    @await T("Plugins.Tax.FixedOrByCountryStateZip.Tax.Categories.Manage")
                 </a>
             </div>
         </div>
@@ -66,7 +66,7 @@
         });
     });
     </script>
-    <nop-alert asp-alert-id="saveModeAlert" asp-alert-message="@T("Admin.Common.Alert.Save.Error")" />
+    <nop-alert asp-alert-id="saveModeAlert" asp-alert-message="@await T("Admin.Common.Alert.Save.Error")" />
 
     @await Html.PartialAsync("~/Plugins/Tax.FixedOrByCountryStateZip/Views/_FixedRate.cshtml")
     @await Html.PartialAsync("~/Plugins/Tax.FixedOrByCountryStateZip/Views/_CountryStateZip.cshtml", Model)

@@ -2,14 +2,14 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Configuration.Authentication.MultiFactorMethods").Text;
+    ViewBag.PageTitle = (await T("Admin.Configuration.Authentication.MultiFactorMethods")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Multi-factor authentication methods");
 }
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Configuration.Authentication.MultiFactorMethods")
+        @await T("Admin.Configuration.Authentication.MultiFactorMethods")
     </h1>
     <div class="float-right">
         &nbsp;
@@ -34,17 +34,17 @@
                                 {
                                     new ColumnProperty(nameof(MultiFactorAuthenticationMethodModel.FriendlyName))
                                     {
-                                        Title = T("Admin.Configuration.Authentication.MultiFactorMethods.Fields.FriendlyName").Text,
+                                        Title = (await T("Admin.Configuration.Authentication.MultiFactorMethods.Fields.FriendlyName")).Value,
                                         Width = "250"
                                     },
                                     new ColumnProperty(nameof(MultiFactorAuthenticationMethodModel.SystemName))
                                     {
-                                        Title = T("Admin.Configuration.Authentication.MultiFactorMethods.Fields.SystemName").Text,
+                                        Title = (await T("Admin.Configuration.Authentication.MultiFactorMethods.Fields.SystemName")).Value,
                                         Width = "250"
                                     },
                                     new ColumnProperty(nameof(MultiFactorAuthenticationMethodModel.DisplayOrder))
                                     {
-                                        Title = T("Admin.Configuration.Authentication.MultiFactorMethods.Fields.DisplayOrder").Text,
+                                        Title = (await T("Admin.Configuration.Authentication.MultiFactorMethods.Fields.DisplayOrder")).Value,
                                         Width = "100",
                                         ClassName = NopColumnClassDefaults.CenterAll,
                                         Editable = true,
@@ -52,7 +52,7 @@
                                     },
                                     new ColumnProperty(nameof(MultiFactorAuthenticationMethodModel.IsActive))
                                     {
-                                        Title = T("Admin.Configuration.Authentication.MultiFactorMethods.Fields.IsActive").Text,
+                                        Title = (await T("Admin.Configuration.Authentication.MultiFactorMethods.Fields.IsActive")).Value,
                                         Width = "100",
                                         ClassName = NopColumnClassDefaults.CenterAll,
                                         Render = new RenderBoolean(),
@@ -61,14 +61,14 @@
                                     },
                                     new ColumnProperty(nameof(MultiFactorAuthenticationMethodModel.SystemName))
                                     {
-                                        Title = T("Admin.Configuration.Authentication.MultiFactorMethods.Configure").Text,
+                                        Title = (await T("Admin.Configuration.Authentication.MultiFactorMethods.Configure")).Value,
                                         Width = "150",
                                         ClassName =  NopColumnClassDefaults.Button,
                                         Render = new RenderCustom("renderColumnConfigure")
                                     },
                                     new ColumnProperty(nameof(MultiFactorAuthenticationMethodModel.SystemName))
                                     {
-                                        Title = T("Admin.Common.Edit").Text,
+                                        Title = (await T("Admin.Common.Edit")).Value,
                                         Width = "200",
                                         ClassName =  NopColumnClassDefaults.Button,
                                         Render = new RenderButtonsInlineEdit()
@@ -79,7 +79,7 @@
                         <script>
                             function renderColumnConfigure(data, type, row, meta) {
                                 if (row.ConfigurationUrl && row.ConfigurationUrl.length > 0) {
-                                    return '<a class="btn btn-default" href="' + row.ConfigurationUrl + '"><i class="fas fa-cog"></i>@T("Admin.Configuration.Authentication.MultiFactorMethods.Configure").Text</a>';
+                                    return '<a class="btn btn-default" href="' + row.ConfigurationUrl + '"><i class="fas fa-cog"></i>@await T("Admin.Configuration.Authentication.MultiFactorMethods.Configure")</a>';
                                 } else {
                                     return '';
                                 }

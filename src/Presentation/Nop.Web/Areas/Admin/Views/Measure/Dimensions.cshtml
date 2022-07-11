@@ -14,58 +14,58 @@
             {
                 new ColumnProperty(nameof(MeasureDimensionModel.Name))
                 {
-                    Title = T("Admin.Configuration.Shipping.Measures.Dimensions.Fields.Name").Text,
+                    Title = (await T("Admin.Configuration.Shipping.Measures.Dimensions.Fields.Name")).Value,
                     Editable = true,
                     EditType = EditType.String
                 },
                 new ColumnProperty(nameof(MeasureDimensionModel.SystemKeyword))
                 {
-                    Title = T("Admin.Configuration.Shipping.Measures.Dimensions.Fields.SystemKeyword").Text,
+                    Title = (await T("Admin.Configuration.Shipping.Measures.Dimensions.Fields.SystemKeyword")).Value,
                     Editable = true,
                     EditType = EditType.String
                 },
                 new ColumnProperty(nameof(MeasureDimensionModel.Ratio))
                 {
-                    Title = T("Admin.Configuration.Shipping.Measures.Dimensions.Fields.Ratio").Text,
+                    Title = (await T("Admin.Configuration.Shipping.Measures.Dimensions.Fields.Ratio")).Value,
                     Editable = true,
                     EditType = EditType.Number
                 },
                 new ColumnProperty(nameof(MeasureDimensionModel.DisplayOrder))
                 {
-                    Title = T("Admin.Configuration.Shipping.Measures.Dimensions.Fields.DisplayOrder").Text,
+                    Title = (await T("Admin.Configuration.Shipping.Measures.Dimensions.Fields.DisplayOrder")).Value,
                     Width = "100",
                     Editable = true,
                     EditType = EditType.Number
                 },
                 new ColumnProperty(nameof(MeasureDimensionModel.IsPrimaryDimension))
                 {
-                    Title = T("Admin.Configuration.Shipping.Measures.Dimensions.Fields.IsPrimaryDimension").Text,
+                    Title = (await T("Admin.Configuration.Shipping.Measures.Dimensions.Fields.IsPrimaryDimension")).Value,
                     Width = "100",
                     ClassName =  NopColumnClassDefaults.CenterAll,
                     Render = new RenderBoolean()
                 },
                 new ColumnProperty(nameof(MeasureDimensionModel.Id))
                 {
-                    Title = T("Admin.Configuration.Shipping.Measures.Dimensions.Fields.MarkAsPrimaryDimension").Text,
+                    Title = (await T("Admin.Configuration.Shipping.Measures.Dimensions.Fields.MarkAsPrimaryDimension")).Value,
                     ClassName =  NopColumnClassDefaults.CenterAll,
-                    Render = new RenderButtonCustom(NopButtonClassDefaults.Olive, T("Admin.Configuration.Shipping.Measures.Dimensions.Fields.MarkAsPrimaryDimension").Text)
+                    Render = new RenderButtonCustom(NopButtonClassDefaults.Olive, (await T("Admin.Configuration.Shipping.Measures.Dimensions.Fields.MarkAsPrimaryDimension")).Value)
                     {
                         OnClickFunctionName = "markAsPrimaryDimension"
                     }
                 },
                 new ColumnProperty(nameof(MeasureDimensionModel.Id))
                 {
-                    Title = T("Admin.Common.Edit").Text,
+                    Title = (await T("Admin.Common.Edit")).Value,
                     Width = "200",
                     ClassName =  NopColumnClassDefaults.Button,
                     Render = new RenderButtonsInlineEdit()
                 },
                 new ColumnProperty(nameof(MeasureDimensionModel.Id))
                 {
-                    Title = T("Admin.Common.Delete").Text,
+                    Title = (await T("Admin.Common.Delete")).Value,
                     Width = "100",
                     ClassName =  NopColumnClassDefaults.Button,
-                    Render = new RenderButtonRemove(T("Admin.Common.Delete").Text)
+                    Render = new RenderButtonRemove((await T("Admin.Common.Delete")).Value)
                 }
             }
         })
@@ -105,7 +105,7 @@
 
         <div class="card card-default">
             <div class="card-header">
-                @T("Admin.Common.AddNewRecord")
+                @await T("Admin.Common.AddNewRecord")
             </div>
             <div class="card-body">
                 <div class="form-group row">
@@ -146,7 +146,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-9 offset-md-3">
-                        <button type="button" id="addMeasureDimension" class="btn btn-primary">@T("Admin.Common.AddNewRecord")</button>
+                        <button type="button" id="addMeasureDimension" class="btn btn-primary">@await T("Admin.Common.AddNewRecord")</button>
                     </div>
                 </div>
             </div>
@@ -192,4 +192,4 @@
             </script>
         </div>
     </div>
-<nop-alert asp-alert-id="markAsPrimaryDimensionAlert" asp-alert-message="@T("Admin.Configuration.Shipping.Measures.Dimensions.MarkAsPrimaryDimension.Alert.FailedToUpdate")" />
+<nop-alert asp-alert-id="markAsPrimaryDimensionAlert" asp-alert-message="@await T("Admin.Configuration.Shipping.Measures.Dimensions.MarkAsPrimaryDimension.Alert.FailedToUpdate")" />

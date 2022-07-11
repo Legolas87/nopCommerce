@@ -14,36 +14,36 @@
             {
                 new ColumnProperty(nameof(CustomerRewardPointsModel.StoreName))
                 {
-                    Title = T("Admin.Customers.Customers.RewardPoints.Fields.Store").Text,
+                    Title = (await T("Admin.Customers.Customers.RewardPoints.Fields.Store")).Value,
                     Visible = (await storeService.GetAllStoresAsync()).Count > 1
                 },
                 new ColumnProperty(nameof(CustomerRewardPointsModel.Points))
                 {
-                    Title = T("Admin.Customers.Customers.RewardPoints.Fields.Points").Text
+                    Title = (await T("Admin.Customers.Customers.RewardPoints.Fields.Points")).Value
                 },
                 new ColumnProperty(nameof(CustomerRewardPointsModel.PointsBalance))
                 {
-                    Title = T("Admin.Customers.Customers.RewardPoints.Fields.PointsBalance").Text
+                    Title = (await T("Admin.Customers.Customers.RewardPoints.Fields.PointsBalance")).Value
                 },
                 new ColumnProperty(nameof(CustomerRewardPointsModel.Message))
                 {
-                    Title = T("Admin.Customers.Customers.RewardPoints.Fields.Message").Text
+                    Title = (await T("Admin.Customers.Customers.RewardPoints.Fields.Message")).Value
                 },
                 new ColumnProperty(nameof(CustomerRewardPointsModel.CreatedOn))
                 {
-                    Title = T("Admin.Customers.Customers.RewardPoints.Fields.CreatedDate").Text,
+                    Title = (await T("Admin.Customers.Customers.RewardPoints.Fields.CreatedDate")).Value,
                     Render = new RenderDate()
                 },
                 new ColumnProperty(nameof(CustomerRewardPointsModel.EndDate))
                 {
-                    Title = T("Admin.Customers.Customers.RewardPoints.Fields.EndDate").Text,
+                    Title = (await T("Admin.Customers.Customers.RewardPoints.Fields.EndDate")).Value,
                     Render = new RenderDate()
                 }
             }
         })
     <div class="card card-default no-margin">
         <div class="card-header">
-            @T("Admin.Customers.Customers.RewardPoints.AddTitle")
+            @await T("Admin.Customers.Customers.RewardPoints.AddTitle")
         </div>
         <div class="card-body">
              <div class="form-group row">
@@ -60,7 +60,7 @@
                     <nop-label asp-for="@Model.AddRewardPoints.PointsValidity" />
                 </div>
                 <div class="col-md-9">
-                    <nop-editor asp-for="@Model.AddRewardPoints.PointsValidity" asp-postfix="@T("Admin.Customers.Customers.RewardPoints.Fields.PointsValidity.Postfix")" />
+                    <nop-editor asp-for="@Model.AddRewardPoints.PointsValidity" asp-postfix="@await T("Admin.Customers.Customers.RewardPoints.Fields.PointsValidity.Postfix")" />
                     <span asp-validation-for="@Model.AddRewardPoints.PointsValidity"></span>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                     <nop-label asp-for="@Model.AddRewardPoints.Message" />
                 </div>
                 <div class="col-md-9">
-                    <nop-editor asp-for="@Model.AddRewardPoints.Message" html-attributes="@(new { placeholder = T("Admin.Customers.Customers.SomeComment") })"/>
+                    <nop-editor asp-for="@Model.AddRewardPoints.Message" html-attributes="@(new { placeholder = (await T("Admin.Customers.Customers.SomeComment")).Value })"/>
                     <span asp-validation-for="@Model.AddRewardPoints.Message"></span>
                 </div>
             </div>
@@ -110,7 +110,7 @@
             </div>
              <div class="form-group row">
                 <div class="col-md-9 offset-md-3">
-                    <button type="button" id="addRewardPoints" class="btn btn-primary">@T("Admin.Customers.Customers.RewardPoints.AddButton")</button>
+                    <button type="button" id="addRewardPoints" class="btn btn-primary">@await T("Admin.Customers.Customers.RewardPoints.AddButton")</button>
                 </div>
             </div>
         </div>

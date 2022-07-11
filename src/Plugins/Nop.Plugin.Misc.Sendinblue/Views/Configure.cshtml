@@ -13,7 +13,7 @@
 
 <form asp-controller="Sendinblue" asp-action="Configure" method="post">
     <nop-cards id="sendinblue-cards">
-        <nop-card asp-name="sendinblue-general" asp-icon="fas fa-info" asp-title="@T("Plugins.Misc.Sendinblue.General")" asp-hide-block-attribute-name="@SendinblueDefaults.HideGeneralBlock" asp-hide="@Model.HideGeneralBlock" asp-advanced="false">
+        <nop-card asp-name="sendinblue-general" asp-icon="fas fa-info" asp-title="@await T("Plugins.Misc.Sendinblue.General")" asp-hide-block-attribute-name="@SendinblueDefaults.HideGeneralBlock" asp-hide="@Model.HideGeneralBlock" asp-advanced="false">
             <div class="card-body">
                 <div class="card card-default">
                     <div class="card-body">
@@ -38,7 +38,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-9 offset-md-3">
-                                    <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                                    <button type="submit" name="save" class="btn btn-primary">@await T("Admin.Common.Save")</button>
                                 </div>
                             </div>
                         }
@@ -84,7 +84,7 @@
 
                                 </div>
                                 <div class="form-group row">
-                                    <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                                    <button type="submit" name="save" class="btn btn-primary">@await T("Admin.Common.Save")</button>
                                 </div>
                                 <div class="form-group row">
                                     <h2>Need help?</h2>
@@ -124,7 +124,7 @@
         </nop-card>
         @if (!string.IsNullOrEmpty(Model.ApiKey))
         {
-            <nop-card asp-name="sendinblue-synchronization" asp-icon="fas fa-exchange" asp-title="@T("Plugins.Misc.Sendinblue.Synchronization")" asp-hide-block-attribute-name="@SendinblueDefaults.HideSynchronizationBlock" asp-hide="@Model.HideSynchronizationBlock" asp-advanced="false">
+            <nop-card asp-name="sendinblue-synchronization" asp-icon="fas fa-exchange" asp-title="@await T("Plugins.Misc.Sendinblue.Synchronization")" asp-hide-block-attribute-name="@SendinblueDefaults.HideSynchronizationBlock" asp-hide="@Model.HideSynchronizationBlock" asp-advanced="false">
                 <script>
                     $(document).ready(function () {
                         $("#progressBar").kendoProgressBar({
@@ -180,14 +180,14 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-9 offset-md-3">
-                                    <button type="submit" name="saveSync" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                                    <button type="submit" name="saveSync" class="btn btn-primary">@await T("Admin.Common.Save")</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card card-default">
                         <div class="card-header">
-                            @T("Plugins.Misc.Sendinblue.ManualSync")
+                            @await T("Plugins.Misc.Sendinblue.ManualSync")
                         </div>
                         <div class="card-body">
                             <p>
@@ -198,13 +198,13 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" name="sync" class="btn btn-primary">
-                                @T("Plugins.Misc.Sendinblue.SyncNow")
+                                @await T("Plugins.Misc.Sendinblue.SyncNow")
                             </button>
                         </div>
                     </div>
                 </div>
             </nop-card>
-            <nop-card asp-name="sendinblue-transactional" asp-icon="fas fa-envelope" asp-title="@T("Plugins.Misc.Sendinblue.Transactional")" asp-hide-block-attribute-name="@SendinblueDefaults.HideTransactionalBlock" asp-hide="@Model.HideTransactionalBlock" asp-advanced="false">
+            <nop-card asp-name="sendinblue-transactional" asp-icon="fas fa-envelope" asp-title="@await T("Plugins.Misc.Sendinblue.Transactional")" asp-hide-block-attribute-name="@SendinblueDefaults.HideTransactionalBlock" asp-hide="@Model.HideTransactionalBlock" asp-advanced="false">
                 <div class="card-body">
                     <div class="card card-default">
                         <div class="card-body">
@@ -243,7 +243,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-9 offset-md-3">
-                                    <button type="submit" name="saveSMTP" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                                    <button type="submit" name="saveSMTP" class="btn btn-primary">@await T("Admin.Common.Save")</button>
                                 </div>
                             </div>
                         </div>
@@ -264,11 +264,11 @@
                                     {
                                         new ColumnProperty(nameof(SendinblueMessageTemplateModel.Name))
                                         {
-                                            Title = T("Admin.ContentManagement.MessageTemplates.Fields.Name").Text
+                                            Title = (await T("Admin.ContentManagement.MessageTemplates.Fields.Name")).Value
                                         },
                                         new ColumnProperty(nameof(SendinblueMessageTemplateModel.IsActive))
                                         {
-                                            Title = T("Admin.ContentManagement.MessageTemplates.Fields.IsActive").Text,
+                                            Title = (await T("Admin.ContentManagement.MessageTemplates.Fields.IsActive")).Value,
                                             Width = "100",
                                             ClassName = NopColumnClassDefaults.CenterAll,
                                             Render = new RenderBoolean(),
@@ -277,11 +277,11 @@
                                         },
                                         new ColumnProperty(nameof(SendinblueMessageTemplateModel.ListOfStores))
                                         {
-                                            Title = T("Admin.ContentManagement.MessageTemplates.Fields.LimitedToStores").Text
+                                            Title = (await T("Admin.ContentManagement.MessageTemplates.Fields.LimitedToStores")).Value
                                         },
                                         new ColumnProperty(nameof(SendinblueMessageTemplateModel.UseSendinblueTemplate))
                                         {
-                                            Title = T("Plugins.Misc.Sendinblue.UseSendinblueTemplate").Text,
+                                            Title = (await T("Plugins.Misc.Sendinblue.UseSendinblueTemplate")).Value,
                                             Width = "100",
                                             ClassName = NopColumnClassDefaults.CenterAll,
                                             Render = new RenderBoolean(),
@@ -290,16 +290,16 @@
                                         },
                                         new ColumnProperty(nameof(SendinblueMessageTemplateModel.Id))
                                         {
-                                            Title = T("Plugins.Misc.Sendinblue.EditTemplate").Text,
+                                            Title = (await T("Plugins.Misc.Sendinblue.EditTemplate")).Value,
                                             Width = "150",
                                             Render = new RenderLink(new DataUrl(string.Empty, nameof(SendinblueMessageTemplateModel.EditLink)))
                                             {
-                                                Title = T("Plugins.Misc.Sendinblue.EditTemplate").Text
+                                                Title = (await T("Plugins.Misc.Sendinblue.EditTemplate")).Value
                                             }
                                         },
                                         new ColumnProperty(nameof(SendinblueMessageTemplateModel.Id))
                                         {
-                                            Title = T("Admin.Common.Edit").Text,
+                                            Title = (await T("Admin.Common.Edit")).Value,
                                             Width = "200",
                                             ClassName =  NopColumnClassDefaults.Button,
                                             Render = new RenderButtonsInlineEdit()
@@ -311,7 +311,7 @@
                     }
                 </div>
             </nop-card>
-            <nop-card asp-name="sendinblue-sms" asp-icon="fas fa-envelope" asp-title="@T("Plugins.Misc.Sendinblue.SMS")" asp-hide-block-attribute-name="@SendinblueDefaults.HideSmsBlock" asp-hide="@Model.HideSmsBlock" asp-advanced="false">
+            <nop-card asp-name="sendinblue-sms" asp-icon="fas fa-envelope" asp-title="@await T("Plugins.Misc.Sendinblue.SMS")" asp-hide-block-attribute-name="@SendinblueDefaults.HideSmsBlock" asp-hide="@Model.HideSmsBlock" asp-advanced="false">
                 <div class="card-body">
                     <div class="card card-default">
                         <div class="card-body">
@@ -349,7 +349,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-9 offset-md-3">
-                                    <button type="submit" name="saveSMS" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                                    <button type="submit" name="saveSMS" class="btn btn-primary">@await T("Admin.Common.Save")</button>
                                 </div>
                             </div>
                         </div>
@@ -364,7 +364,7 @@
                                         <nop-label asp-for="AllowedTokens" />
                                     </div>
                                     <div class="col-md-9">
-                                        <a id="allowedTokensShowHide" href="javascript:toggleLoadedAllowedTokens();">@T("Admin.Common.Show")</a>
+                                        <a id="allowedTokensShowHide" href="javascript:toggleLoadedAllowedTokens();">@await T("Admin.Common.Show")</a>
                                         <div id="pnlAllowedTokens" class="d-none" style="white-space: pre-line">
                                             <div class="form-text-row">@Model.AllowedTokens</div>
                                         </div>
@@ -374,9 +374,9 @@
                                     function toggleLoadedAllowedTokens() {
                                         $('#pnlAllowedTokens').toggleClass('d-none');
                                         if ($('#pnlAllowedTokens').hasClass('d-none')) {
-                                            $('#allowedTokensShowHide').html('@T("Admin.Common.Show")');
+                                            $('#allowedTokensShowHide').html('@await T("Admin.Common.Show")');
                                         } else {
-                                            $('#allowedTokensShowHide').html('@T("Admin.Common.Hide")');
+                                            $('#allowedTokensShowHide').html('@await T("Admin.Common.Hide")');
                                         }
                                     }
                                 </script>
@@ -392,31 +392,31 @@
                                     {
                                         new ColumnProperty(nameof(SmsModel.Name))
                                         {
-                                            Title = T("Admin.ContentManagement.MessageTemplates.Fields.Name").Text,
+                                            Title = (await T("Admin.ContentManagement.MessageTemplates.Fields.Name")).Value,
                                             Width = "300",
                                         },
                                         new ColumnProperty(nameof(SmsModel.PhoneType))
                                         {
-                                            Title = T("Plugins.Misc.Sendinblue.PhoneType").Text,
+                                            Title = (await T("Plugins.Misc.Sendinblue.PhoneType")).Value,
                                             Width = "200",
                                         },
                                         new ColumnProperty(nameof(SmsModel.Text))
                                         {
-                                            Title = T("Plugins.Misc.Sendinblue.SMSText").Text,
+                                            Title = (await T("Plugins.Misc.Sendinblue.SMSText")).Value,
                                             Width = "500"
                                         },
                                         new ColumnProperty(nameof(SmsModel.Id))
                                         {
-                                            Title = T("Admin.Common.Delete").Text,
+                                            Title = (await T("Admin.Common.Delete")).Value,
                                             Width = "100",
                                             ClassName =  NopColumnClassDefaults.Button,
-                                            Render = new RenderButtonRemove(T("Admin.Common.Delete").Text)
+                                            Render = new RenderButtonRemove((await T("Admin.Common.Delete")).Value)
                                         }
                                     }
                                 })
                                 <div class="card card-default no-margin">
                                     <div class="card-header">
-                                        @T("Admin.Common.AddNewRecord")
+                                        @await T("Admin.Common.AddNewRecord")
                                     </div>
                                     <div class="card-body">
                                         <div class="form-group row">
@@ -448,7 +448,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-9 offset-md-3">
-                                                <button type="button" id="addSms" class="btn btn-primary">@T("Admin.Common.AddNewRecord")</button>
+                                                <button type="button" id="addSms" class="btn btn-primary">@await T("Admin.Common.AddNewRecord")</button>
                                             </div>
                                         </div>
                                     </div>
@@ -494,7 +494,7 @@
 
                     <div class="card card-default">
                         <div class="card-header">
-                            @T("Plugins.Misc.Sendinblue.SMS.Campaigns")
+                            @await T("Plugins.Misc.Sendinblue.SMS.Campaigns")
                         </div>
                         <div class="card-body">
                             <p>
@@ -529,14 +529,14 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-9 offset-md-3">
-                                    <button type="submit" name="submitCampaign" class="btn btn-primary">@T("Plugins.Misc.Sendinblue.SMS.Campaigns.Submit")</button>
+                                    <button type="submit" name="submitCampaign" class="btn btn-primary">@await T("Plugins.Misc.Sendinblue.SMS.Campaigns.Submit")</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </nop-card>
-            <nop-card asp-name="sendinblue-ma" asp-icon="fas fa-star" asp-title="@T("Plugins.Misc.Sendinblue.MarketingAutomation")" asp-hide-block-attribute-name="@SendinblueDefaults.HideMarketingAutomationBlock" asp-hide="@Model.HideMarketingAutomationBlock" asp-advanced="false">
+            <nop-card asp-name="sendinblue-ma" asp-icon="fas fa-star" asp-title="@await T("Plugins.Misc.Sendinblue.MarketingAutomation")" asp-hide-block-attribute-name="@SendinblueDefaults.HideMarketingAutomationBlock" asp-hide="@Model.HideMarketingAutomationBlock" asp-advanced="false">
                 <div class="card-body">
                     <div class="card card-default">
                         <div class="card-body">
@@ -587,7 +587,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-9 offset-md-3">
-                                    <button type="submit" name="saveMA" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                                    <button type="submit" name="saveMA" class="btn btn-primary">@await T("Admin.Common.Save")</button>
                                 </div>
                             </div>
                         </div>

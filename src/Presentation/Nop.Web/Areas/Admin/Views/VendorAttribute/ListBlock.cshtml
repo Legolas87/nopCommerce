@@ -2,7 +2,7 @@
 
 <div class="card-body">
     <p>
-        <em>@T("Admin.Vendors.VendorAttributes.Description")</em>
+        <em>@await T("Admin.Vendors.VendorAttributes.Description")</em>
     </p>
     @await Html.PartialAsync("Table", new DataTablesModel
     {
@@ -14,30 +14,30 @@
         {
             new ColumnProperty(nameof(VendorAttributeModel.Name))
             {
-                Title = T("Admin.Vendors.VendorAttributes.Fields.Name").Text,
+                Title = (await T("Admin.Vendors.VendorAttributes.Fields.Name")).Value,
                 Width = "300"
             },
             new ColumnProperty(nameof(VendorAttributeModel.AttributeControlTypeName))
             {
-                Title = T("Admin.Vendors.VendorAttributes.Fields.AttributeControlType").Text,
+                Title = (await T("Admin.Vendors.VendorAttributes.Fields.AttributeControlType")).Value,
                 Width = "200"
             },
             new ColumnProperty(nameof(VendorAttributeModel.IsRequired))
             {
-                Title = T("Admin.Vendors.VendorAttributes.Fields.IsRequired").Text,
+                Title = (await T("Admin.Vendors.VendorAttributes.Fields.IsRequired")).Value,
                 Width = "100",
                 ClassName =  NopColumnClassDefaults.CenterAll,
                 Render = new RenderBoolean()
             },
             new ColumnProperty(nameof(VendorAttributeModel.DisplayOrder))
             {
-                Title = T("Admin.Vendors.VendorAttributes.Fields.DisplayOrder").Text,
+                Title = (await T("Admin.Vendors.VendorAttributes.Fields.DisplayOrder")).Value,
                 Width = "100",
                 ClassName = NopColumnClassDefaults.CenterAll
             },
             new ColumnProperty(nameof(VendorAttributeModel.Id))
             {
-                Title = T("Admin.Common.Edit").Text,
+                Title = (await T("Admin.Common.Edit")).Value,
                 Width = "100",
                 ClassName =  NopColumnClassDefaults.Button,
                 Render = new RenderButtonEdit(new DataUrl("~/Admin/VendorAttribute/Edit/"))
@@ -48,6 +48,6 @@
 <div class="card-footer">
     <a class="btn btn-primary" href="@Url.Action("Create", "VendorAttribute")">
         <i class="fas fa-plus-square"></i>
-        @T("Admin.Common.AddNew")
+        @await T("Admin.Common.AddNew")
     </a>
 </div>

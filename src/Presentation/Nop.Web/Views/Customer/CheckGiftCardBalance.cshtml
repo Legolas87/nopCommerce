@@ -11,7 +11,7 @@
     Layout = isRegisterCustomer ? "_ColumnsTwo" : "_ColumnsOne";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.CheckGiftCardBalance").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.CheckGiftCardBalance")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-account-page");
 }
@@ -29,11 +29,11 @@
     <div class="page-title">
         @if (isRegisterCustomer)
         {
-            <h1>@T("Account.MyAccount") - @T("PageTitle.CheckGiftCardBalance")</h1>
+            <h1>@await T("Account.MyAccount") - @await T("PageTitle.CheckGiftCardBalance")</h1>
         }
         else
         {
-            <h1>@T("PageTitle.CheckGiftCardBalance")</h1>
+            <h1>@await T("PageTitle.CheckGiftCardBalance")</h1>
         }
     </div>
     <div class="page-body">
@@ -46,7 +46,7 @@
         @if (!string.IsNullOrEmpty(Model.Result))
         {
             <div class="result">
-                @string.Format(T("ShoppingCart.Totals.GiftCardInfo.Remaining").Text, @Model.Result)
+                @string.Format((await T("ShoppingCart.Totals.GiftCardInfo.Remaining")).Value, @Model.Result)
             </div>
         }
         <form asp-controller="Customer" asp-action="CheckGiftCardBalance" method="post">
@@ -55,7 +55,7 @@
                 <div class="form-fields">
                     <div class="inputs">
                         <label asp-for="GiftCardCode" asp-postfix=":"></label>
-                        <input asp-for="GiftCardCode" placeholder="@T("ShoppingCart.GiftCardCouponCode.Tooltip")" class="fullname" />
+                        <input asp-for="GiftCardCode" placeholder="@await T("ShoppingCart.GiftCardCouponCode.Tooltip")" class="fullname" />
                         <nop-required />
                         <span asp-validation-for="GiftCardCode"></span>
                     </div>
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="buttons">
-                <button type="submit" name="checkbalancegiftcard" id="checkbalancegiftcard" class="button-1 check-gift-card-balance-button">@T("CheckGiftCard.GiftCardCouponCode.Button")</button>
+                <button type="submit" name="checkbalancegiftcard" id="checkbalancegiftcard" class="button-1 check-gift-card-balance-button">@await T("CheckGiftCard.GiftCardCouponCode.Button")</button>
                 <script asp-location="Footer">
                     $(document).ready(function () {
                         $('#giftcardcouponcode').keydown(function (event) {

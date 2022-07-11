@@ -3,7 +3,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Configuration.Plugins.Local").Text;
+    ViewBag.PageTitle = (await T("Admin.Configuration.Plugins.Local")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Local plugins");
 }
@@ -16,38 +16,38 @@
 <form asp-controller="Plugin" asp-action="List" id="plugins-form-local">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Configuration.Plugins.Local")
+            @await T("Admin.Configuration.Plugins.Local")
         </h1>    
         <div class="float-right">
             @if (Model.NeedToRestart)
             {
-                <button type="submit" name="plugin-apply-changes" class="btn btn-success">@T("Admin.Configuration.Plugins.ApplyChanges")</button>
-                <button type="submit" name="plugin-discard-changes" class="btn btn-danger">@T("Admin.Configuration.Plugins.DiscardChanges")</button>
+                <button type="submit" name="plugin-apply-changes" class="btn btn-success">@await T("Admin.Configuration.Plugins.ApplyChanges")</button>
+                <button type="submit" name="plugin-discard-changes" class="btn btn-danger">@await T("Admin.Configuration.Plugins.DiscardChanges")</button>
             }
 
-            <button type="submit" name="plugin-reload-grid" class="btn btn-primary">@T("Admin.Configuration.Plugins.ReloadList")</button>
+            <button type="submit" name="plugin-reload-grid" class="btn btn-primary">@await T("Admin.Configuration.Plugins.ReloadList")</button>
             <script>
                 $(document).ready(function() {
                     $("button[name='plugin-reload-grid']").on("click",
                         function(e) {
                             showThrobber(
-                                '@Html.Raw(JavaScriptEncoder.Default.Encode(T("Admin.Configuration.Plugins.ReloadList.Progress").Text))');
+                                '@Html.Raw(JavaScriptEncoder.Default.Encode((await T("Admin.Configuration.Plugins.ReloadList.Progress")).Value))');
                         });
                     $("button[name='plugin-apply-changes']").on("click",
                         function(e) {
                             showThrobber(
-                                '@Html.Raw(JavaScriptEncoder.Default.Encode(T("Admin.Configuration.Plugins.ApplyChanges.Progress").Text))');
+                                '@Html.Raw(JavaScriptEncoder.Default.Encode((await T("Admin.Configuration.Plugins.ApplyChanges.Progress")).Value))');
                         });
                     $("button[name='plugin-discard-changes']").on("click",
                         function(e) {
                             showThrobber(
-                                '@Html.Raw(JavaScriptEncoder.Default.Encode(T("Admin.Configuration.Plugins.DiscardChanges.Progress").Text))');
+                                '@Html.Raw(JavaScriptEncoder.Default.Encode((await T("Admin.Configuration.Plugins.DiscardChanges.Progress")).Value))');
                         });
                 });
             </script>
             <button type="button" name="uploadplugin" class="btn bg-olive" data-toggle="modal" data-target="#uploadplugin-window">
                 <i class="fas fa-upload"></i>
-                @T("Admin.Configuration.Plugins.Upload")
+                @await T("Admin.Configuration.Plugins.Upload")
             </button>
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.PluginListButtons, additionalData = Model })
         </div>
@@ -61,21 +61,21 @@
                     //install a plugin
                     $("#plugins-local-grid").on("click", ".install-plugin-link", function (e) {
                         $("html, body").animate({ scrollTop: 0 }, 400);
-                        showThrobber('@Html.Raw(JavaScriptEncoder.Default.Encode(T("Admin.Configuration.Plugins.Fields.Install.Progress").Text))');
+                        showThrobber('@Html.Raw(JavaScriptEncoder.Default.Encode((await T("Admin.Configuration.Plugins.Fields.Install.Progress")).Value))');
                         return true;
                     });
 
                     //uninstall a plugin
                     $("#plugins-local-grid").on("click", ".uninstall-plugin-link", function (e) {
                         $("html, body").animate({ scrollTop: 0 }, 400);
-                        showThrobber('@Html.Raw(JavaScriptEncoder.Default.Encode(T("Admin.Configuration.Plugins.Fields.Uninstall.Progress").Text))');
+                        showThrobber('@Html.Raw(JavaScriptEncoder.Default.Encode((await T("Admin.Configuration.Plugins.Fields.Uninstall.Progress")).Value))');
                         return true;
                     });
 
                     //upload a plugin
                     $("#upload-plugin").on("click", function (e) {
                         $("html, body").animate({ scrollTop: 0 }, 400);
-                        showThrobber('@Html.Raw(JavaScriptEncoder.Default.Encode(T("Admin.Configuration.Plugins.Upload.Progress").Text))');
+                        showThrobber('@Html.Raw(JavaScriptEncoder.Default.Encode((await T("Admin.Configuration.Plugins.Upload.Progress")).Value))');
                         return true;
                     });
 
@@ -92,7 +92,7 @@
                         function() {
                             $('#plugin-delete-confirmation').modal('toggle');
                             $("html, body").animate({ scrollTop: 0 }, 400);
-                            showThrobber('@Html.Raw(JavaScriptEncoder.Default.Encode(T("Admin.Configuration.Plugins.Fields.Delete.Progress").Text))');
+                            showThrobber('@Html.Raw(JavaScriptEncoder.Default.Encode((await T("Admin.Configuration.Plugins.Fields.Delete.Progress")).Value))');
                             return true;
                         });
                 });
@@ -102,24 +102,24 @@
                 <div class="card card-default card-search">
                     <div class="card-body">
                         <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                            <div class="search-text">@T("Admin.Common.Search")</div>
+                            <div class="search-text">@await T("Admin.Common.Search")</div>
                             <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                             <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                         </div>
 
                         <div class="search-body @(hideSearchBlock ? "closed" : "")">
                             <p>
-                                <h4>@T("Admin.Configuration.Plugins.Description")</h4>
+                                <h4>@await T("Admin.Configuration.Plugins.Description")</h4>
                                 <ol>
-                                    <li>@T("Admin.Configuration.Plugins.Description.Step1")</li>
-                                    <li>@T("Admin.Configuration.Plugins.Description.Step2")</li>
-                                    <li>@T("Admin.Configuration.Plugins.Description.Step3")</li>
-                                    <li>@T("Admin.Configuration.Plugins.Description.Step4")</li>
-                                    <li>@T("Admin.Configuration.Plugins.Description.Step5")</li>
+                                    <li>@await T("Admin.Configuration.Plugins.Description.Step1")</li>
+                                    <li>@await T("Admin.Configuration.Plugins.Description.Step2")</li>
+                                    <li>@await T("Admin.Configuration.Plugins.Description.Step3")</li>
+                                    <li>@await T("Admin.Configuration.Plugins.Description.Step4")</li>
+                                    <li>@await T("Admin.Configuration.Plugins.Description.Step5")</li>
                                 </ol>
                             </p>
                             <p>
-                                @T("Admin.Configuration.Plugins.Description.DownloadMorePlugins", OfficialSite.Marketplace + Utm.OnAdminAllPlugins)
+                                @await T("Admin.Configuration.Plugins.Description.DownloadMorePlugins", OfficialSite.Marketplace + Utm.OnAdminAllPlugins)
                             </p>
                             <div class="row">
                                 <div class="col-md-6">
@@ -163,7 +163,7 @@
                                 <div class="text-center col-12">
                                     <button type="button" id="search-plugins-local" class="btn btn-primary btn-search">
                                         <i class="fas fa-search"></i>
-                                        @T("Admin.Common.Search")
+                                        @await T("Admin.Common.Search")
                                     </button>
                                 </div>
                             </div>
@@ -173,7 +173,7 @@
 
                 <div class="card card-default">
                     <div class="card-body">
-                        <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Plugins", Docs.Plugins + Utm.OnAdmin)" />
+                        <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.Plugins", Docs.Plugins + Utm.OnAdmin)" />
 
                         @await Html.PartialAsync("Table", new DataTablesModel
                         {
@@ -193,30 +193,30 @@
                             {
                                 new ColumnProperty(nameof(PluginModel.Group))
                                 {
-                                    Title = T("Admin.Configuration.Plugins.Fields.Group").Text,
+                                    Title = (await T("Admin.Configuration.Plugins.Fields.Group")).Value,
                                     Width = "150"
                                 },
                                 new ColumnProperty(nameof(PluginModel.LogoUrl))
                                 {
-                                    Title = T("Admin.Configuration.Plugins.Fields.Logo").Text,
+                                    Title = (await T("Admin.Configuration.Plugins.Fields.Logo")).Value,
                                     Width = "200",
                                     ClassName = NopColumnClassDefaults.CenterAll,
                                     Render = new RenderPicture()
                                 },
                                 new ColumnProperty(nameof(PluginModel.Description))
                                 {
-                                    Title = T("Admin.Configuration.Plugins.Info").Text,
+                                    Title = (await T("Admin.Configuration.Plugins.Info")).Value,
                                     Width = "400",
                                     Render = new RenderCustom("renderColumnDescription")
                                 },
                                 new ColumnProperty(nameof(PluginModel.FriendlyName))
                                 {
-                                    Title = T("Admin.Configuration.Plugins.AdditionalInfo").Text,
+                                    Title = (await T("Admin.Configuration.Plugins.AdditionalInfo")).Value,
                                     Render = new RenderCustom("renderColumnFriendlyName")
                                 },
                                 new ColumnProperty(nameof(PluginModel.Installed))
                                 {
-                                    Title = T("Admin.Configuration.Plugins.Fields.Installation").Text,
+                                    Title = (await T("Admin.Configuration.Plugins.Fields.Installation")).Value,
                                     Width = "100",
                                     ClassName =  NopColumnClassDefaults.Button,
                                     Render = new RenderCustom("renderColumnInstalled")
@@ -236,17 +236,17 @@
                                 res = res + '<br />';
                                 //allow configuration only when a plugin has a configuration URL specified
                                 if (row.ConfigurationUrl && row.ConfigurationUrl.length > 0) {
-                                    res = res + '<a class="btn btn-default margin-r-5" href="' + row.ConfigurationUrl + '"><i class="fas fa-cog"></i>@T("Admin.Configuration.Plugins.Fields.Configure").Text</a>';
+                                    res = res + '<a class="btn btn-default margin-r-5" href="' + row.ConfigurationUrl + '"><i class="fas fa-cog"></i>@await T("Admin.Configuration.Plugins.Fields.Configure")</a>';
                                 }
                                 if (row.Installed) {
-                                    res = res + '<a class="btn btn-default" href="javascript:OpenWindow(\'@Url.Content("~/Admin/Plugin/EditPopup")?systemName=' + row.SystemName + '&btnId=btnRefreshList&formId=plugins-form-local\', 800, 500, true);"><i class="fas fa-pencil-alt"></i>@T("Admin.Common.Edit").Text</a>';
+                                    res = res + '<a class="btn btn-default" href="javascript:OpenWindow(\'@Url.Content("~/Admin/Plugin/EditPopup")?systemName=' + row.SystemName + '&btnId=btnRefreshList&formId=plugins-form-local\', 800, 500, true);"><i class="fas fa-pencil-alt"></i>@await T("Admin.Common.Edit")</a>';
                                 }
 
                                 return res;
                             }
 
                             function renderColumnFriendlyName(data, type, row, meta) {
-                                var isInstall = '<li>@T("Admin.Configuration.Plugins.Fields.Installed").Text: ';
+                                var isInstall = '<li>@await T("Admin.Configuration.Plugins.Fields.Installed"): ';
                                 if (row.Installed) {
                                     isInstall = isInstall + '<i class="fas fa-check true-icon"></i></li>';
                                 }
@@ -256,7 +256,7 @@
 
                                 var canChange = '';
                                 if (row.CanChangeEnabled) {
-                                    canChange = canChange + '<li>@T("Admin.Configuration.Plugins.Fields.IsEnabled").Text: ';
+                                    canChange = canChange + '<li>@await T("Admin.Configuration.Plugins.Fields.IsEnabled"): ';
                                     if (row.IsEnabled) {
                                         canChange = canChange + '<i class="fas fa-check true-icon"></i>';
                                     }
@@ -267,19 +267,19 @@
                                 };
 
                                 return '<ul class="common-list">' +
-                                    '<li>@T("Admin.Configuration.Plugins.Fields.Version").Text: ' +  row.Version + '</li>' +
-                                    '<li>@T("Admin.Configuration.Plugins.Fields.Author").Text: ' + row.Author + '</li>' +
-                                    '<li>@T("Admin.Configuration.Plugins.Fields.SystemName").Text: ' + row.SystemName + '</li>' +
-                                    '<li>@T("Admin.Configuration.Plugins.Fields.DisplayOrder").Text: ' + row.DisplayOrder + '</li>' +
+                                    '<li>@await T("Admin.Configuration.Plugins.Fields.Version"): ' +  row.Version + '</li>' +
+                                    '<li>@await T("Admin.Configuration.Plugins.Fields.Author"): ' + row.Author + '</li>' +
+                                    '<li>@await T("Admin.Configuration.Plugins.Fields.SystemName"): ' + row.SystemName + '</li>' +
+                                    '<li>@await T("Admin.Configuration.Plugins.Fields.DisplayOrder"): ' + row.DisplayOrder + '</li>' +
                                     isInstall +
                                     canChange;
                             }
 
                             function renderColumnInstalled(data, type, row, meta) {
                                 if (row.Installed) {
-                                    return '<button type="submit" name="uninstall-plugin-link-' + row.SystemName + '" class="btn bg-red uninstall-plugin-link">@T("Admin.Configuration.Plugins.Fields.Uninstall").Text</button>';
+                                    return '<button type="submit" name="uninstall-plugin-link-' + row.SystemName + '" class="btn bg-red uninstall-plugin-link">@await T("Admin.Configuration.Plugins.Fields.Uninstall")</button>';
                                 } else {
-                                    return '<button type="submit" name="install-plugin-link-' + row.SystemName + '" class="btn bg-green install-plugin-link">@T("Admin.Configuration.Plugins.Fields.Install").Text</button> <button type="button" name="delete-plugin-link-' + row.SystemName + '" class="btn bg-red delete-plugin-link" >@T("Admin.Configuration.Plugins.Fields.Delete").Text</button>';
+                                    return '<button type="submit" name="install-plugin-link-' + row.SystemName + '" class="btn bg-green install-plugin-link">@await T("Admin.Configuration.Plugins.Fields.Install")</button> <button type="button" name="delete-plugin-link-' + row.SystemName + '" class="btn bg-red delete-plugin-link" >@await T("Admin.Configuration.Plugins.Fields.Delete")</button>';
                                 }
                             }
                         </script>
@@ -289,16 +289,16 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title" id="plugindelete-confirmation-title">@T("Admin.Common.AreYouSure")</h4>
+                                    <h4 class="modal-title" id="plugindelete-confirmation-title">@await T("Admin.Common.AreYouSure")</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>                                    
                                 </div>
                                 <div class="form-horizontal">
                                     <div class="modal-body">
-                                        @T("Admin.Common.DeleteConfirmation")
+                                        @await T("Admin.Common.DeleteConfirmation")
                                     </div>
                                     <div class="modal-footer">
-                                        <span class="btn btn-default" data-dismiss="modal">@T("Admin.Common.NoCancel")</span>
-                                        <button type="submit" class="btn btn-danger float-right">@T("Admin.Common.Delete")</button>
+                                        <span class="btn btn-default" data-dismiss="modal">@await T("Admin.Common.NoCancel")</span>
+                                        <button type="submit" class="btn btn-danger float-right">@await T("Admin.Common.Delete")</button>
                                     </div>
                                 </div>
                             </div>
@@ -332,7 +332,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="uploadplugin-window-title">@T("Admin.Configuration.Plugins.Upload")</h4>
+                <h4 class="modal-title" id="uploadplugin-window-title">@await T("Admin.Configuration.Plugins.Upload")</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>                
             </div>
             <form asp-controller="Plugin" asp-action="UploadPluginsAndThemes" method="post" enctype="multipart/form-data">
@@ -340,23 +340,23 @@
                     <div class="modal-body">
                         <ul class="common-list">
                             <li>
-                                @T("Admin.Configuration.Plugins.Upload.Hint1")
+                                @await T("Admin.Configuration.Plugins.Upload.Hint1")
                             </li>
                             <li>
-                                @string.Format(T("Admin.Configuration.Plugins.Upload.Hint2").Text, NopPluginDefaults.UploadedItemsFileName)
+                                @string.Format((await T("Admin.Configuration.Plugins.Upload.Hint2")).Value, NopPluginDefaults.UploadedItemsFileName)
                             </li>
                             <li>
-                                <em>@T("Admin.Configuration.Plugins.Upload.Hint3")</em>
+                                <em>@await T("Admin.Configuration.Plugins.Upload.Hint3")</em>
                             </li>
                             <li>
-                                <em>@T("Admin.Configuration.Plugins.Upload.Hint4")</em>
+                                <em>@await T("Admin.Configuration.Plugins.Upload.Hint4")</em>
                             </li>
                         </ul>
                         <div class="form-group row">
                             <div class="col-md-2">
                                 <div class="label-wrapper">
                                     <label class="col-form-label">
-                                        @T("Admin.Common.ZipFile")
+                                        @await T("Admin.Common.ZipFile")
                                     </label>
                                 </div>
                             </div>
@@ -367,7 +367,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" id="upload-plugin">
-                            @T("Admin.Configuration.Plugins.Upload")
+                            @await T("Admin.Configuration.Plugins.Upload")
                         </button>
                     </div>
                 </div>

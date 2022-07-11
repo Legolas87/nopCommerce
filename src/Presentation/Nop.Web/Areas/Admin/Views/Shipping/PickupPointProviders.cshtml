@@ -2,14 +2,14 @@
 
 @{    
     //page title
-    ViewBag.PageTitle = T("Admin.Configuration.Shipping.PickupPointProviders").Text;
+    ViewBag.PageTitle = (await T("Admin.Configuration.Shipping.PickupPointProviders")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Pickup points");
 }
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Configuration.Shipping.PickupPointProviders")
+        @await T("Admin.Configuration.Shipping.PickupPointProviders")
     </h1>
     <div class="float-right">
         &nbsp;
@@ -23,7 +23,7 @@
         <div class="cards-group">
             <div class="card card-default">
                 <div class="card-body">
-                    <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.PickupPoints", Docs.PickupPoints + Utm.OnAdmin)" />
+                    <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.PickupPoints", Docs.PickupPoints + Utm.OnAdmin)" />
 
                     @await Html.PartialAsync("Table", new DataTablesModel
                     {
@@ -36,16 +36,16 @@
                             {
                                 new ColumnProperty(nameof(PickupPointProviderModel.FriendlyName))
                                 {
-                                    Title = T("Admin.Configuration.Shipping.PickupPointProviders.Fields.FriendlyName").Text
+                                    Title = (await T("Admin.Configuration.Shipping.PickupPointProviders.Fields.FriendlyName")).Value
                                 },
                                 new ColumnProperty(nameof(PickupPointProviderModel.SystemName))
                                 {
-                                    Title = T("Admin.Configuration.Shipping.PickupPointProviders.Fields.SystemName").Text,
+                                    Title = (await T("Admin.Configuration.Shipping.PickupPointProviders.Fields.SystemName")).Value,
                                     Width = "250"
                                 },
                                 new ColumnProperty(nameof(PickupPointProviderModel.DisplayOrder))
                                 {
-                                    Title = T("Admin.Configuration.Shipping.PickupPointProviders.Fields.DisplayOrder").Text,
+                                    Title = (await T("Admin.Configuration.Shipping.PickupPointProviders.Fields.DisplayOrder")).Value,
                                     Width = "100",
                                     ClassName = NopColumnClassDefaults.CenterAll,
                                     Editable = true,
@@ -53,7 +53,7 @@
                                 },
                                 new ColumnProperty(nameof(PickupPointProviderModel.IsActive))
                                 {
-                                    Title = T("Admin.Configuration.Shipping.PickupPointProviders.Fields.IsActive").Text,
+                                    Title = (await T("Admin.Configuration.Shipping.PickupPointProviders.Fields.IsActive")).Value,
                                     Width = "100",
                                     ClassName = NopColumnClassDefaults.CenterAll,
                                     Render = new RenderBoolean(),
@@ -62,14 +62,14 @@
                                 },
                                 new ColumnProperty(nameof(PickupPointProviderModel.SystemName))
                                 {
-                                    Title = T("Admin.Configuration.Shipping.PickupPointProviders.Configure").Text,
+                                    Title = (await T("Admin.Configuration.Shipping.PickupPointProviders.Configure")).Value,
                                     Width = "200",
                                     ClassName =  NopColumnClassDefaults.Button,
                                     Render = new RenderCustom("renderColumnConfigure")
                                 },
                                 new ColumnProperty(nameof(PickupPointProviderModel.SystemName))
                                 {
-                                    Title = T("Admin.Common.Edit").Text,
+                                    Title = (await T("Admin.Common.Edit")).Value,
                                     Width = "150",
                                     ClassName =  NopColumnClassDefaults.Button,
                                     Render = new RenderButtonsInlineEdit()
@@ -80,7 +80,7 @@
                     <script>
                         function renderColumnConfigure(data, type, row, meta) {
                             if (row.ConfigurationUrl && row.ConfigurationUrl.length > 0) {
-                                return '<a class="btn btn-default" href="' + row.ConfigurationUrl + '"><i class="fas fa-cog"></i>@T("Admin.Configuration.Shipping.PickupPointProviders.Configure").Text</a>';
+                                return '<a class="btn btn-default" href="' + row.ConfigurationUrl + '"><i class="fas fa-cog"></i>@await T("Admin.Configuration.Shipping.PickupPointProviders.Configure")</a>';
                             } else {
                                 return '';
                             }

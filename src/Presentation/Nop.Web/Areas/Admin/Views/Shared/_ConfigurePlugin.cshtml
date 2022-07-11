@@ -99,17 +99,17 @@
 
     Layout = "_AdminLayout";
     //page title
-    ViewBag.PageTitle = T(configureLocale).Text + " - " + friendlyName;
+    ViewBag.PageTitle = (await T(configureLocale)).Value + " - " + friendlyName;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName(activeMenuSystemName);
 
 }
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T(configureLocale) - @friendlyName
+        @await T(configureLocale) - @friendlyName
         <small>
             <i class="fas fa-arrow-circle-left"></i>
-            <a asp-action="@listActionMethodName" asp-controller="@listControllerName">@T(backToLocale)</a>
+            <a asp-action="@listActionMethodName" asp-controller="@listControllerName">@await T(backToLocale)</a>
         </small>
     </h1>
     <div class="float-right">

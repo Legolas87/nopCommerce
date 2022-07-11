@@ -2,11 +2,11 @@
 
 <div class="card card-default">
     <div class="card-header">
-        @T("Admin.Address.AddressAttributes")
+        @await T("Admin.Address.AddressAttributes")
     </div>
     <div class="card-body">
         <p>
-            <em>@T("Admin.Address.AddressAttributes.Description")</em>
+            <em>@await T("Admin.Address.AddressAttributes.Description")</em>
         </p>
         @await Html.PartialAsync("Table", new DataTablesModel
         {
@@ -18,30 +18,30 @@
             {
                 new ColumnProperty(nameof(AddressAttributeModel.Name))
                 {
-                    Title = T("Admin.Address.AddressAttributes.Fields.Name").Text,
+                    Title = (await T("Admin.Address.AddressAttributes.Fields.Name")).Value,
                     Width = "300"
                 },
                 new ColumnProperty(nameof(AddressAttributeModel.AttributeControlTypeName))
                 {
-                    Title = T("Admin.Address.AddressAttributes.Fields.AttributeControlType").Text,
+                    Title = (await T("Admin.Address.AddressAttributes.Fields.AttributeControlType")).Value,
                     Width = "200"
                 },
                 new ColumnProperty(nameof(AddressAttributeModel.IsRequired))
                 {
-                    Title = T("Admin.Address.AddressAttributes.Fields.IsRequired").Text,
+                    Title = (await T("Admin.Address.AddressAttributes.Fields.IsRequired")).Value,
                     Width = "100",
                     ClassName = NopColumnClassDefaults.CenterAll,
                     Render = new RenderBoolean()
                 },
                 new ColumnProperty(nameof(AddressAttributeModel.DisplayOrder))
                 {
-                    Title = T("Admin.Address.AddressAttributes.Fields.DisplayOrder").Text,
+                    Title = (await T("Admin.Address.AddressAttributes.Fields.DisplayOrder")).Value,
                     Width = "100",
                     ClassName =  NopColumnClassDefaults.CenterAll
                 },
                 new ColumnProperty(nameof(AddressAttributeValueModel.Id))
                 {
-                    Title = T("Admin.Common.Edit").Text,
+                    Title = (await T("Admin.Common.Edit")).Value,
                     Width = "80",
                     Render = new RenderButtonEdit(new DataUrl("~/Admin/AddressAttribute/Edit/"))
                 }
@@ -51,7 +51,7 @@
     <div class="card-footer">
         <a asp-action="Create" asp-controller="AddressAttribute" class="btn btn-primary">
             <i class="fas fa-plus-square"></i>
-            @T("Admin.Common.AddNew")
+            @await T("Admin.Common.AddNew")
         </a>
     </div>
 </div>

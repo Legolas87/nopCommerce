@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Configuration.Countries").Text;
+    ViewBag.PageTitle = (await T("Admin.Configuration.Countries")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Countries");
 }
@@ -10,28 +10,28 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Configuration.Countries")
+        @await T("Admin.Configuration.Countries")
     </h1>
     <div class="float-right">
         <a asp-action="Create" class="btn btn-primary">
             <i class="fas fa-plus-square"></i>
-            @T("Admin.Common.AddNew")
+            @await T("Admin.Common.AddNew")
         </a>
         <button type="button" id="publish-selected" class="btn bg-teal">
             <i class="fas fa-check-square"></i>
-            @T("Admin.Configuration.Countries.PublishSelected")
+            @await T("Admin.Configuration.Countries.PublishSelected")
         </button>
         <button type="button" id="unpublish-selected" class="btn btn-secondary">
             <i class="fas fa-minus-square"></i>
-            @T("Admin.Configuration.Countries.UnpublishSelected")
+            @await T("Admin.Configuration.Countries.UnpublishSelected")
         </button>
         <a asp-action="ExportCsv" class="btn btn-success">
             <i class="fas fa-download"></i>
-            @T("Admin.Configuration.Countries.ExportToCsv")
+            @await T("Admin.Configuration.Countries.ExportToCsv")
         </a>
         <button type="submit" name="importcsv" class="btn bg-olive" data-toggle="modal" data-target="#importcsv-window">
             <i class="fas fa-upload"></i>
-            @T("Admin.Configuration.Countries.ImportFromCsv")
+            @await T("Admin.Configuration.Countries.ImportFromCsv")
         </button>
         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.CountryListButtons, additionalData = Model })
     </div>
@@ -43,7 +43,7 @@
         <div class="cards-group">
             <div class="card card-default">
                 <div class="card-body">
-                    <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.CountriesStates", Docs.CountriesStates + Utm.OnAdmin)" />
+                    <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.CountriesStates", Docs.CountriesStates + Utm.OnAdmin)" />
 
                     @await Html.PartialAsync("Table", new DataTablesModel
                     {
@@ -63,66 +63,66 @@
                             },
                             new ColumnProperty(nameof(CountryModel.Name))
                             {
-                                Title = T("Admin.Configuration.Countries.Fields.Name").Text
+                                Title = (await T("Admin.Configuration.Countries.Fields.Name")).Value
                             },
                             new ColumnProperty(nameof(CountryModel.AllowsBilling))
                             {
-                                Title = T("Admin.Configuration.Countries.Fields.AllowsBilling").Text,
+                                Title = (await T("Admin.Configuration.Countries.Fields.AllowsBilling")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.CenterAll,
                                 Render = new RenderBoolean()
                             },
                             new ColumnProperty(nameof(CountryModel.AllowsShipping))
                             {
-                                Title = T("Admin.Configuration.Countries.Fields.AllowsShipping").Text,
+                                Title = (await T("Admin.Configuration.Countries.Fields.AllowsShipping")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.CenterAll,
                                 Render = new RenderBoolean()
                             },
                             new ColumnProperty(nameof(CountryModel.TwoLetterIsoCode))
                             {
-                                Title = T("Admin.Configuration.Countries.Fields.TwoLetterIsoCode").Text,
+                                Title = (await T("Admin.Configuration.Countries.Fields.TwoLetterIsoCode")).Value,
                                 Width = "150"
                             },
                             new ColumnProperty(nameof(CountryModel.ThreeLetterIsoCode))
                             {
-                                Title = T("Admin.Configuration.Countries.Fields.ThreeLetterIsoCode").Text,
+                                Title = (await T("Admin.Configuration.Countries.Fields.ThreeLetterIsoCode")).Value,
                                 Width = "150"
                             },
                             new ColumnProperty(nameof(CountryModel.NumericIsoCode))
                             {
-                                Title = T("Admin.Configuration.Countries.Fields.NumericIsoCode").Text,
+                                Title = (await T("Admin.Configuration.Countries.Fields.NumericIsoCode")).Value,
                                 Width = "120"
                             },
                             new ColumnProperty(nameof(CountryModel.SubjectToVat))
                             {
-                                Title = T("Admin.Configuration.Countries.Fields.SubjectToVat").Text,
+                                Title = (await T("Admin.Configuration.Countries.Fields.SubjectToVat")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.CenterAll,
                                 Render = new RenderBoolean()
                             },
                             new ColumnProperty(nameof(CountryModel.NumberOfStates))
                             {
-                                Title = T("Admin.Configuration.Countries.Fields.NumberOfStates").Text,
+                                Title = (await T("Admin.Configuration.Countries.Fields.NumberOfStates")).Value,
                                 Width = "150",
                                 ClassName =  NopColumnClassDefaults.CenterAll
                             },
                             new ColumnProperty(nameof(CountryModel.DisplayOrder))
                             {
-                                Title = T("Admin.Configuration.Countries.Fields.DisplayOrder").Text,
+                                Title = (await T("Admin.Configuration.Countries.Fields.DisplayOrder")).Value,
                                 Width = "100",
                                 ClassName = NopColumnClassDefaults.CenterAll
                             },
                             new ColumnProperty(nameof(CountryModel.Published))
                             {
-                                Title = T("Admin.Configuration.Countries.Fields.Published").Text,
+                                Title = (await T("Admin.Configuration.Countries.Fields.Published")).Value,
                                 Width = "80",
                                 ClassName =  NopColumnClassDefaults.CenterAll,
                                 Render = new RenderBoolean()
                             },
                             new ColumnProperty(nameof(CountryModel.Id))
                             {
-                                Title = T("Admin.Common.Edit").Text,
+                                Title = (await T("Admin.Common.Edit")).Value,
                                 Width = "50",
                                 ClassName =  NopColumnClassDefaults.Button,
                                 Render = new RenderButtonEdit(new DataUrl("Edit"))
@@ -151,7 +151,7 @@
                                     complete: function (jqXHR, textStatus) {
                                         if (jqXHR.status === 204)
                                         {
-                                            showAlert('nothingSelectedAlert', '@T("Admin.Common.Alert.NothingSelected")');
+                                            showAlert('nothingSelectedAlert', '@await T("Admin.Common.Alert.NothingSelected")');
                                             return;
                                         }
                                         updateTable('#countries-grid');
@@ -184,7 +184,7 @@
                                     complete: function (jqXHR, textStatus) {
                                         if (jqXHR.status === 204)
                                         {
-                                            showAlert('nothingSelectedAlert', '@T("Admin.Common.Alert.NothingSelected")');
+                                            showAlert('nothingSelectedAlert', '@await T("Admin.Common.Alert.NothingSelected")');
                                             return;
                                         }
                                         updateTable('#countries-grid');
@@ -209,7 +209,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="importcsv-window-title">@T("Admin.Common.ImportFromCsv")</h4>
+                <h4 class="modal-title" id="importcsv-window-title">@await T("Admin.Common.ImportFromCsv")</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>                
             </div>
             <form asp-controller="Country" asp-action="ImportCsv" method="post" enctype="multipart/form-data">
@@ -217,7 +217,7 @@
                     <div class="modal-body">
                         <ul class="common-list">
                             <li>
-                                <em>@T("Admin.Configuration.Countries.ImportTip")</em>
+                                <em>@await T("Admin.Configuration.Countries.ImportTip")</em>
                             </li>
                             <li>
                                 <em><a href="@(OfficialSite.StatesPackage + Utm.OnAdminCountries)" target="_blank">https://www.nopcommerce.com/all-states-provinces-package-nopcommerce-team</a></em>
@@ -227,7 +227,7 @@
                             <div class="col-md-2">
                                 <div class="label-wrapper">
                                     <label class="col-form-label">
-                                        @T("Admin.Common.CsvFile")
+                                        @await T("Admin.Common.CsvFile")
                                     </label>
                                 </div>
                             </div>
@@ -238,7 +238,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">
-                            @T("Admin.Common.ImportFromCsv")
+                            @await T("Admin.Common.ImportFromCsv")
                         </button>
                     </div>
                 </div>

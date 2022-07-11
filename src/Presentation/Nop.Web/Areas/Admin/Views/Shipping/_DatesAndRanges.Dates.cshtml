@@ -2,7 +2,7 @@
 
 <div class="card-body">
     <p>
-        <em>@T("Admin.Configuration.Shipping.DeliveryDates.Hint")</em>
+        <em>@await T("Admin.Configuration.Shipping.DeliveryDates.Hint")</em>
     </p>
     @await Html.PartialAsync("Table", new DataTablesModel
     {
@@ -14,17 +14,17 @@
         {
             new ColumnProperty(nameof(DeliveryDateModel.Name))
             {
-                Title = T("Admin.Configuration.Shipping.DeliveryDates.Fields.Name").Text
+                Title = (await T("Admin.Configuration.Shipping.DeliveryDates.Fields.Name")).Value
             },
             new ColumnProperty(nameof(DeliveryDateModel.DisplayOrder))
             {
-                Title = T("Admin.Configuration.Shipping.DeliveryDates.Fields.DisplayOrder").Text,
+                Title = (await T("Admin.Configuration.Shipping.DeliveryDates.Fields.DisplayOrder")).Value,
                 Width = "150",
                 ClassName =  NopColumnClassDefaults.CenterAll
             },
             new ColumnProperty(nameof(DeliveryDateModel.Id))
             {
-                Title = T("Admin.Common.Edit").Text,
+                Title = (await T("Admin.Common.Edit")).Value,
                 Width = "100",
                 ClassName =  NopColumnClassDefaults.Button,
                 Render = new RenderButtonEdit(new DataUrl("EditDeliveryDate"))
@@ -35,6 +35,6 @@
 <div class="card-footer">
     <a asp-action="CreateDeliveryDate" class="btn btn-primary">
         <i class="fas fa-plus-square"></i>
-        @T("Admin.Common.AddNew")
+        @await T("Admin.Common.AddNew")
     </a>
 </div>

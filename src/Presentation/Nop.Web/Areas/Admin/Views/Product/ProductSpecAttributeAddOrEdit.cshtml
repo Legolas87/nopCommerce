@@ -7,9 +7,9 @@
     NopHtml.SetActiveMenuItemSystemName("Products");
 
     if(Model.SpecificationId == 0)
-        ViewBag.PageTitle = T("Admin.Catalog.Products.SpecificationAttributes.AddNew").Text;
+        ViewBag.PageTitle = (await T("Admin.Catalog.Products.SpecificationAttributes.AddNew")).Value;
     else
-        ViewBag.PageTitle = T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.EditAttributeDetails").Text;
+        ViewBag.PageTitle = (await T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.EditAttributeDetails")).Value;
 }
 
 <form asp-controller="Product" asp-action="ProductSpecAttrUpdate" id="spec-form" method="post">
@@ -17,16 +17,16 @@
         <h1 class="float-left">
             @if (Model.SpecificationId == 0)
             {
-                <text>@T("Admin.Catalog.Products.SpecificationAttributes.AddNew")</text>
+                <text>@await T("Admin.Catalog.Products.SpecificationAttributes.AddNew")</text>
             }
             else
             {
-                <text>@T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.EditAttributeDetails") - @Model.AttributeName</text>
+                <text>@await T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.EditAttributeDetails") - @Model.AttributeName</text>
             }
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
                 <a asp-action="Edit" asp-route-id="@Model.ProductId">
-                    @T("Admin.Catalog.Products.ProductAttributes.Attributes.BackToProduct")
+                    @await T("Admin.Catalog.Products.ProductAttributes.Attributes.BackToProduct")
                 </a>
             </small>
         </h1>
@@ -39,7 +39,7 @@
                         formmethod="post"
                         class="btn btn-primary">
                     <i class="far fa-save"></i>
-                    @T("Admin.Common.Save")
+                    @await T("Admin.Common.Save")
                 </button>
                 <button type="submit"
                         name="save-continue"
@@ -47,18 +47,18 @@
                         formmethod="post"
                         class="btn btn-primary">
                     <i class="far fa-save"></i>
-                    @T("Admin.Common.SaveContinue")
+                    @await T("Admin.Common.SaveContinue")
                 </button>
             }
             else
             {
                 <button type="submit" name="save" class="btn btn-primary">
                     <i class="far fa-save"></i>
-                    @T("Admin.Common.Save")
+                    @await T("Admin.Common.Save")
                 </button>
                 <button type="submit" name="save-continue" class="btn btn-primary">
                     <i class="far fa-save"></i>
-                    @T("Admin.Common.SaveContinue")
+                    @await T("Admin.Common.SaveContinue")
                 </button>
                 <button type="submit"
                         name="delete"
@@ -66,7 +66,7 @@
                         formmethod="post"
                         class="btn btn-danger">
                     <i class="far fa-trash-alt"></i>
-                    @T("Admin.Common.Delete")
+                    @await T("Admin.Common.Delete")
                 </button>
             }
         </div>
@@ -301,4 +301,4 @@
     }
     <input asp-for="ProductId" hidden="hidden" />
 </form>
-<nop-alert asp-alert-id="getOptionsByAttributeIdAlert" asp-alert-message="@T("Admin.Catalog.Products.SpecificationAttributes.Alert.FailedRetrieving")" />
+<nop-alert asp-alert-id="getOptionsByAttributeIdAlert" asp-alert-message="@await T("Admin.Catalog.Products.SpecificationAttributes.Alert.FailedRetrieving")" />

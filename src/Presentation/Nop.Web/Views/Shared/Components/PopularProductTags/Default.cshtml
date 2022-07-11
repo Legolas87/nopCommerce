@@ -6,7 +6,7 @@
 {
     <div class="block block-popular-tags">
         <div class="title">
-            <strong>@T("Products.Tags.Popular")</strong>
+            <strong>@await T("Products.Tags.Popular")</strong>
         </div>
         <div class="listbox">
             <div class="tags">
@@ -20,7 +20,7 @@
             @if (Model.TotalTags > Model.Tags.Count)
             {
                 <div class="view-all">
-                    <a href="@Url.RouteUrl("ProductTagsAll")">@T("Products.Tags.Popular.ViewAll")</a>
+                    <a href="@Url.RouteUrl("ProductTagsAll")">@await T("Products.Tags.Popular.ViewAll")</a>
                 </div>
             }
         </div>

@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.ContentManagement.Blog.BlogPosts").Text;
+    ViewBag.PageTitle = (await T("Admin.ContentManagement.Blog.BlogPosts")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Blog posts");
 }
@@ -15,12 +15,12 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.ContentManagement.Blog.BlogPosts")
+        @await T("Admin.ContentManagement.Blog.BlogPosts")
     </h1>
     <div class="float-right">
         <a asp-action="BlogPostCreate" class="btn btn-primary">
             <i class="fas fa-plus-square"></i>
-            @T("Admin.Common.AddNew")
+            @await T("Admin.Common.AddNew")
         </a>
         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.BlogListButtons, additionalData = Model })
     </div>
@@ -36,7 +36,7 @@
                     <div class="card card-default card-search">
                         <div class="card-body">
                             <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                                <div class="search-text">@T("Admin.Common.Search")</div>
+                                <div class="search-text">@await T("Admin.Common.Search")</div>
                                 <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                                 <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                             </div>
@@ -66,7 +66,7 @@
                                     <div class="col-md-8 offset-md-4">
                                         <button type="button" id="search-blogpost" class="btn btn-primary btn-search">
                                             <i class="fas fa-search"></i>
-                                            @T("Admin.Common.Search")
+                                            @await T("Admin.Common.Search")
                                         </button>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
 
                     <div class="card card-default">
                         <div class="card-body">
-                            <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Blog", Docs.Blog + Utm.OnAdmin)" />
+                            <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.Blog", Docs.Blog + Utm.OnAdmin)" />
 
                             @await Html.PartialAsync("Table", new DataTablesModel
                             {
@@ -94,42 +94,42 @@
                                 {
                                     new ColumnProperty(nameof(BlogPostModel.Title))
                                     {
-                                        Title = T("Admin.ContentManagement.Blog.BlogPosts.Fields.Title").Text,
+                                        Title = (await T("Admin.ContentManagement.Blog.BlogPosts.Fields.Title")).Value,
                                         Width = "400"
                                     },
                                     new ColumnProperty(nameof(BlogPostModel.LanguageName))
                                     {
-                                        Title = T("Admin.ContentManagement.Blog.BlogPosts.Fields.Language").Text,
+                                        Title = (await T("Admin.ContentManagement.Blog.BlogPosts.Fields.Language")).Value,
                                         Width = "150"
                                     },
                                     new ColumnProperty(nameof(BlogPostModel.Id))
                                     {
-                                        Title = T("Admin.ContentManagement.Blog.BlogPosts.Fields.Comments").Text,
+                                        Title = (await T("Admin.ContentManagement.Blog.BlogPosts.Fields.Comments")).Value,
                                         Width = "200",
                                         ClassName = NopColumnClassDefaults.Button,
                                         Render = new RenderCustom("renderColumnComments")
                                     },
                                     new ColumnProperty(nameof(BlogPostModel.StartDateUtc))
                                     {
-                                        Title = T("Admin.ContentManagement.Blog.BlogPosts.Fields.StartDate").Text,
+                                        Title = (await T("Admin.ContentManagement.Blog.BlogPosts.Fields.StartDate")).Value,
                                         Width = "200",
                                         Render = new RenderDate()
                                     },
                                     new ColumnProperty(nameof(BlogPostModel.EndDateUtc))
                                     {
-                                        Title = T("Admin.ContentManagement.Blog.BlogPosts.Fields.EndDate").Text,
+                                        Title = (await T("Admin.ContentManagement.Blog.BlogPosts.Fields.EndDate")).Value,
                                         Width = "200",
                                         Render = new RenderDate()
                                     },
                                     new ColumnProperty(nameof(BlogPostModel.CreatedOn))
                                     {
-                                        Title = T("Admin.ContentManagement.Blog.BlogPosts.Fields.CreatedOn").Text,
+                                        Title = (await T("Admin.ContentManagement.Blog.BlogPosts.Fields.CreatedOn")).Value,
                                         Width = "200",
                                         Render = new RenderDate()
                                     },
                                     new ColumnProperty(nameof(BlogPostModel.Id))
                                     {
-                                        Title = T("Admin.Common.Edit").Text,
+                                        Title = (await T("Admin.Common.Edit")).Value,
                                         Width = "100",
                                         ClassName = NopColumnClassDefaults.Button,
                                         Render = new RenderButtonEdit(new DataUrl("BlogPostEdit"))
@@ -140,7 +140,7 @@
                             <script>
                         function renderColumnComments(data, type, row, meta) {
                             var link = "BlogComments?filterByBlogPostId=" + data;
-                            var title = '@T("Admin.ContentManagement.Blog.BlogPosts.Fields.Comments").Text';
+                            var title = '@await T("Admin.ContentManagement.Blog.BlogPosts.Fields.Comments")';
                             var countComments = row.ApprovedComments + row.NotApprovedComments;
                             return '<a class="btn btn-default" href="' + link + '">' + title + ' - ' + countComments + ' (' + row.NotApprovedComments + ')' + '</a>';
                             }

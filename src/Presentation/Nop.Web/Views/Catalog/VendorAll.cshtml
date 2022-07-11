@@ -6,13 +6,13 @@
     Layout = "_ColumnsTwo";
 
     //title
-    NopHtml.AddTitleParts(T("PageTitle.Vendors").Text);
+    NopHtml.AddTitleParts((await T("PageTitle.Vendors")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-vendor-list-page");
 }
 <div class="page vendor-list-page">
     <div class="page-title">
-        <h1>@T("Vendors.List")</h1>
+        <h1>@await T("Vendors.List")</h1>
     </div>
     <div class="page-body">
         <div class="vendor-grid">

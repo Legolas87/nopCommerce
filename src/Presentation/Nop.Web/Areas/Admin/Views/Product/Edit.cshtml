@@ -4,7 +4,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Catalog.Products.EditProductDetails").Text;
+    ViewBag.PageTitle = (await T("Admin.Catalog.Products.EditProductDetails")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Products");
 }
@@ -12,32 +12,32 @@
 <form asp-controller="Product" asp-action="Edit" method="post" id="product-form">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Catalog.Products.EditProductDetails") - @Model.Name
+            @await T("Admin.Catalog.Products.EditProductDetails") - @Model.Name
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
-                <a asp-action="List">@T("Admin.Catalog.Products.BackToList")</a>
+                <a asp-action="List">@await T("Admin.Catalog.Products.BackToList")</a>
             </small>
         </h1>
         <div class="float-right">
             <button type="button" onclick="javascript:OpenWindow('@(Url.RouteUrl<Product>(new { SeName = Model.SeName }))', 800, 600, true); return false;" class="btn btn-info">
                 <i class="far fa-eye"></i>
-                @T("Admin.Common.Preview")
+                @await T("Admin.Common.Preview")
             </button>
             <button type="submit" name="save" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.Save")
+                @await T("Admin.Common.Save")
             </button>
             <button type="submit" name="save-continue" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.SaveContinue")
+                @await T("Admin.Common.SaveContinue")
             </button>
             <button type="button" name="copyproduct" class="btn bg-olive" data-toggle="modal" data-target="#copyproduct-window">
                 <i class="far fa-clone"></i>
-                @T("Admin.Catalog.Products.Copy")
+                @await T("Admin.Catalog.Products.Copy")
             </button>
             <span id="product-delete" class="btn btn-danger">
                 <i class="far fa-trash-alt"></i>
-                @T("Admin.Common.Delete")
+                @await T("Admin.Common.Delete")
             </span>
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.ProductDetailsButtons, additionalData = Model })
         </div>
@@ -57,7 +57,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="copyproduct-window-title">@T("Admin.Catalog.Products.Copy")</h4>
+                <h4 class="modal-title" id="copyproduct-window-title">@await T("Admin.Catalog.Products.Copy")</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <form asp-controller="Product" asp-action="CopyProduct" method="post">
@@ -91,7 +91,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">
-                            @T("Admin.Catalog.Products.Copy")
+                            @await T("Admin.Catalog.Products.Copy")
                         </button>
                     </div>
                 </div>

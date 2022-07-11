@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.System.SeNames").Text;
+    ViewBag.PageTitle = (await T("Admin.System.SeNames")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Search engine friendly names");
 }
@@ -14,12 +14,12 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.System.SeNames")
+        @await T("Admin.System.SeNames")
     </h1>
     <div class="float-right">
         <button type="button" id="delete-selected" class="btn btn-danger">
             <i class="far fa-trash-alt"></i>
-            @T("Admin.System.SeNames.DeleteSelected")
+            @await T("Admin.System.SeNames.DeleteSelected")
         </button>
         <nop-action-confirmation asp-button-id="delete-selected" />
         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.SenamesButtons, additionalData = Model })
@@ -34,7 +34,7 @@
             <div class="card card-default card-search">
                 <div class="card-body">
                     <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                        <div class="search-text">@T("Admin.Common.Search")</div>
+                        <div class="search-text">@await T("Admin.Common.Search")</div>
                         <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                         <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                     </div>
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-8 offset-md-4">
-                                        <button type="button" id="search-senames" class="btn btn-primary btn-search"><i class="fas fa-search"></i>@T("Admin.Common.Search")</button>
+                                        <button type="button" id="search-senames" class="btn btn-primary btn-search"><i class="fas fa-search"></i>@await T("Admin.Common.Search")</button>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
 
             <div class="card card-default">
                 <div class="card-body">
-                    <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.SeoOptimization", Docs.SeoOptimization + Utm.OnAdmin)" />
+                    <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.SeoOptimization", Docs.SeoOptimization + Utm.OnAdmin)" />
 
                     @await Html.PartialAsync("Table", new DataTablesModel
                     {
@@ -105,39 +105,39 @@
                             },
                             new ColumnProperty(nameof(UrlRecordModel.Id))
                             {
-                                Title = T("Admin.System.SeNames.Id").Text,
+                                Title = (await T("Admin.System.SeNames.Id")).Value,
                                 ClassName = NopColumnClassDefaults.CenterAll,
                                 Width = "50"
                             },
                             new ColumnProperty(nameof(UrlRecordModel.Name))
                             {
-                                Title = T("Admin.System.SeNames.Name").Text
+                                Title = (await T("Admin.System.SeNames.Name")).Value
                             },
                             new ColumnProperty(nameof(UrlRecordModel.EntityId))
                             {
-                                Title = T("Admin.System.SeNames.EntityId").Text,
+                                Title = (await T("Admin.System.SeNames.EntityId")).Value,
                                 Width = "80"
                             },
                             new ColumnProperty(nameof(UrlRecordModel.EntityName))
                             {
-                                Title = T("Admin.System.SeNames.EntityName").Text,
+                                Title = (await T("Admin.System.SeNames.EntityName")).Value,
                                 Width = "100"
                             },
                             new ColumnProperty(nameof(UrlRecordModel.IsActive))
                             {
-                                Title = T("Admin.System.SeNames.IsActive").Text,
+                                Title = (await T("Admin.System.SeNames.IsActive")).Value,
                                 Width = "80",
                                 ClassName = NopColumnClassDefaults.CenterAll,
                                 Render = new RenderBoolean()
                             },
                             new ColumnProperty(nameof(UrlRecordModel.Language))
                             {
-                                Title = T("Admin.System.SeNames.Language").Text,
+                                Title = (await T("Admin.System.SeNames.Language")).Value,
                                 Width = "100"
                             },
                             new ColumnProperty(nameof(UrlRecordModel.DetailsUrl))
                             {
-                                Title = T("Admin.System.SeNames.Details").Text,
+                                Title = (await T("Admin.System.SeNames.Details")).Value,
                                 Width = "100",
                                 ClassName = NopColumnClassDefaults.Button,
                                 Render = new RenderCustom("renderColumnDetailsUrl")
@@ -154,7 +154,7 @@
 <script>
     function renderColumnDetailsUrl(data, type, row, meta) {
         if (row.DetailsUrl && row.DetailsUrl.length > 0) {
-            return '<a class="btn btn-default" href="' + row.DetailsUrl + '"><i class="fas fa-pencil-alt"></i>@T("Admin.System.SeNames.Details").Text</a>';
+            return '<a class="btn btn-default" href="' + row.DetailsUrl + '"><i class="fas fa-pencil-alt"></i>@await T("Admin.System.SeNames.Details")</a>';
         }
         else {
             return '';
@@ -181,7 +181,7 @@
                 complete: function (jqXHR, textStatus) {
                     if (jqXHR.status === 204)
                     {
-                        showAlert('nothingSelectedAlert', '@T("Admin.Common.Alert.NothingSelected")');
+                        showAlert('nothingSelectedAlert', '@await T("Admin.Common.Alert.NothingSelected")');
                         return;
                     }
                     updateTable('#sename-grid');

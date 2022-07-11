@@ -3,7 +3,7 @@
 @using Nop.Services.Security
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Dashboard").Text;
+    ViewBag.PageTitle = (await T("Admin.Dashboard")).Value;
 
     var canManageOrders = await permissionService.AuthorizeAsync(StandardPermissionProvider.ManageOrders);
     var canManageCustomers = await permissionService.AuthorizeAsync(StandardPermissionProvider.ManageCustomers);
@@ -22,7 +22,7 @@
 
 <div class="content-header">
     <h1>
-        @T("Admin.Dashboard")
+        @await T("Admin.Dashboard")
     </h1>
 </div>
 <section class="content">
@@ -124,5 +124,5 @@
         </div>
     </div>
 </section>
-    <nop-alert asp-alert-id="loadOrderStatisticsAlert" asp-alert-message="@T("Admin.SalesReport.OrderStatistics.Alert.FailedLoad")" />
-    <nop-alert asp-alert-id="loadCustomerStatisticsAlert" asp-alert-message="@T("Admin.Reports.Customers.CustomerStatistics.Alert.FailedLoad")" />
+    <nop-alert asp-alert-id="loadOrderStatisticsAlert" asp-alert-message="@await T("Admin.SalesReport.OrderStatistics.Alert.FailedLoad")" />
+    <nop-alert asp-alert-id="loadCustomerStatisticsAlert" asp-alert-message="@await T("Admin.Reports.Customers.CustomerStatistics.Alert.FailedLoad")" />

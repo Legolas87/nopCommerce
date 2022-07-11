@@ -7,7 +7,7 @@
     var stores = await storeService.GetAllStoresAsync();
 
     //page title
-    ViewBag.PageTitle = T("Admin.Promotions.newsLetterSubscriptions").Text;
+    ViewBag.PageTitle = (await T("Admin.Promotions.newsLetterSubscriptions")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Newsletter subscriptions");
 }
@@ -20,16 +20,16 @@
 <form asp-controller="NewsLetterSubscription" asp-action="List" method="post">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Promotions.NewsLetterSubscriptions")
+            @await T("Admin.Promotions.NewsLetterSubscriptions")
         </h1>
         <div class="float-right">
             <button asp-action="ExportCSV"type="submit" name="exportcsv" class="btn btn-success">
                 <i class="fas fa-download"></i>
-                @T("Admin.Common.ExportToCsv")
+                @await T("Admin.Common.ExportToCsv")
             </button>
             <button type="button" name="importcsv" class="btn bg-olive" data-toggle="modal" data-target="#importcsv-window">
                 <i class="fas fa-upload"></i>
-                @T("Admin.Common.ImportFromCsv")
+                @await T("Admin.Common.ImportFromCsv")
             </button>
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.NewsLetterSubscriptionListButtons, additionalData = Model })
         </div>
@@ -42,7 +42,7 @@
                 <div class="card card-default card-search">
                     <div class="card-body">
                         <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                            <div class="search-text">@T("Admin.Common.Search")</div>
+                            <div class="search-text">@await T("Admin.Common.Search")</div>
                             <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                             <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                         </div>
@@ -106,7 +106,7 @@
                                 <div class="text-center col-12">
                                     <button type="button" id="search-subscriptions" class="btn btn-primary btn-search">
                                         <i class="fas fa-search"></i>
-                                        @T("Admin.Common.Search")
+                                        @await T("Admin.Common.Search")
                                     </button>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
 
                 <div class="card card-default">
                     <div class="card-body">
-                        <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.EmailCampaigns", Docs.EmailCampaigns + Utm.OnAdmin)" />
+                        <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.EmailCampaigns", Docs.EmailCampaigns + Utm.OnAdmin)" />
 
                         @await Html.PartialAsync("Table", new DataTablesModel
                         {
@@ -140,14 +140,14 @@
                                 {
                                     new ColumnProperty(nameof(NewsletterSubscriptionModel.Email))
                                     {
-                                        Title = T("Admin.Promotions.NewsLetterSubscriptions.Fields.Email").Text,
+                                        Title = (await T("Admin.Promotions.NewsLetterSubscriptions.Fields.Email")).Value,
                                         Width = "300",
                                         Editable = true,
                                         EditType = EditType.String
                                     },
                                     new ColumnProperty(nameof(NewsletterSubscriptionModel.Active))
                                     {
-                                        Title = T("Admin.Promotions.NewsLetterSubscriptions.Fields.Active").Text,
+                                        Title = (await T("Admin.Promotions.NewsLetterSubscriptions.Fields.Active")).Value,
                                         Width = "100",
                                         ClassName = NopColumnClassDefaults.CenterAll,
                                         Render = new RenderBoolean(),
@@ -156,27 +156,27 @@
                                     },
                                     new ColumnProperty(nameof(NewsletterSubscriptionModel.StoreName))
                                     {
-                                        Title = T("Admin.Promotions.NewsLetterSubscriptions.Fields.Store").Text,
+                                        Title = (await T("Admin.Promotions.NewsLetterSubscriptions.Fields.Store")).Value,
                                         Width = "150",
                                         Visible = (await storeService.GetAllStoresAsync()).Count > 1
                                     },
                                     new ColumnProperty(nameof(NewsletterSubscriptionModel.CreatedOn))
                                     {
-                                        Title = T("Admin.Promotions.NewsLetterSubscriptions.Fields.CreatedOn").Text,
+                                        Title = (await T("Admin.Promotions.NewsLetterSubscriptions.Fields.CreatedOn")).Value,
                                         Width = "200"
                                     },
                                     new ColumnProperty(nameof(NewsletterSubscriptionModel.Id))
                                     {
-                                        Title = T("Admin.Common.Edit").Text,
+                                        Title = (await T("Admin.Common.Edit")).Value,
                                         Width = "200",
                                         ClassName =  NopColumnClassDefaults.Button,
                                         Render = new RenderButtonsInlineEdit()
                                     },
                                     new ColumnProperty(nameof(NewsletterSubscriptionModel.Id))
                                     {
-                                        Title = T("Admin.Common.Delete").Text,
+                                        Title = (await T("Admin.Common.Delete")).Value,
                                         Width = "100",
-                                        Render = new RenderButtonRemove(T("Admin.Common.Delete").Text),
+                                        Render = new RenderButtonRemove((await T("Admin.Common.Delete")).Value),
                                         ClassName = NopColumnClassDefaults.Button
                                     }
                                 }
@@ -194,7 +194,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="importcsv-window-title">@T("Admin.Common.ImportFromCsv")</h4>
+                <h4 class="modal-title" id="importcsv-window-title">@await T("Admin.Common.ImportFromCsv")</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>                
             </div>
             <form asp-controller="NewsLetterSubscription" asp-action="ImportCsv" method="post" enctype="multipart/form-data">
@@ -204,7 +204,7 @@
                             <div class="col-md-2">
                                 <div class="label-wrapper">
                                     <label class="col-form-label">
-                                        @T("Admin.Common.CsvFile")
+                                        @await T("Admin.Common.CsvFile")
                                     </label>
                                 </div>
                             </div>
@@ -215,7 +215,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">
-                            @T("Admin.Common.ImportFromCsv")
+                            @await T("Admin.Common.ImportFromCsv")
                         </button>
                     </div>
                 </div>

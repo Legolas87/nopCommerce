@@ -12,18 +12,18 @@
         {
             new ColumnProperty(nameof(SpecificationAttributeProductModel.ProductName))
             {
-                Title = T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.UsedByProducts.Product").Text
+                Title = (await T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.UsedByProducts.Product")).Value
             },
             new ColumnProperty(nameof(SpecificationAttributeProductModel.Published))
             {
-                Title = T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.UsedByProducts.Published").Text,
+                Title = (await T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.UsedByProducts.Published")).Value,
                 Width = "100",
                 ClassName =  NopColumnClassDefaults.CenterAll,
                 Render = new RenderBoolean()
             },
             new ColumnProperty(nameof(SpecificationAttributeProductModel.ProductId))
             {
-                Title = T("Admin.Common.View").Text,
+                Title = (await T("Admin.Common.View")).Value,
                 Width = "100",
                 ClassName =  NopColumnClassDefaults.Button,
                 Render = new RenderButtonView(new DataUrl("~/Admin/Product/Edit/"))

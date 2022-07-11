@@ -15,43 +15,43 @@
             {
                 new ColumnProperty(nameof(PollAnswerModel.Name))
                 {
-                    Title = T("Admin.ContentManagement.Polls.Answers.Fields.Name").Text,
+                    Title = (await T("Admin.ContentManagement.Polls.Answers.Fields.Name")).Value,
                     Width = "300",
                     Editable = true,
                     EditType = EditType.String
                 },
                 new ColumnProperty(nameof(PollAnswerModel.NumberOfVotes))
                 {
-                    Title = T("Admin.ContentManagement.Polls.Answers.Fields.NumberOfVotes").Text,
+                    Title = (await T("Admin.ContentManagement.Polls.Answers.Fields.NumberOfVotes")).Value,
                     Width = "100"
                 },
                 new ColumnProperty(nameof(PollAnswerModel.DisplayOrder))
                 {
-                    Title = T("Admin.ContentManagement.Polls.Answers.Fields.DisplayOrder").Text,
+                    Title = (await T("Admin.ContentManagement.Polls.Answers.Fields.DisplayOrder")).Value,
                     Width = "100",
                     Editable = true,
                     EditType = EditType.Number
                 },
                 new ColumnProperty(nameof(PollAnswerModel.Id))
                 {
-                    Title = T("Admin.Common.Edit").Text,
+                    Title = (await T("Admin.Common.Edit")).Value,
                     Width = "200",
                     ClassName =  NopColumnClassDefaults.Button,
                     Render = new RenderButtonsInlineEdit()
                 },
                 new ColumnProperty(nameof(PollAnswerModel.Id))
                 {
-                    Title = T("Admin.Common.Delete").Text,
+                    Title = (await T("Admin.Common.Delete")).Value,
                     Width = "100",
                     ClassName =  NopColumnClassDefaults.Button,
-                    Render = new RenderButtonRemove(T("Admin.Common.Delete").Text)
+                    Render = new RenderButtonRemove((await T("Admin.Common.Delete")).Value)
                 }
             }
         })
 
         <div class="card card-default no-margin">
             <div class="card-header">
-                @T("Admin.Common.AddNewRecord")
+                @await T("Admin.Common.AddNewRecord")
             </div>
             <div class="card-body">
                 <div class="form-group row">
@@ -74,7 +74,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-9 offset-md-3">
-                        <button type="button" id="addPollAnswer" class="btn btn-primary">@T("Admin.Common.AddNewRecord")</button>
+                        <button type="button" id="addPollAnswer" class="btn btn-primary">@await T("Admin.Common.AddNewRecord")</button>
                     </div>
                 </div>
             </div>
@@ -120,6 +120,6 @@
 else
 {
     <div class="card-body">
-        @T("Admin.ContentManagement.Polls.Answers.SaveBeforeEdit")
+        @await T("Admin.ContentManagement.Polls.Answers.SaveBeforeEdit")
     </div>
 }

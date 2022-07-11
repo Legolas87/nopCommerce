@@ -7,8 +7,8 @@
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderLinksBefore, additionalData = Model })
         @if (Model.IsAuthenticated)
         {
-            <li><a href="@Url.RouteUrl("CustomerInfo")" class="ico-account">@T("Account.MyAccount")@*@Model.CustomerName*@</a></li>
-            <li><a href="@Url.RouteUrl("Logout")" class="ico-logout">@T("Account.Logout")</a></li>
+            <li><a href="@Url.RouteUrl("CustomerInfo")" class="ico-account">@await T("Account.MyAccount")@*@Model.CustomerName*@</a></li>
+            <li><a href="@Url.RouteUrl("Logout")" class="ico-logout">@await T("Account.Logout")</a></li>
         }
         else
         {
@@ -18,15 +18,15 @@
 
             @if (Model.RegistrationType != UserRegistrationType.Disabled)
             {
-                <li><a href="@Url.RouteUrl("Register", new { returnUrl })" class="ico-register">@T("Account.Register")</a></li>
+                <li><a href="@Url.RouteUrl("Register", new { returnUrl })" class="ico-register">@await T("Account.Register")</a></li>
             }
-            <li><a href="@Url.RouteUrl("Login", new { returnUrl })" class="ico-login">@T("Account.Login")</a></li>
+            <li><a href="@Url.RouteUrl("Login", new { returnUrl })" class="ico-login">@await T("Account.Login")</a></li>
         }
         @if (Model.AllowPrivateMessages)
         {
             <li>
                 <a href="@Url.RouteUrl("PrivateMessages", new { tab = "" })" class="ico-inbox">
-                    <span class="inbox-label">@T("PrivateMessages.Inbox")</span>
+                    <span class="inbox-label">@await T("PrivateMessages.Inbox")</span>
                     <span class="inbox-unread">@Model.UnreadPrivateMessages</span>
                 </a>
             </li>
@@ -35,8 +35,8 @@
         {
             <li>
                 <a href="@Url.RouteUrl("Wishlist")" class="ico-wishlist">
-                    <span class="wishlist-label">@T("Wishlist")</span>
-                    <span class="wishlist-qty">@T("Wishlist.HeaderQuantity", Model.WishlistItems)</span>
+                    <span class="wishlist-label">@await T("Wishlist")</span>
+                    <span class="wishlist-qty">@await T("Wishlist.HeaderQuantity", Model.WishlistItems)</span>
                 </a>
             </li>
         }
@@ -44,8 +44,8 @@
         {
             <li id="topcartlink">
                 <a href="@Url.RouteUrl("ShoppingCart")" class="ico-cart">
-                    <span class="cart-label">@T("ShoppingCart")</span>
-                    <span class="cart-qty">@T("ShoppingCart.HeaderQuantity", Model.ShoppingCartItems)</span>
+                    <span class="cart-label">@await T("ShoppingCart")</span>
+                    <span class="cart-qty">@await T("ShoppingCart.HeaderQuantity", Model.ShoppingCartItems)</span>
                 </a>
             </li>
         }

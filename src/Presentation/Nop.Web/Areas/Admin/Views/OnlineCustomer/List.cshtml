@@ -2,14 +2,14 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Customers.OnlineCustomers").Text;
+    ViewBag.PageTitle = (await T("Admin.Customers.OnlineCustomers")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Online customers");
 }
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Customers.OnlineCustomers")
+        @await T("Admin.Customers.OnlineCustomers")
     </h1>
     <div class="float-right">
         &nbsp;
@@ -23,7 +23,7 @@
         <div class="cards-group">
             <div class="card card-default">
                 <div class="card-body">
-                    <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.OnlineCustomers", Docs.OnlineCustomers + Utm.OnAdmin)" />
+                    <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.OnlineCustomers", Docs.OnlineCustomers + Utm.OnAdmin)" />
 
                     @await Html.PartialAsync("Table", new DataTablesModel
                     {
@@ -35,29 +35,29 @@
                         {
                             new ColumnProperty(nameof(OnlineCustomerModel.CustomerInfo))
                             {
-                                Title = T("Admin.Customers.OnlineCustomers.Fields.CustomerInfo").Text,
+                                Title = (await T("Admin.Customers.OnlineCustomers.Fields.CustomerInfo")).Value,
                                 Width = "100",
                                 Render = new RenderLink(new DataUrl("~/Admin/Customer/Edit", nameof(CustomerModel.Id)))
                             },
                             new ColumnProperty(nameof(OnlineCustomerModel.LastIpAddress))
                             {
-                                Title = T("Admin.Customers.OnlineCustomers.Fields.IPAddress").Text,
+                                Title = (await T("Admin.Customers.OnlineCustomers.Fields.IPAddress")).Value,
                                 Width = "100"
                             },
                             new ColumnProperty(nameof(OnlineCustomerModel.Location))
                             {
-                                Title = T("Admin.Customers.OnlineCustomers.Fields.Location").Text,
+                                Title = (await T("Admin.Customers.OnlineCustomers.Fields.Location")).Value,
                                 Width = "100"
                             },
                             new ColumnProperty(nameof(OnlineCustomerModel.LastActivityDate))
                             {
-                                Title = T("Admin.Customers.OnlineCustomers.Fields.LastActivityDate").Text,
+                                Title = (await T("Admin.Customers.OnlineCustomers.Fields.LastActivityDate")).Value,
                                 Width = "200",
                                 Render = new RenderDate()
                             },
                             new ColumnProperty(nameof(OnlineCustomerModel.LastVisitedPage))
                             {
-                                Title = T("Admin.Customers.OnlineCustomers.Fields.LastVisitedPage").Text,
+                                Title = (await T("Admin.Customers.OnlineCustomers.Fields.LastVisitedPage")).Value,
                                 Width = "100"
                             }
                         }

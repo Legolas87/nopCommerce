@@ -21,7 +21,7 @@
         <div class="col-md-6 offset-md-6">
             <button type="submit" name="delete-exported-files" class="btn btn-default">
                 <i class="far fa-trash-alt"></i>
-                @T("Admin.Common.Delete")
+                @await T("Admin.Common.Delete")
             </button>
         </div>
     </div>
@@ -31,7 +31,7 @@
             <div class="col-md-12">
                 <div class="alert alert-success alert-dismissible no-margin">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    @string.Format(T("Admin.System.Maintenance.DeleteExportedFiles.TotalDeleted").Text, Model.DeleteExportedFiles.NumberOfDeletedFiles.Value)
+                    @string.Format((await T("Admin.System.Maintenance.DeleteExportedFiles.TotalDeleted")).Value, Model.DeleteExportedFiles.NumberOfDeletedFiles.Value)
                 </div>
             </div>
         </div>

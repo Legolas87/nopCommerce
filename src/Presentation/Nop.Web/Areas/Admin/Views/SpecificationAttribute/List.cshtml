@@ -2,28 +2,28 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Catalog.Attributes.SpecificationAttributes").Text;
+    ViewBag.PageTitle = (await T("Admin.Catalog.Attributes.SpecificationAttributes")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Specification attributes");
 }
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Catalog.Attributes.SpecificationAttributes")
+        @await T("Admin.Catalog.Attributes.SpecificationAttributes")
     </h1>
     <div class="float-right">
         <a asp-action="CreateSpecificationAttributeGroup" class="btn btn-primary">
             <i class="fas fa-plus-square"></i>
-            @T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttributeGroup.Buttons.AddNew")
+            @await T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttributeGroup.Buttons.AddNew")
         </a>
         <a asp-action="CreateSpecificationAttribute" class="btn btn-primary">
             <i class="fas fa-plus-square"></i>
-            @T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.Buttons.AddNew")
+            @await T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.Buttons.AddNew")
         </a>
         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.SpecificationAttributeListButtons, additionalData = Model })
         <button type="button" id="delete-selected-specification-attributes" class="btn btn-danger">
             <i class="far fa-trash-alt"></i>
-            @T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.Buttons.DeleteSelected")
+            @await T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.Buttons.DeleteSelected")
         </button>
         <nop-action-confirmation asp-button-id="delete-selected-specification-attributes" />
     </div>
@@ -35,8 +35,8 @@
         <div class="card card-default">
             <div class="card-body">
                 <p>
-                    @T("Admin.Catalog.Attributes.SpecificationAttributes.Description")
-                    <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.SpecificationAttributes", Docs.SpecificationAttributes + Utm.OnAdmin)" asp-add-wrapper="false"/>
+                    @await T("Admin.Catalog.Attributes.SpecificationAttributes.Description")
+                    <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.SpecificationAttributes", Docs.SpecificationAttributes + Utm.OnAdmin)" asp-add-wrapper="false"/>
                 </p>
                 @await Html.PartialAsync("Table", new DataTablesModel
                 {
@@ -56,12 +56,12 @@
                         },
                         new ColumnProperty(nameof(SpecificationAttributeGroupModel.Name))
                         {
-                            Title = T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttributeGroup.Fields.Name").Text,
+                            Title = (await T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttributeGroup.Fields.Name")).Value,
                             Render = new RenderCustom("renderColumnNameSpecificationAttributeGroup")
                         },
                         new ColumnProperty(nameof(SpecificationAttributeGroupModel.DisplayOrder))
                         {
-                            Title = T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttributeGroup.Fields.DisplayOrder").Text,
+                            Title = (await T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttributeGroup.Fields.DisplayOrder")).Value,
                             Width = "100",
                             ClassName =  NopColumnClassDefaults.CenterAll
                         }
@@ -88,18 +88,18 @@
                             },
                             new ColumnProperty(nameof(SpecificationAttributeModel.Name))
                             {
-                                Title = T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.Fields.Name").Text,
+                                Title = (await T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.Fields.Name")).Value,
                                     Width = "300"
                             },
                             new ColumnProperty(nameof(SpecificationAttributeModel.DisplayOrder))
                             {
-                                Title = T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.Fields.DisplayOrder").Text,
+                                Title = (await T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.Fields.DisplayOrder")).Value,
                                 Width = "150",
                                 ClassName =  NopColumnClassDefaults.CenterAll
                             },
                             new ColumnProperty(nameof(SpecificationAttributeModel.Id))
                             {
-                                Title = T("Admin.Common.Edit").Text,
+                                Title = (await T("Admin.Common.Edit")).Value,
                                 Width = "50",
                                 ClassName = NopColumnClassDefaults.Button,
                                 Render = new RenderButtonEdit(new DataUrl("EditSpecificationAttribute"))
@@ -130,7 +130,7 @@
                             complete: function (jqXHR, textStatus) {
                                 if (jqXHR.status === 204)
                                 {
-                                    showAlert('nothingSelectedAlert', '@T("Admin.Common.Alert.NothingSelected")');
+                                    showAlert('nothingSelectedAlert', '@await T("Admin.Common.Alert.NothingSelected")');
                                     return;
                                 }
                                 updateTable('#specificationattributegroups-grid');

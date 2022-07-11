@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Configuration.Payment.MethodRestrictions").Text;
+    ViewBag.PageTitle = (await T("Admin.Configuration.Payment.MethodRestrictions")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Payment restrictions");
 }
@@ -10,7 +10,7 @@
 <form asp-controller="Payment" asp-action="MethodRestrictions" method="post">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Configuration.Payment.MethodRestrictions")
+            @await T("Admin.Configuration.Payment.MethodRestrictions")
         </h1>
     </div>
 
@@ -24,14 +24,14 @@
                             <div class="card-body">
                                 <div class="row v-center margin-b-5">
                                     <div class="col-sm-10 col-xs-9">
-                                        <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.PaymentMethodRestrictions", Docs.PaymentMethodRestrictions + Utm.OnAdmin)" />
+                                        <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.PaymentMethodRestrictions", Docs.PaymentMethodRestrictions + Utm.OnAdmin)" />
 
-                                        @T("Admin.Configuration.Payment.MethodRestrictions.Description")
+                                        @await T("Admin.Configuration.Payment.MethodRestrictions.Description")
                                     </div>
                                     <div class="col-sm-2 col-xs-3">
                                         <button type="submit" name="save" class="btn btn-primary float-right">
                                             <i class="far fa-save"></i>
-                                            @T("Admin.Common.Save")
+                                            @await T("Admin.Common.Save")
                                         </button>
                                         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.PaymentsListButtons, additionalData = Model })
                                     </div>
@@ -62,7 +62,7 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="col" style="padding-top: 14px;">
-                                                    <strong>@T("Admin.Configuration.Payment.MethodRestrictions.Country")</strong>
+                                                    <strong>@await T("Admin.Configuration.Payment.MethodRestrictions.Country")</strong>
                                                 </th>
                                                 @foreach (var pm in Model.PaymentMethodRestriction.AvailablePaymentMethods)
                                                 {

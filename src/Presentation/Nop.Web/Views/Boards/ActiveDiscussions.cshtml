@@ -3,7 +3,7 @@
     Layout = "_ColumnsOne";
 
     //title
-    NopHtml.AddTitleParts(T("Forum.PageTitle.ActiveDiscussions").Text);
+    NopHtml.AddTitleParts((await T("Forum.PageTitle.ActiveDiscussions")).Value);
     //page class
     NopHtml.AppendPageCssClassParts("html-active-discussions-page");
 }

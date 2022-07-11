@@ -10,11 +10,11 @@
             <nop-label asp-for="PointsForPurchases_Amount" />
         </div>
         <div class="col-md-9">
-            <div class="form-text-row float-left margin-r-10">@T("Admin.Configuration.Settings.RewardPoints.Earning.Hint1")</div>
+            <div class="form-text-row float-left margin-r-10">@await T("Admin.Configuration.Settings.RewardPoints.Earning.Hint1")</div>
             <div class="float-left margin-r-10"><nop-editor asp-for="PointsForPurchases_Amount" asp-postfix="@Model.PrimaryStoreCurrencyCode" /></div>
-            <div class="form-text-row float-left margin-r-10">@T("Admin.Configuration.Settings.RewardPoints.Earning.Hint2")</div>
+            <div class="form-text-row float-left margin-r-10">@await T("Admin.Configuration.Settings.RewardPoints.Earning.Hint2")</div>
             <div class="float-left margin-r-10"><nop-editor asp-for="PointsForPurchases_Points" /></div>
-            <div class="form-text-row float-left margin-r-10">@T("Admin.Configuration.Settings.RewardPoints.Earning.Hint3")</div>
+            <div class="form-text-row float-left margin-r-10">@await T("Admin.Configuration.Settings.RewardPoints.Earning.Hint3")</div>
             <span asp-validation-for="PointsForPurchases_Amount"></span>
             <span asp-validation-for="PointsForPurchases_Points"></span>
         </div>
@@ -25,7 +25,7 @@
             <nop-label asp-for="PurchasesPointsValidity" />
         </div>
         <div class="col-md-9">
-            <nop-editor asp-for="PurchasesPointsValidity" asp-postfix="@T("Admin.Configuration.Settings.RewardPoints.PurchasesPointsValidity.Postfix")" />
+            <nop-editor asp-for="PurchasesPointsValidity" asp-postfix="@await T("Admin.Configuration.Settings.RewardPoints.PurchasesPointsValidity.Postfix")" />
             <span asp-validation-for="PurchasesPointsValidity"></span>
         </div>
     </div>
@@ -55,7 +55,7 @@
             <nop-label asp-for="RegistrationPointsValidity" />
         </div>
         <div class="col-md-9">
-            <nop-editor asp-for="RegistrationPointsValidity" asp-postfix="@T("Admin.Configuration.Settings.RewardPoints.RegistrationPointsValidity.Postfix")" />
+            <nop-editor asp-for="RegistrationPointsValidity" asp-postfix="@await T("Admin.Configuration.Settings.RewardPoints.RegistrationPointsValidity.Postfix")" />
             <span asp-validation-for="RegistrationPointsValidity"></span>
         </div>
     </div>

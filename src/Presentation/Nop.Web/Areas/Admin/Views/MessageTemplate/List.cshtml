@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.ContentManagement.MessageTemplates").Text;
+    ViewBag.PageTitle = (await T("Admin.ContentManagement.MessageTemplates")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Message templates");
 }
@@ -14,7 +14,7 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.ContentManagement.MessageTemplates")
+        @await T("Admin.ContentManagement.MessageTemplates")
     </h1>
     <div class="float-right">
         &nbsp;
@@ -30,7 +30,7 @@
             <div class="card card-default card-search" >
                 <div class="card-body">
                     <div class="row search-row @(!hideSearchBlock ? "opened" : "")"  data-hideAttribute="@hideSearchBlockAttributeName">
-                        <div class="search-text">@T("Admin.Common.Search")</div>
+                        <div class="search-text">@await T("Admin.Common.Search")</div>
                         <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                         <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                     </div>
@@ -68,7 +68,7 @@
                             <div class="col-md-8 offset-md-4">
                                 <button type="button" id="search-templates" class="btn btn-primary btn-search">
                                     <i class="fas fa-search"></i>
-                                    @T("Admin.Common.Search")
+                                    @await T("Admin.Common.Search")
                                 </button>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
 
             <div class="card card-default">
                 <div class="card-body">
-                    <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.MessageTemplates", Docs.MessageTemplates + Utm.OnAdmin)" />
+                    <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.MessageTemplates", Docs.MessageTemplates + Utm.OnAdmin)" />
 
                     @await Html.PartialAsync("Table", new DataTablesModel
                     {
@@ -97,27 +97,27 @@
                         {
                             new ColumnProperty(nameof(MessageTemplateModel.Name))
                             {
-                                Title = T("Admin.ContentManagement.MessageTemplates.Fields.Name").Text
+                                Title = (await T("Admin.ContentManagement.MessageTemplates.Fields.Name")).Value
                             },
                             new ColumnProperty(nameof(MessageTemplateModel.Subject))
                             {
-                                Title = T("Admin.ContentManagement.MessageTemplates.Fields.Subject").Text
+                                Title = (await T("Admin.ContentManagement.MessageTemplates.Fields.Subject")).Value
                             },
                             new ColumnProperty(nameof(MessageTemplateModel.IsActive))
                             {
-                                Title = T("Admin.ContentManagement.MessageTemplates.Fields.IsActive").Text,
+                                Title = (await T("Admin.ContentManagement.MessageTemplates.Fields.IsActive")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.CenterAll,
                                 Render = new RenderBoolean()
                             },
                             new ColumnProperty(nameof(MessageTemplateModel.ListOfStores))
                             {
-                                Title = T("Admin.ContentManagement.MessageTemplates.Fields.LimitedToStores").Text,
+                                Title = (await T("Admin.ContentManagement.MessageTemplates.Fields.LimitedToStores")).Value,
                                 Width = "300"
                             },
                             new ColumnProperty(nameof(MessageTemplateModel.Id))
                             {
-                                Title = T("Admin.Common.Edit").Text,
+                                Title = (await T("Admin.Common.Edit")).Value,
                                 Width = "100",
                                 ClassName =  NopColumnClassDefaults.Button,
                                 Render = new RenderButtonEdit(new DataUrl("Edit"))

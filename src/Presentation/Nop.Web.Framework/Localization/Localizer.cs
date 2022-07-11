@@ -1,3 +1,6 @@
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Html;
+
 namespace Nop.Web.Framework.Localization
 {
     /// <summary>
@@ -6,5 +9,5 @@ namespace Nop.Web.Framework.Localization
     /// <param name="text">Text</param>
     /// <param name="args">Arguments for text</param>
     /// <returns>Localized string</returns>
-    public delegate LocalizedString Localizer(string text, params object[] args);
+    public delegate Task<HtmlString> Localizer(string text, params object[] args);
 }

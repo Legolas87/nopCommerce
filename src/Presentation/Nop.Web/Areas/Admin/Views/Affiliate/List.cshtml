@@ -2,7 +2,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Affiliates").Text;
+    ViewBag.PageTitle = (await T("Admin.Affiliates")).Value;
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Affiliates");
 }
@@ -14,12 +14,12 @@
 
 <div class="content-header clearfix">
     <h1 class="float-left">
-        @T("Admin.Affiliates")
+        @await T("Admin.Affiliates")
     </h1>
     <div class="float-right">
         <a asp-action="Create" class="btn btn-primary">
             <i class="fas fa-plus-square"></i>
-            @T("Admin.Common.AddNew")
+            @await T("Admin.Common.AddNew")
         </a>
         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.AffiliateListButtons, additionalData = Model })
     </div>
@@ -32,7 +32,7 @@
             <div class="card card-default card-search">
                 <div class="card-body">
                     <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
-                        <div class="search-text">@T("Admin.Common.Search")</div>
+                        <div class="search-text">@await T("Admin.Common.Search")</div>
                         <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
                         <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                     </div>
@@ -98,7 +98,7 @@
                             <div class="text-center col-12">
                                 <button type="button" id="search-affiliates" class="btn btn-primary btn-search">
                                     <i class="fas fa-search"></i>
-                                    @T("Admin.Common.Search")
+                                    @await T("Admin.Common.Search")
                                 </button>
                             </div>
                         </div>
@@ -109,8 +109,8 @@
             <div class="card card-default">
                 <div class="card-body">
                     <p>
-                        @T("Admin.Affiliates.Description")
-                        <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Affiliates", Docs.Affiliates + Utm.OnAdmin)" asp-add-wrapper="false"/>
+                        @await T("Admin.Affiliates.Description")
+                        <nop-doc-reference asp-string-resource="@await T("Admin.Documentation.Reference.Affiliates", Docs.Affiliates + Utm.OnAdmin)" asp-add-wrapper="false"/>
                     </p>
 
                     @await Html.PartialAsync("Table", new DataTablesModel
@@ -133,24 +133,24 @@
                         {
                             new ColumnProperty($"{nameof(AffiliateModel.Address)}.{nameof(AddressModel.FirstName)}")
                             {
-                                Title = T("Admin.Address.Fields.FirstName").Text,
+                                Title = (await T("Admin.Address.Fields.FirstName")).Value,
                                 Width = "200"
                             },
                             new ColumnProperty($"{nameof(AffiliateModel.Address)}.{nameof(AddressModel.LastName)}")
                             {
-                                Title = T("Admin.Address.Fields.LastName").Text,
+                                Title = (await T("Admin.Address.Fields.LastName")).Value,
                                 Width = "200"
                             },
                             new ColumnProperty(nameof(AffiliateModel.Active))
                             {
-                                Title = T("Admin.Affiliates.Fields.Active").Text,
+                                Title = (await T("Admin.Affiliates.Fields.Active")).Value,
                                 Width = "100",
                                 ClassName = NopColumnClassDefaults.CenterAll,
                                 Render = new RenderBoolean()
                             },
                             new ColumnProperty(nameof(AffiliateModel.Id))
                             {
-                                Title = T("Admin.Common.Edit").Text,
+                                Title = (await T("Admin.Common.Edit")).Value,
                                 Width = "100",
                                 ClassName = NopColumnClassDefaults.Button,
                                 Render = new RenderButtonEdit(new DataUrl("Edit"))

@@ -7,13 +7,13 @@
 {
     <div class="tier-prices">
         <div class="title">
-            <strong>@T("Products.TierPrices")</strong>
+            <strong>@await T("Products.TierPrices")</strong>
         </div>
         <div class="table-wrapper">
             <table class="prices-table">
                 <tr>
                     <td class="field-header">
-                        @T("Products.TierPrices.Quantity")
+                        @await T("Products.TierPrices.Quantity")
                     </td>
                     @foreach (var tierPrice in Model)
                     {
@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <td class="field-header">
-                        @T("Products.TierPrices.Price")
+                        @await T("Products.TierPrices.Price")
                     </td>
                     @foreach (var tierPrice in Model)
                     {

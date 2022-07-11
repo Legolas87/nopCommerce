@@ -28,7 +28,7 @@
                 <nop-editor asp-for="SecuritySettings.EncryptionKey" />
                 <span class="input-group-append">
                     <button type="submit" name="changeencryptionkey" id="changeencryptionkey" class="btn btn-info">
-                        @T("Admin.Common.Change")
+                        @await T("Admin.Common.Change")
                     </button>
                     <nop-action-confirmation asp-button-id="changeencryptionkey" />
                 </span>

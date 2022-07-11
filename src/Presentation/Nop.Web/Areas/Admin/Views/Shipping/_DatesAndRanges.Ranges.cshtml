@@ -2,7 +2,7 @@
 
 <div class="card-body">
     <p>
-        <em>@T("Admin.Configuration.Shipping.ProductAvailabilityRanges.Hint")</em>
+        <em>@await T("Admin.Configuration.Shipping.ProductAvailabilityRanges.Hint")</em>
     </p>
     @await Html.PartialAsync("Table", new DataTablesModel
     {
@@ -15,17 +15,17 @@
         {
             new ColumnProperty(nameof(ProductAvailabilityRangeModel.Name))
             {
-                Title = T("Admin.Configuration.Shipping.ProductAvailabilityRanges.Fields.Name").Text
+                Title = (await T("Admin.Configuration.Shipping.ProductAvailabilityRanges.Fields.Name")).Value
             },
             new ColumnProperty(nameof(ProductAvailabilityRangeModel.DisplayOrder))
             {
-                Title = T("Admin.Configuration.Shipping.ProductAvailabilityRanges.Fields.DisplayOrder").Text,
+                Title = (await T("Admin.Configuration.Shipping.ProductAvailabilityRanges.Fields.DisplayOrder")).Value,
                 Width = "150",
                 ClassName =  NopColumnClassDefaults.CenterAll
             },
             new ColumnProperty(nameof(ProductAvailabilityRangeModel.Id))
             {
-                Title = T("Admin.Common.Edit").Text,
+                Title = (await T("Admin.Common.Edit")).Value,
                 Width = "100",
                 ClassName =  NopColumnClassDefaults.Button,
                 Render = new RenderButtonEdit(new DataUrl("EditProductAvailabilityRange"))
@@ -36,6 +36,6 @@
 <div class="card-footer">
     <a asp-action="CreateProductAvailabilityRange" class="btn btn-primary">
         <i class="fas fa-plus-square"></i>
-        @T("Admin.Common.AddNew")
+        @await T("Admin.Common.AddNew")
     </a>
 </div>         

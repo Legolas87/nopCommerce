@@ -3,7 +3,7 @@
 @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.ProductReviewDetailsTop, additionalData = Model })
 <div class="card card-default">
     <div class="card-header">
-        @T("Admin.Settings.ReviewType")
+        @await T("Admin.Settings.ReviewType")
     </div>
     <div class="card-body">
         @await Html.PartialAsync("Table", new DataTablesModel
@@ -16,17 +16,17 @@
             {
                 new ColumnProperty(nameof(ProductReviewReviewTypeMappingModel.Name))
                 {
-                    Title = T("Admin.Catalog.AdditionalProductReviews.Fields.Name").Text,
+                    Title = (await T("Admin.Catalog.AdditionalProductReviews.Fields.Name")).Value,
                     Width = "300"
                 },
                 new ColumnProperty(nameof(ProductReviewReviewTypeMappingModel.Rating))
                 {
-                    Title = T("Admin.Catalog.AdditionalProductReviews.Fields.Rating").Text,
+                    Title = (await T("Admin.Catalog.AdditionalProductReviews.Fields.Rating")).Value,
                     Width = "100"
                 },
                 new ColumnProperty(nameof(ProductReviewReviewTypeMappingModel.VisibleToAllCustomers))
                 {
-                    Title = T("Admin.Catalog.AdditionalProductReviews.Fields.VisibleToAllCustomers").Text,
+                    Title = (await T("Admin.Catalog.AdditionalProductReviews.Fields.VisibleToAllCustomers")).Value,
                     Width = "100",
                     ClassName = NopColumnClassDefaults.CenterAll,
                     Render = new RenderBoolean()

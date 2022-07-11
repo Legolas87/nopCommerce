@@ -4,7 +4,7 @@
 
 @{
     //page title
-    ViewBag.PageTitle = string.Format(T("Admin.Orders.Shipments.AddNew.Title").Text, Model.CustomOrderNumber);
+    ViewBag.PageTitle = string.Format((await T("Admin.Orders.Shipments.AddNew.Title")).Value, Model.CustomOrderNumber);
     //active menu item (system name)
     NopHtml.SetActiveMenuItemSystemName("Orders");
 
@@ -16,20 +16,20 @@
 <form asp-controller="Order" asp-action="AddShipment" method="post">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @string.Format(T("Admin.Orders.Shipments.AddNew.Title").Text, Model.CustomOrderNumber)
+            @string.Format((await T("Admin.Orders.Shipments.AddNew.Title")).Value, Model.CustomOrderNumber)
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
-                <a asp-action="Edit" asp-route-id="@Model.OrderId">@T("Admin.Orders.Shipments.BackToOrder")</a>
+                <a asp-action="Edit" asp-route-id="@Model.OrderId">@await T("Admin.Orders.Shipments.BackToOrder")</a>
             </small>
         </h1>
         <div class="float-right">
             <button type="submit" id="shipment-save" name="save" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.Save")
+                @await T("Admin.Common.Save")
             </button>
             <button type="submit" id="shipment-save-continue" name="save-continue" class="btn btn-primary">
                 <i class="far fa-save"></i>
-                @T("Admin.Common.SaveContinue")
+                @await T("Admin.Common.SaveContinue")
             </button>
             <nop-action-confirmation asp-button-id="shipment-save" asp-additional-confirm="Admin.Orders.Shipments.Products.Warehouse.QuantityNotEnough" />
             <nop-action-confirmation asp-button-id="shipment-save-continue" asp-additional-confirm="Admin.Orders.Shipments.Products.Warehouse.QuantityNotEnough" />
@@ -175,46 +175,46 @@
 
                     <div class="card card-default">
                         <div class="card-header">
-                            @T("Admin.Orders.Shipments.Products")
+                            @await T("Admin.Orders.Shipments.Products")
                         </div>
                         <div class="card-body">
                             <table class="table table-hover table-bordered">
                                 <thead>
                                     <tr>
                                         <th>
-                                            @T("Admin.Orders.Shipments.Products.ProductName")
+                                            @await T("Admin.Orders.Shipments.Products.ProductName")
                                         </th>
                                         <th>
-                                            @T("Admin.Orders.Shipments.Products.SKU")
+                                            @await T("Admin.Orders.Shipments.Products.SKU")
                                         </th>
                                         <th>
-                                            @T("Admin.Orders.Shipments.Products.Warehouse")
+                                            @await T("Admin.Orders.Shipments.Products.Warehouse")
                                         </th>
                                         <th>
-                                            @T("Admin.Orders.Shipments.Products.ItemWeight")
+                                            @await T("Admin.Orders.Shipments.Products.ItemWeight")
                                         </th>
                                         <th>
-                                            @T("Admin.Orders.Shipments.Products.ItemDimensions")
+                                            @await T("Admin.Orders.Shipments.Products.ItemDimensions")
                                         </th>
                                         <th>
-                                            @T("Admin.Orders.Shipments.Products.QtyOrdered")
+                                            @await T("Admin.Orders.Shipments.Products.QtyOrdered")
                                         </th>
                                         @if (Model.PickupInStore)
                                         {
                                             <th>
-                                                @T("Admin.Orders.Shipments.Products.QtyReadyForPickup")
+                                                @await T("Admin.Orders.Shipments.Products.QtyReadyForPickup")
                                             </th>
                                             <th>
-                                                @T("Admin.Orders.Shipments.Products.QtyToPickup")
+                                                @await T("Admin.Orders.Shipments.Products.QtyToPickup")
                                             </th>
                                         }
                                         else
                                         {
                                             <th>
-                                                @T("Admin.Orders.Shipments.Products.QtyShipped")
+                                                @await T("Admin.Orders.Shipments.Products.QtyShipped")
                                             </th>
                                             <th>
-                                                @T("Admin.Orders.Shipments.Products.QtyToShip")
+                                                @await T("Admin.Orders.Shipments.Products.QtyToShip")
                                             </th>
                                         }
                                     </tr>
@@ -234,8 +234,8 @@
                                                 @if (item.ShipSeparately)
                                                 {
                                                     <p>
-                                                        <strong>@T("Admin.Orders.Shipments.Products.ShipSeparately.Warning")</strong>
-                                                        @T("Admin.Orders.Shipments.Products.ShipSeparately")
+                                                        <strong>@await T("Admin.Orders.Shipments.Products.ShipSeparately.Warning")</strong>
+                                                        @await T("Admin.Orders.Shipments.Products.ShipSeparately")
                                                     </p>
                                                 }
                                             </td>
@@ -251,14 +251,14 @@
                                                             @foreach (var warehouse in item.AvailableWarehouses)
                                                             {
                                                                 <option value="@warehouse.WarehouseId" data-stock-qty="@warehouse.StockQuantity" data-reserved-qty="@warehouse.ReservedQuantity" data-planned-qty="@warehouse.PlannedQuantity">
-                                                                    @T("Admin.Orders.Shipments.Products.Warehouse.ChooseQty", warehouse.WarehouseName, warehouse.StockQuantity, warehouse.ReservedQuantity, warehouse.PlannedQuantity)
+                                                                    @await T("Admin.Orders.Shipments.Products.Warehouse.ChooseQty", warehouse.WarehouseName, warehouse.StockQuantity, warehouse.ReservedQuantity, warehouse.PlannedQuantity)
                                                                 </option>
                                                             }
                                                         </select>
                                                     }
                                                     else
                                                     {
-                                                        @T("Admin.Orders.Shipments.Products.Warehouse.NotAvailabe")
+                                                        @await T("Admin.Orders.Shipments.Products.Warehouse.NotAvailabe")
                                                     }
                                                 }
                                                 else
