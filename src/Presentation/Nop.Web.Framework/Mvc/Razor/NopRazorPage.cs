@@ -1,7 +1,7 @@
-﻿using Nop.Services.Localization;
-using Nop.Web.Framework.Localization;
-using Microsoft.AspNetCore.Mvc.Razor.Internal;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Razor.Internal;
+using Nop.Services.Localization;
 
 namespace Nop.Web.Framework.Mvc.Razor
 {
@@ -11,9 +11,27 @@ namespace Nop.Web.Framework.Mvc.Razor
     /// <typeparam name="TModel">Model</typeparam>
     public abstract class NopRazorPage<TModel> : Microsoft.AspNetCore.Mvc.Razor.RazorPage<TModel>
     {
-        [RazorInject]
-        public ILocalizationService LocalizationService { get; protected set; }
+        #region Fields
+
         private Localizer _localizer;
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Localizer
+        /// </summary>
+        /// <param name="text">Text</param>
+        /// <param name="args">Arguments for text</param>
+        /// <returns>Localized string</returns>
+        public delegate Task<HtmlString> Localizer(string text, params object[] args);
+
+        [RazorInject]
+        /// <summary>
+        /// Injected localization service
+        /// </summary>
+        public ILocalizationService LocalizationService { get; init; }
 
         /// <summary>
         /// Get a localized resources
@@ -39,6 +57,9 @@ namespace Nop.Web.Framework.Mvc.Razor
                 return _localizer;
             }
         }
+
+        #endregion
+
     }
 
     /// <summary>

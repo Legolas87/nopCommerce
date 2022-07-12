@@ -1,7 +1,6 @@
 ﻿@model ForumPageModel
 @using Nop.Core.Domain.Forums
 @using Nop.Services.Localization
-@inject ILocalizationService localizationService
 @{
     Layout = "_ColumnsOne";
 
@@ -57,7 +56,7 @@
         </div>
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.BoardsForumTop, additionalData = Model })
         @{
-            var pager = await Html.PagerAsync(new PagerModel(localizationService)
+            var pager = await Html.PagerAsync(new PagerModel(LocalizationService)
             {
                 PageSize = Model.TopicPageSize,
                 TotalRecords = Model.TopicTotalRecords,

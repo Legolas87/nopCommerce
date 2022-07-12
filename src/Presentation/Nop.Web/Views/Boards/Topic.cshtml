@@ -1,6 +1,5 @@
 ﻿@using Nop.Services.Localization
 @model ForumTopicPageModel
-@inject ILocalizationService localizationService
 @{
     Layout = "_ColumnsOne";
 
@@ -83,7 +82,7 @@
             }
         </div>
         @{
-            var pager = await Html.PagerAsync(new PagerModel(localizationService)
+            var pager = await Html.PagerAsync(new PagerModel(LocalizationService)
             {
                 PageSize = Model.PostsPageSize,
                 TotalRecords = Model.PostsTotalRecords,

@@ -1,7 +1,6 @@
 ﻿@model Nop.Web.Models.Boards.SearchModel
 @using Nop.Core.Domain.Forums
 @using Nop.Services.Localization
-@inject ILocalizationService localizationService
 @{
     Layout = "_ColumnsOne";
 
@@ -88,7 +87,7 @@
                     forumId = Model.ForumIdSelected.ToString();
                 }
 
-                var pager = await Html.PagerAsync(new PagerModel(localizationService)
+                var pager = await Html.PagerAsync(new PagerModel(LocalizationService)
                 {
                     PageSize = Model.TopicPageSize,
                     TotalRecords = Model.TopicTotalRecords,
