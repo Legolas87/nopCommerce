@@ -253,6 +253,9 @@ namespace Nop.Web.Areas.Admin.Factories
             //prepare model stores
             await _storeMappingSupportedModelFactory.PrepareModelStoresAsync(model, manufacturer, excludeProperties);
 
+            //prepare available vendors
+            await _baseAdminModelFactory.PrepareVendorsAsync(model.AvailableVendors);
+
             return model;
         }
 

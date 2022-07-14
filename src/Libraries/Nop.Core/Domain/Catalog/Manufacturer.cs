@@ -117,5 +117,26 @@ namespace Nop.Core.Domain.Catalog
         /// Gets or sets a value indicating whether the price range should be entered manually
         /// </summary>
         public bool ManuallyPriceRange { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets address
+        /// </summary>
+        public string Address { get; set; }
+
+        /// <summary>
+        /// Gets or sets a latitude
+        /// </summary>
+        public decimal? Latitude { get; set; }
+
+        /// <summary>
+        /// Gets or sets a longitude
+        /// </summary>
+        public decimal? Longitude { get; set; }
+
+        /// <summary>
+        /// Gets or sets a Vendor
+        /// </summary>
+        public int VendorId { get; set; }
     }
 }

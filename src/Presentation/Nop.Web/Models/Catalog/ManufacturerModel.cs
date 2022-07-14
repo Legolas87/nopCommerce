@@ -20,6 +20,26 @@ namespace Nop.Web.Models.Catalog
         public string MetaTitle { get; set; }
         public string SeName { get; set; }
 
+        /// <summary>
+        /// Gets or sets address
+        /// </summary>
+        public string Address { get; set; }
+
+        /// <summary>
+        /// Gets or sets a latitude
+        /// </summary>
+        public decimal? Latitude { get; set; }
+
+        /// <summary>
+        /// Gets or sets a longitude
+        /// </summary>
+        public decimal? Longitude { get; set; }
+
+        /// <summary>
+        /// Gets or sets a Vendor
+        /// </summary>
+        public int VendorId { get; set; }
+
         public PictureModel PictureModel { get; set; }
 
         public IList<ProductOverviewModel> FeaturedProducts { get; set; }

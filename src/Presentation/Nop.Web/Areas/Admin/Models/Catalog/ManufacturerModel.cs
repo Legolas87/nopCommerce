@@ -31,6 +31,7 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
 
             SelectedStoreIds = new List<int>();
             AvailableStores = new List<SelectListItem>();
+            AvailableVendors = new List<SelectListItem>();
 
             ManufacturerProductSearchModel = new ManufacturerProductSearchModel();
         }
@@ -44,6 +45,17 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
 
         [NopResourceDisplayName("Admin.Catalog.Manufacturers.Fields.Description")]
         public string Description { get; set; }
+
+        [NopResourceDisplayName("Admin.Catalog.Manufacturers.Fields.Address")]
+        public string Address { get; set; }
+        [NopResourceDisplayName("Admin.Catalog.Manufacturers.Fields.Latitude")]
+        public string Latitude { get; set; }
+        [NopResourceDisplayName("Admin.Catalog.Manufacturers.Fields.Longitude")]
+        public string Longitude { get; set; }
+
+        [NopResourceDisplayName("Admin.Catalog.Manufacturers.Fields.Vendor")]
+        public int VendorId { get; set; }
+
 
         [NopResourceDisplayName("Admin.Catalog.Manufacturers.Fields.ManufacturerTemplate")]
         public int ManufacturerTemplateId { get; set; }
@@ -117,6 +129,8 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
 
         public string PrimaryStoreCurrencyCode { get; set; }
 
+        public IList<SelectListItem> AvailableVendors { get; set; }
+
         #endregion
     }
 
@@ -129,6 +143,16 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
 
         [NopResourceDisplayName("Admin.Catalog.Manufacturers.Fields.Description")]
         public string Description {get;set;}
+
+        [NopResourceDisplayName("Admin.Catalog.Manufacturers.Fields.Address")]
+        public string Address { get; set; }
+        [NopResourceDisplayName("Admin.Catalog.Manufacturers.Fields.Latitude")]
+        public string Latitude { get; set; }
+        [NopResourceDisplayName("Admin.Catalog.Manufacturers.Fields.Longitude")]
+        public string Longitude { get; set; }
+
+        [NopResourceDisplayName("Admin.Catalog.Manufacturers.Fields.Vendor")]
+        public int VendorId { get; set; }
 
         [NopResourceDisplayName("Admin.Catalog.Manufacturers.Fields.MetaKeywords")]
         public string MetaKeywords { get; set; }
